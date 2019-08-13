@@ -10,9 +10,10 @@ Software Application for Artist's Selling Prints
 
 ## User Stories
 
-1. As a user, I want to view art.
-2. As a user, I want to read about the artist.
-3. As a user, I want to purchase artists' printed products.
+1. As a user, I want to learn about this artist.
+2. As a user, I want to view art by this artist.
+3. As a user, I want to contact this artist.
+4. As a user, I want to purchase this artists' printed products.
 
 ## Wireframes
 
@@ -24,21 +25,22 @@ For this project, I used the following tech stack:
 Front-end framework: ReactJS
 Styling library: Bootstrap (react-bootstrap)
 API's: 
-* Images: (AWS S3 | Cloudinary)
-* Products: Printful API
+* Images: Cloudinary
+* Products: Printful
 
 ## Components
 * Gallery
-  - array of albums
-  - sort and filter albums
-* Album
-  - array of Pieces
-  - sort and filter Pictures
+  - array of Pictures (pulled from Image API)
+  - array of Tags (hard-coded for now)
+  - filter Pictures by Tag
+* Tag
+  - just a string
+  - no behavior
 * Picture
-  - an image (from image host API, tbd)
-  - array of tags
-  - array of products
+  - an image (from Image API)
+  - array of tags (from Image API)
+  - array of products (probably hard-coded, or derived from tags)
 * Product
-  - link to purchase product
+  - link to purchase product from Product API
 
 ## Installation Instructions

@@ -35,11 +35,13 @@ API's:
   - filter Pictures by Tag
 * Tag
   - just a string
-  - no behavior
+  - no behavior - filtering handled by Gallery (or rather by reducer, but called by Gallery)
 * Picture
   - an image (from Image API)
   - array of tags (from Image API)
-  - array of products (probably hard-coded, or derived from tags)
+  - button to open product list
+* ProductList
+  - array of products (either hard-coded or derived from tags)
 * Product
   - link to purchase product from Product API
 

@@ -23,7 +23,7 @@ Software Application for Artist's Selling Prints
 For this project, I used the following tech stack:
 Front-end framework: ReactJS
 Styling library: Bootstrap (react-bootstrap)
-API's: 
+API's:g
 * Images: Cloudinary
 * Products: Printful
 

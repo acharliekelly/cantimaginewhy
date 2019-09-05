@@ -2,14 +2,13 @@ body {
   background-color: black;
   color: white;
 }
-header {
-  text-align: center;
-}
+
 .album-list {
-  margin: 10px;
+  width: 80%;
+  margin: 10px auto;
   display: flex;
   flex-direction: row;
-  text-align: center;
+  justify-content: center;
 }
 
 .list-title {

@@ -10,7 +10,7 @@
   flex-wrap: wrap;
 }
 
-.gallery .img {
+.gallery .thumbnail {
   display: inline-block;
   margin: 5px;
 }
@@ -20,3 +20,4 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
 }
+

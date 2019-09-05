@@ -8,10 +8,10 @@ export default {
     {
       "name": "Monogram",
       "tag": "monogram",
-      "thumbnail": "ck_ice"
+      "thumbnail": "ak-blue-heart-monogram"
     },
     {
-      "name": "Illuminated Name Plates",
+      "name": "Illuminations",
       "tag": "nameplate",
       "thumbnail": "jennylynne_2012"
     },

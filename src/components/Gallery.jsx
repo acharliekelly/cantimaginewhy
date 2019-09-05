@@ -70,20 +70,25 @@ class Gallery extends Component {
             <h1 className="gallery-title">{selectedAlbum}</h1>
             <div className="gallery">
               {pictures.map(picture => {
+                // set caption
                 let caption = 'Untitled';
                 if (picture.context && picture.context.custom && picture.context.custom.caption) {
                   caption = picture.context.custom.caption;
                 }
+                
+                let orient = picture.height > picture.width ? 'portrait' : 'landsc';
+                if (picture.height === picture.width) {
+                  orient = 'square';
+                }
                 return (
-                  <div className="responsive img" key={picture.public_id}>
+                  <div className="responsive thumbnail" key={picture.public_id}>
                       <a 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        href={`https://res.cloudinary.com/cantimaginewhy/${picture.public_id}.jpg`}>
-                          <Image cloudName="cantimaginewhy" publicId={picture.public_id}>
+                        href={`https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${picture.public_id}.jpg`}>
+                          <Image cloudName="cantimaginewhy" publicId={picture.public_id} className={orient}>
                               <Transformation
-                                  crop="scale"
-                                  width="300"
+                                  crop="fit"
                                   height="200"
                                   dpr="auto"
                                   responsive_placeholder="blank"

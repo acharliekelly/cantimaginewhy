@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* SampleImage */
+.image {
+  border: inset thin gray;
+  background-color: gray;
+  padding: 10px auto;
+}
+
+.image .title {
+  margin: 5px auto;
+  text-align: center;
+  color: black;
+}

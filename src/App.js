@@ -1,25 +1,50 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+// import Nav from 'react-bootstrap/Nav';
 
-function App() {
+import './App.css';
+import './css/main.css';
+
+// import Menu from './components/Menu';
+import Home from './components/Home';
+import AboutPage from './components/About';
+import Gallery from './components/Gallery';
+
+const ContactPage = () => (
+  <div>
+    <header>Contact</header>
+    <main className="todo">Coming Soon</main>
+  </div>
+);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav className="menu">
+        <ul>
+          <li>
+            <NavLink to="/home">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/gallery">Gallery</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+        </ul>
+        
+      </nav>
+      <div className="content">
+        <Route path="/home" component={Home} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/contact" component={ContactPage} />
+        <Route path="/gallery" component={Gallery} />
+      </div>
+      
+    </Router>
   );
 }
 

@@ -1,0 +1,45 @@
+.todo {
+  font-family: 'Courier New', Courier, monospace;
+  color: #000;
+  background-color: #0ff;
+  
+}
+
+.todo::before {
+  content: 'TODO: ';
+}
+
+.menu {
+  background-color: #900;
+  color: #000;
+  font-variant: small-caps;
+  font-size: 22px;
+}
+
+nav ul {
+  list-style: none;
+  text-align: center;
+}
+nav ul li {
+  display: inline;
+  padding: 0 5px;
+}
+nav ul li a {
+  color: #000;
+  text-decoration: none;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  margin: 10px 10%;
+  padding: 10px;
+  border: inset thin #ccc;
+  min-height: 75vh;
+}
+.content header {
+  font-size: 36px;
+  text-align: center;
+  margin: 15px 30px;
+}

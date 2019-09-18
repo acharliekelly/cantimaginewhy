@@ -11,10 +11,15 @@ body {
   justify-content: center;
 }
 
+.select-label {
+  font-size: 14px;
+}
+
 .list-title {
   display: block;
   margin: 0 auto;
   text-align: center;
+  font-size: 22px;
 }
 
 .album-btn {
@@ -25,7 +30,28 @@ body {
 }
 
 .album-name {
-  font-size: 1em;
+  font-size: 18px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
+}
+
+.gallery-nav {
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 2px 3px;
+  cursor: pointer;
+  text-align: center;
+  color: #333;
+}
+.gallery-nav div {
+  display: inline;
+  padding: 2px 3px;
+  margin: 0 5px;
+}
+.gallery-nav a {
+  text-decoration: none;
+  color: #333;
+}
+.gallery-nav a:hover {
+  text-decoration: underline;
 }

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import axios from 'axios';
-import albumList from '../utils/albums';
-import './list.css';
-import './gallery.css';
+// import albumList from '../utils/albums';
+import Lightbox from 'react-image-lightbox';
+import GalleryNav from './GalleryNav';
+import 'react-image-lightbox/style.css'; 
+import '../css/list.css';
+import '../css/gallery.css';
 
 class Gallery extends Component {
   constructor (props) {
@@ -36,44 +39,43 @@ class Gallery extends Component {
       .then(res => {
         this.setState({
           selectedAlbum: tagName, 
-          pictures: res.data.resources
+          pictures: res.data.resources,
+          lightboxOpen: false,
+          selectedImage: null
         });
       });
+  }
+
+  openLightbox = pictureId => {
+    // console.log('open lightbox for: ' + pictureId);
+    this.setState({
+      lightboxOpen: true,
+      selectedImage: `https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${pictureId}.jpg`
+    })
+  }
+
+  closeLightbox = () => {
+    this.setState({
+      lightboxOpen: false
+    })
   }
     
   render () {
     const { pictures, selectedAlbum } = this.state;
     return (
         <CloudinaryContext cloudName="cantimaginewhy">
-          <header>
-            <h2 className="list-title">Select Gallery</h2>
-            <div className="album-list">
-              {albumList.albums.map(album => (
-                    <div key={album.tag} className="album-btn" onClick={this.handleAlbumSelect}>
-                        <Image  
-                            id={album.tag}
-                            publicId={`art/${album.thumbnail}`}
-                            className="thumbnail inline"
-                            width="150"
-                            height="150"
-                            crop="fit"
-                            quality="80"
-                        >
-                            <Transformation quality="auto" fetchFormat="auto" />
-                        </Image>
-                        <h3 className="album-name">{album.name}</h3>
-                    </div>
-                  )) }
-              </div>
-          </header>
+          
+          <GalleryNav handleNavChange={this.updateGallery} />
           <main>
             <h1 className="gallery-title">{selectedAlbum}</h1>
             <div className="gallery">
               {pictures.map(picture => {
                 // set caption
-                let caption = 'Untitled';
-                if (picture.context && picture.context.custom && picture.context.custom.caption) {
+                let caption;
+                try {
                   caption = picture.context.custom.caption;
+                } catch (err) {
+                  caption = 'Untitled';
                 }
                 
                 let orient = picture.height > picture.width ? 'portrait' : 'landsc';
@@ -82,26 +84,36 @@ class Gallery extends Component {
                 }
                 return (
                   <div className="responsive thumbnail" key={picture.public_id}>
-                      <a 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        href={`https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${picture.public_id}.jpg`}>
-                          <Image cloudName="cantimaginewhy" publicId={picture.public_id} className={orient}>
-                              <Transformation
-                                  crop="fit"
-                                  height="200"
-                                  dpr="auto"
-                                  responsive_placeholder="blank"
-                              />
-                          </Image>
-                      </a>
-                      <div className="title">{caption}</div>
+                    
+                    <Image 
+                      cloudName="cantimaginewhy" 
+                      publicId={picture.public_id} 
+                      className={orient}
+                      onClick={() => this.openLightbox(picture.public_id)}
+                      >
+                        <Transformation
+                            crop="fit"
+                            height="150"
+                            dpr="auto"
+                            responsive_placeholder="blank"
+                        />
+                    </Image>
+                    <div className="title">{caption}</div>
                   </div>
                   )
               }) }
             </div>
+            
         </main>
+        {this.state.lightboxOpen && (
+          <Lightbox
+            mainSrc={this.state.selectedImage}
+            onCloseRequest={this.closeLightbox}
+          ></Lightbox>
+        )}
         </CloudinaryContext>
+
+
       );
     }
 }

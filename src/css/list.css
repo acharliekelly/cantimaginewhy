@@ -4,7 +4,6 @@ body {
 }
 
 .album-list {
-  width: 80%;
   margin: 10px auto;
   display: flex;
   flex-direction: row;
@@ -45,13 +44,20 @@ body {
 }
 .gallery-nav div {
   display: inline;
-  padding: 2px 3px;
+  
   margin: 0 5px;
 }
 .gallery-nav a {
   text-decoration: none;
   color: #333;
+  padding: 2px 3px;
 }
 .gallery-nav a:hover {
   text-decoration: underline;
+}
+.gallery-nav a.active, .gallery-nav a.active:hover {
+  background-color: #333;
+  text-decoration: none;
+  color: #ddd;
+  border-radius: 2px;
 }

@@ -9,27 +9,37 @@
   content: 'TODO: ';
 }
 
+.lorem {
+  color: #eee;
+  
+}
+
 .menu {
   background-color: #900;
   color: #000;
   font-variant: small-caps;
   font-size: 22px;
-}
-
-nav ul {
-  list-style: none;
   text-align: center;
 }
-nav ul li {
+
+.menu .nav-item {
   display: inline;
   padding: 0 5px;
+  margin: 2px;
 }
-nav ul li a {
+.menu .nav-item a {
   color: #000;
   text-decoration: none;
+  padding: 0 2px;
 }
-nav ul li a:hover {
+.menu .nav-item a:hover {
   text-decoration: underline;
+}
+.menu .nav-item a.active, .menu .nav-item a.active:hover {
+  background-color: #000;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
 }
 
 .content {

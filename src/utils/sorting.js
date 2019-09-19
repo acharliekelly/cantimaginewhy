@@ -1,29 +1,34 @@
 
 export const albums = [
   {
-    "name": "Landscapes",
-    "tag": "landscape",
-    "thumbnail": "wachusett-reservoir"
-  },
-  {
-    "name": "Monogram",
-    "tag": "monogram",
-    "thumbnail": "ak-blue-heart-monogram"
+    "name": "En Plein Air",
+    "tag": "en plein air",
+    "thumbnail": "art/footbridge-watertown-dam_2019"
   },
   {
     "name": "Illuminations",
     "tag": "nameplate",
-    "thumbnail": "jennylynne_2012"
+    "thumbnail": "art/jennylynne_2012"
   },
   {
-    "name": "Holiday Cards",
+    "name": "Holidays",
     "tag": "holiday",
-    "thumbnail": "valentines-card-2012"
+    "thumbnail": "art/valentines-card-2012"
   },
   {
-    "name": "En Plein Air",
-    "tag": "en plein air",
-    "thumbnail": "watertown_footbridge-fs"
+    "name": "Knotwork",
+    "tag": "knotwork",
+    "thumbnail": "art/lotus_26804737776_o_i7e8dw"
+  },
+  {
+    "name": "Name Tags",
+    "tag": "nametag",
+    "thumbnail": "nfs/charlie-3_33523261796_o_njzr8m"
+  },
+  {
+    "name": "Latticery",
+    "tag": "plaitwork",
+    "thumbnail": "nfs/eye_26745608572_o_zqbocw"
   }
 ];
 
@@ -31,32 +36,32 @@ export const media = [
   {
     "name": "Pencil",
     "tag": "graphite",
-    "thumbnail": "winter-house"
+    "thumbnail": "art/winter-house"
   },
   {
     "name": "Colored Pencil",
     "tag": "colored pencil",
-    "thumbnail": "winter-yosemite"
+    "thumbnail": "art/winter-yosemite"
   },
   {
     "name": "Watercolor Pencil",
     "tag": "watercolor pencil",
-    "thumbnail": "leaving-star-island_2015"
+    "thumbnail": "art/leaving-star-island_2015"
   },
   {
     "name": "Pastel",
     "tag": "pastel",
-    "thumbnail": "rainbow-end_2017"
+    "thumbnail": "art/rainbow-end_2017"
   },
   {
     "name": "Watercolor",
     "tag": "watercolor",
-    "thumbnail": "ck_ice"
+    "thumbnail": "art/ck_ice"
   },
   {
     "name": "Acrylic",
     "tag": "acrylic",
-    "thumbnail": "riparian_balcony-fs"
+    "thumbnail": "art/riparian_balcony-fs"
   }
 ];
 
@@ -64,22 +69,27 @@ export const styles = [
   {
     "name": "Triptych",
     "tag": "triptych",
-    "thumbnail": "winter-yosemite"
+    "thumbnail": "art/winter-yosemite"
   },
   {
     "name": "Pointillist",
     "tag": "pointillist",
-    "thumbnail": "fun-with-dots_2017"
+    "thumbnail": "art/fun-with-dots_2017"
   },
   {
     "name": "Nightscape",
     "tag": "nightscape",
-    "thumbnail": "cambridge-night_2019"
+    "thumbnail": "art/cambridge-night_2019"
+  },
+  {
+    "name": "Miniatures",
+    "tag": "miniature",
+    "thumbnail": "art/caterpillar_hill_qmwg7s"
   },
   {
     "name": "Panoramic",
     "tag": "panorama",
-    "thumbnail": "winter-moon-2"
+    "thumbnail": "art/winter-moon-2"
   },
 ];
 
@@ -87,21 +97,44 @@ export const seasons = [
   {
     "name": "Summer",
     "tag": "summer",
-    "thumbnail": "salt-pond"
+    "thumbnail": "art/salt-pond"
   },
   {
     "name": "Fall",
     "tag": "autumn",
-    "thumbnail": "autumn-at-mt-feake_2017"
+    "thumbnail": "art/autumn-at-mt-feake_2017"
   },
   {
     "name": "Winter",
     "tag": "winter",
-    "thumbnail": "winter-walk"
+    "thumbnail": "art/winter-walk"
   },
   {
     "name": "Spring",
     "tag": "spring",
-    "thumbnail": "esplanade-sunset_2018"
+    "thumbnail": "art/esplanade-sunset_2018"
+  }
+];
+
+export const availability = [
+  {
+    "name": "Original for Sale",
+    "tag": "for-sale",
+    "thumbnail": "art/memorial_drive_z68y3q"
+  },
+  {
+    "name": "Prints for Sale",
+    "tag": "for-print",
+    "thumbnail": "art/esplanade-sunset_2018"
+  },
+  {
+    "name": "Products for Sale",
+    "tag": "products",
+    "thumbnail": "art/easter-card-2012"
+  },
+  {
+    "name": "Viewing Only",
+    "tag": "nfs",
+    "thumbnail": "nfs/eye_26745608572_o_zqbocw"
   }
 ];

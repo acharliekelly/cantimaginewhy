@@ -13,7 +13,7 @@ class GalleryNav extends Component {
     super(props);
 
     this.state = {
-      sortIndex: 1
+      sortIndex: 0
     }
   }
 

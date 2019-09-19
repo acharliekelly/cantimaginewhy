@@ -41,6 +41,11 @@
   text-decoration: none;
   color: #fff;
 }
+.menu .nav-item a.homelink {
+  color: #000;
+  background-color: #900;
+  text-decoration: none;
+}
 
 .content {
   margin: 10px 10%;

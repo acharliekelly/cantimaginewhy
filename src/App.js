@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
 import './css/main.css';
@@ -16,36 +16,24 @@ const ContactPage = () => (
   </div>
 );
 
-// because of temporary use of gh-pages
-const makeUrl = path => {
-  const host = window.location.hostname;
-  if (host.includes('github.io')) {
-    // using gh-pages, make relative path
-    return '/cantimaginewhy' + path;
-  } else {
-    // otherwise using either localhost or cantimaginewhy.com
-    return path;
-  }
-}
-
 const App = () => {
   return (
-    <Router>
-      <Nav className="menu" activeKey="/home">
+    <Router basename='/'>
+      <Nav className="menu">
         <Nav.Item>
-          <NavLink to={makeUrl('/home')}>Home</NavLink>
+          <NavLink className="homelink" to="/">Home</NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to={makeUrl('/about')}>About</NavLink>
+          <NavLink to="/about">About</NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to={makeUrl('/gallery')}>Gallery</NavLink>
+          <NavLink to="/gallery">Gallery</NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink to={makeUrl('/contact')}>Contact</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </Nav.Item>
       </Nav>
-      <Route path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/gallery" component={Gallery} />

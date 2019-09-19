@@ -46,6 +46,14 @@ class Gallery extends Component {
       });
   }
 
+  clearGallery = () => {
+    this.setState({
+      pictures: [],
+      selectedAlbum: null,
+      lightboxOpen: false
+    })
+  }
+
   openLightbox = pictureId => {
     // console.log('open lightbox for: ' + pictureId);
     this.setState({
@@ -63,56 +71,60 @@ class Gallery extends Component {
   render () {
     const { pictures, selectedAlbum } = this.state;
     return (
-        <CloudinaryContext cloudName="cantimaginewhy">
-          
-          <GalleryNav handleNavChange={this.updateGallery} />
-          <main>
-            <h1 className="gallery-title">{selectedAlbum}</h1>
-            <div className="gallery">
-              {pictures.map(picture => {
-                // set caption
-                let caption;
-                try {
-                  caption = picture.context.custom.caption;
-                } catch (err) {
-                  caption = 'Untitled';
-                }
-                
-                let orient = picture.height > picture.width ? 'portrait' : 'landsc';
-                if (picture.height === picture.width) {
-                  orient = 'square';
-                }
-                return (
-                  <div className="responsive thumbnail" key={picture.public_id}>
-                    
-                    <Image 
-                      cloudName="cantimaginewhy" 
-                      publicId={picture.public_id} 
-                      className={orient}
-                      onClick={() => this.openLightbox(picture.public_id)}
-                      >
-                        <Transformation
-                            crop="fit"
-                            height="150"
-                            dpr="auto"
-                            responsive_placeholder="blank"
-                        />
-                    </Image>
-                    <div className="title">{caption}</div>
-                  </div>
-                  )
-              }) }
-            </div>
+        <div className="content">
+          <CloudinaryContext cloudName="cantimaginewhy">
             
-        </main>
-        {this.state.lightboxOpen && (
-          <Lightbox
-            mainSrc={this.state.selectedImage}
-            onCloseRequest={this.closeLightbox}
-          ></Lightbox>
-        )}
-        </CloudinaryContext>
-
+            <GalleryNav 
+              handleNavChange={this.updateGallery}
+              handleClearGallery={this.clearGallery} 
+            />
+            <main>
+              <h1 className="gallery-title">{selectedAlbum}</h1>
+              <div className="gallery">
+                {pictures.map(picture => {
+                  // set caption
+                  let caption;
+                  try {
+                    caption = picture.context.custom.caption;
+                  } catch (err) {
+                    caption = 'Untitled';
+                  }
+                  
+                  let orient = picture.height > picture.width ? 'portrait' : 'landsc';
+                  if (picture.height === picture.width) {
+                    orient = 'square';
+                  }
+                  return (
+                    <div className="responsive thumbnail" key={picture.public_id}>
+                      
+                      <Image 
+                        cloudName="cantimaginewhy" 
+                        publicId={picture.public_id} 
+                        className={orient}
+                        onClick={() => this.openLightbox(picture.public_id)}
+                        >
+                          <Transformation
+                              crop="fit"
+                              height="150"
+                              dpr="auto"
+                              responsive_placeholder="blank"
+                          />
+                      </Image>
+                      <div className="title">{caption}</div>
+                    </div>
+                    )
+                }) }
+              </div>
+              
+          </main>
+          {this.state.lightboxOpen && (
+            <Lightbox
+              mainSrc={this.state.selectedImage}
+              onCloseRequest={this.closeLightbox}
+            ></Lightbox>
+          )}
+          </CloudinaryContext>
+        </div>
 
       );
     }

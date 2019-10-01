@@ -24,3 +24,19 @@ export const fetchRelatedImages = keyName => {
     url: url,
   });
 }
+
+// Return source URL for watermarked image
+export const watermarkedImageSrc = publicId => {
+  return `https://res.cloudinary.com/${cloudName}/w_1000/w_500,l_ck_logo,o_30/${publicId}.jpg`;
+}
+
+// Return source URL for non-watermarked image
+export const cleanImageSrc = publicId => {
+  return `https://res.cloudinary.com/${cloudName}/w_1000/${publicId}.jpg`;
+}
+
+// return source URL of arbitrary-sized, non-watermarked image
+export const variableImageSrc = (publicId, imgWidthPx = 500) => {
+  return `https://res.cloudinary.com/${cloudName}/w_${imgWidthPx}/${publicId}.jpg`;
+}
+

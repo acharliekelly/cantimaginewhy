@@ -41,7 +41,7 @@ class Gallery extends Component {
           selectedAlbum: tagName, 
           pictures: res.data.resources,
           lightboxOpen: false,
-          selectedImage: null
+          currentImage: null
         });
       });
   }
@@ -58,7 +58,7 @@ class Gallery extends Component {
     // console.log('open lightbox for: ' + pictureId);
     this.setState({
       lightboxOpen: true,
-      selectedImage: `https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${pictureId}.jpg`
+      currentImage: `https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${pictureId}.jpg`
     })
   }
 
@@ -119,7 +119,7 @@ class Gallery extends Component {
           </main>
           {this.state.lightboxOpen && (
             <Lightbox
-              mainSrc={this.state.selectedImage}
+              mainSrc={this.state.currentImage}
               onCloseRequest={this.closeLightbox}
             ></Lightbox>
           )}

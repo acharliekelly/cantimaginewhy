@@ -7,7 +7,7 @@ import './css/main.css';
 // import Menu from './components/Menu';
 import Home from './components/Home';
 import AboutPage from './components/About';
-import Gallery from './components/Gallery';
+import Gallery from './components/GallerySplit';
 
 const ContactPage = () => (
   <div className="content">

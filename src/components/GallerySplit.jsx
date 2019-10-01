@@ -57,12 +57,16 @@ class Gallery extends Component {
     const img = {
       source: variableImageSrc(picture.public_id, 400),
       title: this.getPictureCaption(picture),
+      descrip: this.getPictureProperty(picture, 'alt'),
       location: this.getPictureProperty(picture, 'location'),
       medium: this.getPictureProperty(picture, 'medium'),
       size: this.getPictureProperty(picture, 'size'),
       year: this.getPictureProperty(picture, 'year'),
       forSale: (this.getPictureProperty(picture, 'original') === 'available'),
-      price: (this.getPictureProperty(picture, 'price', 'NFS'))
+      forPrint: (this.getPictureProperty(picture, 'canvas-id', '-') !== '-'),
+      price: (this.getPictureProperty(picture, 'price', 'NFS')),
+      canvasId: this.getPictureProperty(picture, 'canvas-id', '-'),
+      posterId: this.getPictureProperty(picture, 'poster-id', '-')
     };
     this.setState({
       imageViewOpen: true,
@@ -141,7 +145,13 @@ class Gallery extends Component {
                   <img alt="" src={currentImage.source} onClick={this.closeImageView} />
                   <div className="image-info">
                     <div className="title">{currentImage.title}</div>
+                    <div className="info">{currentImage.descrip}</div>
                     <div className="info">{currentImage.size}, {currentImage.medium}</div>
+                    {currentImage.forPrint && (
+                      <div className="info">
+                        <div className="info">Canvas: {currentImage.canvasId}</div>
+                      </div>
+                    )}
                     {currentImage.forSale && (
                       <div className="info">${currentImage.price}</div>
                     )}

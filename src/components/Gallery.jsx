@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import axios from 'axios';
-// import albumList from '../utils/albums';
-import Lightbox from 'react-image-lightbox';
+import { Image, CloudinaryContext } from 'cloudinary-react';
 import GalleryNav from './GalleryNav';
-import 'react-image-lightbox/style.css'; 
+import { fetchGallery, variableImageSrc } from '../utils/imageApi';
 import '../css/list.css';
-import '../css/gallery.css';
+import '../css/gallery.scss';
 
 class Gallery extends Component {
   constructor (props) {
     super(props);
     this.state = {
       pictures: [],
-      selectedAlbum: null
+      selectedAlbum: null,
+      imageViewOpen: false,
+      currentImage: null
     };
   }
 
   componentDidMount () {
     const { currentAlbum } = this.props;
     if (currentAlbum) {
-      console.log('Loaded: ', currentAlbum);
       this.updateGallery(currentAlbum);
     }
     
@@ -34,13 +32,12 @@ class Gallery extends Component {
 
   updateGallery = tagName => {
     // load images
-    const url = `https://res.cloudinary.com/cantimaginewhy/image/list/${tagName}.json`;
-    axios.get(url)
+    fetchGallery(tagName)
       .then(res => {
         this.setState({
           selectedAlbum: tagName, 
           pictures: res.data.resources,
-          lightboxOpen: false,
+          imageViewOpen: false,
           currentImage: null
         });
       });
@@ -50,26 +47,55 @@ class Gallery extends Component {
     this.setState({
       pictures: [],
       selectedAlbum: null,
-      lightboxOpen: false
+      imageViewOpen: false,
+      currentImage: null
     })
   }
 
-  openLightbox = pictureId => {
-    // console.log('open lightbox for: ' + pictureId);
+  openImageView = picture => {
+    const img = {
+      source: variableImageSrc(picture.public_id, 400),
+      title: this.getPictureCaption(picture),
+      description: this.getPictureProperty(picture, 'alt'),
+      location: this.getPictureProperty(picture, 'location'),
+      medium: this.getPictureProperty(picture, 'medium'),
+      size: this.getPictureProperty(picture, 'size'),
+      year: this.getPictureProperty(picture, 'year'),
+      forSale: (this.getPictureProperty(picture, 'original') === 'available'),
+      forPrint: (this.getPictureProperty(picture, 'canvas-id') !== ''),
+      price: (this.getPictureProperty(picture, 'price', 'NFS')),
+      canvasId: this.getPictureProperty(picture, 'canvas-id', '-'),
+      posterId: this.getPictureProperty(picture, 'poster-id', '-')
+    };
     this.setState({
-      lightboxOpen: true,
-      currentImage: `https://res.cloudinary.com/cantimaginewhy/w_1000/w_500,l_ck_logo,o_30/${pictureId}.jpg`
-    })
+      imageViewOpen: true,
+      currentImage: img
+    });
   }
 
-  closeLightbox = () => {
+  getPictureCaption = pictureObj => {
+    return this.getPictureProperty(pictureObj, 'caption', 'Untitled');
+  }
+
+  getPictureProperty = (pictureObj, property, errValue = '') => {
+    let val;
+    try {
+      val = pictureObj.context.custom[property];
+    } catch (err) {
+      val = errValue;
+    }
+    return val;
+  }
+
+  closeImageView = () => {
     this.setState({
-      lightboxOpen: false
+      imageViewOpen: false,
+      currentImage: null
     })
   }
     
   render () {
-    const { pictures, selectedAlbum } = this.state;
+    const { pictures, selectedAlbum, currentImage } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -78,17 +104,15 @@ class Gallery extends Component {
               handleNavChange={this.updateGallery}
               handleClearGallery={this.clearGallery} 
             />
-            <main>
-              <h1 className="gallery-title">{selectedAlbum}</h1>
+
+            <h2 className="gallery-title">{selectedAlbum}</h2>
+            <main className="display-area">
+              
               <div className="gallery">
+                
                 {pictures.map(picture => {
                   // set caption
-                  let caption;
-                  try {
-                    caption = picture.context.custom.caption;
-                  } catch (err) {
-                    caption = 'Untitled';
-                  }
+                  const caption = this.getPictureCaption(picture);
                   
                   let orient = picture.height > picture.width ? 'portrait' : 'landsc';
                   if (picture.height === picture.width) {
@@ -98,31 +122,51 @@ class Gallery extends Component {
                     <div className="responsive thumbnail" key={picture.public_id}>
                       
                       <Image 
-                        cloudName="cantimaginewhy" 
-                        publicId={picture.public_id} 
+                        publicId={picture.public_id}
+                        caption={caption}
                         className={orient}
-                        onClick={() => this.openLightbox(picture.public_id)}
-                        >
-                          <Transformation
-                              crop="fit"
-                              height="150"
-                              dpr="auto"
-                              responsive_placeholder="blank"
-                          />
-                      </Image>
-                      <div className="title">{caption}</div>
+                        height="100"
+                        crop="fit"
+                        onClick={() => this.openImageView(picture)}
+                      />
                     </div>
                     )
                 }) }
               </div>
+
+              {this.state.imageViewOpen && (
+                <div className="image-view">
+                  <img alt="" src={currentImage.source} onClick={this.closeImageView} />
+                  <div className="image-info">
+                    <div className="title">{currentImage.title}</div>
+                    <div className="info">{currentImage.description}</div>
+                    <div className="info">{currentImage.size}, {currentImage.medium}</div>
+                    {currentImage.forSale && (
+                      <div className="options">
+                        <span className="label">Buy Original:</span>
+                        <span className="purchase buy-orig">${currentImage.price}</span>
+                      </div>
+                    )}
+                    {currentImage.forPrint && (
+                      <div className="options">
+                        <span className="label">Buy Print:</span>
+                        <span 
+                          className="purchase buy-print" 
+                          onClick={() => console.log('Buy Poster #' + currentImage.posterId)}
+                        >Poster</span>
+                        <span 
+                          className="purchase buy-print"
+                          onClick={() => console.log('Buy Canvas #' + currentImage.canvasId)}  
+                        >Canvas</span>
+                      </div>
+                    )}
+                    
+                  </div>
+                  
+                </div>
+              )}
               
-          </main>
-          {this.state.lightboxOpen && (
-            <Lightbox
-              mainSrc={this.state.currentImage}
-              onCloseRequest={this.closeLightbox}
-            ></Lightbox>
-          )}
+            </main>
           </CloudinaryContext>
         </div>
 

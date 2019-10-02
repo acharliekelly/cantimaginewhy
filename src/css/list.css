@@ -27,11 +27,21 @@ body {
   margin: 2px;
   cursor: pointer;
 }
+.selected-nav {
+  border: inset thin;
+  background-color: white;
+}
+
 
 .album-name {
   font-size: 18px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
+  color: #fff;
+}
+
+.selected-nav .album-name {
+  color: #000;
 }
 
 .gallery-nav {

@@ -64,5 +64,27 @@
       border-radius: 3px;
       cursor: pointer;
     }
+
+    .options {
+      line-height: 2em;
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    .purchase {
+      margin: 0 2px;
+      padding: 1px 3px;
+      border-radius: 2px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .buy-orig {
+      background-color: #900;
+      color: #000;
+    }
+    .buy-print {
+      background-color: #060;
+      color: #000;
+    }
   }
 }

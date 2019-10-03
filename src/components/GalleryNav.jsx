@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 // import { albums, media, seasons, styles, availability } from '../utils/sorting';
 import { filters } from '../utils/sorting';
-import '../css/list.css';
+import '../css/navlist.scss';
 
 class GalleryNav extends Component {
 
@@ -25,15 +25,17 @@ class GalleryNav extends Component {
     this.props.handleClearGallery();
   }
 
-  handleNavClick = tagName => {
+  handleNavClick = nav => {
+    // nav is object (option) from filter list
+    // { name, tag, thumbnail, description }
     this.setState({
-      selectedNav: tagName
+      selectedNav: nav
     })
-    this.props.handleNavChange(tagName);
+    this.props.handleNavChange(nav.tag);
   }
 
   render () {
-    const { filterIndex } = this.state;
+    const { filterIndex, selectedNav } = this.state;
     const activeFilter = filters[filterIndex];
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
@@ -48,11 +50,11 @@ class GalleryNav extends Component {
         <header className="album-list">
           {activeFilter.options.map(option => {
               let cls = 'album-btn';
-              if (this.state.selectedNav === option.tag) {
+              if (selectedNav && selectedNav.tag === option.tag) {
                 cls += ' selected-nav'
               }
               return (
-                <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option.tag)}>
+                <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option)}>
                     <Image  
                         publicId={`${option.thumbnail}`}
                         className="thumbnail inline"
@@ -63,11 +65,18 @@ class GalleryNav extends Component {
                     >
                         <Transformation quality="auto" fetchFormat="auto" />
                     </Image>
-                    <h3 className="album-name">{option.name}</h3>
+                    <div className="album-name">{option.name}</div>
+                    {/* <div className="album-desc">{option.description}</div> */}
                 </div>
               );
             })}
         </header>
+        {selectedNav && (
+          <div className="current-nav">
+            <div className="nav-title">{selectedNav.name}</div>
+            <div className="nav-description">{selectedNav.description}</div>
+          </div>
+        )}
       </CloudinaryContext>
     );
   }

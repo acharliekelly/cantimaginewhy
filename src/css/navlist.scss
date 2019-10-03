@@ -1,0 +1,113 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+
+
+
+
+
+
+// Gallery Nav (filter types)
+.gallery-nav {
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 2px 3px;
+  cursor: pointer;
+  text-align: center;
+  color: #333;
+
+  div {
+    display: inline;
+    margin: 0 5px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+    padding: 2px 3px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active, &.active:hover {
+      background-color: #333;
+      text-decoration: none;
+      color: #ddd;
+      border-radius: 2px;
+    }
+  }
+}
+
+// Filter Options
+.album-list {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.select-label {
+  font-size: 14px;
+}
+
+.list-title {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 22px;
+}
+
+.album-btn {
+  display: inline;
+  border: outset thin;
+  margin: 2px;
+  cursor: pointer;
+
+  .album-name {
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    color: #fff;
+  }
+
+  .album-desc {
+    font-size: 10px;
+    text-align: left;
+    margin: 5px;
+    visibility: hidden;
+  }
+
+  &:hover {
+    .album-desc {
+      visibility: visible;
+    }
+  }
+}
+.selected-nav {
+  border: inset thin;
+  background-color: white;
+
+  .album-name {
+    color: #000;
+  }
+}
+
+// selected nav name
+.current-nav {
+  text-align: center;
+  margin: 5px auto;
+  color: #eee;
+
+  .nav-title {
+    font-size: 3em;
+    font-weight: 600;
+  }
+
+  .nav-description {
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+}

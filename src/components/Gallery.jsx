@@ -95,7 +95,7 @@ class Gallery extends Component {
   }
     
   render () {
-    const { pictures, selectedAlbum, currentImage } = this.state;
+    const { pictures, currentImage } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -105,7 +105,6 @@ class Gallery extends Component {
               handleClearGallery={this.clearGallery} 
             />
 
-            <h2 className="gallery-title">{selectedAlbum}</h2>
             <main className="display-area">
               
               <div className="gallery">

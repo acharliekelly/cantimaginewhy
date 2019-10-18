@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-// import { albums, media, seasons, styles, availability } from '../utils/sorting';
 import { filters } from '../utils/sorting';
 import '../css/navlist.scss';
 
@@ -17,11 +16,17 @@ class GalleryNav extends Component {
     }
   }
 
+  componentDidMount () {
+    this.handleSortSelect(0);
+  }
+
   handleSortSelect = eventKey => {
     // console.log('Sort selected: ' + eventKey);
     this.setState({
-      filterIndex: eventKey
-    })
+      filterIndex: eventKey,
+      selectedNav: null
+    });
+    // clear thumbnails
     this.props.handleClearGallery();
   }
 
@@ -30,7 +35,8 @@ class GalleryNav extends Component {
     // { name, tag, thumbnail, description }
     this.setState({
       selectedNav: nav
-    })
+    });
+
     this.props.handleNavChange(nav.tag);
   }
 
@@ -41,10 +47,10 @@ class GalleryNav extends Component {
       <CloudinaryContext cloudName="cantimaginewhy">
         <Nav variant="pills" className="gallery-nav" onSelect={this.handleSortSelect}>
           {filters.map(filter => (
-            <Nav.Item>
+            <Nav.Item key={filter.name}>
               <Nav.Link eventKey={filter.index}>{filter.name}</Nav.Link>
             </Nav.Item>
-          )
+            )
           )}
         </Nav>
         <header className="album-list">

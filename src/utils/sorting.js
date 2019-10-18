@@ -197,5 +197,29 @@ export const filters = [
         "description": "I no longer have the original, and you can't get it printed on anything, but you're welcome to look at everything here"
       }
     ]
+  },
+  {
+    "name": "Location",
+    "index": 6,
+    "options": [
+      {
+        "name": "Boston",
+        "tag": "boston-area",
+        "thumbnail": "art/esplanade-sunset_2018",
+        "description": "Scenes from Greater Boston"
+      },
+      {
+        "name": "New England",
+        "tag": "new-england",
+        "thumbnail": "art/salt-pond",
+        "description": "Scenes from New England, outside Greater Boston"
+      },
+      {
+        "name": "Elsewhere",
+        "tag": "elsewhere",
+        "thumbnail": "art/bodiam-castle_2011",
+        "description": "Scenes from elsewhere in the world"
+      }
+    ]
   }
 ]

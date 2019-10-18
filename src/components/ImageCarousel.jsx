@@ -46,8 +46,9 @@ class ImageCarousel extends Component {
           width={1080}
           height={480}
           displayQuantityOfSide={1}
-          navigation
-          infiniteScroll
+          navigation={true}
+          infiniteScroll={true}
+          enableHeading={true}
           media={{
             '@media (max-width: 900px)': {
               width: '600px',
@@ -65,7 +66,7 @@ class ImageCarousel extends Component {
               publicId={pic.public_id}
               crop="fit" 
               height="400"
-              alt=""
+              alt={pic.context.custom.caption}
               onClick={() => {this.handleClickImage(pic)}}
             />
           ))}

@@ -1,0 +1,93 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.todo {
+  font-family: 'Courier New', Courier, monospace;
+  color: #000;
+  background-color: #0ff;
+  
+}
+
+.no-data {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: #f00;
+  background-color: #000;
+}
+
+.loading {
+  color: #ff0;
+  font-weight: bold;
+}
+
+.todo::before {
+  content: 'TODO: ';
+}
+
+.lorem {
+  color: #eee;
+  
+}
+
+.menu {
+  background-color: #900;
+  color: #000;
+  font-variant: small-caps;
+  font-size: 22px;
+  text-align: center;
+
+  .nav-item {
+    display: inline;
+    padding: 0 5px;
+    margin: 2px;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      padding: 0 2px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.active, &.active:hover {
+        background-color: #000;
+        border-radius: 3px;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      &.homelink {
+        color: #000;
+        background-color: #900;
+        text-decoration: none;
+      }
+    }
+
+  }
+}
+
+.content {
+  margin: 10px 10%;
+  padding: 10px;
+  border: inset thin #ccc;
+  min-height: 75vh;
+
+  header {
+    font-size: 36px;
+    text-align: center;
+    margin: 15px 30px;
+  }
+}
+
+.home-gallery {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+  .thumbnail {
+    margin: 1em;
+  }
+}

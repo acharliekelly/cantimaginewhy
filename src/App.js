@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
-import './css/main.css';
+import './css/main.scss';
 
 // import Menu from './components/Menu';
 import Home from './components/Home';

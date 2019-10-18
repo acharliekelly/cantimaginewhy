@@ -11,12 +11,6 @@ export const filters = [
         "description": "Painted outdoors looking at the subject, instead of in a studio looking at a photo"
       },
       {
-        "name": "Name Plates",
-        "tag": "nameplate",
-        "thumbnail": "art/jennylynne_2012",
-        "description": "Kind of like name tags, only bigger, and intended as wall decoration rather than being worn on shirt. Illustration depicts the person's interest, hobby, or raison d'etre."
-      },
-      {
         "name": "Holidays",
         "tag": "holiday",
         "thumbnail": "art/valentines-card-2012",
@@ -151,8 +145,32 @@ export const filters = [
     ]
   },
   {
-    "name": "Availability",
+    "name": "Color",
     "index": 4,
+    "options": [
+      {
+        "name": "Blue",
+        "tag": "blue",
+        "thumbnail": "art/shamrock-i_26838853055_o_oqrvik",
+        "description": "Images with the color blue in them"
+      },
+      {
+        "name": "Green",
+        "tag": "green",
+        "thumbnail": "art/lotus_26804737776_o_i7e8dw",
+        "description": "Images with the color green in them"
+      },
+      {
+        "name": "Red",
+        "tag": "red",
+        "thumbnail": "art/winter-holidays-card-2015",
+        "description": "Images with some version of red in them"
+      }
+    ]
+  },
+  {
+    "name": "Availability",
+    "index": 5,
     "options": [
       {
         "name": "Original for Sale",

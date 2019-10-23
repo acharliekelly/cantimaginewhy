@@ -1,12 +1,24 @@
 
+$nav-bkg: #ddd;
+$nav-text: #000;
+$nav-link-text: #111;
+$nav-active-bkg: #333;
+$nav-active-text: #ddd;
+
+$album-bkg: #fff;
+$album-text: #000;
+
+$selected-album-bkg: #00fdc8;
+$selected-album-text: #000;
+
 // Gallery Nav (filter types)
 .gallery-nav {
-  background-color: #ddd;
+  background-color: $nav-bkg;
   border-radius: 5px;
   padding: 2px 3px;
   cursor: pointer;
   text-align: center;
-  color: #333;
+  color: $nav-text;
 
   div {
     display: inline;
@@ -15,7 +27,7 @@
 
   a {
     text-decoration: none;
-    color: #333;
+    color: $nav-link-text;
     padding: 2px 3px;
 
     &:hover {
@@ -25,7 +37,7 @@
     &.active, &.active:hover {
       background-color: #333;
       text-decoration: none;
-      color: #ddd;
+      color: $nav-active-text;
       border-radius: 2px;
     }
   }
@@ -58,9 +70,9 @@
 
   .album-name {
     font-size: 18px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Amatic SC', sans-serif;
     text-align: center;
-    color: #fff;
+    color: $album-text;
   }
 
   .album-desc {
@@ -78,27 +90,29 @@
 }
 .selected-nav {
   border: inset thin;
-  background-color: white;
+  background-color: $selected-album-bkg;
 
   .album-name {
-    color: #000;
+    color: $selected-album-text;
+    font-weight: 600;
   }
 }
 
 // selected nav name
 .current-nav {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   text-align: center;
   margin: 5px auto;
-  color: #eee;
+  color: $album-text;
 
   .nav-title {
     font-size: 2em;
     font-weight: 600;
+    font-family: 'Amatic SC', sans-serif;
   }
 
   .nav-description {
     font-size: 1em;
     font-weight: normal;
+    font-family: 'Source Code Pro', monospace;
   }
 }

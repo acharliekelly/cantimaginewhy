@@ -1,20 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Source+Code+Pro&display=swap');
+@import 'colors';
+
 body {
-  background-color: black;
-  color: white;
+  background-color: $base-bkg;
+  color: $base-text;
+  font-family: 'Source Code Pro', monospace;
+}
+
+h1, h2, h3, h4, h5, h6, header {
+  font-family: 'Amatic SC', sans-serif;
+  color: $base-header;
 }
 
 .todo {
   font-family: 'Courier New', Courier, monospace;
-  color: #000;
-  background-color: #0ff;
+  color: $todo-text;
+  background-color: $todo-bkg;
   
 }
 
 .no-data {
   font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
-  color: #f00;
-  background-color: #000;
+  color: $nodata-text;
+  background-color: transparent;
 }
 
 .loading {
@@ -32,8 +41,8 @@ body {
 }
 
 .menu {
-  background-color: #900;
-  color: #000;
+  background-color: $menu-bkg;
+  color: $menu-text;
   font-variant: small-caps;
   font-size: 22px;
   text-align: center;
@@ -44,7 +53,7 @@ body {
     margin: 2px;
 
     a {
-      color: #000;
+      color: $menu-text;
       text-decoration: none;
       padding: 0 2px;
 
@@ -53,15 +62,15 @@ body {
       }
 
       &.active, &.active:hover {
-        background-color: #000;
+        background-color: $menu-active-bkg;
         border-radius: 3px;
         text-decoration: none;
-        color: #fff;
+        color: $menu-active-text;
       }
 
       &.homelink {
-        color: #000;
-        background-color: #900;
+        color: $menu-text;
+        background-color: $menu-bkg;
         text-decoration: none;
       }
     }

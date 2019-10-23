@@ -44,13 +44,13 @@ class ImageCarousel extends Component {
       return (
         <Coverflow
           width={1080}
-          height={480}
+          height={360}
           displayQuantityOfSide={1}
           navigation={true}
           infiniteScroll={true}
           enableHeading={true}
           media={{
-            '@media (max-width: 900px)': {
+            '@media (max-width: 580px)': {
               width: '600px',
               height: '300px'
             },

@@ -40,6 +40,17 @@ h1, h2, h3, h4, h5, h6, header {
   
 }
 
+.about-content {
+  display: flex;
+  flex-direction: row;
+  div {
+    margin: 0 1em;
+  }
+  .me-photo {
+    border: thin inset;
+  }
+}
+
 .menu {
   background-color: $menu-bkg;
   color: $menu-text;

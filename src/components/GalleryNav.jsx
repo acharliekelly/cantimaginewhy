@@ -46,6 +46,7 @@ class GalleryNav extends Component {
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <Nav variant="pills" className="gallery-nav" onSelect={this.handleSortSelect}>
+          <span className="label">Filter By:</span>
           {filters.map(filter => (
             <Nav.Item key={filter.name}>
               <Nav.Link eventKey={filter.index}>{filter.name}</Nav.Link>

@@ -1,14 +1,19 @@
 import React from 'react';
+import { Image } from 'cloudinary-react';
 
 const AboutPage = () => (
   <div className="content">
     <header>About</header>
-    <div className="lorem">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-      officia deserunt mollit anim id est laborum.</div>
+    <div className="about-content">
+      <Image className="me-photo" cloudName="cantimaginewhy" publicId="photos/face-41_mf4lrx" width="300"/>
+      <div className="me-text">
+        <p>Hi. My name is Charlie Kelly, and I do art stuff.</p>
+        <p>I'm going to put more information in this space, but I haven't got around to it yet.</p>
+      </div>
+      
+    </div>
+    
+
   </div>
 );
 

@@ -12,7 +12,7 @@ import Gallery from './components/Gallery';
 const ContactPage = () => (
   <div className="content">
     <header>Contact</header>
-    <main className="lorem">Coming Soon</main>
+    <main className="todo">Put contact form here</main>
   </div>
 );
 

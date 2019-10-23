@@ -1,38 +1,86 @@
 
 export const filters = [
+  // {
+  //   "name": "Album",
+  //   "index": 0,
+  //   "options": [
+  //     {
+  //       "name": "Plein Air",
+  //       "tag": "en plein air",
+  //       "thumbnail": "art/footbridge-watertown-dam_2019",
+  //       "description": "Painted outdoors looking at the subject, instead of in a studio looking at a photo"
+  //     },
+  //     {
+  //       "name": "Holidays",
+  //       "tag": "holiday",
+  //       "thumbnail": "art/valentines-card-2012",
+  //       "description": "Designs for holiday cards"
+  //     },
+  //     {
+  //       "name": "Knotwork",
+  //       "tag": "knotwork",
+  //       "thumbnail": "art/lotus_26804737776_o_i7e8dw",
+  //       "description": "Abstract art inspired by traditional Celtic themes"
+  //     },
+  //     {
+  //       "name": "Name Tags",
+  //       "tag": "nametag",
+  //       "thumbnail": "nfs/charlie-3_33523261796_o_njzr8m",
+  //       "description": "Custom name tags for people at various organizations I attend. Or by commission."
+  //     },
+  //     {
+  //       "name": "Latticery",
+  //       "tag": "plaitwork",
+  //       "thumbnail": "nfs/eye_26745608572_o_zqbocw",
+  //       "description": "Plaitwork - like knotwork but with all right angles"
+  //     }
+  //   ]
+  // },
   {
-    "name": "Album",
+    "name": "Location",
     "index": 0,
     "options": [
       {
-        "name": "Plein Air",
-        "tag": "en plein air",
-        "thumbnail": "art/footbridge-watertown-dam_2019",
-        "description": "Painted outdoors looking at the subject, instead of in a studio looking at a photo"
+        "name": "Downtown Boston",
+        "tag": "downtown-boston",
+        "thumbnail": "art/esplanade-sunset_2018",
+        "description": "Scenes from Downtown Boston"
       },
       {
-        "name": "Holidays",
-        "tag": "holiday",
-        "thumbnail": "art/valentines-card-2012",
-        "description": "Designs for holiday cards"
+        "name": "Cambridge",
+        "tag": "cambridge",
+        "thumbnail": "art/memorial_drive_z68y3q",
+        "description": "Scenes from Cambridge"
       },
       {
-        "name": "Knotwork",
-        "tag": "knotwork",
-        "thumbnail": "art/lotus_26804737776_o_i7e8dw",
-        "description": "Abstract art inspired by traditional Celtic themes"
+        "name": "Waltham",
+        "tag": "waltham",
+        "thumbnail": "art/early_fall_mt_feake",
+        "description": "Scenes from Waltham"
       },
       {
-        "name": "Name Tags",
-        "tag": "nametag",
-        "thumbnail": "nfs/charlie-3_33523261796_o_njzr8m",
-        "description": "Custom name tags for people at various organizations I attend. Or by commission."
+        "name": "Charles River",
+        "tag": "charles-river",
+        "thumbnail": "art/watertown_dam-fs",
+        "description": "Scenes from along the Charles"
       },
       {
-        "name": "Latticery",
-        "tag": "plaitwork",
-        "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-        "description": "Plaitwork - like knotwork but with all right angles"
+        "name": "Greater Boston",
+        "tag": "boston-area",
+        "thumbnail": "art/seven_hills_park_hiiasw",
+        "description": "Around the Boston area"
+      },
+      {
+        "name": "Maine",
+        "tag": "maine",
+        "thumbnail": "art/parker_point_rgzpme",
+        "description": "Scenes from Maine"
+      },
+      {
+        "name": "Elsewhere",
+        "tag": "elsewhere",
+        "thumbnail": "art/bodiam-castle_2011",
+        "description": "Scenes from elsewhere"
       }
     ]
   },
@@ -67,7 +115,7 @@ export const filters = [
       {
         "name": "Watercolor",
         "tag": "watercolor",
-        "thumbnail": "art/ck_ice",
+        "thumbnail": "art/late-spring-on-the-charles_2017",
         "description": "Traditional watercolor painting with brush"
       },
       {
@@ -179,46 +227,16 @@ export const filters = [
         "description": "You can purchase the original art piece"
       },
       {
-        "name": "Prints for Sale",
+        "name": "Buy a Print",
         "tag": "for-print",
         "thumbnail": "art/esplanade-sunset_2018",
-        "description": "You can purchase either a canvas print or a poster of the picture"
-      },
-      {
-        "name": "Products for Sale",
-        "tag": "products",
-        "thumbnail": "art/easter-card-2012",
-        "description": "You can purchase a product, such as a t-shirt or a coffee mug, with the picture on it"
+        "description": "You can purchase a print"
       },
       {
         "name": "Viewing Only",
         "tag": "nfs",
         "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-        "description": "I no longer have the original, and you can't get it printed on anything, but you're welcome to look at everything here"
-      }
-    ]
-  },
-  {
-    "name": "Location",
-    "index": 6,
-    "options": [
-      {
-        "name": "Boston",
-        "tag": "boston-area",
-        "thumbnail": "art/esplanade-sunset_2018",
-        "description": "Scenes from Greater Boston"
-      },
-      {
-        "name": "New England",
-        "tag": "new-england",
-        "thumbnail": "art/salt-pond",
-        "description": "Scenes from New England, outside Greater Boston"
-      },
-      {
-        "name": "Elsewhere",
-        "tag": "elsewhere",
-        "thumbnail": "art/bodiam-castle_2011",
-        "description": "Scenes from elsewhere in the world"
+        "description": "Feel free to look"
       }
     ]
   }

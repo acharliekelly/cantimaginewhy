@@ -1,15 +1,19 @@
 import React from 'react';
+import ImageCarousel from './ImageCarousel';
 
-const Home = () => (
-  <div className="content">
-    <header>Can't Imagine Why</header>
-    <div className="lorem">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-      officia deserunt mollit anim id est laborum.</div>
-  </div>
-);
+const clickImage = img => {
+  console.log('image clicked: ', img)
+} 
 
-export default Home;
+export default function Home() {
+  
+   return (
+      <div className="content">
+        <main>
+          <header>Can't Imagine Why</header>
+          <ImageCarousel tagName="favorite" selectImage={clickImage} />
+        </main>
+      </div>
+    );
+}
+

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Source+Code+Pro&display=swap');
+@import 'colors';
+
+body {
+  background-color: $base-bkg;
+  color: $base-text;
+  font-family: 'Source Code Pro', monospace;
+}
+
+h1, h2, h3, h4, h5, h6, header {
+  font-family: 'Amatic SC', sans-serif;
+  color: $base-header;
+}
+
+.todo {
+  font-family: 'Courier New', Courier, monospace;
+  color: $todo-text;
+  background-color: $todo-bkg;
+  
+}
+
+.no-data {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: $nodata-text;
+  background-color: transparent;
+}
+
+.loading {
+  color: #ff0;
+  font-weight: bold;
+}
+
+.todo::before {
+  content: 'TODO: ';
+}
+
+.lorem {
+  color: #eee;
+  
+}
+
+.menu {
+  background-color: $menu-bkg;
+  color: $menu-text;
+  font-variant: small-caps;
+  font-size: 22px;
+  text-align: center;
+
+  .nav-item {
+    display: inline;
+    padding: 0 5px;
+    margin: 2px;
+
+    a {
+      color: $menu-text;
+      text-decoration: none;
+      padding: 0 2px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.active, &.active:hover {
+        background-color: $menu-active-bkg;
+        border-radius: 3px;
+        text-decoration: none;
+        color: $menu-active-text;
+      }
+
+      &.homelink {
+        color: $menu-text;
+        background-color: $menu-bkg;
+        text-decoration: none;
+      }
+    }
+
+  }
+}
+
+.content {
+  margin: 10px 10%;
+  padding: 10px;
+  border: inset thin #ccc;
+  min-height: 75vh;
+
+  header {
+    font-size: 36px;
+    text-align: center;
+    margin: 15px 30px;
+  }
+}
+
+.home-gallery {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+  .thumbnail {
+    margin: 1em;
+  }
+}

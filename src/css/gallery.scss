@@ -1,6 +1,8 @@
+
+
 .gallery-title {
   font-size: 2em;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Amatic SC', sans-serif;
   font-weight: bold;
   text-transform: capitalize;
   text-align: center;
@@ -25,7 +27,7 @@
     .title {
       display: none;
       font-size: 12px;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-family: 'Amatic SC', sans-serif;
       text-align: center;
     }
   }
@@ -35,7 +37,7 @@
 
     .image-info {
       border: 1px inset #999;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-family: 'Source Code Pro', monospace;
       padding: 3px 5px;
       margin-top: 2px;
 
@@ -80,11 +82,11 @@
     }
     .buy-orig {
       background-color: #900;
-      color: #000;
+      color: #fff;
     }
     .buy-print {
       background-color: #060;
-      color: #000;
+      color: #fff;
     }
   }
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import cloudinary from 'cloudinary';
 
 const cloudName = 'cantimaginewhy';
+// const EXCLUDE_NFS = true;
 
 const jsonImgList = tagName => {
   return `https://res.cloudinary.com/${cloudName}/image/list/${tagName}.json`;
@@ -10,10 +10,7 @@ const jsonImgList = tagName => {
 // Return all JSON data of images tagged with tagName
 export const fetchGallery = tagName => {
   const url = jsonImgList(tagName);
-  return axios({
-    method: 'GET',
-    url
-  });
+  return axios(url);
 }
 
 // Return JSON data of all images where context.ref = keyName

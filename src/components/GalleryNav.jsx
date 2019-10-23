@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-// import { albums, media, seasons, styles, availability } from '../utils/sorting';
 import { filters } from '../utils/sorting';
-import '../css/list.css';
+import '../css/navlist.scss';
 
 class GalleryNav extends Component {
 
@@ -17,42 +16,52 @@ class GalleryNav extends Component {
     }
   }
 
+  componentDidMount () {
+    this.handleSortSelect(0);
+  }
+
   handleSortSelect = eventKey => {
     // console.log('Sort selected: ' + eventKey);
     this.setState({
-      filterIndex: eventKey
-    })
+      filterIndex: eventKey,
+      selectedNav: null
+    });
+    // clear thumbnails
     this.props.handleClearGallery();
   }
 
-  handleNavClick = tagName => {
+  handleNavClick = nav => {
+    // nav is object (option) from filter list
+    // { name, tag, thumbnail, description }
     this.setState({
-      selectedNav: tagName
-    })
-    this.props.handleNavChange(tagName);
+      selectedNav: nav
+    });
+
+    this.props.handleNavChange(nav.tag);
   }
 
   render () {
-    const { filterIndex } = this.state;
+    const { filterIndex, selectedNav } = this.state;
     const activeFilter = filters[filterIndex];
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <Nav variant="pills" className="gallery-nav" onSelect={this.handleSortSelect}>
+          <span className="label">Filter By:</span>
           {filters.map(filter => (
-            <Nav.Item>
+            <Nav.Item key={filter.name}>
               <Nav.Link eventKey={filter.index}>{filter.name}</Nav.Link>
             </Nav.Item>
-          )
+            )
           )}
         </Nav>
         <header className="album-list">
           {activeFilter.options.map(option => {
               let cls = 'album-btn';
-              if (this.state.selectedNav === option.tag) {
+              if (selectedNav && selectedNav.tag === option.tag) {
                 cls += ' selected-nav'
               }
               return (
-                <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option.tag)}>
+                <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option)}>
                     <Image  
                         publicId={`${option.thumbnail}`}
                         className="thumbnail inline"
@@ -63,11 +72,18 @@ class GalleryNav extends Component {
                     >
                         <Transformation quality="auto" fetchFormat="auto" />
                     </Image>
-                    <h3 className="album-name">{option.name}</h3>
+                    <div className="album-name">{option.name}</div>
+                    {/* <div className="album-desc">{option.description}</div> */}
                 </div>
               );
             })}
         </header>
+        {selectedNav && (
+          <div className="current-nav">
+            <div className="nav-title">{selectedNav.name}</div>
+            <div className="nav-description">{selectedNav.description}</div>
+          </div>
+        )}
       </CloudinaryContext>
     );
   }

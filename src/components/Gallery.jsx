@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 import GalleryNav from './GalleryNav';
+// import ImageDisplay from './ImageDisplay';
 import { fetchGallery, variableImageSrc } from '../utils/imageApi';
-import '../css/list.css';
+// import { purchaseOriginal, purchasePrint, purchasePoster } from '../utils/productApi';
 import '../css/gallery.scss';
 
 class Gallery extends Component {
@@ -62,11 +63,10 @@ class Gallery extends Component {
       size: this.getPictureProperty(picture, 'size'),
       year: this.getPictureProperty(picture, 'year'),
       forSale: (this.getPictureProperty(picture, 'original') === 'available'),
-      forPrint: (this.getPictureProperty(picture, 'canvas-id') !== ''),
+      forPrint: (this.hasProperty('canvas-id') || this.hasProperty('poster-id')),
       price: (this.getPictureProperty(picture, 'price', 'NFS')),
-      canvasId: this.getPictureProperty(picture, 'canvas-id', '-'),
-      posterId: this.getPictureProperty(picture, 'poster-id', '-')
-    };
+      materialInfo: this.hasProperty('medium') && this.hasProperty('size')
+    }
     this.setState({
       imageViewOpen: true,
       currentImage: img
@@ -87,6 +87,19 @@ class Gallery extends Component {
     return val;
   }
 
+  hasProperty = propertyName => {
+    const pictureObj = this.props.currentImage;
+    let val = false;
+    try {
+      val = (pictureObj.context.custom[propertyName] != null)
+    } catch (err) {
+      return false;
+    }
+    return val;
+  }
+
+  
+
   closeImageView = () => {
     this.setState({
       imageViewOpen: false,
@@ -95,7 +108,7 @@ class Gallery extends Component {
   }
     
   render () {
-    const { pictures, selectedAlbum, currentImage } = this.state;
+    const { pictures, currentImage, imageViewOpen } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -105,26 +118,16 @@ class Gallery extends Component {
               handleClearGallery={this.clearGallery} 
             />
 
-            <h2 className="gallery-title">{selectedAlbum}</h2>
             <main className="display-area">
               
               <div className="gallery">
                 
                 {pictures.map(picture => {
-                  // set caption
-                  const caption = this.getPictureCaption(picture);
-                  
-                  let orient = picture.height > picture.width ? 'portrait' : 'landsc';
-                  if (picture.height === picture.width) {
-                    orient = 'square';
-                  }
                   return (
                     <div className="responsive thumbnail" key={picture.public_id}>
                       
                       <Image 
                         publicId={picture.public_id}
-                        caption={caption}
-                        className={orient}
                         height="100"
                         crop="fit"
                         onClick={() => this.openImageView(picture)}
@@ -134,7 +137,7 @@ class Gallery extends Component {
                 }) }
               </div>
 
-              {this.state.imageViewOpen && (
+              {imageViewOpen && (
                 <div className="image-view">
                   <img alt="" src={currentImage.source} onClick={this.closeImageView} />
                   <div className="image-info">
@@ -154,10 +157,6 @@ class Gallery extends Component {
                           className="purchase buy-print" 
                           onClick={() => console.log('Buy Poster #' + currentImage.posterId)}
                         >Poster</span>
-                        <span 
-                          className="purchase buy-print"
-                          onClick={() => console.log('Buy Canvas #' + currentImage.canvasId)}  
-                        >Canvas</span>
                       </div>
                     )}
                     

@@ -1,0 +1,37 @@
+.menu {
+  background-color: $menu-bkg;
+  color: $menu-text;
+  font-variant: small-caps;
+  font-size: 22px;
+  text-align: center;
+
+  .nav-item {
+    display: inline;
+    padding: 0 5px;
+    margin: 2px;
+
+    a {
+      color: $menu-text;
+      text-decoration: none;
+      padding: 0 2px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.active, &.active:hover {
+        background-color: $menu-active-bkg;
+        border-radius: 3px;
+        text-decoration: none;
+        color: $menu-active-text;
+      }
+
+      &.homelink {
+        color: $menu-text;
+        background-color: $menu-bkg;
+        text-decoration: none;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,30 @@
+
+.home-gallery {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+
+  .thumbnail {
+    margin: 1em;
+  }
+}
+
+.home-bkg {
+  background-clip: content-box;
+  background-image: url(https://res.cloudinary.com/cantimaginewhy/image/upload/v1571965112/me/caterpillar2.jpg);
+  opacity: 0.4;
+  height: 100%;
+}
+
+.site-title {
+  
+  position: absolute;
+  left: 40%;
+  top: 50px;
+  // margin-left: -50%;
+  z-index: 10;
+  font-family: 'Amatic SC';
+  font-size: 3em;
+  font-weight: bold;
+
+}

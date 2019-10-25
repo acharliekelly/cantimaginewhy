@@ -31,7 +31,7 @@ class ImageCarousel extends Component {
   }
 
   handleClickImage = img => {
-    this.props.selectImage(img);
+    // this.props.selectImage(img);
   }
 
   render () {
@@ -44,28 +44,17 @@ class ImageCarousel extends Component {
       return (
         <Coverflow
           width={1080}
-          height={360}
+          height={680}
           displayQuantityOfSide={1}
           navigation={true}
           infiniteScroll={true}
           enableHeading={true}
-          media={{
-            '@media (max-width: 580px)': {
-              width: '600px',
-              height: '300px'
-            },
-            '@media (min-width: 900px)': {
-              width: '960px',
-              height: '600px'
-            }
-          }}
         >
           {pictures.map(pic => (
             <Image 
               cloudName="cantimaginewhy" 
               publicId={pic.public_id}
               crop="fit" 
-              height="400"
               alt={pic.context.custom.caption}
               onClick={() => {this.handleClickImage(pic)}}
             />

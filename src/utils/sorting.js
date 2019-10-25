@@ -1,41 +1,5 @@
 
 export const filters = [
-  // {
-  //   "name": "Album",
-  //   "index": 0,
-  //   "options": [
-  //     {
-  //       "name": "Plein Air",
-  //       "tag": "en plein air",
-  //       "thumbnail": "art/footbridge-watertown-dam_2019",
-  //       "description": "Painted outdoors looking at the subject, instead of in a studio looking at a photo"
-  //     },
-  //     {
-  //       "name": "Holidays",
-  //       "tag": "holiday",
-  //       "thumbnail": "art/valentines-card-2012",
-  //       "description": "Designs for holiday cards"
-  //     },
-  //     {
-  //       "name": "Knotwork",
-  //       "tag": "knotwork",
-  //       "thumbnail": "art/lotus_26804737776_o_i7e8dw",
-  //       "description": "Abstract art inspired by traditional Celtic themes"
-  //     },
-  //     {
-  //       "name": "Name Tags",
-  //       "tag": "nametag",
-  //       "thumbnail": "nfs/charlie-3_33523261796_o_njzr8m",
-  //       "description": "Custom name tags for people at various organizations I attend. Or by commission."
-  //     },
-  //     {
-  //       "name": "Latticery",
-  //       "tag": "plaitwork",
-  //       "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-  //       "description": "Plaitwork - like knotwork but with all right angles"
-  //     }
-  //   ]
-  // },
   {
     "name": "Location",
     "index": 0,
@@ -90,27 +54,15 @@ export const filters = [
     "options": [
       {
         "name": "Pencil",
-        "tag": "graphite",
+        "tag": "pencil",
         "thumbnail": "art/winter-house",
-        "description": "Graphite pencil"
-      },
-      {
-        "name": "Colored Pencil",
-        "tag": "colored pencil",
-        "thumbnail": "art/winter-yosemite",
-        "description": "Colored pencil"
+        "description": "Graphite / Colored Pencil"
       },
       {
         "name": "Watercolor Pencil",
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
         "description": "Drawn first, then turned into watercolor by applying water"
-      },
-      {
-        "name": "Pastel",
-        "tag": "pastel",
-        "thumbnail": "art/rainbow-end_2017",
-        "description": "Used pastels, though generally just for background"
       },
       {
         "name": "Watercolor",

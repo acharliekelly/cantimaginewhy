@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { filters } from '../utils/sorting';
-import '../css/navlist.scss';
+import '../css/GalleryNav.scss';
 
 class GalleryNav extends Component {
 
@@ -54,9 +54,9 @@ class GalleryNav extends Component {
             )
           )}
         </Nav>
-        <header className="album-list">
+        <div className="album-list">
           {activeFilter.options.map(option => {
-              let cls = 'album-btn';
+              let cls = 'album-btn responsive thumbnail';
               if (selectedNav && selectedNav.tag === option.tag) {
                 cls += ' selected-nav'
               }
@@ -64,9 +64,7 @@ class GalleryNav extends Component {
                 <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option)}>
                     <Image  
                         publicId={`${option.thumbnail}`}
-                        className="thumbnail inline"
-                        width="150"
-                        height="150"
+                        height="100"
                         crop="fit"
                         quality="80"
                     >
@@ -77,7 +75,7 @@ class GalleryNav extends Component {
                 </div>
               );
             })}
-        </header>
+          </div>
         {selectedNav && (
           <div className="current-nav">
             <div className="nav-title">{selectedNav.name}</div>

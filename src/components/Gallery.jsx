@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 import GalleryNav from './GalleryNav';
-// import ImageDisplay from './ImageDisplay';
 import { fetchGallery, variableImageSrc } from '../utils/imageApi';
-// import { purchaseOriginal, purchasePrint, purchasePoster } from '../utils/productApi';
-import '../css/gallery.scss';
+import '../css/Gallery.scss';
 
 class Gallery extends Component {
   constructor (props) {

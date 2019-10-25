@@ -1,0 +1,11 @@
+
+.about-content {
+  display: flex;
+  flex-direction: row;
+  div {
+    margin: 0 1em;
+  }
+  .me-photo {
+    border: thin inset;
+  }
+}

@@ -45,7 +45,7 @@ $selected-album-text: #000;
 
 // Filter Options
 .album-list {
-  margin: 10px auto;
+  // margin: 10px auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -63,7 +63,6 @@ $selected-album-text: #000;
 }
 
 .album-btn {
-  display: inline;
   border: outset thin;
   margin: 2px;
   cursor: pointer;

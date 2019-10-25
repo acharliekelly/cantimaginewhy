@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC|Source+Code+Pro&display=swap');
 @import 'colors';
+@import 'menu.scss';
 
 body {
   background-color: $base-bkg;
@@ -40,55 +41,6 @@ h1, h2, h3, h4, h5, h6, header {
   
 }
 
-.about-content {
-  display: flex;
-  flex-direction: row;
-  div {
-    margin: 0 1em;
-  }
-  .me-photo {
-    border: thin inset;
-  }
-}
-
-.menu {
-  background-color: $menu-bkg;
-  color: $menu-text;
-  font-variant: small-caps;
-  font-size: 22px;
-  text-align: center;
-
-  .nav-item {
-    display: inline;
-    padding: 0 5px;
-    margin: 2px;
-
-    a {
-      color: $menu-text;
-      text-decoration: none;
-      padding: 0 2px;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &.active, &.active:hover {
-        background-color: $menu-active-bkg;
-        border-radius: 3px;
-        text-decoration: none;
-        color: $menu-active-text;
-      }
-
-      &.homelink {
-        color: $menu-text;
-        background-color: $menu-bkg;
-        text-decoration: none;
-      }
-    }
-
-  }
-}
-
 .content {
   margin: 10px 10%;
   padding: 10px;
@@ -96,18 +48,29 @@ h1, h2, h3, h4, h5, h6, header {
   min-height: 75vh;
 
   header {
-    font-size: 36px;
+    font-size: 3em;
     text-align: center;
-    margin: 15px 30px;
+    margin: 1em 2em;
   }
 }
 
-.home-gallery {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
 
-  .thumbnail {
-    margin: 1em;
-  }
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+.content-wrapper {
+  padding-bottom: 2rem;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 2rem;
+  background-color: $footer-bkg;
+  color: $footer-text;
+  padding-top: 5px;
+  text-align: center;
+
 }

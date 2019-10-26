@@ -45,7 +45,7 @@ class GalleryNav extends Component {
     const activeFilter = filters[filterIndex];
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
-        <Nav variant="pills" className="gallery-nav" onSelect={this.handleSortSelect}>
+        <Nav variant="pills" defaultActiveKey={0} className="gallery-nav justify-content-center" onSelect={this.handleSortSelect}>
           <span className="label">Filter By:</span>
           {filters.map(filter => (
             <Nav.Item key={filter.name}>

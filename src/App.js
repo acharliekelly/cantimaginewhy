@@ -2,6 +2,10 @@ import React from 'react';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 
+import { ContactForm } from './components/Contact';
+import Footer from './components/Footer';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
 // import Menu from './components/Menu';
@@ -12,14 +16,16 @@ import Gallery from './components/Gallery';
 const ContactPage = () => (
   <div className="content">
     <header>Contact</header>
-    <main className="todo">Put contact form here</main>
+    <main>
+      <ContactForm />
+    </main>
   </div>
-);
+)
 
 const ShopPage = () => (
   <div className="content">
     <header>Shop</header>
-    <main className="todo">Some shopping stuff</main>
+    <main className="todo">Put shopping stuff here</main>
   </div>
 );
 
@@ -27,9 +33,9 @@ const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <Nav className="menu">
+        <Nav className="menu justify-content-center" defaultActiveKey="/home">
           <Nav.Item>
-            <NavLink className="homelink" to="/">Home</NavLink>
+            <NavLink to="/home">Home</NavLink>
           </Nav.Item>
           <Nav.Item>
             <NavLink to="/artwork">Artwork</NavLink>
@@ -46,15 +52,14 @@ const App = () => {
         </Nav>
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />
+          <Route path="/home" component={Home} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/artwork" component={Gallery} />
           <Route path="/shop" component={ShopPage} />
         </div>
       </Router>
-      <div className="footer">
-        <span className="copyright">&copy;2019 by Charlie Kelly</span>
-      </div>
+      <Footer />
     </div>
   );
 }

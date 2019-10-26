@@ -141,7 +141,9 @@ class Gallery extends Component {
                   <div className="image-info">
                     <div className="title">{currentImage.title}</div>
                     <div className="info">{currentImage.description}</div>
-                    <div className="info">{currentImage.size}, {currentImage.medium}</div>
+                    {currentImage.materialInfo && (
+                      <div className="info">{currentImage.size}, {currentImage.medium}</div>
+                    )}
                     {currentImage.forSale && (
                       <div className="options">
                         <span className="label">Buy Original:</span>

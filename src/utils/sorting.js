@@ -104,14 +104,20 @@ export const filters = [
         "name": "Miniatures",
         "tag": "miniature",
         "thumbnail": "art/caterpillar_hill_qmwg7s",
-        "description": "Original painting is less than 6 inches on one side"
+        "description": "Original is less than 6 inches on one side"
       },
       {
         "name": "Panoramic",
         "tag": "panorama",
         "thumbnail": "art/winter-moon-2",
-        "description": "Where length is greater than double the height"
+        "description": "Long and thin"
       },
+      {
+        "name": "Plein Air",
+        "tag": "en plein air",
+        "thumbnail": "art/early_fall_mt_feake",
+        "description": "Painted on site"
+      }
     ]
   },
   {

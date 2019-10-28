@@ -9,7 +9,7 @@ export default function Home() {
         <div className="site-title">Can't Imagine Why</div>
         <main>
           
-          <ImageCarousel tagName="ck" />
+          <ImageCarousel tagName="favorite" />
         </main>
       </div>
     );

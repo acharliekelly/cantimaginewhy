@@ -36,11 +36,6 @@ h1, h2, h3, h4, h5, h6, header {
   content: 'TODO: ';
 }
 
-.lorem {
-  color: #eee;
-  
-}
-
 .content {
   margin: 10px 10%;
   padding: 10px;
@@ -71,6 +66,24 @@ h1, h2, h3, h4, h5, h6, header {
   background-color: $footer-bkg;
   color: $footer-text;
   padding-top: 5px;
-  text-align: center;
+  
+  .copyright {
+    float: left;
+    margin-left: 10px;
+  }
+
+  .social {
+    float: right;
+    margin-right: 10px;
+    img {
+      height: 1rem;
+      margin-right: 5px;
+    }
+    a {
+      color: #fff;
+
+    }
+  }
 
 }
+

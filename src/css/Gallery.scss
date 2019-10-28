@@ -35,6 +35,10 @@
   .image-view {
     margin: 10px 5px;
 
+    .display-image {
+      cursor: pointer;
+    }
+
     .image-info {
       border: 1px inset #999;
       font-family: 'Source Code Pro', monospace;

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
+import Lightbox from 'react-image-lightbox';
 import GalleryNav from './GalleryNav';
-import { fetchGallery, variableImageSrc } from '../utils/imageApi';
+import { fetchGallery, variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
+
+import 'react-image-lightbox/style.css';
 import '../css/Gallery.scss';
 
 class Gallery extends Component {
@@ -11,7 +14,8 @@ class Gallery extends Component {
       pictures: [],
       selectedAlbum: null,
       imageViewOpen: false,
-      currentImage: null
+      currentImage: null,
+      lightboxOpen: false
     };
   }
 
@@ -53,6 +57,7 @@ class Gallery extends Component {
 
   openImageView = picture => {
     const img = {
+      publicId: picture.public_id,
       source: variableImageSrc(picture.public_id, 400),
       title: this.getPictureCaption(picture),
       description: this.getPictureProperty(picture, 'alt'),
@@ -104,9 +109,21 @@ class Gallery extends Component {
       currentImage: null
     })
   }
+
+  openLightbox = () => {
+    this.setState({
+      lightboxOpen: true
+    })
+  }
+
+  closeLightbox = () => {
+    this.setState({
+      lightboxOpen: false
+    })
+  }
     
   render () {
-    const { pictures, currentImage, imageViewOpen } = this.state;
+    const { pictures, currentImage, imageViewOpen, lightboxOpen } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -135,9 +152,16 @@ class Gallery extends Component {
                 }) }
               </div>
 
+              {lightboxOpen && (
+                <Lightbox 
+                  mainSrc={watermarkedImageSrc(currentImage.publicId)}
+                  onCloseRequest={this.closeLightbox}
+                />
+              )}
+
               {imageViewOpen && (
                 <div className="image-view">
-                  <img alt="" src={currentImage.source} onClick={this.closeImageView} />
+                  <img className="display-image" alt="" src={currentImage.source} onClick={this.openLightbox} />
                   <div className="image-info">
                     <div className="title">{currentImage.title}</div>
                     <div className="info">{currentImage.description}</div>

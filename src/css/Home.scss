@@ -13,7 +13,8 @@
   background-clip: content-box;
   background-image: url(https://res.cloudinary.com/cantimaginewhy/image/upload/v1571965112/me/caterpillar2.jpg);
   opacity: 0.4;
-  height: 100%;
+
+  
 }
 
 .site-title {
@@ -26,5 +27,18 @@
   font-family: 'Amatic SC';
   font-size: 3em;
   font-weight: bold;
+  opacity: 1;
 
 }
+
+main {
+  opacity: 1;
+
+  .carousel {
+    opacity: 1.0;
+  }
+}
+
+
+
+

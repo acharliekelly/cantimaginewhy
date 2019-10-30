@@ -34,21 +34,27 @@ const App = () => {
     <div className="page-container">
       <Router basename='/'>
         <Nav className="menu justify-content-center" defaultActiveKey="/home">
+          { /* 
+          TODO: logo
+          */}
           <Nav.Item>
             <NavLink to="/home">Home</NavLink>
           </Nav.Item>
           <Nav.Item>
             <NavLink to="/artwork">Artwork</NavLink>
           </Nav.Item>
-          <Nav.Item>
+          {/* <Nav.Item>
             <NavLink to="/shop">Shop</NavLink>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <NavLink to="/about">About</NavLink>
           </Nav.Item>
           <Nav.Item>
             <NavLink to="/contact">Contact</NavLink>
           </Nav.Item>
+          { /* 
+          TODO: shopping cart, searchbar
+          */}
         </Nav>
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />

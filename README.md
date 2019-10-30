@@ -1,48 +1,24 @@
 
 
 # Can't Imagine Why
-Software Application for Artist's Selling Prints
+Art Website that allows display and filtering of pictures as well as purchase of original work and derived products.
+Site design comes from a team of GA UXDI graduates. Implementation (so far) by just one graduate of GA SEI, who also happens to be the artist/client.
 
 ## Links
-* Front-end GitHub repo: [Repo]()
-* Deployed application: [App]()
-* Production back-end: [DB]()
-
-## User Stories
-
-1. As a user, I want to learn about this artist.
-2. As a user, I want to view art by this artist.
-3. As a user, I want to contact this artist.
-4. As a user, I want to purchase this artists' printed products.
-
-## Wireframes
-
-[Wireframes] ()
+* GitHub repo: [Repo](https://github.com/acharliekelly/cantimaginewhy)
+* Deployed application: [App](https://acharliekelly.github.io/cantimaginewhy)
+* Destination of completed product: [cantimaginewhy.com](http://cantimaginewhy.com)
 
 ## Technology Stack
 
 For this project, I used the following tech stack:
 Front-end framework: ReactJS
-Styling library: Bootstrap (react-bootstrap)
-API's: 
+Back-end API's: 
 * Images: Cloudinary
 * Products: Printful
 
-## Components
-* Gallery
-  - array of Pictures (pulled from Image API)
-  - array of Tags (hard-coded for now)
-  - filter Pictures by Tag
-* Tag
-  - just a string
-  - no behavior - filtering handled by Gallery (or rather by reducer, but called by Gallery)
-* Picture
-  - an image (from Image API)
-  - array of tags (from Image API)
-  - button to open product list
-* ProductList
-  - array of products (either hard-coded or derived from tags)
-* Product
-  - link to purchase product from Product API
+## Requirements
 
-## Installation Instructions
+The main requirement of this project is that it not cost me a dime. Since I don't expect to actually sell anything, the last thing I want is to be stuck paying operating costs just to keep my site running. Also, having a strict requirement like this makes development more fun.
+
+

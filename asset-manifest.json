@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/cantimaginewhy/static/css/main.98ab7aeb.chunk.css",
-    "main.js": "/cantimaginewhy/static/js/main.33d543a3.chunk.js",
-    "main.js.map": "/cantimaginewhy/static/js/main.33d543a3.chunk.js.map",
+    "main.css": "/cantimaginewhy/static/css/main.30b763e2.chunk.css",
+    "main.js": "/cantimaginewhy/static/js/main.67be9def.chunk.js",
+    "main.js.map": "/cantimaginewhy/static/js/main.67be9def.chunk.js.map",
     "runtime~main.js": "/cantimaginewhy/static/js/runtime~main.ded85c8a.js",
     "runtime~main.js.map": "/cantimaginewhy/static/js/runtime~main.ded85c8a.js.map",
     "static/css/2.960f6ed1.chunk.css": "/cantimaginewhy/static/css/2.960f6ed1.chunk.css",
-    "static/js/2.a0fbd719.chunk.js": "/cantimaginewhy/static/js/2.a0fbd719.chunk.js",
-    "static/js/2.a0fbd719.chunk.js.map": "/cantimaginewhy/static/js/2.a0fbd719.chunk.js.map",
+    "static/js/2.8b23c79d.chunk.js": "/cantimaginewhy/static/js/2.8b23c79d.chunk.js",
+    "static/js/2.8b23c79d.chunk.js.map": "/cantimaginewhy/static/js/2.8b23c79d.chunk.js.map",
     "index.html": "/cantimaginewhy/index.html",
-    "precache-manifest.4d2542e4b2126e7344b58cd78596eb3c.js": "/cantimaginewhy/precache-manifest.4d2542e4b2126e7344b58cd78596eb3c.js",
+    "precache-manifest.66f569468845c7fec07291de83a43def.js": "/cantimaginewhy/precache-manifest.66f569468845c7fec07291de83a43def.js",
     "service-worker.js": "/cantimaginewhy/service-worker.js",
     "static/css/2.960f6ed1.chunk.css.map": "/cantimaginewhy/static/css/2.960f6ed1.chunk.css.map",
-    "static/css/main.98ab7aeb.chunk.css.map": "/cantimaginewhy/static/css/main.98ab7aeb.chunk.css.map"
+    "static/css/main.30b763e2.chunk.css.map": "/cantimaginewhy/static/css/main.30b763e2.chunk.css.map"
   }
 }

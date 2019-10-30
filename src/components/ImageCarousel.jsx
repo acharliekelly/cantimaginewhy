@@ -1,6 +1,8 @@
+// uses Bootstrap carousel
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
-import Coverflow from 'react-coverflow';
+import Carousel from 'react-bootstrap/Carousel';
+import Spinner from 'react-bootstrap/Spinner';
 import { fetchGallery } from '../utils/imageApi';
 
 
@@ -38,28 +40,20 @@ class ImageCarousel extends Component {
     const { pictures, isLoaded } = this.state;
     if (!isLoaded) {
       return (
-        <h2 className="loading">Loading...</h2>
+        <Spinner variant="dark" animation="grow" />
       )
     } else {
       return (
-        <Coverflow
-          width={1080}
-          height={680}
-          displayQuantityOfSide={1}
-          navigation={true}
-          infiniteScroll={true}
-          enableHeading={true}
-        >
+        <Carousel >
           {pictures.map(pic => (
-            <Image 
-              cloudName="cantimaginewhy" 
-              publicId={pic.public_id}
-              crop="fit" 
-              alt={pic.context.custom.caption}
-              onClick={() => {this.handleClickImage(pic)}}
-            />
+            <Carousel.Item>
+              <Image cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="200" />
+              <Carousel.Caption>
+                <h3>{pic.context.custom.caption}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
           ))}
-        </Coverflow>
+        </Carousel>
       );
     }
     

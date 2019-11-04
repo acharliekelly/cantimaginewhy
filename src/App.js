@@ -1,14 +1,13 @@
 import React from 'react';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { Image } from 'cloudinary-react';
 
 import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
-// import Menu from './components/Menu';
 import Home from './components/Home';
 import AboutPage from './components/About';
 import Gallery from './components/Gallery';
@@ -31,42 +30,43 @@ const ShopPage = () => (
 
 const App = () => {
   return (
-    <div className="page-container">
-      <Router basename='/'>
-        <Nav className="menu justify-content-center" defaultActiveKey="/home">
-          { /* 
-          TODO: logo
-          */}
-          <Nav.Item>
-            <NavLink to="/home">Home</NavLink>
-          </Nav.Item>
-          <Nav.Item>
-            <NavLink to="/artwork">Artwork</NavLink>
-          </Nav.Item>
-          {/* <Nav.Item>
-            <NavLink to="/shop">Shop</NavLink>
-          </Nav.Item> */}
-          <Nav.Item>
-            <NavLink to="/about">About</NavLink>
-          </Nav.Item>
-          <Nav.Item>
-            <NavLink to="/contact">Contact</NavLink>
-          </Nav.Item>
-          { /* 
-          TODO: shopping cart, searchbar
-          */}
-        </Nav>
-        <div className="content-wrapper">
-          <Route exact path="/" component={Home} />
-          <Route path="/home" component={Home} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/contact" component={ContactPage} />
-          <Route path="/artwork" component={Gallery} />
-          <Route path="/shop" component={ShopPage} />
-        </div>
-      </Router>
-      <Footer />
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <div className="page-container">
+        <Router basename='/'>
+          <nav className="menu justify-content-center" defaultActiveKey="/home">
+            <Image cloudName="cantimaginewhy" publicId="ck_logo" />
+            <div className="nav-item">
+              <NavLink to="/home">Home</NavLink>
+            </div>
+            <div className="nav-item">
+              <NavLink to="/artwork">Artwork</NavLink>
+            </div>
+            <div className="nav-item">
+              <NavLink to="/shop">Shop</NavLink>
+            </div>
+            <div className="nav-item">
+              <NavLink to="/about">About</NavLink>
+            </div>
+            <div className="nav-item">
+              <NavLink to="/contact">Contact</NavLink>
+            </div>
+            { /* 
+            TODO: shopping cart, searchbar
+            */}
+          </nav>
+          <div className="content-wrapper">
+            <Route exact path="/" component={Home} />
+            <Route path="/home" component={Home} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/contact" component={ContactPage} />
+            <Route path="/artwork" component={Gallery} />
+            <Route path="/shop" component={ShopPage} />
+          </div>
+        </Router>
+        <Footer />
+      </div>
+    </React.Fragment>
   );
 }
 

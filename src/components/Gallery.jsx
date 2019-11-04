@@ -139,7 +139,10 @@ class Gallery extends Component {
                 
                 {pictures.map(picture => {
                   return (
-                    <div className="responsive thumbnail" key={picture.public_id}>
+                    <div 
+                      className="responsive thumbnail" 
+                      key={picture.public_id} 
+                    >
                       
                       <Image 
                         publicId={picture.public_id}

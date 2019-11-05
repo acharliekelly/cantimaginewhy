@@ -7,8 +7,8 @@ export default function Home() {
   
    return (
       <div className="content">
-        <div className="site-title">Can't Imagine Why</div>
         <main>
+          <h1>Can't Imagine Why</h1>
           <ImageCarousel tagName="panorama" />
           
         </main>

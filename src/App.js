@@ -1,6 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Nav from 'react-bootstrap/Nav';
 import { Image } from 'cloudinary-react';
 
 import { ContactForm } from './components/Contact';
@@ -30,43 +30,36 @@ const ShopPage = () => (
 
 const App = () => {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <div className="page-container">
-        <Router basename='/'>
-          <nav className="menu justify-content-center" defaultActiveKey="/home">
-            <Image cloudName="cantimaginewhy" publicId="ck_logo" />
-            <div className="nav-item">
+    <div className="page-container">
+      <Router basename='/'>
+        <header className="menu">
+          <Image cloudName="cantimaginewhy" publicId="ck_logo" className="site-logo" height="50" />
+          <Nav className="justify-content-center" defaultActiveKey="/home">
+            <Nav.Item>
               <NavLink to="/home">Home</NavLink>
-            </div>
-            <div className="nav-item">
+            </Nav.Item>
+            <Nav.Item>
               <NavLink to="/artwork">Artwork</NavLink>
-            </div>
-            <div className="nav-item">
-              <NavLink to="/shop">Shop</NavLink>
-            </div>
-            <div className="nav-item">
+            </Nav.Item>
+            <Nav.Item>
               <NavLink to="/about">About</NavLink>
-            </div>
-            <div className="nav-item">
+            </Nav.Item>
+            <Nav.Item>
               <NavLink to="/contact">Contact</NavLink>
-            </div>
-            { /* 
-            TODO: shopping cart, searchbar
-            */}
-          </nav>
-          <div className="content-wrapper">
-            <Route exact path="/" component={Home} />
-            <Route path="/home" component={Home} />
-            <Route path="/about" component={AboutPage} />
-            <Route path="/contact" component={ContactPage} />
-            <Route path="/artwork" component={Gallery} />
-            <Route path="/shop" component={ShopPage} />
-          </div>
-        </Router>
-        <Footer />
-      </div>
-    </React.Fragment>
+            </Nav.Item>
+          </Nav>
+        </header>
+        <div className="content-wrapper">
+          <Route exact path="/" component={Home} />
+          <Route path="/home" component={Home} />
+          <Route path="/about" component={AboutPage} />
+          <Route path="/contact" component={ContactPage} />
+          <Route path="/artwork" component={Gallery} />
+          <Route path="/shop" component={ShopPage} />
+        </div>
+      </Router>
+      <Footer />
+    </div>
   );
 }
 

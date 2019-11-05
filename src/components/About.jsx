@@ -35,16 +35,17 @@ const AboutPage = () => (
         The only way to prevent this was to apply the pigment in tiny, non-contiguous dots. It turns out this is actually 
         a style of painting, called Pointillism. It was championed by the French post-impressionist Georges Seurat. But 
         I didn’t realize it at the time; I was just trying to paint without ruining the paper.
-        </section><section>
+        </section>
+        <section>
         At present, my work is mostly divided between painted landscapes, and custom name tags/plates 
         (the difference between and a name tag and a name plate is pretty much just size and complexity).
         <p>When the weather is nice, I prefer to paint my landscapes <em>en plein air</em>, 
         which means standing in front of the landscape while I'm painting it.</p>
         </section>
-        <section>
+        {/* <section>
           Here is a picture of me doing that.
           <Image className="me-photo" cloudName="cantimaginewhy" publicId="me/caterpillar2" width="600" />
-        </section>
+        </section> */}
 
         
       </div>

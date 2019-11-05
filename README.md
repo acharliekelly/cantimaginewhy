@@ -12,10 +12,11 @@ Site design comes from a team of GA UXDI graduates. Implementation (so far) by j
 ## Technology Stack
 
 For this project, I used the following tech stack:
-Front-end framework: ReactJS
-Back-end API's: 
-* Images: Cloudinary
-* Products: Printful
+* Front-end framework: ReactJS
+* Back-end API's: 
+  * Images: Cloudinary
+  * Products: (still working on that)
+  * Contact Form: (TBD)
 
 ## Requirements
 

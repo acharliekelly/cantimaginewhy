@@ -39,8 +39,17 @@ const AboutPage = () => (
         <section>
         At present, my work is mostly divided between painted landscapes, and custom name tags/plates 
         (the difference between and a name tag and a name plate is pretty much just size and complexity).
-        <p>When the weather is nice, I prefer to paint my landscapes <em>en plein air</em>, 
-        which means standing in front of the landscape while I'm painting it.</p>
+        </section>
+        <section>
+        When the weather is nice, I prefer to paint my landscapes <em>en plein air</em>, 
+        which means standing in front of the landscape while I'm painting it.
+        </section>
+        <section>
+        I'm also into making websites. This is one such. It's actually way more complicated than necessary - if I were just trying
+        to display and/or sell art, there are dozens of commercial products available. But that wouldn't really be fun for me.
+        So instead I've created an application that is currently only semi-functional, but uses several interesting technologies that
+        I'm trying to learn. If this topic interests you, more information is available in this <a href="https://cantimaginehow.blogspot.com" target="_blank" rel="noopener noreferrer">blog</a>, 
+        and also in this <a href="https://github.com/acharliekelly/cantimaginewhy/" target="_blank" rel="noopener noreferrer">repository</a>.
         </section>
         {/* <section>
           Here is a picture of me doing that.

@@ -2,6 +2,8 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import '../css/forms.scss';
+
 export const ContactForm = () => {
   return (
     <Form>
@@ -24,10 +26,10 @@ export const ContactForm = () => {
         <Form.Label>Message:</Form.Label>
         <Form.Control as="textarea" placeholder="Enter your message here" rows="5" />
       </Form.Group>
-      <Button variant="dark" type="submit" onClick={ev => {
+      <Button variant="dark" type="submit" disabled onClick={ev => {
         ev.preventDefault();
         console.log('Contact form submitted');
-      }}>Submit</Button>
+      }}>(nothing actually happens if you click this)</Button>
     </Form>
   );
 }

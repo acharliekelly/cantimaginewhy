@@ -5,7 +5,7 @@ import GalleryNav from './GalleryNav';
 import { fetchGallery, variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
-import '../css/Gallery.scss';
+import '../css/gallery.scss';
 
 class Gallery extends Component {
   constructor (props) {
@@ -139,7 +139,10 @@ class Gallery extends Component {
                 
                 {pictures.map(picture => {
                   return (
-                    <div className="responsive thumbnail" key={picture.public_id}>
+                    <div 
+                      className="responsive thumbnail" 
+                      key={picture.public_id} 
+                    >
                       
                       <Image 
                         publicId={picture.public_id}

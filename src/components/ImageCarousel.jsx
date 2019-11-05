@@ -1,11 +1,11 @@
 // uses Bootstrap carousel
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
-import Carousel from 'react-bootstrap/Carousel';
 import Spinner from 'react-bootstrap/Spinner';
+import AliceCarousel from 'react-alice-carousel';
 import { fetchGallery } from '../utils/imageApi';
 
-
+import "react-alice-carousel/lib/alice-carousel.css";
 
 class ImageCarousel extends Component {
 
@@ -44,16 +44,11 @@ class ImageCarousel extends Component {
       )
     } else {
       return (
-        <Carousel >
+        <AliceCarousel autoPlay duration={800} buttonsDisabled dotsDisabled >
           {pictures.map(pic => (
-            <Carousel.Item>
-              <Image cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="200" />
-              <Carousel.Caption>
-                <h3>{pic.context.custom.caption}</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
+            <Image cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="300" />
           ))}
-        </Carousel>
+        </AliceCarousel>
       );
     }
     

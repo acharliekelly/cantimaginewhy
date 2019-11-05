@@ -21,4 +21,8 @@ Back-end API's:
 
 The main requirement of this project is that it not cost me a dime. Since I don't expect to actually sell anything, the last thing I want is to be stuck paying operating costs just to keep my site running. Also, having a strict requirement like this makes development more fun.
 
+## Progress
+
+To read about how development of this project is going, you can follow my blog, [CantImagineHow](https://cantimaginehow.blogspot.com)
+
 

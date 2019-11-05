@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
+import { Image } from 'cloudinary-react';
 
 import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
@@ -8,7 +9,6 @@ import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
-// import Menu from './components/Menu';
 import Home from './components/Home';
 import AboutPage from './components/About';
 import Gallery from './components/Gallery';
@@ -33,29 +33,23 @@ const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <Nav className="menu justify-content-center" defaultActiveKey="/home">
-          { /* 
-          TODO: logo
-          */}
-          <Nav.Item>
-            <NavLink to="/home">Home</NavLink>
-          </Nav.Item>
-          <Nav.Item>
-            <NavLink to="/artwork">Artwork</NavLink>
-          </Nav.Item>
-          {/* <Nav.Item>
-            <NavLink to="/shop">Shop</NavLink>
-          </Nav.Item> */}
-          <Nav.Item>
-            <NavLink to="/about">About</NavLink>
-          </Nav.Item>
-          <Nav.Item>
-            <NavLink to="/contact">Contact</NavLink>
-          </Nav.Item>
-          { /* 
-          TODO: shopping cart, searchbar
-          */}
-        </Nav>
+        <header className="menu">
+          <Image cloudName="cantimaginewhy" publicId="ck_logo" className="site-logo" height="50" />
+          <Nav className="justify-content-center" defaultActiveKey="/home">
+            <Nav.Item>
+              <NavLink to="/home">Home</NavLink>
+            </Nav.Item>
+            <Nav.Item>
+              <NavLink to="/artwork">Artwork</NavLink>
+            </Nav.Item>
+            <Nav.Item>
+              <NavLink to="/about">About</NavLink>
+            </Nav.Item>
+            {/* <Nav.Item>
+              <NavLink to="/contact">Contact</NavLink>
+            </Nav.Item> */}
+          </Nav>
+        </header>
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />

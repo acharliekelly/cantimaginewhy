@@ -6,6 +6,7 @@ import { Image } from 'cloudinary-react';
 import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
 import Home from './components/Home';
@@ -44,9 +45,9 @@ const App = () => {
             <Nav.Item>
               <NavLink to="/about">About</NavLink>
             </Nav.Item>
-            <Nav.Item>
+            {/* <Nav.Item>
               <NavLink to="/contact">Contact</NavLink>
-            </Nav.Item>
+            </Nav.Item> */}
           </Nav>
         </header>
         <div className="content-wrapper">

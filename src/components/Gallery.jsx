@@ -5,7 +5,7 @@ import GalleryNav from './GalleryNav';
 import { fetchGallery, variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
-import '../css/Gallery.scss';
+import '../css/gallery.scss';
 
 class Gallery extends Component {
   constructor (props) {

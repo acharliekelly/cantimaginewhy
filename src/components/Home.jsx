@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ImageCarousel from './ImageCarousel';
-import '../css/Home.scss';
+import '../css/home.scss';
 
 export default function Home() {
   

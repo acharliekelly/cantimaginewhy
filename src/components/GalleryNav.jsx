@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { filters } from '../utils/sorting';
-import '../css/GalleryNav.scss';
+import '../css/galleryNav.scss';
 
 class GalleryNav extends Component {
 

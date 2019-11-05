@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'cloudinary-react';
 
-import '../css/About.scss';
+import '../css/about.scss';
 
 const AboutPage = () => (
   <div className="content">

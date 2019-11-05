@@ -1,6 +1,7 @@
 // uses Bootstrap carousel
 import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
+import Spinner from 'react-bootstrap/Spinner';
 import AliceCarousel from 'react-alice-carousel';
 import { fetchGallery } from '../utils/imageApi';
 
@@ -43,7 +44,7 @@ class ImageCarousel extends Component {
       )
     } else {
       return (
-        <AliceCarousel autoPlay duration={800} >
+        <AliceCarousel autoPlay duration={800} buttonsDisabled dotsDisabled >
           {pictures.map(pic => (
             <Image cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="300" />
           ))}

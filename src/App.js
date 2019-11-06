@@ -1,8 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
-import { Image } from 'cloudinary-react';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
+import Menu from './components/Menu';
 import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
 
@@ -33,23 +32,7 @@ const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <header className="menu">
-          <Image cloudName="cantimaginewhy" publicId="ck_logo" className="site-logo" height="50" />
-          <Nav className="justify-content-center" defaultActiveKey="/home">
-            <Nav.Item>
-              <NavLink to="/home">Home</NavLink>
-            </Nav.Item>
-            <Nav.Item>
-              <NavLink to="/artwork">Artwork</NavLink>
-            </Nav.Item>
-            <Nav.Item>
-              <NavLink to="/about">About</NavLink>
-            </Nav.Item>
-            {/* <Nav.Item>
-              <NavLink to="/contact">Contact</NavLink>
-            </Nav.Item> */}
-          </Nav>
-        </header>
+        <Menu />
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cloudinary from 'cloudinary-core';
 
 const cloudName = 'cantimaginewhy';
 // const EXCLUDE_NFS = true;
@@ -37,3 +38,12 @@ export const variableImageSrc = (publicId, imgWidthPx = 500) => {
   return `https://res.cloudinary.com/${cloudName}/w_${imgWidthPx}/${publicId}.jpg`;
 }
 
+// perform text search - returns Promise
+export const textSearch = searchStr => {
+  return cloudinary.v2.search
+    .expression(`${searchStr} AND folder=art`)
+    .with_field('context')
+    .with_field('tags')
+    .max_results(50)
+    .execute();
+}

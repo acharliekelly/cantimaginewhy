@@ -39,11 +39,21 @@ export const variableImageSrc = (publicId, imgWidthPx = 500) => {
 }
 
 // perform text search - returns Promise
-export const textSearch = searchStr => {
+export const textSearch = (searchStr, callback) => {
   return cloudinary.v2.search
     .expression(`${searchStr} AND folder=art`)
     .with_field('context')
     .with_field('tags')
     .max_results(50)
-    .execute();
+    .execute().then(response => callback(response));
+}
+
+// use context key
+// callback(error, results)
+export const imagesByContextKey = (keyName, callback) => {
+  cloudinary.v2.api.resources_by_context(keyName, callback );
+}
+
+export const imagesForSale = callback => {
+  imagesByContextKey('price', callback);
 }

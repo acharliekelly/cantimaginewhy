@@ -14,7 +14,7 @@ export default function Home() {
           <ImageCarousel tagName="panorama" />
 
           <div className="featured">
-            <h1>Featured Artwork</h1>
+            <h3>Featured Artwork</h3>
             <SimpleGallery 
               tagName="favorite" 
               imageWidth="200" 

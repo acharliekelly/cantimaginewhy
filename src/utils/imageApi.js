@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cloudinary from 'cloudinary-core';
 
 const cloudName = 'cantimaginewhy';
 // const EXCLUDE_NFS = true;
@@ -37,3 +38,56 @@ export const variableImageSrc = (publicId, imgWidthPx = 500) => {
   return `https://res.cloudinary.com/${cloudName}/w_${imgWidthPx}/${publicId}.jpg`;
 }
 
+// perform text search - returns Promise
+export const textSearch = (searchStr, callback) => {
+  return cloudinary.v2.search
+    .expression(`${searchStr} AND folder=art`)
+    .with_field('context')
+    .with_field('tags')
+    .max_results(50)
+    .execute().then(response => callback(response));
+}
+
+// use context key
+// callback(error, results)
+export const imagesByContextKey = (keyName, callback) => {
+  cloudinary.v2.api.resources_by_context(keyName, callback );
+}
+
+export const imagesForSale = callback => {
+  imagesByContextKey('price', callback);
+}
+
+// retrieve all tags (for search AutoComplete)
+export const allImageTags = callback => {
+  cloudinary.v2.api.tags(
+    function(error, result) {
+      if (error) {
+        console.error('problem getting tags: ', error);
+      } else {
+        console.log('tags: ', result);
+        callback(result);
+      }
+    }
+  )
+}
+
+// retrieve all info about image
+export const getResourceInfo = publicId => {
+  const info = { err: null, res: null };
+  cloudinary.v2.api.resource(publicId,
+      { 
+        type: 'upload',
+        max_results: 1
+      },
+      function(error, response) {
+        if (error) {
+          info.err = error;
+          console.error('resource error: ', error);
+        } else {
+          info.res = response;
+        }
+      }
+    )
+    return info;
+}

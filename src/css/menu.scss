@@ -1,25 +1,35 @@
 .menu {
-  background-color: $menu-bkg;
-  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  // border-radius: 5px;
   color: $menu-text;
   font-variant: small-caps;
   font-size: 2rem;
   font-weight: bold;
-  margin: 0 5%;
+  // height: 10vh;
+  width: 100vw;
 
   .site-logo {
-    margin: 2px 10px;
+    padding: 2rem 0 0 2rem;
+  }
+
+  .column {
+    display: inline;
   }
 
   .nav {
     display: inline;
     text-align: center;
+    vertical-align: bottom;
+    padding-top: 3rem;
   }
 
   .nav-item {
     display: inline;
-    padding: 0 5px;
-    margin: 2px;
+    padding-top: 2rem;
+    padding-left: 5px;
+    padding-right: 5px;
 
     a {
       color: $menu-text;
@@ -44,6 +54,29 @@
       }
     }
 
+  }
+
+  .right-col {
+    padding-right: 1em;
+    padding-top: 1em;
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+
+      .login-text {
+        padding-top: 1em;
+        color: $menu-text;
+        font-size: 12px;
+        font-variant: normal;
+        font-weight: normal;
+      }
+    }
+
+    .bottom-row {
+      padding-top: 1em;
+      text-align: left;
+    }
   }
 
 }

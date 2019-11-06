@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro&display=swap');
 @import 'colors';
 @import 'menu.scss';
 
@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, header {
-  font-family: 'Amatic SC', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: $base-header;
 }
 
@@ -37,10 +37,10 @@ h1, h2, h3, h4, h5, h6, header {
 }
 
 .content {
-  margin: 10px 10%;
+  margin: 1rem;
   padding: 10px;
-  border: inset thin #ccc;
-  border-radius: 5px;
+  // border: inset thin #ccc;
+  // border-radius: 5px;
   min-height: 75vh;
 
   header {

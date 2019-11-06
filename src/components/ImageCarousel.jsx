@@ -44,9 +44,9 @@ class ImageCarousel extends Component {
       )
     } else {
       return (
-        <AliceCarousel autoPlay duration={800} buttonsDisabled dotsDisabled >
+        <AliceCarousel autoPlay duration={2000} buttonsDisabled >
           {pictures.map(pic => (
-            <Image cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="300" />
+            <Image key={pic.public_id} cloudName="cantimaginewhy" publicId={pic.public_id} crop="fit" height="300" />
           ))}
         </AliceCarousel>
       );

@@ -1,46 +1,43 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
-import { Image } from 'cloudinary-react';
+import { Image, CloudinaryContext } from 'cloudinary-react';
 
-export default function Menu() {
+const Menu = (handleLogin, handleSearch) => {
   return (
-    <header className="menu">
-      <div className="column left-col justify-content-center site-logo" lg={2}>
-        <Image cloudName="cantimaginewhy" publicId="ck_logo" height="50" />
-      </div>
-      <Nav className="column mid-col" defaultActiveKey="/home" lg={7}>
-        <Nav.Item>
-          <NavLink to="/home">Home</NavLink>
-        </Nav.Item>
-        <Nav.Item>
-          <NavLink to="/artwork">Artwork</NavLink>
-        </Nav.Item>
-        <Nav.Item>
-          <NavLink to="/about">About</NavLink>
-        </Nav.Item>
-        <Nav.Item>
-          <NavLink to="/contact">Contact</NavLink>
-        </Nav.Item>
-      </Nav>
-      <div className="column right-col" lg={3}>
-        <Container className="justify-content-right">
-          <Row>
-            <Col>
-              <Image cloudName="cantimaginewhy" className="cart" publicId="shopping-cart" width="50" />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Control type="text" size="sm" placeholder="e.g. Boston, Summer, Landscape, etc" />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </header>
+    <CloudinaryContext cloudName="cantimaginewhy">
+      <header className="menu">
+        <div className="column left-col justify-content-center site-logo" lg={2}>
+          <Image publicId="ck_logo" height="100" />
+        </div>
+        <Nav className="column mid-col" defaultActiveKey="/home" lg={6}>
+          <Nav.Item>
+            <NavLink to="/home">Home</NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink to="/artwork">Artwork</NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink to="/about">About</NavLink>
+          </Nav.Item>
+          <Nav.Item>
+            <NavLink to="/contact">Contact</NavLink>
+          </Nav.Item>
+        </Nav>
+        <div className="column right-col" lg={4}>
+          <div className="top-row">
+            <Image className="login" publicId="icon/login-icon" width="30" />
+            <span className="login-text">Sign Up / Login</span>
+            <Image className="cart" publicId="icon/shopping-cart" width="30" />
+          </div>
+          <div className="bottom-row">
+            <Form.Control type="text" size="sm" placeholder="e.g. Boston, Summer, etc" on />
+          </div>
+        </div>
+      </header>
+    </CloudinaryContext>
   );
 }
+
+export default Menu;

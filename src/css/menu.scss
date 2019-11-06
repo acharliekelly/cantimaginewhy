@@ -3,7 +3,7 @@
   justify-content: space-between;
   background-color: transparent;
   // border-radius: 5px;
-  color: $menu-bkg;
+  color: $menu-text;
   font-variant: small-caps;
   font-size: 2rem;
   font-weight: bold;
@@ -22,13 +22,14 @@
     display: inline;
     text-align: center;
     vertical-align: bottom;
-    padding-top: 2rem;
+    padding-top: 3rem;
   }
 
   .nav-item {
     display: inline;
-    padding: 0 5px;
-    margin: 2px;
+    padding-top: 2rem;
+    padding-left: 5px;
+    padding-right: 5px;
 
     a {
       color: $menu-text;
@@ -53,6 +54,29 @@
       }
     }
 
+  }
+
+  .right-col {
+    padding-right: 1em;
+    padding-top: 1em;
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+
+      .login-text {
+        padding-top: 1em;
+        color: $menu-text;
+        font-size: 12px;
+        font-variant: normal;
+        font-weight: normal;
+      }
+    }
+
+    .bottom-row {
+      padding-top: 1em;
+      text-align: left;
+    }
   }
 
 }

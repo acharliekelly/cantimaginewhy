@@ -57,3 +57,37 @@ export const imagesByContextKey = (keyName, callback) => {
 export const imagesForSale = callback => {
   imagesByContextKey('price', callback);
 }
+
+// retrieve all tags (for search AutoComplete)
+export const allImageTags = callback => {
+  cloudinary.v2.api.tags(
+    function(error, result) {
+      if (error) {
+        console.error('problem getting tags: ', error);
+      } else {
+        console.log('tags: ', result);
+        callback(result);
+      }
+    }
+  )
+}
+
+// retrieve all info about image
+export const getResourceInfo = publicId => {
+  const info = { err: null, res: null };
+  cloudinary.v2.api.resource(publicId,
+      { 
+        type: 'upload',
+        max_results: 1
+      },
+      function(error, response) {
+        if (error) {
+          info.err = error;
+          console.error('resource error: ', error);
+        } else {
+          info.res = response;
+        }
+      }
+    )
+    return info;
+}

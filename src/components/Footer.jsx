@@ -7,13 +7,13 @@ const Footer = () => (
     <span className="social">
       <CloudinaryContext cloudName="cantimaginewhy">
         <a target="_blank" rel="noopener noreferrer" href="https://instagram.com/cant_imagine_why">
-          <Image publicId="instagram_logo" height="100" />
+          <Image publicId="icon/instagram_logo" height="100" />
         </a>
         <a target="_blank" rel="noopener noreferrer" href="https://facebook.com/acharliekelly">
-          <Image publicId="facebook_logo" height="100" />
+          <Image publicId="icon/facebook_logo" height="100" />
         </a>
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/acharliekelly">
-          <Image publicId="github-logo" height="100" />
+          <Image publicId="icon/github_logo" height="100" />
         </a>
       </CloudinaryContext>
     </span>

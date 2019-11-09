@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 import Lightbox from 'react-image-lightbox';
-import GalleryNav from './GalleryNav';
+import FilterNav from './FilterNav';
 import { fetchGallery, variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
 import '../css/gallery.scss';
 
-class Gallery extends Component {
+class FilteredGallery extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -128,7 +128,7 @@ class Gallery extends Component {
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
             
-            <GalleryNav 
+            <FilterNav 
               handleNavChange={this.updateGallery}
               handleClearGallery={this.clearGallery} 
             />
@@ -200,4 +200,4 @@ class Gallery extends Component {
     }
 }
 
-export default Gallery;
+export default FilteredGallery;

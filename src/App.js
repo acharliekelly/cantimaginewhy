@@ -10,7 +10,7 @@ import './css/main.scss';
 
 import Home from './components/Home';
 import AboutPage from './components/About';
-import Gallery from './components/Gallery';
+import FilteredGallery from './components/FilteredGallery';
 
 const ContactPage = () => (
   <div className="content">
@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/home" component={Home} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
-          <Route path="/artwork" component={Gallery} />
+          <Route path="/artwork" component={FilteredGallery} />
           <Route path="/shop" component={ShopPage} />
         </div>
       </Router>

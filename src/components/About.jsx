@@ -1,18 +1,35 @@
 import React from 'react';
-import { Image } from 'cloudinary-react';
+// import { Image } from 'cloudinary-react';
+import { Parallax } from "react-parallax";
+import { cleanImageSrc } from '../utils/imageApi';
 
 import '../css/about.scss';
+
+const insideStyles = {
+  background: "white",
+  padding: 20,
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%,-50%)",
+  opacity: 0.6
+};
 
 const AboutPage = () => (
   <div className="content">
     <header>About</header>
     <div className="about-content">
-      <Image className="me-photo" cloudName="cantimaginewhy" publicId="me/face-41" width="300"/>
       <div className="me-text">
         <section>
         My name is Charlie Kelly. I’ve been drawing and painting stuff for about a decade, 
           and created this site as a way to display it all in one place. 
         </section>
+        <Parallax bgImage={cleanImageSrc('me/caterpillar2')} strength={500}>
+          <div style={{ height: 500 }}>
+            <div style={insideStyles}>Me, painting</div>
+          </div>
+        </Parallax>
+        
         <section>
         <p>I took up art essentially because I found out it was possible to take up art as an adult. 
           Which was mind-blowing to me – I’d always assumed stuff like art, music, sports, etc were something you 
@@ -36,6 +53,11 @@ const AboutPage = () => (
         a style of painting, called Pointillism. It was championed by the French post-impressionist Georges Seurat. But 
         I didn’t realize it at the time; I was just trying to paint without ruining the paper.
         </section>
+        <Parallax bgImage={cleanImageSrc('me/painting_trees')} strength={500}>
+          <div style={{height: 500}}>
+            <div style={insideStyles}>Painting Trees</div>
+          </div>
+        </Parallax>
         <section>
         At present, my work is mostly divided between painted landscapes, and custom name tags/plates 
         (the difference between and a name tag and a name plate is pretty much just size and complexity).
@@ -51,11 +73,6 @@ const AboutPage = () => (
         I'm trying to learn. If this topic interests you, more information is available in this <a href="https://cantimaginehow.blogspot.com" target="_blank" rel="noopener noreferrer">blog</a>, 
         and also in this <a href="https://github.com/acharliekelly/cantimaginewhy/" target="_blank" rel="noopener noreferrer">repository</a>.
         </section>
-        {/* <section>
-          Here is a picture of me doing that.
-          <Image className="me-photo" cloudName="cantimaginewhy" publicId="me/caterpillar2" width="600" />
-        </section> */}
-
         
       </div>
     </div>

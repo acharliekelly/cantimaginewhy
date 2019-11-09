@@ -8,10 +8,10 @@ const Menu = (handleLogin, handleSearch) => {
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
       <header className="menu">
-        <div className="column left-col justify-content-center site-logo" lg={2}>
+        <div className="column left-col justify-content-center site-logo lg-2">
           <Image publicId="ck_logo" height="100" />
         </div>
-        <Nav className="column mid-col" defaultActiveKey="/home" lg={6}>
+        <Nav className="column mid-col lg-4" defaultActiveKey="/home">
           <Nav.Item>
             <NavLink to="/home">Home</NavLink>
           </Nav.Item>
@@ -25,7 +25,7 @@ const Menu = (handleLogin, handleSearch) => {
             <NavLink to="/contact">Contact</NavLink>
           </Nav.Item>
         </Nav>
-        <div className="column right-col" lg={4}>
+        <div className="column right-col lg-2">
           <div className="top-row">
             <Image className="login" publicId="icon/login-icon" width="30" />
             <span className="login-text">Sign Up / Login</span>

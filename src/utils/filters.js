@@ -79,14 +79,38 @@ export const filters = [
     ]
   },
   {
-    "name": "Style",
+    "name": "Surface",
     "index": 2,
+    "options": [
+      {
+        "name": "Paper",
+        "tag": "paper",
+        "thumbnail": "art/leaving-star-island_2015",
+        "description": "Drawn or painted on paper"
+      },
+      {
+        "name": "Canvas",
+        "tag": "canvas",
+        "thumbnail": "art/fall_footbridge",
+        "description": "Painted on canvas"
+      },
+      {
+        "name": "Panel",
+        "tag": "panel",
+        "thumbnail": "art/autumn_woods",
+        "description": "Painted on panel"
+      },
+    ]
+  },
+  {
+    "name": "Style",
+    "index": 3,
     "options": [
       {
         "name": "Triptych",
         "tag": "triptych",
         "thumbnail": "art/winter-yosemite",
-        "description": "Picture divided into 3 (or more) panels"
+        "description": "Picture divided into multiple panels"
       },
       {
         "name": "Pointillist",
@@ -122,7 +146,7 @@ export const filters = [
   },
   {
     "name": "Season",
-    "index": 3,
+    "index": 4,
     "options": [
       {
         "name": "Summer",
@@ -152,7 +176,7 @@ export const filters = [
   },
   {
     "name": "Color",
-    "index": 4,
+    "index": 5,
     "options": [
       {
         "name": "Blue",
@@ -176,7 +200,7 @@ export const filters = [
   },
   {
     "name": "Availability",
-    "index": 5,
+    "index": 6,
     "options": [
       {
         "name": "Original for Sale",

@@ -32,7 +32,7 @@ const Menu = (handleLogin, handleSearch) => {
             <Image className="cart" publicId="icon/shopping-cart" width="30" />
           </div>
           <div className="bottom-row">
-            <Form.Control type="text" size="sm" placeholder="e.g. Boston, Summer, etc" on />
+            <Form.Control type="text" size="sm" placeholder="e.g. Boston, Summer, etc" />
           </div>
         </div>
       </header>

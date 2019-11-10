@@ -2,10 +2,17 @@ import axios from 'axios';
 import cloudinary from 'cloudinary-core';
 
 const cloudName = 'cantimaginewhy';
-// const EXCLUDE_NFS = true;
 
 const jsonImgList = tagName => {
   return `https://res.cloudinary.com/${cloudName}/image/list/${tagName}.json`;
+}
+
+export const initCloudinary = () => {
+  cloudinary.config({
+    cloud_name: cloudName,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  })
 }
 
 // Return all JSON data of images tagged with tagName
@@ -15,12 +22,13 @@ export const fetchGallery = tagName => {
 }
 
 // Return JSON data of all images where context.ref = keyName
-export const fetchRelatedImages = keyName => {
-  const url = `https://res.cloudinary.com/${cloudName}/image/context`;
-  return axios({
-    method: 'GET',
-    url: url,
-  });
+export const fetchRelatedImages = (keyName, callback) => {
+  cloudinary.v2.search
+    .expression(`context.ref:${keyName}`)
+    .with_field('context')
+    .with_field('tags')
+    .max_results(10)
+    .execute().then(results => callback(results));
 }
 
 // Return source URL for watermarked image

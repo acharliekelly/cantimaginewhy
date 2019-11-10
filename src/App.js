@@ -10,7 +10,7 @@ import './css/main.scss';
 
 import Home from './components/Home';
 import AboutPage from './components/About';
-import Gallery from './components/Gallery';
+import FilteredGallery from './components/FilteredGallery';
 
 const ContactPage = () => (
   <div className="content">
@@ -28,17 +28,25 @@ const ShopPage = () => (
   </div>
 );
 
+const login = () => {
+  console.log('Login button clicked');
+}
+
+const search = () => {
+  console.log('Search button clicked');
+}
+
 const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <Menu />
+        <Menu handleLogin={login} handleSearch={search} />
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
-          <Route path="/artwork" component={Gallery} />
+          <Route path="/artwork" component={FilteredGallery} />
           <Route path="/shop" component={ShopPage} />
         </div>
       </Router>

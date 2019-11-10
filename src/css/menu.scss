@@ -1,35 +1,44 @@
 .menu {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: transparent;
-  // border-radius: 5px;
   color: $menu-text;
-  font-variant: small-caps;
-  font-size: 2rem;
-  font-weight: bold;
-  // height: 10vh;
-  width: 100vw;
+  
 
   .site-logo {
-    padding: 2rem 0 0 2rem;
+    padding: 1rem 0 0 1rem;
   }
 
-  .column {
-    display: inline;
+  .nav-grid {
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 2fr;
   }
+
+  .bottom-row {
+    padding-top: 1rem;
+    vertical-align: bottom;
+  }
+
+  .right-col {
+    text-align: right;
+  }
+  
+  
 
   .nav {
     display: inline;
     text-align: center;
     vertical-align: bottom;
-    padding-top: 3rem;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 2rem;
   }
 
   .nav-item {
     display: inline;
-    padding-top: 2rem;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0 5px;
 
     a {
       color: $menu-text;
@@ -56,27 +65,16 @@
 
   }
 
-  .right-col {
-    padding-right: 1em;
-    padding-top: 1em;
+  .login-text {
+    padding: 1em 1em 0 1em;
+    color: $menu-text;
+    font-size: 12px;
+    font-variant: normal;
+    font-weight: normal;
+  }
 
-    .top-row {
-      display: flex;
-      justify-content: space-between;
-
-      .login-text {
-        padding-top: 1em;
-        color: $menu-text;
-        font-size: 12px;
-        font-variant: normal;
-        font-weight: normal;
-      }
-    }
-
-    .bottom-row {
-      padding-top: 1em;
-      text-align: left;
-    }
+  .login, .cart {
+    cursor: pointer;
   }
 
 }

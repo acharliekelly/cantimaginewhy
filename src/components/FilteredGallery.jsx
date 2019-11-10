@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
-import Lightbox from 'react-image-lightbox';
+import Collapse from 'react-bootstrap/Collapse';
 import FilterNav from './FilterNav';
-import { fetchGallery, variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
+import ImageDisplay from './ImageDisplay';
+import { fetchGallery } from '../utils/imageApi';
 
-import 'react-image-lightbox/style.css';
 import '../css/gallery.scss';
 
 class FilteredGallery extends Component {
@@ -56,50 +56,14 @@ class FilteredGallery extends Component {
   }
 
   openImageView = picture => {
-    const img = {
-      publicId: picture.public_id,
-      source: variableImageSrc(picture.public_id, 400),
-      title: this.getPictureCaption(picture),
-      description: this.getPictureProperty(picture, 'alt'),
-      location: this.getPictureProperty(picture, 'location'),
-      medium: this.getPictureProperty(picture, 'medium'),
-      size: this.getPictureProperty(picture, 'size'),
-      year: this.getPictureProperty(picture, 'year'),
-      forSale: (this.getPictureProperty(picture, 'original') === 'available'),
-      forPrint: (this.hasProperty('canvas-id') || this.hasProperty('poster-id')),
-      price: (this.getPictureProperty(picture, 'price', 'NFS')),
-      materialInfo: this.hasProperty('medium') && this.hasProperty('size')
-    }
+    // console.log('opening image: ' + picture.public_id);
     this.setState({
       imageViewOpen: true,
-      currentImage: img
+      currentImage: picture
     });
   }
 
-  getPictureCaption = pictureObj => {
-    return this.getPictureProperty(pictureObj, 'caption', 'Untitled');
-  }
-
-  getPictureProperty = (pictureObj, property, errValue = '') => {
-    let val;
-    try {
-      val = pictureObj.context.custom[property];
-    } catch (err) {
-      val = errValue;
-    }
-    return val;
-  }
-
-  hasProperty = propertyName => {
-    const pictureObj = this.props.currentImage;
-    let val = false;
-    try {
-      val = (pictureObj.context.custom[propertyName] != null)
-    } catch (err) {
-      return false;
-    }
-    return val;
-  }
+  
 
   
 
@@ -110,20 +74,12 @@ class FilteredGallery extends Component {
     })
   }
 
-  openLightbox = () => {
-    this.setState({
-      lightboxOpen: true
-    })
-  }
-
-  closeLightbox = () => {
-    this.setState({
-      lightboxOpen: false
-    })
+  purchaseItem = (purchaseType, id) => {
+    console.log('Purchse ' + purchaseType + ': ' + id);
   }
     
   render () {
-    const { pictures, currentImage, imageViewOpen, lightboxOpen } = this.state;
+    const { pictures, currentImage, imageViewOpen } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -155,42 +111,18 @@ class FilteredGallery extends Component {
                 }) }
               </div>
 
-              {lightboxOpen && (
-                <Lightbox 
-                  mainSrc={watermarkedImageSrc(currentImage.publicId)}
-                  onCloseRequest={this.closeLightbox}
-                />
-              )}
-
-              {imageViewOpen && (
-                <div className="image-view">
-                  <img className="display-image" alt="" src={currentImage.source} onClick={this.openLightbox} />
-                  <div className="image-info">
-                    <div className="title">{currentImage.title}</div>
-                    <div className="info">{currentImage.description}</div>
-                    {currentImage.materialInfo && (
-                      <div className="info">{currentImage.size}, {currentImage.medium}</div>
-                    )}
-                    {currentImage.forSale && (
-                      <div className="options">
-                        <span className="label">Buy Original:</span>
-                        <span className="purchase buy-orig">${currentImage.price}</span>
-                      </div>
-                    )}
-                    {currentImage.forPrint && (
-                      <div className="options">
-                        <span className="label">Buy Print:</span>
-                        <span 
-                          className="purchase buy-print" 
-                          onClick={() => console.log('Buy Poster #' + currentImage.posterId)}
-                        >Poster</span>
-                      </div>
-                    )}
-                    
-                  </div>
-                  
+              <Collapse in={imageViewOpen} dimension="width">
+                <div style={{ width: 500 }}>
+                  { currentImage && (
+                    <ImageDisplay 
+                      currentImage={currentImage}
+                      closeImageView={this.closeImageView}
+                      purchaseItem={this.purchaseItem}
+                    />
+                  )}
                 </div>
-              )}
+                
+              </Collapse>
               
             </main>
           </CloudinaryContext>

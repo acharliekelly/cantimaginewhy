@@ -17,9 +17,9 @@ export default function Home() {
             <h3>Featured Artwork</h3>
             <SimpleGallery 
               tagName="favorite" 
-              imageWidth="200" 
+              imageHeight={200} 
               handleImageClick={ev => console.log('image clicked: ' + ev.target)}
-              gallerySize="4" 
+              gallerySize={4}
             />
           </div>
           

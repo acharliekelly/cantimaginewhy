@@ -13,7 +13,9 @@ const Menu = (handleLogin, handleSearch) => {
         </div>
         <div className="nav-grid">
           <div className="top-row left-col">
-            <div className="wip">This site is a Work In Progress</div>
+            <div className="in-progress">
+              <span className="in-progress-message">This site is a Work In Progress. Please check back later.</span>
+            </div>
           </div>
           <div className="top-row right-col">
             <Image  

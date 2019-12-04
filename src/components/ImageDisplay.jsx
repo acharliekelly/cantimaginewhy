@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
-
+import { orderEmailLink } from '../utils/contactApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
 
@@ -17,6 +17,7 @@ class ImageDisplay extends Component {
 
   loadImageProperties = () => {
     const infoObj = {
+      id: this.props.currentImage.public_id,
       source: variableImageSrc(this.props.currentImage.public_id, 600),
       title: this.getPictureCaption(),
       description: this.getPictureProperty('alt'),
@@ -55,7 +56,10 @@ class ImageDisplay extends Component {
     }
   }
 
-
+  handlePurchase = () => {
+    const imgId = this.props.currentImage.public_id;
+    this.props.purchaseItem(imgId);
+  }
 
   openLightbox = () => {
     this.setState({
@@ -79,24 +83,28 @@ class ImageDisplay extends Component {
           <div className="image-info">
             <div className="title">{info.title}</div>
             <div className="info">{info.description}</div>
+            {info.location && (
             <div className="info">
               <span className="label">Location: </span>
               <span className="data">{info.location}</span>
             </div>
+            )}
+            {info.year && (
             <div className="info">
               <span className="label">Year: </span>
               <span className="data">{info.year}</span>
             </div>
+            )}
+            {info.materialInfo && (
             <div className="info">
               <span className="label">Material: </span>
               <span className="data">{info.size}, {info.medium}</span>
             </div>
-            
+            )}
             {info.forSale && (
               <div className="options">
                 <span className="label">Buy Original:</span>
-                <span className="purchase buy-orig" 
-                onClick={this.props.openDetail}>${info.price}</span>
+                <a className="purchase buy-orig" href={orderEmailLink(info.id)}>${info.price}</a>
               </div>
             )}
           </div>
@@ -122,7 +130,7 @@ class ImageDisplay extends Component {
 ImageDisplay.propTypes = {
   currentImage: PropTypes.object.isRequired,
   closeImageView: PropTypes.func,
-  openDetail: PropTypes.func
+  purchaseItem: PropTypes.func
 }
 
 export default ImageDisplay;

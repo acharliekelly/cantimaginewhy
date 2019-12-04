@@ -1,6 +1,7 @@
 
 
-main {
+main.home {
+  background-color: black;
   text-align: center;
   opacity: 1;
 
@@ -11,6 +12,12 @@ main {
   }
   .carousel {
     opacity: 1.0;
+  }
+
+  .featured {
+    h3.header {
+      color: #fff;
+    }
   }
 }
 

@@ -3,7 +3,7 @@ import {
   HashRouter as Router, 
   Route
 } from 'react-router-dom';
-
+import { contactEmailLink } from './utils/contactApi';
 import Menu from './components/Menu';
 // import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
@@ -20,7 +20,7 @@ const ContactPage = () => (
     <header>Contact</header>
     <main>
       <h2>I don't quite have my contact form working yet, so for now, please just send me an 
-        {' '}<a href="mailto:cant.imagine.why00@gmail.com">email</a>.</h2>
+        {' '}<a href={contactEmailLink()}>email</a>.</h2>
     </main>
   </div>
 )

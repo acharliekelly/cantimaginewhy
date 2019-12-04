@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
 import Spinner from 'react-bootstrap/Spinner';
 import { fetchGallery } from '../utils/imageApi';
@@ -21,7 +22,7 @@ class SimpleGallery extends React.Component {
     fetchGallery(tagName)
       .then(res => {
         this.setState({
-          images: res.data.resources.slice(0, size - 1),
+          images: res.data.resources.slice(0, size),
           isLoaded: true
         })
       });
@@ -29,7 +30,7 @@ class SimpleGallery extends React.Component {
 
   render () {
     const { images, isLoaded } = this.state;
-    const { imageWidth, handleImageClick } = this.props;
+    const { imageHeight, handleImageClick } = this.props;
     if (!isLoaded) {
       return <Spinner animation="grow" variant="dark" />
     } else {
@@ -39,7 +40,7 @@ class SimpleGallery extends React.Component {
             <Image 
               key={image.publid_id} 
               className="responsive" 
-              height={imageWidth}
+              height={imageHeight}
               crop="fit" 
               cloudName="cantimaginewhy" 
               publicId={image.public_id}
@@ -50,6 +51,13 @@ class SimpleGallery extends React.Component {
       );
     }
   }
+}
+
+SimpleGallery.propTypes = {
+  tagName: PropTypes.string.isRequired,
+  gallerySize: PropTypes.number.isRequired,
+  imageHeight: PropTypes.number.isRequired,
+  handleImageClick: PropTypes.func.isRequired
 }
 
 export default SimpleGallery;

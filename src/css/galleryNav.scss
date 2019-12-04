@@ -64,8 +64,10 @@ $selected-album-text: #000;
 
 .album-btn {
   border: outset thin;
+  padding: auto;
   margin: 2px;
   cursor: pointer;
+  text-align: center;
 
   .album-name {
     font-size: 18px;
@@ -106,7 +108,7 @@ $selected-album-text: #000;
   .nav-title {
     font-size: 2em;
     font-weight: 600;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Great Vibes', cursive;
   }
 
   .nav-description {

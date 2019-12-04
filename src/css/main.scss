@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Source+Code+Pro&display=swap');
 @import 'colors';
 @import 'menu.scss';
 
 body {
   background-color: $base-bkg;
   color: $base-text;
-  font-family: 'Source Code Pro', monospace;
+  font-family: Roboto;
 }
 
 h1, h2, h3, h4, h5, h6, header {
   font-family: 'Roboto', sans-serif;
   color: $base-header;
 }
+
+// GLOBAL CLASSES
 
 .todo {
   font-family: 'Courier New', Courier, monospace;
@@ -20,15 +22,20 @@ h1, h2, h3, h4, h5, h6, header {
   
 }
 
-.wip {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
+.in-progress {
   font-style: italic;
   background-color: #666;
   color: #fff;
   border-radius: 3px;
+  padding: 2px 5px;
   text-align: center;
 }
+.in-progress-message {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
 
 .no-data {
   font-family: 'Courier New', Courier, monospace;

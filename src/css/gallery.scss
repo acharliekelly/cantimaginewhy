@@ -11,17 +11,24 @@
 .display-area {
   display: flex;
   flex-direction: row;
+  // border: thin solid red;
 
   .gallery {
     display: flex;
     flex-wrap: wrap;
+    width: 40%;
     justify-content: center;
+    // border: thin solid blue;
     
 
     .thumbnail {
       display: inline-block;
       margin: 5px;
       cursor: pointer;
+
+      &.selected {
+        border: thin outset #999;
+      }
     }
 
     .title {

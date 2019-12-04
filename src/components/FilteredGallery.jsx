@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
-import Collapse from 'react-bootstrap/Collapse';
+// import Collapse from 'react-bootstrap/Collapse';
 import FilterNav from './FilterNav';
 import ImageDisplay from './ImageDisplay';
 import { fetchGallery } from '../utils/imageApi';
@@ -12,6 +12,7 @@ class FilteredGallery extends Component {
     super(props);
     this.state = {
       pictures: [],
+      currentIndex: 0,
       selectedAlbum: null,
       imageViewOpen: false,
       currentImage: null,
@@ -40,31 +41,39 @@ class FilteredGallery extends Component {
         this.setState({
           selectedAlbum: tagName, 
           pictures: res.data.resources,
-          imageViewOpen: false,
-          currentImage: null
+          imageViewOpen: true,
+          currentIndex: 0,
+          currentImage: res.data.resources[0]
         });
       });
   }
 
+  // de-select all images and albums
   clearGallery = () => {
     this.setState({
       pictures: [],
+      currentIndex: 0,
       selectedAlbum: null,
       imageViewOpen: false,
       currentImage: null
     })
   }
 
-  openImageView = picture => {
-    // console.log('opening image: ' + picture.public_id);
-    this.setState({
-      imageViewOpen: true,
-      currentImage: picture
-    });
+  // this is idiotic
+  findIndex = image => {
+    const { pictures } = this.state;
+    return pictures.findIndex(picture => picture.public_id === image.public_id);
   }
 
-  
-
+  // select an image
+  openImageView = picture => {
+    const index = this.findIndex(picture);
+    this.setState({
+      imageViewOpen: true,
+      currentImage: picture,
+      currentIndex: index
+    });
+  }
   
 
   closeImageView = () => {
@@ -74,12 +83,54 @@ class FilteredGallery extends Component {
     })
   }
 
+  // select by index
+  openImageIndex = index => {
+    const { pictures } = this.state;
+    this.setState({
+      currentIndex: index,
+      currentImage: pictures[index],
+      imageViewOpen: true
+    });
+  }
+
+  openFirstImage = () => {
+    const { pictures } = this.state;
+    if (pictures.length > 0) {
+      this.setState({
+        currentIndex: 0,
+        currentImage: pictures[0]
+      })
+    }
+  }
+
+  openNextImage = () => {
+    const { pictures } = this.state;
+    let index = this.state.currentIndex;
+    if (index < pictures.length - 1) {
+      index++;
+    } else {
+      index = 0;
+    }
+    this.openImageIndex(index);
+  }
+
+  openPreviousImage = () => {
+    const { pictures } = this.state;
+    let index = this.state.currentIndex;
+    if (index > 0) {
+      index--;
+    } else {
+      index = pictures.length - 1;
+    }
+    this.openImageIndex(index);
+  }
+
   purchaseItem = (purchaseType, id) => {
     console.log('Purchse ' + purchaseType + ': ' + id);
   }
     
   render () {
-    const { pictures, currentImage, imageViewOpen } = this.state;
+    const { pictures, currentImage } = this.state;
     return (
         <div className="content">
           <CloudinaryContext cloudName="cantimaginewhy">
@@ -94,9 +145,13 @@ class FilteredGallery extends Component {
               <div className="gallery">
                 
                 {pictures.map(picture => {
+                  let cls = 'responsive thumbnail';
+                  if (picture.public_id === this.state.currentImage.public_id) {
+                    cls += ' selected'
+                  }
                   return (
                     <div 
-                      className="responsive thumbnail" 
+                      className={cls}
                       key={picture.public_id} 
                     >
                       
@@ -104,26 +159,31 @@ class FilteredGallery extends Component {
                         publicId={picture.public_id}
                         height="100"
                         crop="fit"
-                        onClick={() => this.openImageView(picture)}
+                        onClick={() => {
+                          this.openImageView(picture)
+                          }
+                        }
                       />
                     </div>
                     )
                 }) }
               </div>
 
-              <Collapse in={imageViewOpen} dimension="width">
-                <div style={{ width: 500 }}>
-                  { currentImage && (
+              { currentImage && (
+              <div className="image-box">
+                  <div className="image-nav-btn prev-btn" onClick={this.openPreviousImage}>
+                    <img alt="prev" src="https://res.cloudinary.com/cantimaginewhy/image/upload/a_hflip/a_0/v1575431164/icon/next-arrow-icon.png" />
+                  </div>
                     <ImageDisplay 
                       currentImage={currentImage}
                       closeImageView={this.closeImageView}
                       purchaseItem={this.purchaseItem}
                     />
-                  )}
-                </div>
-                
-              </Collapse>
-              
+                  <div className="image-nav-btn next-btn" onClick={this.openNextImage}>
+                    <img alt="next" src="https://res.cloudinary.com/cantimaginewhy/image/upload/v1575431164/icon/next-arrow-icon.png" />
+                  </div>
+              </div>
+              )}
             </main>
           </CloudinaryContext>
         </div>

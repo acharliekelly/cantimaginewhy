@@ -17,7 +17,7 @@ class ImageDisplay extends Component {
 
   loadImageProperties = () => {
     const infoObj = {
-      source: variableImageSrc(this.props.currentImage.public_id, 400),
+      source: variableImageSrc(this.props.currentImage.public_id, 600),
       title: this.getPictureCaption(),
       description: this.getPictureProperty('alt'),
       location: this.getPictureProperty('location'),
@@ -55,20 +55,7 @@ class ImageDisplay extends Component {
     }
   }
 
-  handleBuyPrint = () => {
-    const canvasId = this.state.canvasId;
-    this.props.purchaseItem('canvas', canvasId);
-  }
 
-  handleBuyPoster = () => {
-    const { posterId } = this.state;
-    this.props.purchaseItem('poster', posterId);
-  }
-
-  handleBuyOriginal = () => {
-    const id = this.props.currentImage.public_id;
-    this.props.purchaseItem('orig', id);
-  }
 
   openLightbox = () => {
     this.setState({
@@ -83,29 +70,35 @@ class ImageDisplay extends Component {
   }
 
   render () {
-    const { currentImage, closeImageView } = this.props;
+    const { currentImage } = this.props;
     if (currentImage) {
       const info = this.loadImageProperties();
       return (
         <div className="image-view">
-          <img className="display-image" alt="" src={info.source} />
+          <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
           <div className="image-info">
             <div className="title">{info.title}</div>
             <div className="info">{info.description}</div>
-            {info.materialInfo && (
-              <div className="info">{info.size}, {info.medium}</div>
-            )}
+            <div className="info">
+              <span className="label">Location: </span>
+              <span className="data">{info.location}</span>
+            </div>
+            <div className="info">
+              <span className="label">Year: </span>
+              <span className="data">{info.year}</span>
+            </div>
+            <div className="info">
+              <span className="label">Material: </span>
+              <span className="data">{info.size}, {info.medium}</span>
+            </div>
+            
             {info.forSale && (
               <div className="options">
                 <span className="label">Buy Original:</span>
                 <span className="purchase buy-orig" 
-                onClick={this.handleBuyOriginal}>${info.price}</span>
+                onClick={this.props.openDetail}>${info.price}</span>
               </div>
             )}
-            <div className="buttons">
-              <span className="zoom-btn" onClick={this.openLightbox}>Zoom</span>
-              <span className="close-btn" onClick={closeImageView}>Close</span>
-            </div>
           </div>
           
           {this.state.lightboxOpen && (
@@ -128,8 +121,8 @@ class ImageDisplay extends Component {
 
 ImageDisplay.propTypes = {
   currentImage: PropTypes.object.isRequired,
-  closeImageView: PropTypes.func.isRequired,
-  purchaseItem: PropTypes.func
+  closeImageView: PropTypes.func,
+  openDetail: PropTypes.func
 }
 
 export default ImageDisplay;

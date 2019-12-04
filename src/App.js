@@ -1,8 +1,11 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { 
+  HashRouter as Router, 
+  Route
+} from 'react-router-dom';
 
 import Menu from './components/Menu';
-import { ContactForm } from './components/Contact';
+// import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,38 +19,24 @@ const ContactPage = () => (
   <div className="content">
     <header>Contact</header>
     <main>
-      <ContactForm />
+      <h2>I don't quite have my contact form working yet, so for now, please just send me an 
+        {' '}<a href="mailto:cant.imagine.why00@gmail.com">email</a>.</h2>
     </main>
   </div>
 )
 
-const ShopPage = () => (
-  <div className="content">
-    <header>Shop</header>
-    <main className="todo">Put shopping stuff here</main>
-  </div>
-);
-
-const login = () => {
-  console.log('Login button clicked');
-}
-
-const search = () => {
-  console.log('Search button clicked');
-}
 
 const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <Menu handleLogin={login} handleSearch={search} />
+        <Menu />
         <div className="content-wrapper">
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/artwork" component={FilteredGallery} />
-          <Route path="/shop" component={ShopPage} />
         </div>
       </Router>
       <Footer />

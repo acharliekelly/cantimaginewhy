@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Source+Code+Pro&display=swap');
 @import 'colors';
 @import 'menu.scss';
 
 body {
   background-color: $base-bkg;
   color: $base-text;
-  font-family: 'Source Code Pro', monospace;
+  font-family: Roboto;
 }
 
 h1, h2, h3, h4, h5, h6, header {

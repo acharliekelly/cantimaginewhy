@@ -76,7 +76,6 @@ class FilterNav extends Component {
                         <Transformation quality="auto" fetchFormat="auto" />
                     </Image>
                     <div className="album-name">{option.name}</div>
-                    {/* <div className="album-desc">{option.description}</div> */}
                 </div>
               );
             })}

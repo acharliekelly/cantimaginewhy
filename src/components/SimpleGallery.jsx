@@ -22,7 +22,7 @@ class SimpleGallery extends React.Component {
     fetchGallery(tagName)
       .then(res => {
         this.setState({
-          images: res.data.resources.slice(0, size - 1),
+          images: res.data.resources.slice(0, size),
           isLoaded: true
         })
       });

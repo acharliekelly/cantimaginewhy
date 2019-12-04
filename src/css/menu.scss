@@ -9,11 +9,20 @@
     padding: 1rem 0 0 1rem;
   }
 
+  .site-title {
+    font-size: 2em;
+    font-family: 'Great Vibes', cursive;
+  }
+
   .nav-grid {
     width: 80vw;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 2fr;
+  }
+
+  .top-row {
+    text-align: center;
   }
 
   .bottom-row {
@@ -38,7 +47,7 @@
 
   .nav-item {
     display: inline;
-    padding: 0 5px;
+    padding: 0 1em;
 
     a {
       color: $menu-text;

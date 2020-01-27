@@ -65,9 +65,6 @@ export default function ArtworkPage() {
           currentIndex={currentImageIndex}
           updateImage={setCurrentImageIndex}
         />
-        {/* <div className="image-box">
-          <ImageDisplay currentImage={imageList[currentImageIndex]} />
-        </div> */}
         
       </section>
       

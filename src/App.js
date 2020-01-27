@@ -3,9 +3,9 @@ import {
   HashRouter as Router, 
   Route
 } from 'react-router-dom';
-import { contactEmailLink } from './utils/contactApi';
+// import { contactEmailLink } from './utils/contactApi';
 import Menu from './components/Menu';
-// import { ContactForm } from './components/Contact';
+import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,14 +13,13 @@ import './css/main.scss';
 
 import Home from './components/Home';
 import AboutPage from './components/About';
-import FilteredGallery from './components/FilteredGallery';
+import ArtworkPage from './components/Artwork';
 
 const ContactPage = () => (
   <div className="content">
     <header>Contact</header>
     <main>
-      <h2>I don't quite have my contact form working yet, so for now, please just send me an 
-        {' '}<a href={contactEmailLink()}>email</a>.</h2>
+      <ContactForm />
     </main>
   </div>
 )
@@ -36,7 +35,7 @@ const App = () => {
           <Route path="/home" component={Home} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
-          <Route path="/artwork" component={FilteredGallery} />
+          <Route path="/artwork" component={ArtworkPage} />
         </div>
       </Router>
       <Footer />

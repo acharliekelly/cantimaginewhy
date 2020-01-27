@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+
+  .left-column {
+    width: 50%;
+    border: 1px dotted red;
+  }
+
+  .right-column {
+    padding: 1em;
+    border: 1px double green;
+  }
+}

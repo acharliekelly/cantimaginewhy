@@ -2,7 +2,7 @@
 
 .gallery-title {
   font-size: 2em;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Indie Flower', sans-serif;
   font-weight: bold;
   text-transform: capitalize;
   text-align: center;
@@ -16,8 +16,8 @@
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
-    justify-content: center;
+    
+    // justify-content: center;
     // border: thin solid blue;
     
 
@@ -25,16 +25,19 @@
       display: inline-block;
       margin: 5px;
       cursor: pointer;
+      border: thin inset #ccc;
+      opacity: 0.7;
 
       &.selected {
-        border: thin outset #999;
+        border: thin outset #666;
+        opacity: 1;
       }
     }
 
     .title {
       display: none;
       font-size: 12px;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Indie Flower', sans-serif;
       text-align: center;
     }
   }

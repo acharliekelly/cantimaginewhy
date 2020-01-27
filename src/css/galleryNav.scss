@@ -19,6 +19,7 @@ $selected-album-text: #000;
   cursor: pointer;
   text-align: center;
   color: $nav-text;
+  margin-top: 1em;
 
   div {
     display: inline;
@@ -70,8 +71,8 @@ $selected-album-text: #000;
   text-align: center;
 
   .album-name {
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    font-family: 'Indie Flower', cursive;
     text-align: center;
     color: $album-text;
   }
@@ -114,6 +115,6 @@ $selected-album-text: #000;
   .nav-description {
     font-size: 1em;
     font-weight: normal;
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Indie Flower', cursive;
   }
 }

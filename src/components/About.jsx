@@ -5,19 +5,8 @@ import { cleanImageSrc } from '../utils/imageApi';
 
 import '../css/about.scss';
 
-const insideStyles = {
-  background: "white",
-  padding: 20,
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%,-50%)",
-  opacity: 0.6
-};
-
 const AboutPage = () => (
   <div className="content">
-    <header>About</header>
     <div className="about-content">
       <div className="me-text">
         <section>
@@ -26,7 +15,7 @@ const AboutPage = () => (
         </section>
         <Parallax bgImage={cleanImageSrc('me/caterpillar2')} strength={500}>
           <div style={{ height: 500 }}>
-            <div style={insideStyles}>Me, painting</div>
+            {/* <div style={insideStyles}>Me, painting</div> */}
           </div>
         </Parallax>
         
@@ -55,7 +44,7 @@ const AboutPage = () => (
         </section>
         <Parallax bgImage={cleanImageSrc('me/painting_trees')} strength={500}>
           <div style={{height: 500}}>
-            <div style={insideStyles}>Painting Trees</div>
+            {/* <div style={insideStyles}>Painting Trees</div> */}
           </div>
         </Parallax>
         <section>

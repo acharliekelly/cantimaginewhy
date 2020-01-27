@@ -29,7 +29,7 @@ export const ContactForm = () => {
       <Button variant="dark" type="submit" disabled onClick={ev => {
         ev.preventDefault();
         console.log('Contact form submitted');
-      }}>(nothing actually happens if you click this)</Button>
+      }}>Submit</Button>
     </Form>
   );
 }

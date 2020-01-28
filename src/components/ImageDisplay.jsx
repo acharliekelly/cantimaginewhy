@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { variableImageSrc, watermarkedImageSrc } from '../utils/imageApi';
+import { variableImageSrc, cleanImageSrc } from '../utils/imageApi';
 import { orderEmailLink } from '../utils/contactApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
@@ -82,7 +82,7 @@ class ImageDisplay extends Component {
           <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
           <div className="image-info">
             <div className="title">{info.title}</div>
-            <div className="info">{info.description}</div>
+            <div className="descript">{info.description}</div>
             {info.location && (
             <div className="info">
               <span className="label">Location: </span>
@@ -111,8 +111,9 @@ class ImageDisplay extends Component {
           
           {this.state.lightboxOpen && (
             <Lightbox 
-              mainSrc={watermarkedImageSrc(currentImage.public_id)}
+              mainSrc={cleanImageSrc(currentImage.public_id)}
               onCloseRequest={this.closeLightbox}
+              discourageDownloads
             />
           )}
         </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
-// import Form from 'react-bootstrap/Form';
 import { Image, CloudinaryContext } from 'cloudinary-react';
+import SocialMediaLinks from './SocialMediaLinks';
 
 const Menu = (handleLogin, handleSearch) => {
   return (
@@ -13,7 +13,7 @@ const Menu = (handleLogin, handleSearch) => {
         </div>
         <div className="nav-grid">
           <div className="top-row left-col">
-            <span className="site-title">Can't Imagine Why</span>
+            {/* <span className="site-title">Can't Imagine Why</span> */}
           </div>
           <div className="top-row right-col">
           </div>
@@ -33,6 +33,7 @@ const Menu = (handleLogin, handleSearch) => {
           </Nav>
           <div className="bottom-row right-col" />
         </div>
+        <SocialMediaLinks />
       </header>
     </CloudinaryContext>
   );

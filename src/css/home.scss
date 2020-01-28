@@ -6,7 +6,7 @@ main.home {
   opacity: 1;
 
   h1 {
-    font-family: 'Roboto';
+    font-family: 'Great Vibes', cursive;
     font-size: 3em;
     font-weight: bold;
   }
@@ -16,7 +16,7 @@ main.home {
 
   .featured {
     h3.header {
-      color: #000;
+      color: #fff;
     }
   }
 }
@@ -28,6 +28,7 @@ main.home {
 
   img {
     margin: 1em;
+    cursor: pointer;
   }
 
 }

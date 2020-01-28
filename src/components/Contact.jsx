@@ -6,7 +6,7 @@ import '../css/forms.scss';
 
 export const ContactForm = () => {
   return (
-    <Form>
+    <Form className="contact-form">
       <Form.Group controlId="contactForm.name">
         <Form.Label>Name:</Form.Label>
         <Form.Control type="text" placeholder="Your Name" />
@@ -29,7 +29,7 @@ export const ContactForm = () => {
       <Button variant="dark" type="submit" disabled onClick={ev => {
         ev.preventDefault();
         console.log('Contact form submitted');
-      }}>(nothing actually happens if you click this)</Button>
+      }}>Submit</Button>
     </Form>
   );
 }

@@ -17,7 +17,7 @@ export default function Home() {
           <SimpleGallery 
             tagName="favorite" 
             imageHeight={200} 
-            gallerySize={3}
+            gallerySize={4}
           />
         </div>
         

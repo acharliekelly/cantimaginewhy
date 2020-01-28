@@ -5,19 +5,11 @@ import { cleanImageSrc } from '../utils/imageApi';
 
 import '../css/about.scss';
 
-const insideStyles = {
-  background: "white",
-  padding: 20,
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%,-50%)",
-  opacity: 0.6
-};
-
 const AboutPage = () => (
   <div className="content">
-    <header>About</header>
+    {/* <header style={{ fontSize: '3em' }}>
+      <div className="page-title">About</div>
+    </header> */}
     <div className="about-content">
       <div className="me-text">
         <section>
@@ -25,9 +17,7 @@ const AboutPage = () => (
           and created this site as a way to display it all in one place. 
         </section>
         <Parallax bgImage={cleanImageSrc('me/caterpillar2')} strength={500}>
-          <div style={{ height: 500 }}>
-            <div style={insideStyles}>Me, painting</div>
-          </div>
+          <div style={{ height: 500 }} />
         </Parallax>
         
         <section>
@@ -54,9 +44,7 @@ const AboutPage = () => (
         I didn’t realize it at the time; I was just trying to paint without ruining the paper.
         </section>
         <Parallax bgImage={cleanImageSrc('me/painting_trees')} strength={500}>
-          <div style={{height: 500}}>
-            <div style={insideStyles}>Painting Trees</div>
-          </div>
+          <div style={{height: 500}} />
         </Parallax>
         <section>
         At present, my work is mostly divided between painted landscapes, and custom name tags/plates 

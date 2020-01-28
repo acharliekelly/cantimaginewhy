@@ -26,10 +26,10 @@ class SimpleGallery extends React.Component {
   updateImages = (tagName, size) => {
     fetchGallery(tagName)
       .then(res => {
-        let arr = res.data.resources.slice(0, size);
+        let arr = res.data.resources;
         this.shuffleImages(arr);
         this.setState({
-          images: arr,
+          images: arr.slice(0, size),
           isLoaded: true
         })
       });

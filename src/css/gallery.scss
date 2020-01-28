@@ -9,17 +9,15 @@
 }
 
 .display-area {
-  display: flex;
-  flex-direction: row;
-  // border: thin solid red;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
     justify-content: center;
-    // border: thin solid blue;
-    
+    max-height: 50vh;
+    overflow: auto;
 
     .thumbnail {
       display: inline-block;

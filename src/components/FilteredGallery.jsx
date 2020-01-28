@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
-// import Collapse from 'react-bootstrap/Collapse';
 import FilterNav from './FilterNav';
 import ImageDisplay from './ImageDisplay';
 import { fetchGallery } from '../utils/imageApi';
@@ -30,7 +29,6 @@ class FilteredGallery extends Component {
 
   handleAlbumSelect = event => {
     const tagName = event.target.id;
-    console.log('Selected album: ', tagName);
     this.updateGallery(tagName);
   }
 
@@ -150,14 +148,11 @@ class FilteredGallery extends Component {
                     cls += ' selected'
                   }
                   return (
-                    <div 
-                      className={cls}
-                      key={picture.public_id} 
-                    >
-                      
+                    <div key={picture.public_id} >
                       <Image 
+                        className={cls}
                         publicId={picture.public_id}
-                        height="100"
+                        height="80"
                         crop="fit"
                         onClick={() => {
                           this.openImageView(picture)

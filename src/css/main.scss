@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Indie+Flower&display=swap');
 @import 'colors';
 @import 'menu.scss';
 
 body {
-  background-color: $base-bkg;
+  // background-color: $base-bkg;
+  background-color: #fff;
   color: $base-text;
   font-family: Roboto;
 }
@@ -54,16 +55,32 @@ h1, h2, h3, h4, h5, h6, header {
 }
 
 .content {
-  margin: 1rem;
+  margin: 1rem auto;
   padding: 10px;
-  // border: inset thin #ccc;
-  // border-radius: 5px;
   min-height: 75vh;
 
+
   header {
-    font-size: 3em;
+    // font-size: 3em;
     text-align: center;
     margin: 1em 2em;
+
+    .page-title {
+      font-family: 'Great Vibes';
+      text-align: center;
+    }
+
+    .page-desc {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      margin: 1em auto;
+      max-width: 60%;
+    }
+  }
+
+  .display-area {
+    text-align: center;
+    margin: 0 1em;
   }
 }
 
@@ -71,6 +88,7 @@ h1, h2, h3, h4, h5, h6, header {
 .page-container {
   position: relative;
   min-height: 100vh;
+  text-align: center;
 }
 .content-wrapper {
   padding-bottom: 2rem;
@@ -90,18 +108,19 @@ h1, h2, h3, h4, h5, h6, header {
     margin-left: 10px;
   }
 
-  .social {
-    float: right;
-    margin-right: 10px;
-    img {
-      height: 1rem;
-      margin-right: 5px;
-    }
-    a {
-      color: #fff;
-
-    }
-  }
+  
 
 }
 
+.social {
+  float: right;
+  margin: 1em 1em 0 0;
+  img {
+    height: 3rem;
+    margin-right: 5px;
+  }
+  a {
+    color: #fff;
+
+  }
+}

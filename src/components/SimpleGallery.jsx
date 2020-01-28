@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
 import Spinner from 'react-bootstrap/Spinner';
-import { fetchGallery } from '../utils/imageApi';
+import Lightbox from 'react-image-lightbox';
+import { fetchGallery, cleanImageSrc } from '../utils/imageApi';
+
+import 'react-image-lightbox/style.css';
 
 class SimpleGallery extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       images: [],
-      isLoaded: false
+      isLoaded: false,
+      lighboxOpen: false,
+      selectedImage: null
     }
   }
 
@@ -21,17 +26,42 @@ class SimpleGallery extends React.Component {
   updateImages = (tagName, size) => {
     fetchGallery(tagName)
       .then(res => {
+        let arr = res.data.resources;
+        this.shuffleImages(arr);
         this.setState({
-          images: res.data.resources.slice(0, size),
+          images: arr.slice(0, size),
           isLoaded: true
         })
       });
   }
 
+  shuffleImages = array => {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+  }
+
+  closeLightbox = () => {
+    this.setState({
+      lighboxOpen: false
+    })
+  }
+
   render () {
-    const { images, isLoaded } = this.state;
-    const { imageHeight, handleImageClick } = this.props;
-    if (!isLoaded) {
+    const { images, isLoaded, lighboxOpen, selectedImage } = this.state;
+    const { imageHeight } = this.props;
+    if (lighboxOpen) {
+      return (
+        <Lightbox 
+          mainSrc={cleanImageSrc(selectedImage.public_id)}
+          onCloseRequest={this.closeLightbox}
+          discourageDownloads
+        />
+      );
+    } else if (!isLoaded) {
       return <Spinner animation="grow" variant="dark" />
     } else {
       return (
@@ -44,7 +74,10 @@ class SimpleGallery extends React.Component {
               crop="fit" 
               cloudName="cantimaginewhy" 
               publicId={image.public_id}
-              onClick={handleImageClick}
+              onClick={() => this.setState({
+                selectedImage: image,
+                lighboxOpen: true
+              })}
             />
           ))}
         </div>
@@ -57,7 +90,6 @@ SimpleGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
-  handleImageClick: PropTypes.func.isRequired
 }
 
 export default SimpleGallery;

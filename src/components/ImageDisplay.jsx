@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { variableImageSrc, cleanImageSrc } from '../utils/imageApi';
+import { paddedImageSrc, lightboxImageSrc } from '../utils/imageApi';
 import { orderEmailLink } from '../utils/contactApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
@@ -18,7 +18,7 @@ class ImageDisplay extends Component {
   loadImageProperties = () => {
     const infoObj = {
       id: this.props.currentImage.public_id,
-      source: variableImageSrc(this.props.currentImage.public_id, 600),
+      source: paddedImageSrc(this.props.currentImage.public_id, 600, 400),
       title: this.getPictureCaption(),
       description: this.getPictureProperty('alt'),
       location: this.getPictureProperty('location'),
@@ -111,7 +111,7 @@ class ImageDisplay extends Component {
           
           {this.state.lightboxOpen && (
             <Lightbox 
-              mainSrc={cleanImageSrc(currentImage.public_id)}
+              mainSrc={lightboxImageSrc(currentImage.public_id)}
               onCloseRequest={this.closeLightbox}
               discourageDownloads
             />

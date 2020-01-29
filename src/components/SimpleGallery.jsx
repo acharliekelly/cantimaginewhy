@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
-import Spinner from 'react-bootstrap/Spinner';
 import Lightbox from 'react-image-lightbox';
-import { fetchGallery, cleanImageSrc } from '../utils/imageApi';
+import { fetchGallery, lightboxImageSrc } from '../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
 
@@ -12,7 +11,6 @@ class SimpleGallery extends React.Component {
     super(props);
     this.state = {
       images: [],
-      isLoaded: false,
       lighboxOpen: false,
       selectedImage: null
     }
@@ -23,18 +21,19 @@ class SimpleGallery extends React.Component {
     this.updateImages(tagName, gallerySize);
   }
 
+  // fetch images with tagName
   updateImages = (tagName, size) => {
     fetchGallery(tagName)
       .then(res => {
         let arr = res.data.resources;
         this.shuffleImages(arr);
         this.setState({
-          images: arr.slice(0, size),
-          isLoaded: true
+          images: arr.slice(0, size)
         })
       });
   }
 
+  // randomize current image set
   shuffleImages = array => {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -51,38 +50,35 @@ class SimpleGallery extends React.Component {
   }
 
   render () {
-    const { images, isLoaded, lighboxOpen, selectedImage } = this.state;
+    const { images, lighboxOpen, selectedImage } = this.state;
     const { imageHeight } = this.props;
-    if (lighboxOpen) {
-      return (
-        <Lightbox 
-          mainSrc={cleanImageSrc(selectedImage.public_id)}
-          onCloseRequest={this.closeLightbox}
-          discourageDownloads
-        />
-      );
-    } else if (!isLoaded) {
-      return <Spinner animation="grow" variant="dark" />
-    } else {
-      return (
+    return (
+      <div className="gallery-wrapper">
         <div className="basic-gallery">
-          {images.map(image => (
-            <Image 
-              key={image.publid_id} 
-              className="responsive" 
-              height={imageHeight}
-              crop="fit" 
-              cloudName="cantimaginewhy" 
-              publicId={image.public_id}
-              onClick={() => this.setState({
-                selectedImage: image,
-                lighboxOpen: true
-              })}
+            {images.map(image => (
+              <Image 
+                key={image.publid_id} 
+                className="responsive" 
+                height={imageHeight}
+                crop="fit" 
+                cloudName="cantimaginewhy" 
+                publicId={image.public_id}
+                onClick={() => this.setState({
+                  selectedImage: image,
+                  lighboxOpen: true
+                })}
+              />
+            ))}
+          </div>
+          { lighboxOpen && (
+              <Lightbox 
+              mainSrc={lightboxImageSrc(selectedImage.public_id)}
+              onCloseRequest={this.closeLightbox}
+              discourageDownloads
             />
-          ))}
+          )}
         </div>
-      );
-    }
+    );
   }
 }
 

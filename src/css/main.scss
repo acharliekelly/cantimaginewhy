@@ -113,14 +113,22 @@ h1, h2, h3, h4, h5, h6, header {
 }
 
 .social {
-  float: right;
-  margin: 1em 1em 0 0;
-  img {
-    height: 3rem;
+  
+  padding-left: 1em;
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover {
+    color: #036;
+  }
+
+  img, svg {
     margin-right: 5px;
   }
-  a {
-    color: #fff;
-
+  img {
+    height: 2rem;
   }
+  
 }

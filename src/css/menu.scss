@@ -18,7 +18,11 @@
     width: 80vw;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 2fr;
+
+    div {
+      padding-top: 1em;
+      vertical-align: bottom;
+    }
   }
 
   .top-row {
@@ -39,7 +43,6 @@
   .nav {
     display: inline;
     text-align: center;
-    vertical-align: bottom;
     font-variant: small-caps;
     font-weight: bold;
     font-size: 2rem;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { paddedImageSrc, lightboxImageSrc } from '../utils/imageApi';
-import { orderEmailLink } from '../utils/contactApi';
+import { purchaseOriginal, purchasePrint, purchasePoster } from '../utils/productApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
 
@@ -26,6 +27,8 @@ class ImageDisplay extends Component {
       size: this.getPictureProperty('size'),
       year: this.getPictureProperty('year'),
       forSale: (this.getPictureProperty('original') === 'available'),
+      forPrint: true,
+      moreStuff: true,
       price: this.getPictureProperty('price', 'NFS'),
       materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
     }
@@ -56,9 +59,11 @@ class ImageDisplay extends Component {
     }
   }
 
-  handlePurchase = () => {
+  handleProcess = ev => {
+    ev.preventDefault();
     const imgId = this.props.currentImage.public_id;
-    this.props.purchaseItem(imgId);
+    console.log('Show process photos for ' + imgId);
+    // TODO: show process photos
   }
 
   openLightbox = () => {
@@ -78,8 +83,18 @@ class ImageDisplay extends Component {
     if (currentImage) {
       const info = this.loadImageProperties();
       return (
-        <div className="image-view">
-          <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
+        <div className="image-box">
+          <div className="image-nav-btn prev-btn" onClick={this.props.movePrevious}>
+            <FontAwesomeIcon icon="chevron-circle-left" size="lg" />
+          </div>
+          <div className="image-view">
+            <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
+          </div>
+          <div className="image-nav-btn next-btn" onClick={this.props.moveNext}>
+            <FontAwesomeIcon icon="chevron-circle-right" size="lg" />
+          </div>
+
+          <div className="spacer" />
           <div className="image-info">
             <div className="title">{info.title}</div>
             <div className="descript">{info.description}</div>
@@ -101,14 +116,30 @@ class ImageDisplay extends Component {
               <span className="data">{info.size}, {info.medium}</span>
             </div>
             )}
+
             {info.forSale && (
               <div className="options">
                 <span className="label">Buy Original:</span>
-                <a className="purchase buy-orig" href={orderEmailLink(info.id)}>${info.price}</a>
+                  <a className="purchase buy-orig" href={purchaseOriginal(info.id)}>${info.price}</a>
               </div>
             )}
+            {info.forPrint && (
+              <div className="options">
+                <span className="label">Buy a: </span>
+                <a className="purchase buy-print" href={purchasePoster(info.id, 0)}>Poster</a>
+                <a className="purchase buy-print" href={purchasePrint(info.id, 0)}>Print</a>
+              </div>
+            )}
+            {info.moreStuff && (
+              <div className="options">
+                <span className="label">View Process:</span>
+                <a className="purchase view-process" onClick={this.handleProcess} href="null">Photos</a>
+              </div>
+            )}
+            
           </div>
-          
+          <div className="spacer" />
+
           {this.state.lightboxOpen && (
             <Lightbox 
               mainSrc={lightboxImageSrc(currentImage.public_id)}
@@ -116,6 +147,7 @@ class ImageDisplay extends Component {
               discourageDownloads
             />
           )}
+
         </div>
 
       );
@@ -130,8 +162,8 @@ class ImageDisplay extends Component {
 
 ImageDisplay.propTypes = {
   currentImage: PropTypes.object.isRequired,
-  closeImageView: PropTypes.func,
-  purchaseItem: PropTypes.func
+  movePrevious: PropTypes.func.isRequired,
+  moveNext: PropTypes.func.isRequired
 }
 
 export default ImageDisplay;

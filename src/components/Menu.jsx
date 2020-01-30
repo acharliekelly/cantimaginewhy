@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext } from 'cloudinary-react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SocialMediaLinks from './SocialMediaLinks';
 
 const Menu = (handleLogin, handleSearch) => {
@@ -12,12 +13,7 @@ const Menu = (handleLogin, handleSearch) => {
           <Image publicId="ck_logo" height="100" />
         </div>
         <div className="nav-grid">
-          <div className="top-row left-col">
-            {/* <span className="site-title">Can't Imagine Why</span> */}
-          </div>
-          <div className="top-row right-col">
-          </div>
-          <Nav className="bottom-row left-col" defaultActiveKey="/home">
+          <Nav className="left-col" defaultActiveKey="/home">
             <Nav.Item>
               <NavLink to="/home">Home</NavLink>
             </Nav.Item>
@@ -31,9 +27,9 @@ const Menu = (handleLogin, handleSearch) => {
               <NavLink to="/contact">Contact</NavLink>
             </Nav.Item>
           </Nav>
-          <div className="bottom-row right-col" />
+          <SocialMediaLinks />
         </div>
-        <SocialMediaLinks />
+        
       </header>
     </CloudinaryContext>
   );

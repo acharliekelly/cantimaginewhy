@@ -24,6 +24,9 @@ const Menu = (handleLogin, handleSearch) => {
               <NavLink to="/about">About</NavLink>
             </Nav.Item>
             <Nav.Item>
+              <a href="https://charlie-kelly.pixels.com" target="_blank" rel="noreferrer noopener">Shop</a>
+            </Nav.Item>
+            <Nav.Item>
               <NavLink to="/contact">Contact</NavLink>
             </Nav.Item>
           </Nav>

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { paddedImageSrc, lightboxImageSrc } from '../utils/imageApi';
-import { purchaseOriginal, purchasePrint, purchasePoster } from '../utils/productApi';
+import { purchaseOriginal } from '../utils/productApi';
+import { faaLookup, faaAvailable } from '../utils/fineArtApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
 
@@ -27,8 +28,8 @@ class ImageDisplay extends Component {
       size: this.getPictureProperty('size'),
       year: this.getPictureProperty('year'),
       forSale: (this.getPictureProperty('original') === 'available'),
-      forPrint: true,
-      moreStuff: true,
+      forPrint: (faaAvailable(this.props.currentImage.public_id)),
+      moreStuff: false,
       price: this.getPictureProperty('price', 'NFS'),
       materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
     }
@@ -117,17 +118,25 @@ class ImageDisplay extends Component {
             </div>
             )}
 
-            {info.forSale && (
-              <div className="options">
-                <span className="label">Buy Original:</span>
-                  <a className="purchase buy-orig" href={purchaseOriginal(info.id)}>${info.price}</a>
-              </div>
-            )}
+            
+            <div className="options">
+              <span className="label">Original:</span>
+              {info.forSale && (
+                <a className="purchase buy-orig" href={purchaseOriginal(info.id)}>Available, ${info.price}</a>
+              )}
+              {!info.forSale && (
+                <a className="purchase nfs" href="null" onClick={this.handleProcess}>Not Available</a>
+              )}
+            </div>
             {info.forPrint && (
               <div className="options">
-                <span className="label">Buy a: </span>
-                <a className="purchase buy-print" href={purchasePoster(info.id, 0)}>Poster</a>
-                <a className="purchase buy-print" href={purchasePrint(info.id, 0)}>Print</a>
+                <span className="label">Prints: </span>
+                <a 
+                  className="purchase buy-print" 
+                  rel="noopener noreferrer" 
+                  target="_blank" 
+                  href={faaLookup(info.id)}
+                  >Available</a>
               </div>
             )}
             {info.moreStuff && (

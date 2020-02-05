@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { variableImageSrc, cleanImageSrc } from '../utils/imageApi';
-import { orderEmailLink } from '../utils/contactApi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../utils/imageApi';
+// import { purchaseOriginal } from '../utils/productApi';
+import { faaLookup, faaAvailable } from '../utils/fineArtApi';
 import 'react-image-lightbox/style.css';
 import '../css/display.scss';
 
@@ -18,7 +20,7 @@ class ImageDisplay extends Component {
   loadImageProperties = () => {
     const infoObj = {
       id: this.props.currentImage.public_id,
-      source: variableImageSrc(this.props.currentImage.public_id, 600),
+      source: paddedImageSrc(this.props.currentImage.public_id, 600, 400),
       title: this.getPictureCaption(),
       description: this.getPictureProperty('alt'),
       location: this.getPictureProperty('location'),
@@ -26,6 +28,10 @@ class ImageDisplay extends Component {
       size: this.getPictureProperty('size'),
       year: this.getPictureProperty('year'),
       forSale: (this.getPictureProperty('original') === 'available'),
+      forPrint: (faaAvailable(this.props.currentImage.public_id)),
+      refKey: this.getPictureProperty('key', '-'),
+      // processImgs: (this.getPictureProperty('key', '-') !== '-'),
+      processImgs: false,
       price: this.getPictureProperty('price', 'NFS'),
       materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
     }
@@ -56,9 +62,21 @@ class ImageDisplay extends Component {
     }
   }
 
-  handlePurchase = () => {
-    const imgId = this.props.currentImage.public_id;
-    this.props.purchaseItem(imgId);
+  suppressLink = ev => {
+    ev.preventDefault();
+  }
+
+
+
+  handleProcess = ev => {
+    ev.preventDefault();
+    const key = this.props.currentImage.refKey;
+    console.log('Show process photos with ref# ' + key);
+
+    axiosFetchImages(key, response => {
+      const processImages = response.data.resources;
+      processImages.forEach(item => console.log(item));
+    });
   }
 
   openLightbox = () => {
@@ -78,8 +96,18 @@ class ImageDisplay extends Component {
     if (currentImage) {
       const info = this.loadImageProperties();
       return (
-        <div className="image-view">
-          <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
+        <div className="image-box">
+          <div className="image-nav-btn prev-btn" onClick={this.props.movePrevious}>
+            <FontAwesomeIcon icon="chevron-circle-left" size="lg" />
+          </div>
+          <div className="image-view">
+            <img className="display-image" alt="" src={info.source} onClick={this.openLightbox} />
+          </div>
+          <div className="image-nav-btn next-btn" onClick={this.props.moveNext}>
+            <FontAwesomeIcon icon="chevron-circle-right" size="lg" />
+          </div>
+
+          <div className="spacer" />
           <div className="image-info">
             <div className="title">{info.title}</div>
             <div className="descript">{info.description}</div>
@@ -101,21 +129,46 @@ class ImageDisplay extends Component {
               <span className="data">{info.size}, {info.medium}</span>
             </div>
             )}
-            {info.forSale && (
+
+            
+            <div className="options">
+              <span className="label">Original:</span>
+              {info.forSale && (
+                <a className="purchase buy-orig" href="null" onClick={this.suppressLink}>Available, ${info.price}</a>
+              )}
+              {!info.forSale && (
+                <a className="purchase nfs" href="null" onClick={this.suppressLink}>Not Available</a>
+              )}
+            </div>
+            {info.forPrint && (
               <div className="options">
-                <span className="label">Buy Original:</span>
-                <a className="purchase buy-orig" href={orderEmailLink(info.id)}>${info.price}</a>
+                <span className="label">Prints: </span>
+                <a 
+                  className="purchase buy-print" 
+                  rel="noopener noreferrer" 
+                  target="_blank" 
+                  href={faaLookup(info.id)}
+                  >Available</a>
               </div>
             )}
+            {info.processImgs && (
+              <div className="options">
+                <span className="label">View Process:</span>
+                <a className="purchase view-process" onClick={this.handleProcess} href="null">Photos</a>
+              </div>
+            )}
+            
           </div>
-          
+          <div className="spacer" />
+
           {this.state.lightboxOpen && (
             <Lightbox 
-              mainSrc={cleanImageSrc(currentImage.public_id)}
+              mainSrc={lightboxImageSrc(currentImage.public_id)}
               onCloseRequest={this.closeLightbox}
               discourageDownloads
             />
           )}
+
         </div>
 
       );
@@ -130,8 +183,8 @@ class ImageDisplay extends Component {
 
 ImageDisplay.propTypes = {
   currentImage: PropTypes.object.isRequired,
-  closeImageView: PropTypes.func,
-  purchaseItem: PropTypes.func
+  movePrevious: PropTypes.func.isRequired,
+  moveNext: PropTypes.func.isRequired
 }
 
 export default ImageDisplay;

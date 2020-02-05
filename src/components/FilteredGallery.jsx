@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
+
+// import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import FilterNav from './FilterNav';
 import ImageDisplay from './ImageDisplay';
 import { fetchGallery } from '../utils/imageApi';
@@ -165,19 +167,12 @@ class FilteredGallery extends Component {
               </div>
 
               { currentImage && (
-              <div className="image-box">
-                  <div className="image-nav-btn prev-btn" onClick={this.openPreviousImage}>
-                    <img alt="prev" src="https://res.cloudinary.com/cantimaginewhy/image/upload/a_hflip/a_0/v1575431164/icon/next-arrow-icon.png" />
-                  </div>
-                    <ImageDisplay 
-                      currentImage={currentImage}
-                      closeImageView={this.closeImageView}
-                      purchaseItem={this.purchaseItem}
-                    />
-                  <div className="image-nav-btn next-btn" onClick={this.openNextImage}>
-                    <img alt="next" src="https://res.cloudinary.com/cantimaginewhy/image/upload/v1575431164/icon/next-arrow-icon.png" />
-                  </div>
-              </div>
+              
+                  <ImageDisplay 
+                    currentImage={currentImage}
+                    movePrevious={this.openPreviousImage}
+                    moveNext={this.openNextImage}
+                  />
               )}
             </main>
           </CloudinaryContext>

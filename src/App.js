@@ -3,11 +3,14 @@ import {
   HashRouter as Router, 
   Route
 } from 'react-router-dom';
-// import { contactEmailLink } from './utils/contactApi';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+
 import Menu from './components/Menu';
 import { ContactForm } from './components/Contact';
 import Footer from './components/Footer';
-// import SocialMediaLinks from './components/SocialMediaLinks';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
@@ -27,6 +30,7 @@ const ContactPage = () => (
 
 
 const App = () => {
+  library.add(fab, faChevronCircleLeft, faChevronCircleRight);
   return (
     <div className="page-container">
       <Router basename='/'>

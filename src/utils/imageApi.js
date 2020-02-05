@@ -1,7 +1,9 @@
 import axios from 'axios';
 import cloudinary from 'cloudinary-core';
 
+const protectionMode = 2; // copyright
 const cloudName = 'cantimaginewhy';
+const imgSrc = 'https://res.cloudinary.com/cantimaginewhy/';
 
 const jsonImgList = tagName => {
   return `https://res.cloudinary.com/${cloudName}/image/list/${tagName}.json`;
@@ -21,30 +23,100 @@ export const fetchGallery = tagName => {
   return axios(url);
 }
 
-// Return JSON data of all images where context.ref = keyName
-export const fetchRelatedImages = (keyName, callback) => {
+// Image URLs
+
+
+// Return source URL for watermarked image
+export const watermarkedImageSrc = publicId => {
+  return imgSrc + `w_1000/w_500,l_ck_logo,o_20/${publicId}.jpg`;
+}
+
+export const copyrightImageSrc = (publicId) => {
+  const copyright = `Cant Imagine Why`;
+  return imgSrc + `w_1000/l_text:courier_80_bold:${copyright},y_50,o_30/${publicId}.jpg`;
+}
+
+// Return source URL for non-watermarked image
+export const cleanImageSrc = publicId => {
+  return imgSrc + `w_1000/${publicId}.jpg`;
+}
+
+// return source URL for lightbox, using current protectionMode
+// (so we don't have to keep changing methods to add or remove watermark)
+export const lightboxImageSrc = publicId => {
+  switch (protectionMode) {
+    case 1:
+      return watermarkedImageSrc(publicId);
+    case 2:
+      return copyrightImageSrc(publicId);
+    default:
+      return cleanImageSrc(publicId);
+  }
+}
+
+// return source URL of arbitrary-sized, non-watermarked image
+export const variableImageSrc = (publicId, imgWidthPx = 500) => {
+  return imgSrc + `w_${imgWidthPx}/${publicId}.jpg`;
+}
+
+// return source URL image, padded to fit height
+export const paddedImageSrc = (publicId, width = 600, height = 400) => {
+  return imgSrc + `w_${width},h_${height},c_pad,b_white/${publicId}.jpg`;
+}
+
+
+/*  SEARCH FUNCTIONS
+ *
+ * (Promisified)
+ */
+
+const fetchImages = (keyName, callback, tag = '') => {
+  let expr = `context.ref:${keyName} AND folder=photos`;
+  if (tag !== '') {
+    expr += ` AND tags=${tag}`;
+  }
   cloudinary.v2.search
-    .expression(`context.ref:${keyName}`)
+    .expression(expr)
     .with_field('context')
     .with_field('tags')
     .max_results(10)
     .execute().then(results => callback(results));
 }
 
-// Return source URL for watermarked image
-export const watermarkedImageSrc = publicId => {
-  return `https://res.cloudinary.com/${cloudName}/w_1000/w_500,l_ck_logo,o_30/${publicId}.jpg`;
+export const axiosFetchImages = (keyName, callback) => {
+  // TODO: copy endpoint url from Cloudinary docs
+  const url = `https://${process.env.CLOUDINARY_API_KEY}:${process.env.CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/${cloudName}/resources/search`;
+  axios.get(url, {
+    params: {
+      expression: `context.ref:${keyName} AND folder=photos`,
+      with_field: 'context',
+      max_results: 20
+    }
+  }).then(function(response) {
+    callback(response)
+  }).catch(function(err) {
+    console.error(err)
+  })
 }
 
-// Return source URL for non-watermarked image
-export const cleanImageSrc = publicId => {
-  return `https://res.cloudinary.com/${cloudName}/w_1000/${publicId}.jpg`;
+// Return JSON data of all images where context.ref = keyName
+export const fetchRelatedImages = (keyName, callback) => {
+  fetchImages(keyName, callback);
 }
 
-// return source URL of arbitrary-sized, non-watermarked image
-export const variableImageSrc = (publicId, imgWidthPx = 500) => {
-  return `https://res.cloudinary.com/${cloudName}/w_${imgWidthPx}/${publicId}.jpg`;
+// Only return Progress images
+export const fetchProgressImages = (keyName, callback) => {
+  fetchImages(keyName, callback, 'progress');
 }
+
+export const fetchViewImages = (keyName, callback) => {
+  fetchImages(keyName, callback, 'view');
+}
+
+export const fetchFinalImage = (keyName, callback) => {
+  fetchImages(keyName, callback, 'final');
+}
+
 
 // perform text search - returns Promise
 export const textSearch = (searchStr, callback) => {

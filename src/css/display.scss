@@ -1,109 +1,103 @@
 .image-box {
   width: 60vw;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
   .image-nav-btn {
-    padding-top: 30%;
+    // margin-top: 30%;
     cursor: pointer;
-    img {
-      width: 50px;
+    img, svg {
+      margin-top: 5em;
     }
   }
 
   
 }
 .image-view {
-  max-height: 60vh;
-  overflow: auto;
-
-  margin: 10px 5px;
+  
+  // margin: 10px 5px;
   text-align: center;
   border-radius: 5px;
 
   img {
     cursor: pointer;
   }
+
+}
   
-
-  .image-info {
-    border: 1px inset #999;
-    border-radius: 3px;
-    background-color: #eee;
-    color: #000;
-    padding: 3px 5px;
-    margin-top: 2px;
-    text-align: left;
-
-    .title {
-      font-size: 2em;
-      font-weight: bold;
-    }
-
-    .descript {
-      font-size: 1em;
-      font-weight: normal;
-    }
-
-    .label {
-      font-size: 1em;
-      font-weight: normal;
-      text-align: right;
-      color: #666;
-    }
-    .info {
-      font-size: 1.2em;
-      text-align: left;
-      font-weight: bold;
-      color: #000;
-    }
-  }
-
+.spacer {
+  background-color: transparent;
   
+}
 
-  .options {
-    line-height: 2em;
-    margin: 5px 0;
-    font-size: 1.5em;
-  }
+.image-info {
+  border: 1px inset #999;
+  border-radius: 3px;
+  background-color: #eee;
+  color: #000;
+  padding: 3px 5px;
+  margin-top: 2px;
+  text-align: left;
 
-  .purchase {
-    margin: 0 2px;
-    padding: 2px 4px;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-  }
-  .buy-orig {
-    background-color: #900;
-    color: #fff;
-  }
-  .buy-print {
-    background-color: #060;
-    color: #fff;
+  .title {
+    font-size: 2em;
+    font-weight: bold;
   }
 
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
+  .descript {
     font-size: 1em;
-    font-family: 'Courier New', Courier, monospace;
-    padding-top: 1em;
+    font-weight: normal;
+  }
 
-    .zoom-btn {
-      color: white;
-      background-color: #006;
-      padding: 3px;
-      border-radius: 3px;
-    }
-
-    .close-btn {
-      
-      color: white;
-      background-color: #600;
-      padding: 3px;
-      border-radius: 3px;
-      
-    }
+  .label {
+    font-size: 1em;
+    font-weight: normal;
+    text-align: right;
+    color: #666;
+  }
+  .info {
+    font-size: 1.2em;
+    text-align: left;
+    font-weight: bold;
+    color: #000;
   }
 }
+
+
+
+.options {
+  line-height: 2em;
+  margin: 5px 0;
+  font-size: 1.5em;
+
+  .option {
+    display: inline;
+    list-style-type: none;
+  }
+}
+
+a.purchase {
+  margin: 0 2px;
+  padding: 2px 4px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+}
+.buy-orig {
+  background-color: #900;
+  
+}
+.buy-print {
+  background-color: #060;
+}
+.view-process {
+  background-color: #00f;
+}
+.nfs {
+  background-color: #ccc;
+  color: #333 !important;
+}
+
+ 

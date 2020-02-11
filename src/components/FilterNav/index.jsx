@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { filters } from '../utils/filters';
-import '../css/galleryNav.scss';
+import { filters } from '../../utils/filters';
+import './filter-nav.scss';
 
 class FilterNav extends Component {
 

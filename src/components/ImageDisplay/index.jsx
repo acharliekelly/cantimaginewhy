@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../utils/imageApi';
-// import { purchaseOriginal } from '../utils/productApi';
-import { faaLookup, faaAvailable } from '../utils/fineArtApi';
+import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../../utils/imageApi';
+import { faaLookup, faaAvailable } from '../../utils/finaArtApi';
 import 'react-image-lightbox/style.css';
-import '../css/display.scss';
+import './display.scss';
 
 class ImageDisplay extends Component {
   

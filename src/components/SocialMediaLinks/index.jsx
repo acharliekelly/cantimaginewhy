@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, CloudinaryContext } from 'cloudinary-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Image, CloudinaryContext } from '../FilteredGaller/components/cloudinary-react';
+import { FontAwesomeIcon } from '../FilteredGaller/components/@fortawesome/react-fontawesome';
 
+import './social.scss';
 
 // if FontAwesome isn't working
 export const cloudinaryLinks = () => {

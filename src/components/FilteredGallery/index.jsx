@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 
-// import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
-import FilterNav from './FilterNav';
-import ImageDisplay from './ImageDisplay';
-import { fetchGallery } from '../utils/imageApi';
+import FilterNav from '../FilterNav/';
+import ImageDisplay from '../ImageDisplay/';
+import { fetchGallery } from '../../utils/imageApi';
 
 import '../css/gallery.scss';
 

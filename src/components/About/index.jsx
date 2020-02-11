@@ -1,15 +1,11 @@
 import React from 'react';
-// import { Image } from 'cloudinary-react';
 import { Parallax } from "react-parallax";
-import { cleanImageSrc } from '../utils/imageApi';
+import { cleanImageSrc } from '../../utils/imageApi';
 
-import '../css/about.scss';
+import './about.scss';
 
 const AboutPage = () => (
   <div className="content">
-    {/* <header style={{ fontSize: '3em' }}>
-      <div className="page-title">About</div>
-    </header> */}
     <div className="about-content">
       <div className="me-text">
         <section>

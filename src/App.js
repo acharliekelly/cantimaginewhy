@@ -10,14 +10,15 @@ import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-sol
 
 import Menu from './components/Menu';
 import { ContactForm } from './components/Contact';
-import Footer from './components/Footer';
+import Footer from './components/Footer/';
+import Home from './components/Home/';
+import AboutPage from './components/About/';
+import FilteredGallery from './components/FilteredGallery/';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
-import Home from './components/Home';
-import AboutPage from './components/About';
-import FilteredGallery from './components/FilteredGallery';
+
 
 const ContactPage = () => (
   <div className="content">

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from './react';
 import { Image } from 'cloudinary-react';
 
-import SimpleGallery from './SimpleGallery';
+import SimpleGallery from '../SimpleGallery/';
 
-import '../css/home.scss'; 
+import './home.scss'; 
 
 export default function Home() {
   return (

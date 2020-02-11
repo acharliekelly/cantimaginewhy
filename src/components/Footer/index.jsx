@@ -1,5 +1,6 @@
 import React from 'react';
-// import { Image, CloudinaryContext } from 'cloudinary-react';
+
+import './footer.scss';
 
 const Footer = () => (
   <div className="footer">

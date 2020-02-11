@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../../utils/imageApi';
-import { faaLookup, faaAvailable } from '../../utils/finaArtApi';
+import { faaLookup, faaAvailable } from '../../utils/fineArtApi';
 import 'react-image-lightbox/style.css';
 import './display.scss';
 

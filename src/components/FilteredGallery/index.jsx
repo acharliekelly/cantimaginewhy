@@ -5,7 +5,7 @@ import FilterNav from '../FilterNav/';
 import ImageDisplay from '../ImageDisplay/';
 import { fetchGallery } from '../../utils/imageApi';
 
-import '../css/gallery.scss';
+import './filtered-gallery.scss';
 
 class FilteredGallery extends Component {
   constructor (props) {

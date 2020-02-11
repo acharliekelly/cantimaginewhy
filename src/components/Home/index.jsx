@@ -1,4 +1,4 @@
-import React from './react';
+import React from 'react';
 import { Image } from 'cloudinary-react';
 
 import SimpleGallery from '../SimpleGallery/';

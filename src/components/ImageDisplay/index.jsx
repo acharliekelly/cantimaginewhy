@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../utils/imageApi';
-// import { purchaseOriginal } from '../utils/productApi';
-import { faaLookup, faaAvailable } from '../utils/fineArtApi';
+import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../../utils/imageApi';
+// import { loadImageProps } from '../../utils/imageContext';
+import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
+import { OrderForm } from '../Contact';
 import 'react-image-lightbox/style.css';
-import '../css/display.scss';
+import './display.scss';
 
 class ImageDisplay extends Component {
   
   constructor (props) {
     super(props);
     this.state = {
-      lightboxOpen: false
+      lightboxOpen: false,
+      orderFormOpen: false
     }
   }
 
@@ -67,7 +69,6 @@ class ImageDisplay extends Component {
   }
 
 
-
   handleProcess = ev => {
     ev.preventDefault();
     const key = this.props.currentImage.refKey;
@@ -91,8 +92,23 @@ class ImageDisplay extends Component {
     })
   }
 
+  showOrderForm = ev => {
+    ev.preventDefault();
+    this.setState({
+      orderFormOpen: true
+    })
+  }
+
+  hideOrderForm = ev => {
+    ev.preventDefault();
+    this.setState({
+      orderFormOpen: false
+    })
+  }
+
   render () {
     const { currentImage } = this.props;
+    const { lightboxOpen, orderFormOpen } = this.state;
     if (currentImage) {
       const info = this.loadImageProperties();
       return (
@@ -134,10 +150,22 @@ class ImageDisplay extends Component {
             <div className="options">
               <span className="label">Original:</span>
               {info.forSale && (
-                <a className="purchase buy-orig" href="null" onClick={this.suppressLink}>Available, ${info.price}</a>
+                <a 
+                  className="purchase buy-orig" 
+                  href="/" 
+                  onClick={this.showOrderForm}
+                  >
+                    ${info.price}
+                </a>
               )}
               {!info.forSale && (
-                <a className="purchase nfs" href="null" onClick={this.suppressLink}>Not Available</a>
+                <a 
+                  className="purchase nfs" 
+                  href="/" 
+                  onClick={this.suppressLink}
+                >
+                  Sold
+                </a>
               )}
             </div>
             {info.forPrint && (
@@ -154,20 +182,31 @@ class ImageDisplay extends Component {
             {info.processImgs && (
               <div className="options">
                 <span className="label">View Process:</span>
-                <a className="purchase view-process" onClick={this.handleProcess} href="null">Photos</a>
+                <a className="purchase view-process" onClick={this.handleProcess} href="/">Photos</a>
               </div>
             )}
-            
+            {orderFormOpen && (
+              <div className="form">
+                <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
+                <OrderForm 
+                  className="inner-form"
+                  imageId={info.id}
+                  price={info.price}
+                  closeForm={this.hideOrderForm}
+                />
+              </div>
+            )}
           </div>
           <div className="spacer" />
 
-          {this.state.lightboxOpen && (
+          {lightboxOpen && (
             <Lightbox 
               mainSrc={lightboxImageSrc(currentImage.public_id)}
               onCloseRequest={this.closeLightbox}
               discourageDownloads
             />
           )}
+          
 
         </div>
 

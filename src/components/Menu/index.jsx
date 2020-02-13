@@ -2,8 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext } from 'cloudinary-react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SocialMediaLinks from './SocialMediaLinks';
+import SocialMediaLinks from '../SocialMediaLinks';
+
+import './menu.scss';
 
 const Menu = (handleLogin, handleSearch) => {
   return (

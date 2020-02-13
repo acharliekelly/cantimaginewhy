@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
 import Lightbox from 'react-image-lightbox';
-import { fetchGallery, lightboxImageSrc } from '../utils/imageApi';
+import { fetchGallery, lightboxImageSrc } from '../../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
 

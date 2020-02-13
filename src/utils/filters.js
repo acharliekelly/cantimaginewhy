@@ -214,12 +214,12 @@ export const filters = [
         "thumbnail": "art/esplanade-sunset_2018",
         "description": "You can purchase a print"
       },
-      {
-        "name": "Viewing Only",
-        "tag": "nfs",
-        "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-        "description": "Feel free to look"
-      }
+      // {
+      //   "name": "Viewing Only",
+      //   "tag": "nfs",
+      //   "thumbnail": "nfs/eye_26745608572_o_zqbocw",
+      //   "description": "Feel free to look"
+      // }
     ]
   }
 ]

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Indie+Flower&display=swap');
 @import 'colors';
-@import 'menu.scss';
 
 body {
   // background-color: $base-bkg;
@@ -94,41 +93,4 @@ h1, h2, h3, h4, h5, h6, header {
   padding-bottom: 2rem;
 }
 
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  height: 2rem;
-  background-color: $footer-bkg;
-  color: $footer-text;
-  padding-top: 5px;
-  
-  .copyright {
-    float: left;
-    margin-left: 10px;
-  }
 
-  
-
-}
-
-.social {
-  
-  padding-left: 1em;
-
-  a {
-    text-decoration: none;
-    color: #000;
-  }
-  a:hover {
-    color: #036;
-  }
-
-  img, svg {
-    margin-right: 5px;
-  }
-  img {
-    height: 2rem;
-  }
-  
-}

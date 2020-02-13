@@ -77,13 +77,17 @@
   }
 }
 
-a.purchase {
+.purchase {
   margin: 0 2px;
   padding: 2px 4px;
   border-radius: 6px;
   text-align: center;
   cursor: pointer;
   color: #fff;
+  
+  &:hover {
+    color: #fff;
+  }
 }
 .buy-orig {
   background-color: #900;
@@ -95,9 +99,40 @@ a.purchase {
 .view-process {
   background-color: #00f;
 }
-.nfs {
-  background-color: #ccc;
-  color: #333 !important;
+.nfs, .nfs:hover {
+  background-color: #000;
+  color: #fff;
 }
 
- 
+.close-btn, .close-btn:hover {
+  float: right;
+  padding: 0.5em;
+  margin-right: 1em;
+  border-radius: 3px;
+  background-color: #000;
+  color: #fff;
+}
+
+.order-form {
+  border-radius: 5px;
+  border: inset thin #333;
+  padding: 0.5em;
+
+  .form-group {
+
+    // .form-label {
+    //   display: inline;
+    // }
+    .form-control {
+      display: inline-block;
+      width: 70%;
+      margin-left: 1em;
+    }
+  }
+
+  .buttons {
+    text-align: right;
+  }
+  
+} 
+

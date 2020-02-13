@@ -15,8 +15,7 @@ class FilteredGallery extends Component {
       currentIndex: 0,
       selectedAlbum: null,
       imageViewOpen: false,
-      currentImage: null,
-      lightboxOpen: false
+      currentImage: null
     };
   }
 

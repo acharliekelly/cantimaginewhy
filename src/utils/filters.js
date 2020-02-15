@@ -28,12 +28,12 @@ export const filters = [
         "thumbnail": "art/watertown_dam-fs",
         "description": "Scenes from along the Charles"
       },
-      {
-        "name": "Greater Boston",
-        "tag": "boston-area",
-        "thumbnail": "art/seven_hills_park_hiiasw",
-        "description": "Around the Boston area"
-      },
+      // {
+      //   "name": "Greater Boston",
+      //   "tag": "boston-area",
+      //   "thumbnail": "art/seven_hills_park_hiiasw",
+      //   "description": "Around the Boston area"
+      // },
       {
         "name": "Maine",
         "tag": "maine",

@@ -185,7 +185,7 @@ class ImageDisplay extends Component {
                 <a className="purchase view-process" onClick={this.handleProcess} href="/">Photos</a>
               </div>
             )}
-            {orderFormOpen && (
+            {(orderFormOpen && info.forSale) && (
               <div className="form">
                 <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
                 <OrderForm 

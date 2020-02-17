@@ -8,10 +8,12 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
+    "@storybook/addon-knobs": "^5.3.13",
+    "@storybook/addon-links": "^5.3.13",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "cloudinary-react": "^1.1.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react": "^16.8.6",
     "react-alice-carousel": "^1.15.3",
     "react-bootstrap": "^1.0.0-beta.14",
@@ -20,7 +22,7 @@
     "react-image-lightbox": "^5.1.0",
     "react-parallax": "^2.2.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "react-scripts": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
+    "@storybook/addon-actions": "^5.3.13",
+    "@storybook/preset-create-react-app": "^1.5.2",
     "@storybook/react": "^5.2.1",
     "gh-pages": "^2.1.1"
   }

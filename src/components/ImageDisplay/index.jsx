@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../../utils/imageApi';
-// import { loadImageProps } from '../../utils/imageContext';
 import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
-import { OrderForm } from '../Contact';
+import { OrderForm } from '../Order/';
 import 'react-image-lightbox/style.css';
 import './display.scss';
 

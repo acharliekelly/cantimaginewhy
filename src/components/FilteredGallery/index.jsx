@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 
 import FilterNav from '../FilterNav/';
@@ -178,6 +179,13 @@ class FilteredGallery extends Component {
 
       );
     }
+}
+
+FilteredGallery.propTypes = {
+  /**
+   * the tag name to filter on
+   */
+  currentAlbum: PropTypes.string
 }
 
 export default FilteredGallery;

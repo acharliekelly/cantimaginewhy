@@ -1,0 +1,37 @@
+
+
+main.home {
+  background-color: black;
+  text-align: center;
+  opacity: 1;
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    font-weight: bold;
+  }
+  .carousel {
+    opacity: 1.0;
+  }
+
+  .featured {
+    h3.header {
+      color: #fff;
+    }
+  }
+}
+
+
+.basic-gallery {
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    margin: 1em;
+    cursor: pointer;
+  }
+
+}
+
+
+

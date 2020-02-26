@@ -13,7 +13,7 @@ export const filters = [
       {
         "name": "Cambridge",
         "tag": "cambridge",
-        "thumbnail": "art/memorial_drive_z68y3q",
+        "thumbnail": "art/memorial_drive",
         "description": "Scenes from Cambridge"
       },
       {
@@ -25,7 +25,7 @@ export const filters = [
       {
         "name": "Charles River",
         "tag": "charles-river",
-        "thumbnail": "art/watertown_dam-fs",
+        "thumbnail": "art/watertown_dam",
         "description": "Scenes from along the Charles"
       },
       // {
@@ -37,7 +37,7 @@ export const filters = [
       {
         "name": "Maine",
         "tag": "maine",
-        "thumbnail": "art/parker_point_rgzpme",
+        "thumbnail": "art/parker_point",
         "description": "Scenes from Maine"
       },
       {
@@ -73,7 +73,7 @@ export const filters = [
       {
         "name": "Acrylic",
         "tag": "acrylic",
-        "thumbnail": "art/riparian_balcony-fs",
+        "thumbnail": "art/riparian_balcony",
         "description": "Layered acrylic paints"
       }
     ]
@@ -127,7 +127,7 @@ export const filters = [
       {
         "name": "Miniatures",
         "tag": "miniature",
-        "thumbnail": "art/caterpillar_hill_qmwg7s",
+        "thumbnail": "art/caterpillar_hill",
         "description": "Original is less than 6 inches on one side"
       },
       {
@@ -181,13 +181,13 @@ export const filters = [
       {
         "name": "Blue",
         "tag": "blue",
-        "thumbnail": "art/shamrock-i_26838853055_o_oqrvik",
+        "thumbnail": "art/shamrock_1",
         "description": "Images with the color blue in them"
       },
       {
         "name": "Green",
         "tag": "green",
-        "thumbnail": "art/lotus_26804737776_o_i7e8dw",
+        "thumbnail": "art/lotus",
         "description": "Images with the color green in them"
       },
       {
@@ -205,7 +205,7 @@ export const filters = [
       {
         "name": "Original for Sale",
         "tag": "for-sale",
-        "thumbnail": "art/memorial_drive_z68y3q",
+        "thumbnail": "art/memorial_drive",
         "description": "You can purchase the original art piece"
       },
       {

@@ -9,36 +9,17 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 
 import Menu from './components/Menu/';
-import { ContactForm } from './components/Contact/';
+import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
-import Home from './components/Home/';
-import AboutPage from './components/About/';
-import FilteredGallery from './components/FilteredGallery/';
+import HomePage from './views/Home/';
+import AboutPage from './views/About/';
+import ArtworkPage from './views/Artwork';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
 
 
-const ContactPage = () => (
-  <div className="content">
-    
-    <main>
-      <ContactForm />
-    </main>
-  </div>
-)
-
-// const OrderPage = () => {
-//   let { id } = useParams();
-//   return (
-//     <div className="content">
-//       <main>
-//         <OrderForm imageId={id} />
-//       </main>
-//     </div>
-//   )
-// }
 
 
 const App = () => {
@@ -48,17 +29,11 @@ const App = () => {
       <Router basename='/'>
         <Menu />
         <div className="content-wrapper">
-          <Route exact path="/" component={Home} />
-          <Route path="/home" component={Home} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/home" component={HomePage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/contact" component={ContactPage} />
-          {/* <Switch>
-            <Route exact path="/order">
-              <ContactPage />
-            </Route>
-            <Route path="/order/:id" children={<OrderPage />} />
-          </Switch> */}
-          <Route path="/artwork" component={FilteredGallery} />
+          <Route path="/artwork" component={ArtworkPage} />
         </div>
       </Router>
       <Footer />

@@ -131,51 +131,51 @@ class FilteredGallery extends Component {
   render () {
     const { pictures, currentImage } = this.state;
     return (
-        <div className="content">
-          <CloudinaryContext cloudName="cantimaginewhy">
+        
+        <CloudinaryContext cloudName="cantimaginewhy">
+          
+          <FilterNav 
+            handleNavChange={this.updateGallery}
+            handleClearGallery={this.clearGallery} 
+          />
+
+          <main className="display-area">
             
-            <FilterNav 
-              handleNavChange={this.updateGallery}
-              handleClearGallery={this.clearGallery} 
-            />
-
-            <main className="display-area">
+            <div className="gallery">
               
-              <div className="gallery">
-                
-                {pictures.map(picture => {
-                  let cls = 'responsive thumbnail';
-                  if (picture.public_id === this.state.currentImage.public_id) {
-                    cls += ' selected'
-                  }
-                  return (
-                    <div key={picture.public_id} >
-                      <Image 
-                        className={cls}
-                        publicId={picture.public_id}
-                        height="80"
-                        crop="fit"
-                        onClick={() => {
-                          this.openImageView(picture)
-                          }
+              {pictures.map(picture => {
+                let cls = 'responsive thumbnail';
+                if (picture.public_id === this.state.currentImage.public_id) {
+                  cls += ' selected'
+                }
+                return (
+                  <div key={picture.public_id} >
+                    <Image 
+                      className={cls}
+                      publicId={picture.public_id}
+                      height="80"
+                      crop="fit"
+                      onClick={() => {
+                        this.openImageView(picture)
                         }
-                      />
-                    </div>
-                    )
-                }) }
-              </div>
+                      }
+                    />
+                  </div>
+                  )
+              }) }
+            </div>
 
-              { currentImage && (
-              
-                  <ImageDisplay 
-                    currentImage={currentImage}
-                    movePrevious={this.openPreviousImage}
-                    moveNext={this.openNextImage}
-                  />
-              )}
-            </main>
-          </CloudinaryContext>
-        </div>
+            { currentImage && (
+            
+                <ImageDisplay 
+                  currentImage={currentImage}
+                  movePrevious={this.openPreviousImage}
+                  moveNext={this.openNextImage}
+                />
+            )}
+          </main>
+        </CloudinaryContext>
+
 
       );
     }

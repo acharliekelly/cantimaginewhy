@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { paddedImageSrc, lightboxImageSrc, axiosFetchImages } from '../../utils/imageApi';
+import { paddedImageSrc, lightboxImageSrc } from '../../utils/imageApi';
 import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
-import { OrderForm } from '../Order/';
+import { OrderForm } from '../OrderForm/';
+import ProgressGallery from '../ProgressGallery/';
 import 'react-image-lightbox/style.css';
 import './display.scss';
 
@@ -31,8 +32,7 @@ class ImageDisplay extends Component {
       forSale: (this.getPictureProperty('original') === 'available'),
       forPrint: (faaAvailable(this.props.currentImage.public_id)),
       refKey: this.getPictureProperty('key', '-'),
-      // processImgs: (this.getPictureProperty('key', '-') !== '-'),
-      processImgs: false,
+      processImgs: (this.getPictureProperty('key', '-') !== '-'),
       price: this.getPictureProperty('price', 'NFS'),
       materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
     }
@@ -69,14 +69,10 @@ class ImageDisplay extends Component {
 
 
   handleProcess = ev => {
+    
+    const refKey = this.getPictureProperty('key', '');
+    console.log('Open images for: ' + refKey);
     ev.preventDefault();
-    const key = this.props.currentImage.refKey;
-    console.log('Show process photos with ref# ' + key);
-
-    axiosFetchImages(key, response => {
-      const processImages = response.data.resources;
-      processImages.forEach(item => console.log(item));
-    });
   }
 
   openLightbox = () => {
@@ -88,6 +84,18 @@ class ImageDisplay extends Component {
   closeLightbox = () => {
     this.setState({
       lightboxOpen: false
+    })
+  }
+
+  openFinal = () => {
+    this.setState({
+      finalImgOpen: true
+    })
+  }
+
+  closeFinal = () => {
+    this.setState({
+      finalImgOpen: false
     })
   }
 
@@ -181,7 +189,8 @@ class ImageDisplay extends Component {
             {info.processImgs && (
               <div className="options">
                 <span className="label">View Process:</span>
-                <a className="purchase view-process" onClick={this.handleProcess} href="/">Photos</a>
+                <ProgressGallery refKey={info.refKey} />
+
               </div>
             )}
             {(orderFormOpen && info.forSale) && (
@@ -205,6 +214,13 @@ class ImageDisplay extends Component {
               discourageDownloads
             />
           )}
+
+          {/* {finalImgOpen && (
+            <Lightbox
+              mainSrc={lightboxImageSrc(lookupOnsiteFinal(info.refKey))}
+              onCloseRequest={this.closeFinal}
+            />
+          )} */}
           
 
         </div>

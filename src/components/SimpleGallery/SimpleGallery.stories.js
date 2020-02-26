@@ -1,7 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, radios, text } from '@storybook/addon-knobs';
+import { withKnobs, radios, text, number } from '@storybook/addon-knobs';
 import SimpleGallery from './';
+
+import '../../views/Home/home.scss';
 
 const tags = {
   Favorite: 'favorite', 
@@ -10,18 +12,27 @@ const tags = {
   Triptych: 'triptych',
   Summer: 'summer'
 }
-const gallerySizes = {
-  Small: 2,
-  Medium: 4,
-  Large: 6
-}
-const heights = {
-  Tiny: 60,
-  Small: 100,
-  Medium: 200,
-  Large: 300,
-  Huge: 500
-}
+
+// Gallery Size slider
+const gallerySizeLabel = 'Gallery Size';
+const gallerySizeDefault = 4;
+const gallerySizeOptions = {
+  range: true,
+  min: 2,
+  max: 12,
+  step: 1
+};
+
+// Image Height slider
+const imageHeightLabel = 'Image Height';
+const imageHeightDefault = 200;
+const imageHeightOptions = {
+  range: true,
+  min: 50,
+  max: 500,
+  step: 50
+};
+
 
 const stories = storiesOf('SimpleGallery', module);
 stories.addDecorator(withKnobs);
@@ -39,17 +50,17 @@ stories
   })
   .add('Gallery with text', () => {
     const tagText = text('Tag', 'favorite');
-    const sizeText = text('Gallery Size', '4');
-    const heightText = text('Image Height', '200');
+    const sizeText = number('Gallery Size', 4);
+    const heightText = number('Image Height', 200);
     return (
       <SimpleGallery tagName={tagText} imageHeight={heightText} gallerySize={sizeText} />
     )
   })
-  .add('Gallery with options', () => {
+  .add('Gallery with knobs', () => {
     const tagOptions = radios('Tag', tags, 'favorite');
-    const sizeOptions = radios('Gallery Size', gallerySizes, 4);
-    const heightOptions = radios('Image Height', heights, 200);
+    const sizeSlider = number(gallerySizeLabel, gallerySizeDefault, gallerySizeOptions);
+    const heightSlider = number(imageHeightLabel, imageHeightDefault, imageHeightOptions);
     return (
-      <SimpleGallery tagName={tagOptions} gallerySize={sizeOptions} imageHeight={heightOptions} />
+      <SimpleGallery tagName={tagOptions} gallerySize={sizeSlider} imageHeight={heightSlider} />
     )
   })

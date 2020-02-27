@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Lightbox from 'react-image-lightbox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { paddedImageSrc, lightboxImageSrc } from '../../utils/imageApi';
+import { paddedImageSrc } from '../../utils/imageApi';
 import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
 import { OrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
-import 'react-image-lightbox/style.css';
+
 import './display.scss';
 
 class ImageDisplay extends Component {
@@ -14,8 +13,8 @@ class ImageDisplay extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      lightboxOpen: false,
-      orderFormOpen: false
+      orderFormOpen: false,
+      processOpen: false
     }
   }
 
@@ -76,28 +75,10 @@ class ImageDisplay extends Component {
   }
 
   openLightbox = () => {
-    this.setState({
-      lightboxOpen: true
-    })
+    const { currentImage, selectLightbox } = this.props;
+    selectLightbox(currentImage.public_id);
   }
 
-  closeLightbox = () => {
-    this.setState({
-      lightboxOpen: false
-    })
-  }
-
-  openFinal = () => {
-    this.setState({
-      finalImgOpen: true
-    })
-  }
-
-  closeFinal = () => {
-    this.setState({
-      finalImgOpen: false
-    })
-  }
 
   showOrderForm = ev => {
     ev.preventDefault();
@@ -113,9 +94,33 @@ class ImageDisplay extends Component {
     })
   }
 
+  toggleOrderForm = ev => {
+    const { orderFormOpen } = this.state;
+    this.setState({
+      orderFormOpen: !orderFormOpen
+    })
+    ev.preventDefault();
+  }
+
+  showProcessImages = () => {
+    this.setState({ processOpen: true })
+  }
+
+  hideProcessImages = () => {
+    this.setState({ processOpen: false })
+  }
+
+  toggleProcessImages = e => {
+    const { processOpen } = this.state;
+    this.setState({
+      processOpen: !processOpen
+    })
+    e.preventDefault();
+  }
+
   render () {
-    const { currentImage } = this.props;
-    const { lightboxOpen, orderFormOpen } = this.state;
+    const { currentImage, selectLightbox } = this.props;
+    const { orderFormOpen, processOpen } = this.state;
     if (currentImage) {
       const info = this.loadImageProperties();
       return (
@@ -158,7 +163,7 @@ class ImageDisplay extends Component {
               <span className="label">Original:</span>
               {info.forSale && (
                 <a 
-                  className="purchase buy-orig" 
+                  className="feature buy-orig" 
                   href="/" 
                   onClick={this.showOrderForm}
                   >
@@ -167,7 +172,7 @@ class ImageDisplay extends Component {
               )}
               {!info.forSale && (
                 <a 
-                  className="purchase nfs" 
+                  className="feature nfs" 
                   href="/" 
                   onClick={this.suppressLink}
                 >
@@ -179,18 +184,24 @@ class ImageDisplay extends Component {
               <div className="options">
                 <span className="label">Prints: </span>
                 <a 
-                  className="purchase buy-print" 
+                  className="feature buy-print" 
                   rel="noopener noreferrer" 
                   target="_blank" 
                   href={faaLookup(info.id)}
                   >Available</a>
               </div>
             )}
-            {info.processImgs && (
+            { info.processImgs && (
               <div className="options">
-                <span className="label">View Process:</span>
-                <ProgressGallery refKey={info.refKey} />
-
+                <a href="/" className="feature view-process" onClick={this.toggleProcessImages}>Process</a>
+                {processOpen && (
+                    <ProgressGallery 
+                      refKey={info.refKey} 
+                      imageHeight={60}
+                      selectLightbox={selectLightbox} 
+                    />
+                )}
+                
               </div>
             )}
             {(orderFormOpen && info.forSale) && (
@@ -207,22 +218,6 @@ class ImageDisplay extends Component {
           </div>
           <div className="spacer" />
 
-          {lightboxOpen && (
-            <Lightbox 
-              mainSrc={lightboxImageSrc(currentImage.public_id)}
-              onCloseRequest={this.closeLightbox}
-              discourageDownloads
-            />
-          )}
-
-          {/* {finalImgOpen && (
-            <Lightbox
-              mainSrc={lightboxImageSrc(lookupOnsiteFinal(info.refKey))}
-              onCloseRequest={this.closeFinal}
-            />
-          )} */}
-          
-
         </div>
 
       );
@@ -238,7 +233,8 @@ class ImageDisplay extends Component {
 ImageDisplay.propTypes = {
   currentImage: PropTypes.object.isRequired,
   movePrevious: PropTypes.func.isRequired,
-  moveNext: PropTypes.func.isRequired
+  moveNext: PropTypes.func.isRequired,
+  selectLightbox: PropTypes.func
 }
 
 export default ImageDisplay;

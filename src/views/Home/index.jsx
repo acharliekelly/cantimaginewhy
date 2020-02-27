@@ -18,6 +18,7 @@ const HomePage = () => {
             tagName="favorite" 
             imageHeight={200} 
             gallerySize={4}
+            selectLightbox={this.props.selectLightbox}
           />
         </div>
         

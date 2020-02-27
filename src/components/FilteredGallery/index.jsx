@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, CloudinaryContext } from 'cloudinary-react';
+import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 
 import FilterNav from '../FilterNav/';
 import ImageDisplay from '../ImageDisplay/';
@@ -123,10 +123,6 @@ class FilteredGallery extends Component {
     }
     this.openImageIndex(index);
   }
-
-  purchaseItem = (purchaseType, id) => {
-    console.log('Purchse ' + purchaseType + ': ' + id);
-  }
     
   render () {
     const { pictures, currentImage } = this.state;
@@ -145,7 +141,7 @@ class FilteredGallery extends Component {
               
               {pictures.map(picture => {
                 let cls = 'responsive thumbnail';
-                if (picture.public_id === this.state.currentImage.public_id) {
+                if (picture.public_id === currentImage.public_id) {
                   cls += ' selected'
                 }
                 return (
@@ -159,7 +155,9 @@ class FilteredGallery extends Component {
                         this.openImageView(picture)
                         }
                       }
-                    />
+                    >
+                      <Transformation defaultImage="ck-diamond" />
+                    </Image>
                   </div>
                   )
               }) }
@@ -171,6 +169,7 @@ class FilteredGallery extends Component {
                   currentImage={currentImage}
                   movePrevious={this.openPreviousImage}
                   moveNext={this.openNextImage}
+                  selectLightbox={this.props.selectLightbox}
                 />
             )}
           </main>
@@ -182,10 +181,12 @@ class FilteredGallery extends Component {
 }
 
 FilteredGallery.propTypes = {
+  selectLightbox: PropTypes.func,
   /**
    * the tag name to filter on
    */
-  currentAlbum: PropTypes.string
+  currentAlbum: PropTypes.string,
+  
 }
 
 export default FilteredGallery;

@@ -1,0 +1,24 @@
+
+.process-images {
+  border: inset 2px silver;
+  border-radius: 4px;
+  padding: .6em;
+  
+  img {
+    border-radius: 5px;
+    margin: 0.2em 0.4em;
+  }
+
+}
+
+.story {
+  max-width: 70vw;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #666;
+  text-align: center;
+
+  .display-image {
+    margin-bottom: 3em;
+  }
+}

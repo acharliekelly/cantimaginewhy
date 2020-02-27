@@ -121,7 +121,7 @@ export const filters = [
       {
         "name": "Nightscape",
         "tag": "nightscape",
-        "thumbnail": "art/cambridge-night_2019",
+        "thumbnail": "art/cambridge-night",
         "description": "Scenes from after dark, painted on black canvas"
       },
       {

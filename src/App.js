@@ -48,11 +48,21 @@ const App = () => {
       <Router basename='/'>
         <Menu />
         <div className="content-wrapper">
-          <Route exact path="/" component={<HomePage selectLightbox={selectLightboxImage} />} />
-          <Route path="/home" component={<HomePage selectLightbox={selectLightboxImage} />} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/contact" component={ContactPage} />
-          <Route path="/artwork" component={<ArtworkPage selectLightbox={selectLightboxImage} />} />
+          <Route exact path="/">
+            <HomePage selectLightbox={selectLightboxImage} />
+          </Route>
+          <Route path="/home">
+            <HomePage selectLightbox={selectLightboxImage} />
+          </Route>
+          <Route path="/about">
+            <AboutPage selectLightbox={selectLightboxImage} />
+          </Route>
+          <Route path="/contact">
+            <ContactPage selectLightbox={selectLightboxImage} />
+          </Route>
+          <Route path="/artwork">
+            <ArtworkPage selectLightbox={selectLightboxImage} />
+          </Route>
         </div>
       </Router>
       <Footer />

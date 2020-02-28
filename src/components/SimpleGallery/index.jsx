@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery } from '../../utils/imageApi';
+import { fetchGallery, defaultCPI } from '../../utils/imageApi';
 
 class SimpleGallery extends React.Component {
   constructor (props) {
@@ -82,7 +82,7 @@ class SimpleGallery extends React.Component {
                 publicId={image.public_id}
                 onClick={() => this.props.selectLightbox(image.public_id)}
               >
-                <Transformation defaultImage="ck-diamond.jpg" />
+                <Transformation defaultImage={defaultCPI} />
               </Image>
             ))}
           </div>

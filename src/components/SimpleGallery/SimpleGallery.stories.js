@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, radios, text, number } from '@storybook/addon-knobs';
+import { selectLightboxUtil } from '../../utils/imageUtils';
 import SimpleGallery from './';
 
 import '../../views/Home/home.scss';
@@ -45,6 +46,7 @@ stories
         tagName="favorite" 
         imageHeight={200} 
         gallerySize={4} 
+        selectLightbox={selectLightboxUtil}
       />
     )
   })
@@ -53,7 +55,12 @@ stories
     const sizeText = number('Gallery Size', 4);
     const heightText = number('Image Height', 200);
     return (
-      <SimpleGallery tagName={tagText} imageHeight={heightText} gallerySize={sizeText} />
+      <SimpleGallery 
+        tagName={tagText} 
+        imageHeight={heightText} 
+        gallerySize={sizeText} 
+        selectLightbox={selectLightboxUtil}
+      />
     )
   })
   .add('Gallery with knobs', () => {
@@ -61,6 +68,11 @@ stories
     const sizeSlider = number(gallerySizeLabel, gallerySizeDefault, gallerySizeOptions);
     const heightSlider = number(imageHeightLabel, imageHeightDefault, imageHeightOptions);
     return (
-      <SimpleGallery tagName={tagOptions} gallerySize={sizeSlider} imageHeight={heightSlider} />
+      <SimpleGallery 
+        tagName={tagOptions} 
+        gallerySize={sizeSlider} 
+        imageHeight={heightSlider} 
+        selectLightbox={selectLightboxUtil}
+      />
     )
   })

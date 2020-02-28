@@ -5,6 +5,7 @@ import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import FilterNav from '../FilterNav/';
 import ImageDisplay from '../ImageDisplay/';
 import { fetchGallery } from '../../utils/imageApi';
+import { selectLightboxUtil } from '../../utils/imageUtils';
 
 import './filtered-gallery.scss';
 
@@ -181,12 +182,16 @@ class FilteredGallery extends Component {
 }
 
 FilteredGallery.propTypes = {
-  selectLightbox: PropTypes.func,
+  selectLightbox: PropTypes.func.isRequired,
   /**
    * the tag name to filter on
    */
   currentAlbum: PropTypes.string,
   
+}
+
+FilteredGallery.defaultProps = {
+  selectLightbox: selectLightboxUtil
 }
 
 export default FilteredGallery;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { paddedImageSrc } from '../../utils/imageApi';
+import { paddedImageSrc, defaultCPI } from '../../utils/imageApi';
+import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
 import { OrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
@@ -83,7 +84,8 @@ class ImageDisplay extends Component {
   showOrderForm = ev => {
     ev.preventDefault();
     this.setState({
-      orderFormOpen: true
+      orderFormOpen: true,
+      processOpen: false
     })
   }
 
@@ -95,11 +97,12 @@ class ImageDisplay extends Component {
   }
 
   toggleOrderForm = ev => {
+    ev.preventDefault();
     const { orderFormOpen } = this.state;
     this.setState({
-      orderFormOpen: !orderFormOpen
+      orderFormOpen: !orderFormOpen,
+      processOpen: false
     })
-    ev.preventDefault();
   }
 
   showProcessImages = () => {
@@ -113,9 +116,19 @@ class ImageDisplay extends Component {
   toggleProcessImages = e => {
     const { processOpen } = this.state;
     this.setState({
-      processOpen: !processOpen
+      processOpen: !processOpen,
+      orderFormOpen: false
     })
     e.preventDefault();
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.currentImage !== this.props.currentImage) {
+      this.setState({
+        processOpen: false,
+        orderFormOpen: false
+      })
+    }
   }
 
   render () {
@@ -231,10 +244,29 @@ class ImageDisplay extends Component {
 }
 
 ImageDisplay.propTypes = {
+  /**
+   * the selected Cloudinary image object
+   */
   currentImage: PropTypes.object.isRequired,
+  /**
+   * the function to move back
+   */
   movePrevious: PropTypes.func.isRequired,
+  /**
+   * the function to move forward
+   */
   moveNext: PropTypes.func.isRequired,
-  selectLightbox: PropTypes.func
+  /**
+   * the function to open image in Lightbox
+   */
+  selectLightbox: PropTypes.func.isRequired
+}
+
+ImageDisplay.defaultProps = {
+  currentImage: defaultCPI,
+  selectLightbox: selectLightboxUtil,
+  moveNext: moveNextUtil,
+  movePrevious: movePreviousUtil
 }
 
 export default ImageDisplay;

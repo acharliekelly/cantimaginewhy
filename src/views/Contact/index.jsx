@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContactForm } from '../../components/ContactForm'
 
-const ContactPage = () => (
+const ContactPage = props => (
   <div className="content">
     
     <main>

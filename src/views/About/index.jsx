@@ -2,9 +2,10 @@ import React from 'react';
 import { Parallax } from "react-parallax";
 import { cleanImageSrc } from '../../utils/imageApi';
 
+
 import './about.scss';
 
-const AboutPage = () => (
+const AboutPage = props => (
   <div className="content">
     <div className="about-content">
       <div className="me-text">

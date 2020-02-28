@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
-
+import { selectLightboxUtil } from '../../utils/imageUtils';
 import SimpleGallery from '../../components/SimpleGallery/';
 
 import './home.scss'; 
 
-const HomePage = () => {
+const HomePage = props => {
   return (
     <div className="content">
       <main className="home">
@@ -18,13 +19,21 @@ const HomePage = () => {
             tagName="favorite" 
             imageHeight={200} 
             gallerySize={4}
-            selectLightbox={this.props.selectLightbox}
+            selectLightbox={props.selectLightbox}
           />
         </div>
         
       </main>
     </div>
   );
+}
+
+HomePage.propTypes = {
+  selectLightbox: PropTypes.func.isRequired
+}
+
+HomePage.defaultProps = {
+  selectLightbox: selectLightboxUtil
 }
 
 export default HomePage;

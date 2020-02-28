@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
-// import { 
-//   onsiteViewImages, 
-//   onsiteProgressImages, 
-//   onsiteFinalImage, 
-//   ImageProcessTypes,
-//   getRef
-// } from '../../utils/processImages';
-import { getSeries } from '../../utils/processUtils';
-
-
+import { getImageSeries } from '../../utils/processUtils';
+import { defaultCPI } from '../../utils/imageApi';
+import { selectLightboxUtil } from '../../utils/imageUtils';
 import './process.scss';
+
 
 class ProgressGallery extends React.Component {
   constructor (props) {
@@ -30,7 +24,7 @@ class ProgressGallery extends React.Component {
 
   updateImages = refKey => {
     console.log('updating process images for #' + refKey);
-    const series = getSeries(refKey);
+    const series = getImageSeries(refKey);
     if (series) {
       this.setState({
         progressImages: series
@@ -42,34 +36,28 @@ class ProgressGallery extends React.Component {
   }
 
 
-  handleImageClick = ev => {
-    // TODO: expand images
-  }
-
   render () {
     const { progressImages } = this.state;
     const { selectLightbox, imageHeight } = this.props;
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
       <div className="process-images">
-          {progressImages.map(imageId => (
-            <Image 
-              key={imageId}
-              title={imageId}
-              className="responsive thumbnail" 
-              publicId={imageId} 
-              height={imageHeight || 80}
-              onClick={() => { 
-                if (selectLightbox) {
-                  selectLightbox(imageId);
-                } else {
-                  console.log(imageId + ' clicked');
-                }
-              }}
-            >
-              <Transformation defaultImage="ck-diamond.jpg" />
-            </Image>
-          ))}     
+        {progressImages.length === 0 && (
+          <h4>No progress images found for this item.</h4>
+        )}
+        {progressImages.map(imageId => (
+          <Image 
+            key={imageId}
+            title={imageId.split('-').pop()}
+            className="responsive thumbnail" 
+            publicId={imageId} 
+            height={imageHeight}
+            onClick={() => selectLightbox(imageId)}
+          >
+            <Transformation height={imageHeight} crop="thumb" />
+            <Transformation defaultImage={defaultCPI} />
+          </Image>
+        ))}     
       </div>
       </CloudinaryContext>
     )
@@ -78,8 +66,13 @@ class ProgressGallery extends React.Component {
 
 ProgressGallery.propTypes = {
   refKey: PropTypes.string.isRequired,
-  imageHeight: PropTypes.number,
-  selectLightbox: PropTypes.func
+  imageHeight: PropTypes.number.isRequired,
+  selectLightbox: PropTypes.func.isRequired
+}
+
+ProgressGallery.defaultProps = {
+  imageHeight: 80,
+  selectLightbox: selectLightboxUtil
 }
 
 export default ProgressGallery;

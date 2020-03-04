@@ -1,6 +1,7 @@
 const { 
-  getSeries, 
+  generateSeries, 
   lookupSeriesCount,
+  checkLibrary,
   validateSeries,
   flattenResources,
   getSeriesData,
@@ -13,7 +14,7 @@ test('check number of process images', () => {
 })
 
 test('get image series', () => {
-  const series = getSeries('memorial_drive');
+  const series = generateSeries('memorial_drive');
 
   expect(series).not.toBeNull();
   expect(series.length).toBe(6);
@@ -30,6 +31,12 @@ test('check sorting function', () => {
   arr.sort(cpidSort)
   expect(arr[0]).toBe('photos/onsite-dunster-view')
   expect(arr.indexOf('photos/onsite-dunster-final')).toBe(5);
+})
+
+test('check library', () => {
+  const lib = checkLibrary();
+  expect(lib).not.toBeNull();
+  expect(lib.length).toBe(56);
 })
 
 test('get true list of items', () => {
@@ -50,7 +57,7 @@ test('convert resource list to CPI string list', () => {
 test('validate series when generated series is wrong', () => {
   const ref = 'skyline' // only has final, no view. 
   // generated series should have 2, but actual has 1
-  const generated = getSeries(ref);
+  const generated = generateSeries(ref);
   const resources = getSeriesData(ref);
   expect(generated.length).not.toBe(resources.length);
   const validated = validateSeries(ref);

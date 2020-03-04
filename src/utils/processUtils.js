@@ -67,7 +67,7 @@ export const lookupSeriesCount = referenceKey => {
  * Returns array of CPI strings for images in series
  * @param {*} referenceKey 
  */
-export const getSeries = referenceKey => {
+export const generateSeries = referenceKey => {
   if (Object.keys(processData).includes(referenceKey)) {
     const count = processData[referenceKey];
     return imageSeries(referenceKey, count);
@@ -85,19 +85,20 @@ export const getSeries = referenceKey => {
 export const getImageSeries = (referenceKey, validate = false) => {
   if (validate) {
     console.log('validating progress series')
+    initLibrary();
     return validateSeries(referenceKey);
   } else {
     console.log('skipping series validation')
-    return getSeries(referenceKey);
+    return generateSeries(referenceKey);
   }
 }
 
-const library = [];
+let library = [];
 
 const loadLibrary = () => {
   fetchGallery('onsite')
     .then(res => {
-      library.push(res.data.resources)
+      library = res.data.resources
     })
 }
 
@@ -106,30 +107,31 @@ const initLibrary = () => {
   if (library.length === 0) {
     loadLibrary();
     console.log('loaded library with ' + library.length + ' images')
+    if (library.length > 0) {
+      console.log('first item: ', library[0]);
+    }
+    
   }
 }
 
 // compare list data to imageSeries, remove missing items from series
 export const validateSeries = refKey => {
-  const series = getSeries(refKey);
+  const series = generateSeries(refKey);
   console.log('Generated Series: ' + series.length + ' images')
-  const resources = getSeriesData(refKey);
-  console.log('Fetched Series: ' + resources.length + ' images')
-  if (series.length === resources.length) {
-    // probably all good
-    return series;
-  } else {
-    console.log('using fetched resource list')
-    return flattenResources(resources).sort(cpidSort);
-  }
+  const validated = [];
+  series.forEach(imageId => {
+    console.log('validating: ' + imageId)
+    if (library.find(res => res.public_id === imageId)) {
+      validated.push(imageId);
+    } else {
+      console.log(imageId + ' not found');
+    }
+  })
+  console.log('validated ' + validated.length + ' of ' + series.length)
+  return validated;
 }
 
-// take resource list, extract list of public ids
-export const flattenResources = resourceList => {
-  const idStrings = [];
-  resourceList.forEach(item => idStrings.push(item.public_id));
-  return idStrings;
-}
+
 
 /**
  * Returns array of resource objects
@@ -143,38 +145,20 @@ export const getSeriesData = refKey => {
 }
 
 
-// how to sort CPID strings for process images
-export const cpidSort = (itemA, itemB) => {
-  if (itemA === itemB) return 0;
 
-  const arrA = itemA.split('-');
-  const arrB = itemB.split('-');
-  // should both be 3-item arrays, starting with 'photos/onsite'
-  if (arrA[0] !== arrB[0]) {
-    // wrong kind of string
-    return 0;
-  } else if (arrA[1] !== arrB[1]) {
-    // different refkeys. compare them
-    return arrA[1].localeCompare(arrB[1])
-  } else {
-    // keys match, compare endings
-    return progressSuffixSort(arrA[2], arrB[2]);
-  }
-}
+// // assumes both are last part of progress image cpis
+// const progressSuffixSort = (strA, strB) => {
+//   if (strA === strB) return 0;
+//   if (strA === 'final') { // itemA is last
+//     return 1;
+//   } else if (strB === 'final') { // itemB is last
+//     return -1;
+//   } else if (strA === 'sale') {
 
-// assumes both are last part of progress image cpis
-const progressSuffixSort = (strA, strB) => {
-  if (strA === strB) return 0;
-  if (strA === 'view') { // itemA is first
-    return -1;
-  } else if (strA === 'final') { // itemA is last
-    return 1;
-  } else if (strB === 'view') { // itemB is first
-    return 1;
-  } else if (strB === 'final') { // itemB is last
-    return -1;
-  } else { // both are numbers
-    return strA.localeCompare(strB);
-  }
-}
+//   } else if (strB === 'sale') {
+    
+//   } else { // both are numbers
+//     return strA.localeCompare(strB);
+//   }
+// }
 

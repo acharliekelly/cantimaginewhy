@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
-import { getImageSeries } from '../../utils/processUtils';
+import { onsitePhotos } from '../../utils/onsiteUtils';
+// import { fetchProcessImages } from '../../utils/advImageApi';
 import { defaultCPI } from '../../utils/imageApi';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import './process.scss';
@@ -21,18 +22,21 @@ class ProgressGallery extends React.Component {
     
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.refKey !== this.props.refKey) {
+      this.updateImages(this.props.refKey);
+    }
+  }
+
 
   updateImages = refKey => {
-    console.log('updating process images for #' + refKey);
-    const series = getImageSeries(refKey);
-    if (series) {
-      this.setState({
-        progressImages: series
+    // console.log('updating process images for #' + refKey);
+    onsitePhotos(refKey)
+      .then(resources => {
+        this.setState({
+          progressImages: resources
+        })
       })
-    } else {
-      console.log('- no images found')
-    }
-    
   }
 
 
@@ -45,14 +49,14 @@ class ProgressGallery extends React.Component {
         {progressImages.length === 0 && (
           <h4>No progress images found for this item.</h4>
         )}
-        {progressImages.map(imageId => (
+        {progressImages.map(image => (
           <Image 
-            key={imageId}
-            title={imageId.split('-').pop()}
+            key={image.public_id}
+            title={image.context.custom.caption || image.public_id.split('-').pop()}
             className="responsive thumbnail" 
-            publicId={imageId} 
+            publicId={image.public_id} 
             height={imageHeight}
-            onClick={() => selectLightbox(imageId)}
+            onClick={() => selectLightbox(image.public_id)}
           >
             <Transformation height={imageHeight} crop="thumb" />
             <Transformation defaultImage={defaultCPI} />
@@ -71,6 +75,7 @@ ProgressGallery.propTypes = {
 }
 
 ProgressGallery.defaultProps = {
+  refKey: 'missing_key',
   imageHeight: 80,
   selectLightbox: selectLightboxUtil
 }

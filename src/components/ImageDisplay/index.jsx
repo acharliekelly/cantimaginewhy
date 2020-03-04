@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { paddedImageSrc, defaultCPI } from '../../utils/imageApi';
 import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
+import { isSeriesExist } from '../../utils/onsiteUtils';
 import { OrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
 
@@ -20,9 +21,10 @@ class ImageDisplay extends Component {
   }
 
   loadImageProperties = () => {
+    const imgId = this.props.currentImage.public_id;
     const infoObj = {
-      id: this.props.currentImage.public_id,
-      source: paddedImageSrc(this.props.currentImage.public_id, 600, 400),
+      id: imgId,
+      source: paddedImageSrc(imgId, 600, 400),
       title: this.getPictureCaption(),
       description: this.getPictureProperty('alt'),
       location: this.getPictureProperty('location'),
@@ -30,9 +32,9 @@ class ImageDisplay extends Component {
       size: this.getPictureProperty('size'),
       year: this.getPictureProperty('year'),
       forSale: (this.getPictureProperty('original') === 'available'),
-      forPrint: (faaAvailable(this.props.currentImage.public_id)),
+      forPrint: (faaAvailable(imgId)),
       refKey: this.getPictureProperty('key', '-'),
-      processImgs: (this.getPictureProperty('key', '-') !== '-'),
+      processImgs: isSeriesExist(imgId),
       price: this.getPictureProperty('price', 'NFS'),
       materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
     }

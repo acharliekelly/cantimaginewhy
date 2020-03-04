@@ -27,15 +27,20 @@ export const cloudinaryLinks = () => {
 export default function SocialMediaLinks() {
   return (
     <div className="right-col social">
-      <a target="_blank" rel="noopener noreferrer" href="https://instagram.com/cant_imagine_why">
-        <FontAwesomeIcon icon={['fab', 'instagram']} size="2x" />
-      </a>
-      <a target="_blank" rel="noopener noreferrer" href="https://facebook.com/acharliekelly">
-        <FontAwesomeIcon icon={['fab', 'facebook']} size="2x" />
-      </a>
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/acharliekelly">
-        <FontAwesomeIcon icon={['fab', 'github']} size="2x" />
-      </a>
+      <div className="links">
+        <a target="_blank" rel="noopener noreferrer" href="https://instagram.com/cant_imagine_why">
+          <FontAwesomeIcon icon={['fab', 'instagram']} size="2x" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://facebook.com/acharliekelly">
+          <FontAwesomeIcon icon={['fab', 'facebook']} size="2x" />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/acharliekelly">
+          <FontAwesomeIcon icon={['fab', 'github']} size="2x" />
+        </a>
+      </div>
+      <div className="current-mode">
+        <div className={process.env.NODE_ENV}>&nbsp;</div>
+      </div>
     </div>
   )
 }

@@ -19,3 +19,24 @@
   }
   
 }
+
+
+.current-mode {
+  margin-left: 90%;
+  div {
+    height: 1rem;
+    width: 3em;
+    border-radius: 10px;
+
+    &.development {
+      background-color: #900;
+    }
+    &.test {
+      background-color: #990;
+    }
+    &.production {
+      background-color: transparent;
+    }
+  }
+
+}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cloudinary from 'cloudinary-core';
+// import cloudinary from 'cloudinary-core';
 
 export const cloudName = 'cantimaginewhy';
 
@@ -10,13 +10,6 @@ const jsonImgList = tagName => {
   return `https://res.cloudinary.com/${cloudName}/image/list/${tagName}.json`;
 }
 
-export const initCloudinary = () => {
-  cloudinary.config({
-    cloud_name: cloudName,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-  })
-}
 
 // Return all JSON data of images tagged with tagName
 export const fetchGallery = tagName => {
@@ -26,7 +19,7 @@ export const fetchGallery = tagName => {
 
 // Image URLs
 
-export const defaultCPI = 'ck-diamond.jpg';
+export const defaultCPI = 'sample.jpg';
 
 
 // Return source URL for watermarked image
@@ -74,3 +67,19 @@ export const paddedImageSrc = (publicId, width = 600, height = 400) => {
   return imgSrc + `w_${width},h_${height},c_pad,b_white/d_${defaultCPI}/${publicId}.jpg`;
 }
 
+
+
+// Advanced Image API Workaround
+export const fetchAlbum = albumName => {
+  console.log('fetchAlbum workaround')
+  const images = [];
+  fetchGallery('nfs').then(res => {
+
+    images.push(res.data.resources)
+  })
+  fetchGallery('products').then(res => {
+    images.push(res.data.resources)
+  })
+  console.log('total image count: ' + images.length);
+  return images.filter(image => image.context.custom.album === albumName);
+}

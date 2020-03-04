@@ -1,4 +1,4 @@
-
+// filters.js
 export const filters = [
   {
     "name": "Location",

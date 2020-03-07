@@ -5,7 +5,7 @@
 
 const stubSelectLightbox = imageId => {
   // needed to pass something for method
-  console.log('open lightbox for ' + imageId)
+  console.log('DEFAULT: open lightbox for ' + imageId)
 }
 
 export const selectLightboxUtil = imageId => {

@@ -6,7 +6,7 @@ const {
   flattenResources,
   getSeriesData,
   cpidSort
-} = require('./processUtils');
+} = require('../src/utils/processUtils');
 
 
 test('check number of process images', () => {

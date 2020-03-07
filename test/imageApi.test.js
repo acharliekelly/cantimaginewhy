@@ -1,4 +1,4 @@
-const { fetchGallery, cleanImageSrc } = require('./imageApi');
+const { fetchGallery, cleanImageSrc } = require('../src/utils/imageApi');
 
 // TODO: test imageApi functions
 

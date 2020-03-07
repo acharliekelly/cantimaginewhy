@@ -1,4 +1,4 @@
-const {  onsitePhotos, isSeriesExist, getSeriesCount } = require('./onsiteUtils');
+const {  onsitePhotos, isSeriesExist, getSeriesCount } = require('../src/utils/onsiteUtils');
 
 
 test('filter by context', () => {

@@ -3,7 +3,14 @@ import axios from 'axios';
 
 export const cloudName = 'cantimaginewhy';
 
-const protectionMode = 2; // copyright
+export const ImageProtectMode = {
+  clean: 0,
+  watermarked: 1,
+  copyright: 2
+}
+
+const protectionMode = ImageProtectMode.copyright;
+
 const imgSrc = `https://res.cloudinary.com/${cloudName}/`;
 
 const jsonImgList = tagName => {
@@ -32,15 +39,24 @@ export const copyrightImageSrc = (publicId) => {
   return imgSrc + `w_1000/l_text:courier_80_bold:${copyright},y_50,o_30/d_${defaultCPI}/${publicId}.jpg`;
 }
 
-// Return source URL for non-watermarked image
+
+/**
+ * Return source URL for non-watermarked image
+ * @param {string} publicId 
+ */
 export const cleanImageSrc = publicId => {
   return imgSrc + `w_1000/d_${defaultCPI}/${publicId}.jpg`;
 }
 
 
 
-// return source URL for lightbox, using current protectionMode
-// (so we don't have to keep changing methods to add or remove watermark)
+/**
+ * Return source URL for lightbox, using value of protectionMode
+ * 
+ * Lightbox component takes image source as string, so 
+ * can't use Cloudinary Image component
+ * @param {string} publicId 
+ */
 export const lightboxImageSrc = publicId => {
   if (publicId.startsWith('photos/')) {
     return cleanImageSrc(publicId);

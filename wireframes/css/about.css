@@ -1,0 +1,10 @@
+.about-content {
+  margin: 2em 1em; }
+  .about-content .me-text {
+    text-align: left; }
+  .about-content .me-photo {
+    border: thin inset;
+    float: left;
+    margin: 5px; }
+  .about-content section {
+    margin: 0.5em 1em; }

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Indie+Flower&display=swap');
+
+body {
+  /* background-color: #fff; */
+  background-color: #fff;
+  color: #555;
+  font-family: Roboto;
+}
+
+h1, h2, h3, h4, h5, h6, header {
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+}
+
+/* // GLOBAL CLASSES */
+
+.todo {
+  font-family: 'Courier New', Courier, monospace;
+  color: #ccc;
+  background-color: #000;
+  
+}
+
+.in-progress {
+  font-style: italic;
+  background-color: #666;
+  color: #fff;
+  border-radius: 3px;
+  padding: 2px 5px;
+  text-align: center;
+}
+.in-progress-message {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+.no-data {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: #f00;
+  background-color: transparent;
+}
+
+.loading {
+  background-color: black;
+  color: #ff0;
+  font-weight: bold;
+  padding: 2px 2em;
+  border: 1px black solid;
+  border-radius: 4px;
+}
+
+.todo::before {
+  content: 'TODO: ';
+}
+
+.content {
+  margin: 1rem auto;
+  padding: 10px;
+  min-height: 75vh;
+
+}
+
+.content header {
+  /* // font-size: 3em; */
+  text-align: center;
+  margin: 1em 2em;
+
+}
+
+header .page-title {
+  font-family: 'Great Vibes';
+  text-align: center;
+}
+
+header .page-desc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  margin: 1em auto;
+  max-width: 60%;
+}
+
+.display-area {
+  text-align: center;
+  margin: 0 1em;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  text-align: center;
+}
+.content-wrapper {
+  padding-bottom: 2rem;
+}
+
+
+.social {
+  padding-left: 1em; }
+  .social a {
+    text-decoration: none;
+    color: #000; }
+  .social a:hover {
+    color: #036; }
+  .social img, .social svg {
+    margin-right: 5px; }
+  .social img {
+    height: 2rem; }
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 2rem;
+  background-color: #000;
+  color: #fff;
+  padding-top: 5px; }
+  .footer .copyright {
+    float: left;
+    margin-left: 10px; }

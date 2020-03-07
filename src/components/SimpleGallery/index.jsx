@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'cloudinary-react';
-import Lightbox from 'react-image-lightbox';
-import { fetchGallery, lightboxImageSrc } from '../../utils/imageApi';
-
-import 'react-image-lightbox/style.css';
+import { Image, Transformation } from 'cloudinary-react';
+import { fetchGallery, defaultCPI } from '../../utils/imageApi';
 
 class SimpleGallery extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      images: [],
-      lighboxOpen: false,
-      selectedImage: null
+      images: []
     }
   }
 
@@ -20,17 +15,43 @@ class SimpleGallery extends React.Component {
     const { tagName, gallerySize } = this.props;
     this.updateImages(tagName, gallerySize);
   }
+  
+
+  componentDidUpdate (prevProps, prevState) {
+    const { tagName, gallerySize } = this.props;
+    if (prevProps.tagName !== tagName) {
+      // tagName changed
+      this.onTagChange(tagName);
+    }
+    if (prevProps.gallerySize !== gallerySize) {
+      // gallerySize changed
+      this.onGallerySizeChange(gallerySize)
+    }
+  }
+
 
   // fetch images with tagName
-  updateImages = (tagName, size) => {
+  updateImages = (tagName, gallerySize) => {
     fetchGallery(tagName)
       .then(res => {
         let arr = res.data.resources;
         this.shuffleImages(arr);
         this.setState({
-          images: arr.slice(0, size)
+          images: arr.slice(0, gallerySize)
         })
       });
+  }
+
+  // update Gallery Size
+  onGallerySizeChange = newSize => {
+    const { tagName } = this.props;
+    this.updateImages(tagName, newSize);
+  }
+
+  // update Tag Name
+  onTagChange = newTag => {
+    const { gallerySize } = this.props;
+    this.updateImages(newTag, gallerySize);
   }
 
   // randomize current image set
@@ -43,14 +64,10 @@ class SimpleGallery extends React.Component {
     }
   }
 
-  closeLightbox = () => {
-    this.setState({
-      lighboxOpen: false
-    })
-  }
+  
 
   render () {
-    const { images, lighboxOpen, selectedImage } = this.state;
+    const { images } = this.state;
     const { imageHeight } = this.props;
     return (
       <div className="gallery-wrapper">
@@ -63,20 +80,12 @@ class SimpleGallery extends React.Component {
                 crop="fit" 
                 cloudName="cantimaginewhy" 
                 publicId={image.public_id}
-                onClick={() => this.setState({
-                  selectedImage: image,
-                  lighboxOpen: true
-                })}
-              />
+                onClick={() => this.props.selectLightbox(image.public_id)}
+              >
+                <Transformation defaultImage={defaultCPI} />
+              </Image>
             ))}
           </div>
-          { lighboxOpen && (
-              <Lightbox 
-              mainSrc={lightboxImageSrc(selectedImage.public_id)}
-              onCloseRequest={this.closeLightbox}
-              discourageDownloads
-            />
-          )}
         </div>
     );
   }
@@ -86,6 +95,7 @@ SimpleGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
+  selectLightbox: PropTypes.func
 }
 
 export default SimpleGallery;

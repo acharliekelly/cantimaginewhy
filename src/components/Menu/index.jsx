@@ -2,13 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext } from 'cloudinary-react';
-import SocialMediaLinks from '../SocialMediaLinks';
+import SocialMediaLinks from '../SocialMediaLinks/';
 
 import './menu.scss';
 
-const Menu = (handleLogin, handleSearch) => {
+const Menu = () => {
+
   return (
-    <CloudinaryContext cloudName="cantimaginewhy">
+    <CloudinaryContext className="menu-wrapper" cloudName="cantimaginewhy">
       <header className="menu">
         <div className="site-logo">
           <Image publicId="ck_logo" height="100" />
@@ -31,6 +32,7 @@ const Menu = (handleLogin, handleSearch) => {
               <NavLink to="/contact">Contact</NavLink>
             </Nav.Item>
           </Nav>
+          
           <SocialMediaLinks />
         </div>
         

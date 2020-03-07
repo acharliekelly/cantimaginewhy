@@ -20,8 +20,26 @@
   text-align: center;
   border-radius: 5px;
 
-  img {
+  .display-image {
     cursor: pointer;
+  }
+
+  .process-image {
+    z-index: 100;
+    margin-top: -400px;
+    text-align: center;
+    width: 600px;
+    height: 400px;
+    background-color: black;
+    cursor: pointer;
+
+    opacity: .9;
+
+    img {
+      opacity: 1;
+      margin: 100px auto;
+    }
+
   }
 
 }
@@ -64,7 +82,17 @@
   }
 }
 
-
+.feature {
+  margin: 0 2px;
+  padding: 2px 4px;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+}
 
 .options {
   line-height: 2em;
@@ -77,18 +105,6 @@
   }
 }
 
-.purchase {
-  margin: 0 2px;
-  padding: 2px 4px;
-  border-radius: 6px;
-  text-align: center;
-  cursor: pointer;
-  color: #fff;
-  
-  &:hover {
-    color: #fff;
-  }
-}
 .buy-orig {
   background-color: #900;
   

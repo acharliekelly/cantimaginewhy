@@ -74,6 +74,7 @@ class FilterNav extends Component {
                         quality="80"
                     >
                         <Transformation quality="auto" fetchFormat="auto" />
+                        <Transformation defaultImage="ck-diamond.jpg" />
                     </Image>
                     <div className="album-name">{option.name}</div>
                 </div>

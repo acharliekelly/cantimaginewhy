@@ -2,13 +2,33 @@
 .process-images {
   border: inset 2px silver;
   border-radius: 4px;
-  padding: .6em;
+  padding: 5px;
+
+  .process-label {
+    text-align: left;
+    margin-top: -30px;
+    
+    .label {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #666;
+      padding: 3px;
+      font-family: 'Roboto';
+      font-size: 12px;
+    }
+  }
   
   img {
     border-radius: 5px;
     margin: 0.2em 0.4em;
   }
 
+}
+
+.no-progress {
+  width: 80%;
+  margin: 10px auto;
+  border-bottom: thin ridge;
 }
 
 .story {

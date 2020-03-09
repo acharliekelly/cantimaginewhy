@@ -6,8 +6,7 @@ Site design comes from a team of GA UXDI graduates. Implementation (so far) by j
 
 ## Links
 * GitHub repo: [Repo](https://github.com/acharliekelly/cantimaginewhy)
-* Deployed application: [App](https://acharliekelly.github.io/cantimaginewhy)
-* Destination of completed product: [cantimaginewhy.com](http://cantimaginewhy.com)
+* Deployed application: [cantimaginewhy.com](http://cantimaginewhy.com)
 
 ## Technology Stack
 
@@ -15,8 +14,8 @@ For this project, I used the following tech stack:
 * Front-end framework: ReactJS
 * Back-end API's: 
   * Images: Cloudinary
-  * Products: (still working on that)
-  * Contact Form: (TBD)
+  * Products: Fine Art America
+  * Forms: Netlify
 
 ## Requirements
 

@@ -51,7 +51,7 @@ const fetchOnsite = () => {
 }
 
 /**
- * Returns list of cpi strings
+ * Returns CIO array
  * @param {str} refKey 
  * @param {boolean} useContext 
  */

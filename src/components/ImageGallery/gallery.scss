@@ -1,0 +1,46 @@
+
+
+.gallery-title {
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.display-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ddd;
+    border-radius: 0.3em;
+    justify-content: center;
+    max-height: 60vh;
+    overflow: auto;
+
+    .thumbnail {
+      display: inline-block;
+      margin: 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      border: thin solid #ccc;
+
+      &.selected {
+        border: thin outset #000;
+        opacity: 1;
+      }
+    }
+
+    .title {
+      display: none;
+      font-size: 12px;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+    }
+  }
+
+  
+}

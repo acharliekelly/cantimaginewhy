@@ -1,0 +1,30 @@
+
+.gallery-switch {
+  text-align: left;
+  height: 2em;
+  font-size: 12px;
+  font-family: 'Roboto';
+
+  .label {
+    color: #333;
+  }
+
+  .option {
+    padding: 1px 2px;
+    background-color: #000;
+    border-radius: 3px;
+    color: #fff;
+    margin: 1px 3px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #006;
+    }
+
+    &.selected, &.selected:hover {
+      color: #666;
+      background-color: #ccc;
+      cursor: default;
+    }
+  }
+}

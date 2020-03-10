@@ -64,6 +64,12 @@ class SimpleGallery extends React.Component {
     }
   }
 
+  zoomImage = imageId => {
+    const { selectLightbox } = this.props;
+    const { images } = this.state;
+    const idx = images.findIndex(img => img.public_id === imageId);
+    selectLightbox(imageId, images, idx);
+  }
   
 
   render () {
@@ -75,12 +81,12 @@ class SimpleGallery extends React.Component {
             {images.map(image => (
               <Image 
                 key={image.publid_id} 
-                className="responsive" 
+                responsive 
                 height={imageHeight}
                 crop="fit" 
                 cloudName="cantimaginewhy" 
                 publicId={image.public_id}
-                onClick={() => this.props.selectLightbox(image.public_id)}
+                onClick={() => this.zoomImage(image.public_id)}
               >
                 <Transformation defaultImage={defaultCPI} />
               </Image>
@@ -95,7 +101,14 @@ SimpleGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
-  selectLightbox: PropTypes.func
-}
+  selectLightbox: PropTypes.func.isRequired,
+  imageList: PropTypes.array
+};
+
+SimpleGallery.defaultProps = {
+  tagName: 'favorite',
+  gallerySize: 4,
+  imageHeight: 200
+};
 
 export default SimpleGallery;

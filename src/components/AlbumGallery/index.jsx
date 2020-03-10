@@ -4,7 +4,7 @@ import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 
 import ImageDisplay from '../ImageDisplay/';
 // import { fetchAlbum } from '../../utils/advImageApi';
-import { fetchAlbum } from '../../utils/imageApi';
+import { fetchGallery, defaultImg } from '../../utils/imageApi';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import { albums } from '../../utils/albums';
 
@@ -27,14 +27,16 @@ class AlbumGallery extends Component {
   }
 
   updateGallery = albumName => {
-    const tmp = fetchAlbum(albumName);
-
-    this.setState({
-      selectedAlbum: albumName,
-      pictures: tmp,
-      currentIndex: 0,
-      currentImage: tmp[0]
-    })
+    // load images
+    fetchGallery(albumName)
+      .then(res => {
+        this.setState({
+          selectedAlbum: albumName, 
+          pictures: res.data.resources,
+          currentIndex: 0,
+          currentImage: res.data.resources[0]
+        });
+      });
   }
 
   // this is idiotic
@@ -72,25 +74,15 @@ class AlbumGallery extends Component {
   }
 
   openNextImage = () => {
-    const { pictures } = this.state;
-    let index = this.state.currentIndex;
-    if (index < pictures.length - 1) {
-      index++;
-    } else {
-      index = 0;
-    }
-    this.openImageIndex(index);
+    const { pictures, currentIndex } = this.state;
+    const nextIndex = (currentIndex + 1) % pictures.length;
+    this.openImageIndex(nextIndex);
   }
 
   openPreviousImage = () => {
-    const { pictures } = this.state;
-    let index = this.state.currentIndex;
-    if (index > 0) {
-      index--;
-    } else {
-      index = pictures.length - 1;
-    }
-    this.openImageIndex(index);
+    const { pictures, currentIndex } = this.state;
+    const prevIndex = (currentIndex + pictures.length - 1) % pictures.length;
+    this.openImageIndex(prevIndex);
   }
 
 
@@ -100,21 +92,28 @@ class AlbumGallery extends Component {
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <div className="album-list">
-          {albums.map(album => (
-            <div key={album.name}
-              className={'album-btn' + (album.name === selectedAlbum && ' selected-nav')}
-              onClick={() => this.updateGallery(album.name)}
-            >
-              <Image
-                title={album.name}
-                publicId={album.thumbnail}
-                height={80}
+          {albums.map(album => {
+            let cls = 'album-btn responsive thumbnail';
+            if (selectedAlbum === album.name) {
+              cls += ' selected-nav';
+            }
+            return (
+              <div key={album.tag}
+                className={cls}
+                onClick={() => this.updateGallery(album.tag)}
               >
-                <Transformation defaultImage="ck-diamond" />
-                <Transformation height={80} crop="thumb" />
-              </Image>
-            </div>
-            ))}
+                <Image
+                  title={album.name}
+                  publicId={album.thumbnail}
+                >
+                  <Transformation defaultImage={defaultImg} />
+                  <Transformation height={100} crop="fit" />
+                </Image>
+                <div className="album-name">{album.name}</div>
+              </div>
+            )
+            
+            })}
         </div>
         <main className="display-area">
           <div className="gallery">
@@ -130,8 +129,8 @@ class AlbumGallery extends Component {
                     crop="fit"
                     onClick={() => this.openImageView(picture)}
                   >
-                    <Transformation defaultImage="ck-diamond" />
-                    <Transformation height={100} crop="thumb" />
+                    <Transformation defaultImage={defaultImg} />
+                    <Transformation height={100} crop="fit" />
                   </Image>
                 </div>
               )
@@ -143,6 +142,7 @@ class AlbumGallery extends Component {
               movePrevious={this.openPreviousImage}
               moveNext={this.openNextImage}
               selectLightbox={selectLightbox} 
+              imageList={pictures}
             />
           )}
         </main>

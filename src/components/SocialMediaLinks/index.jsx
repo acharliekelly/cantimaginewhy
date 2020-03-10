@@ -24,7 +24,7 @@ const links = [
 const smLink = (link, cloud = false) => {
   const img = cloud ? cloudImg(link) : faImg(link);
   return (
-    <a target="_blank" rel="noopener noreferrer" href={link.url}>
+    <a key={link.name} target="_blank" rel="noopener noreferrer" href={link.url}>
       {img}
     </a>
   )

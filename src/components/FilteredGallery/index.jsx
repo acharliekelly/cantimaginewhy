@@ -4,7 +4,7 @@ import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 
 import FilterNav from '../FilterNav/';
 import ImageDisplay from '../ImageDisplay/';
-import { fetchGallery } from '../../utils/imageApi';
+import { fetchGallery, defaultImg } from '../../utils/imageApi';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 
 import './filtered-gallery.scss';
@@ -27,11 +27,6 @@ class FilteredGallery extends Component {
       this.updateGallery(currentAlbum);
     }
     
-  }
-
-  handleAlbumSelect = event => {
-    const tagName = event.target.id;
-    this.updateGallery(tagName);
   }
 
   updateGallery = tagName => {
@@ -157,7 +152,7 @@ class FilteredGallery extends Component {
                         }
                       }
                     >
-                      <Transformation defaultImage="ck-diamond" />
+                      <Transformation defaultImage={defaultImg} />
                     </Image>
                   </div>
                   )
@@ -171,6 +166,7 @@ class FilteredGallery extends Component {
                   movePrevious={this.openPreviousImage}
                   moveNext={this.openNextImage}
                   selectLightbox={this.props.selectLightbox}
+                  imageList={pictures}
                 />
             )}
           </main>

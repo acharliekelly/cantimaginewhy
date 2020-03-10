@@ -7,9 +7,13 @@
   .image-nav-btn {
     // margin-top: 30%;
     cursor: pointer;
-    img, svg {
+    * {
       margin-top: 5em;
     }
+  }
+
+  .prev-btn * {
+    margin-left: 1em;
   }
 
   
@@ -37,8 +41,22 @@
 
     img {
       opacity: 1;
-      margin: 100px auto;
+      margin: 10px auto;
     }
+
+    .process-ctrl {
+      
+      opacity: 1;
+      height: 1.2em;
+      padding: 0.1em;
+      margin-top: -20px;
+
+      .arrow-btn {
+        display: inline;  
+      }
+    }
+
+    
 
   }
 

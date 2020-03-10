@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
+import { selectLightboxUtil } from '../../utils/imageUtils';
 import { defaultCPI } from '../../utils/imageApi';
 import './process.scss';
 
@@ -78,7 +79,8 @@ ProgressGallery.propTypes = {
 
 ProgressGallery.defaultProps = {
   refKey: 'missing_key',
-  imageHeight: 80
+  imageHeight: 80,
+  selectImage: selectLightboxUtil
 }
 
 export default ProgressGallery;

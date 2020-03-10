@@ -12,7 +12,7 @@ const Menu = () => {
     <CloudinaryContext className="menu-wrapper" cloudName="cantimaginewhy">
       <header className="menu">
         <div className="site-logo">
-          <Image publicId="ck_logo" height="100" />
+          <Image publicId="ciw-thumb" height="100" />
         </div>
         <div className="nav-grid">
           <Nav className="left-col" defaultActiveKey="/home">

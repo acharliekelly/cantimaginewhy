@@ -156,19 +156,114 @@ export const zoomImageSrc = imgObj => {
   return srcUrl;
 }
 
-
-
-// Advanced Image API Workaround
-export const fetchAlbum = albumName => {
-  console.log('fetchAlbum workaround')
-  const images = [];
-  fetchGallery('nfs').then(res => {
-
-    images.push(res.data.resources)
-  })
-  fetchGallery('products').then(res => {
-    images.push(res.data.resources)
-  })
-  console.log('total image count: ' + images.length);
-  return images.filter(image => image.context.custom.album === albumName);
+/**
+ * Return a context field from CIO object
+ * @param {*} cImgObj Cloudinary Image Object
+ * @param {*} propertyName context field
+ * @param {*} defaultValue value if field is missing
+ */
+export const getContextProperty = (cImgObj, propertyName, defaultValue = '') => {
+  let val = defaultValue;
+  try {
+    val = cImgObj.context.custom[propertyName];
+  } catch (err) {
+    val = defaultValue;
+  }
+  return val;
 }
+
+
+
+// GALLERY SORTING FUNCTIONS
+
+const defaultYear = '2010';
+const defaultTitle = 'Untitled';
+
+const compareUploadDate = (a, b) => {
+  // use Creation date
+  const aDate = Date.parse(a.created_at);
+  const bDate = Date.parse(b.created_at);
+  return aDate - bDate;
+}
+
+const compareYear = (a, b) => {
+  const aYear = getContextProperty(a, 'year', defaultYear);
+  const bYear = getContextProperty(b, 'year', defaultYear);
+  return aYear - bYear;
+}
+
+const compareTitle = (a, b) => {
+  const aTitle = getContextProperty(a, 'caption', defaultTitle);
+  const bTitle = getContextProperty(b, 'caption', defaultTitle);
+  if (aTitle && bTitle)
+    return aTitle.toLowerCase().localeCompare(bTitle.toLowerCase());
+  else
+    return compareFilename(a, b);
+}
+
+const compareFilename = (a, b) => {
+  const aFile = a.public_id.split('/')[1];
+  const bFile = b.public_id.split('/')[1];
+  return aFile.localeCompare(bFile);
+}
+
+const compareAlbumOrder = (a, b) => {
+  const aOrder = parseInt(getContextProperty(a, 'alb-order', 0));
+  const bOrder = parseInt(getContextProperty(b, 'alb-order', 0));
+  return aOrder - bOrder;
+}
+
+const comparePrice = (a, b) => {
+  const aPrice = parseInt(getContextProperty(a, 'price', 0));
+  const bPrice = parseInt(getContextProperty(b, 'price', 0));
+  return aPrice - bPrice;
+}
+
+const compareLocation = (a, b) => {
+  const aLoc = getContextProperty(a, 'location', 'z');
+  const bLoc = getContextProperty(b, 'location', 'z');
+  if (aLoc && bLoc)
+    return aLoc.localeCompare(bLoc);
+  else 
+    return 0;
+}
+
+const defaultSortFn = compareUploadDate;
+
+
+/**
+ * Sorts gallery on field specified in sortField of album list
+ * 
+ * @param {*} nav nav object from albums.js or filters.js
+ * @param {*} gallery the fetched object list to sort
+ */
+export const sortGallery = (nav, gallery) => {
+  let sortFn = defaultSortFn;
+  if (nav.sortField) {
+    const field = nav.sortField;
+    switch (field) {
+      case '.year':
+        sortFn = compareYear;
+        break;
+      case '.caption':
+        sortFn = compareTitle;
+        break;
+      case '.alb-order':
+        sortFn = compareAlbumOrder;
+        break;
+      case '.price':
+        sortFn = comparePrice;
+        break;
+      case '.location':
+        sortFn = compareLocation;
+        break;
+      default:
+        sortFn = compareFilename;
+    }
+  } else {
+    sortFn = defaultSortFn;
+  }
+
+  return gallery.sort(sortFn);
+}
+

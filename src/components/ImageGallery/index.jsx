@@ -5,7 +5,7 @@ import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import FilterNav from '../FilterNav/';
 import AlbumNav from '../AlbumNav/';
 import ImageDisplay from '../ImageDisplay/';
-import { fetchGallery, defaultImg } from '../../utils/imageApi';
+import { fetchGallery, defaultImg, sortGallery } from '../../utils/imageApi';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 
 import './gallery.scss';
@@ -37,13 +37,19 @@ class ImageGallery extends Component {
   }
 
 
-  updateGallery = tagName => {
+  /**
+   * takes NavObject from albums or filters
+   * { name, tag, thumbnail, description, sortField }
+   */
+  updateGallery = navObj => {
+    console.log('updating gallery from ' + navObj.name)
     // load images
-    fetchGallery(tagName)
+    fetchGallery(navObj.tag)
       .then(res => {
+        const sorted = sortGallery(navObj, res.data.resources);
         this.setState({
-          selectedAlbum: tagName, 
-          pictures: res.data.resources,
+          selectedAlbum: navObj.tag, 
+          pictures: sorted,
           currentIndex: 0
         });
       });
@@ -89,23 +95,25 @@ class ImageGallery extends Component {
       currentIndex: prev
     })
   }
+
+  galleryNav = type => {
+    if (type === 1) {
+      return <AlbumNav handleNavChange={this.updateGallery} handleClearGallery={this.clearGallery} />
+    } else {
+      return <FilterNav handleNavChange={this.updateGallery} handleClearGallery={this.clearGallery} />
+    }
+  }
     
   render () {
     const { pictures, currentIndex } = this.state;
     const currentImage = pictures[currentIndex];
     const { galleryType } = this.props;
-    const useFilters = (galleryType === 0);
-    const useAlbums = (galleryType === 1);
+
     return (
         
         <CloudinaryContext cloudName="cantimaginewhy">
           
-          {useFilters && (
-            <FilterNav handleNavChange={this.updateGallery} handleClearGallery={this.clearGallery} />
-          )}
-          {useAlbums && (
-            <AlbumNav handleNavChange={this.updateGallery} handleClearGallery={this.clearGallery} />
-          )}
+          {this.galleryNav(galleryType)}
           
 
           <main className="display-area">

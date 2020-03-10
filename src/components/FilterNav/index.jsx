@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
+import { defaultImg } from '../../utils/imageApi';
 import { filters } from '../../utils/filters';
 import './filter-nav.scss';
 
@@ -32,12 +33,12 @@ class FilterNav extends Component {
 
   handleNavClick = nav => {
     // nav is object (option) from filter list
-    // { name, tag, thumbnail, description }
+    // { name, tag, thumbnail, description, sortField }
     this.setState({
       selectedNav: nav
     });
 
-    this.props.handleNavChange(nav.tag);
+    this.props.handleNavChange(nav);
   }
 
   render () {
@@ -52,9 +53,9 @@ class FilterNav extends Component {
           onSelect={this.handleFilterSelect}
         >
           <span className="label">Filter By:</span>
-          {filters.map(filter => (
+          {filters.map((filter, index) => (
             <Nav.Item key={filter.name}>
-              <Nav.Link eventKey={filter.index}>{filter.name}</Nav.Link>
+              <Nav.Link eventKey={index}>{filter.name}</Nav.Link>
             </Nav.Item>
             )
           )}
@@ -74,7 +75,7 @@ class FilterNav extends Component {
                         quality="80"
                     >
                         <Transformation quality="auto" fetchFormat="auto" />
-                        <Transformation defaultImage="ck-diamond.jpg" />
+                        <Transformation defaultImage={defaultImg} />
                     </Image>
                     <div className="album-name">{option.name}</div>
                 </div>

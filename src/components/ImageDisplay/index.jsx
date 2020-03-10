@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ArrowButton } from '../Buttons';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
-import  { faaAvailable, faaLookup } from '../../utils/fineArtApi';
-import { isSeriesExist } from '../../utils/onsiteUtils';
-import { lookupSeriesCount } from '../../utils/processUtils';
+import  { faaLookup } from '../../utils/fineArtApi';
+import { onsitePhotos } from '../../utils/onsiteUtils';
+import { nextImageId, previousImageId } from '../../utils/processUtils';
+import { loadImageProps } from '../../utils/imageContext';
 import { OrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
 
@@ -23,58 +25,37 @@ class ImageDisplay extends Component {
     }
   }
 
-  loadImageProperties = () => {
-    const imgId = this.props.currentImage.public_id;
-    const ref = this.getPictureProperty('key', '-');
-    const infoObj = {
-      id: imgId,
-      title: this.getPictureCaption(),
-      description: this.getPictureProperty('alt'),
-      location: this.getPictureProperty('location'),
-      medium: this.getPictureProperty('medium'),
-      size: this.getPictureProperty('size'),
-      year: this.getPictureProperty('year'),
-      forSale: (this.getPictureProperty('original') === 'available'),
-      forPrint: (faaAvailable(imgId)),
-      refKey: ref,
-      processImgs: isSeriesExist(ref),
-      price: this.getPictureProperty('price', 'NFS'),
-      materialInfo: this.hasProperty('medium') && this.hasProperty('size'),
-    }
-    return infoObj;
-  }
-
-  getPictureCaption = () => {
-    return this.getPictureProperty('caption', 'Untitled');
-  }
-
-  getPictureProperty = (property, errValue = '') => {
-    const pictureObj = this.props.currentImage;
-    let val;
-    try {
-      val = pictureObj.context.custom[property];
-    } catch (err) {
-      val = errValue;
-    }
-    return val;
-  }
-
-  hasProperty = propertyName => {
-    const pictureObj = this.props.currentImage;
-    if (pictureObj.hasOwnProperty('context')) {
-      return pictureObj.context.custom.hasOwnProperty(propertyName);
-    } else {
-      return false;
-    }
-  }
-
   suppressLink = ev => {
     ev.preventDefault();
   }
 
+  /**
+   * Open main image in Zoom
+   */
   openLightbox = () => {
-    const { currentImage, selectLightbox } = this.props;
-    selectLightbox(currentImage.public_id);
+    const { currentImage, selectLightbox, imageList } = this.props;
+    const imgId = currentImage.public_id;
+    if (imageList) {
+      selectLightbox(imgId, imageList);
+    } else {
+      selectLightbox(imgId);
+    }
+  }
+
+  /**
+   * Open process image in Zoom
+   */
+  processLightbox = ev => {
+    
+    const { selectLightbox } = this.props;
+    const { processImageId } = this.state;
+    if (processImageId) {
+      const refKey = processImageId.split('-')[1];
+      onsitePhotos(refKey).then(series => {
+        selectLightbox(processImageId, series)
+      })
+    }
+    ev.stopPropagation();
   }
 
   setProcessImage = image => {
@@ -91,25 +72,23 @@ class ImageDisplay extends Component {
     ev.preventDefault()
   }
 
+
   nextProcessImage = ev => {
     // TODO: move to next image via ProgressGallery
     const { processImageId } = this.state;
-    const refKey = processImageId.split('-')[1];
-    const imgOrder = processImageId.split('-')[2];
     
-    let strNext = '0';
-    if (imgOrder.length === 1) { // imgOrder is a number
-      const nMax = lookupSeriesCount(refKey);
-      const nNext = parseInt(imgOrder) + 1;
-      if (nNext <= nMax) {
-        strNext = nNext.toString();
-      } else {
-        strNext = 'final';
-      }
-    } // else imgOrder is 'final', so next should be '0'
+    const nextId = nextImageId(processImageId);
+    this.setProcessImage(nextId);
+
+    ev.stopPropagation(); // prevent parent from closing image
+  }
+
+  previousProcessImage = ev => {
+    // TODO: move to prev image via ProgressGallery
+    const { processImageId } = this.state;
     
-    const nextImageId = `photos/onsite-${refKey}-${strNext}`;
-    this.setProcessImage(nextImageId);
+    const prevId = previousImageId(processImageId);
+    this.setProcessImage(prevId);
 
     ev.stopPropagation(); // prevent parent from closing image
   }
@@ -149,15 +128,16 @@ class ImageDisplay extends Component {
   }
 
   render () {
-    const { currentImage } = this.props;
+    const { currentImage, moveNext, movePrevious } = this.props;
     const { orderFormOpen, processImageId } = this.state;
     if (currentImage) {
-      const info = this.loadImageProperties();
+      const info = loadImageProps(currentImage);
       return (
         <CloudinaryContext cloudName="cantimaginewhy">
           <div className="image-box">
-            <div className="image-nav-btn prev-btn" onClick={this.props.movePrevious}>
-              <FontAwesomeIcon icon="chevron-circle-left" size="lg" />
+            <div className="image-nav-btn prev-btn" onClick={movePrevious}>
+              {/* <FontAwesomeIcon icon="chevron-circle-left" size="lg" /> */}
+              <ArrowButton direction="left" />
             </div>
             <div className="image-view">
               <Image 
@@ -173,26 +153,32 @@ class ImageDisplay extends Component {
                   className="process-image"
                   onClick={this.closeProcess}
                 >
+                  
                   <Image 
                     publicId={processImageId}
-                    onClick={this.nextProcessImage}
-                    width="400"
-                    height="250"
+                    onClick={this.openLightbox}
+                    width="500"
+                    height="350"
                     crop="pad"
                     background="black"
                   />
-
+                  <div className="process-ctrl">
+                    <button className="prev-btn" onClick={this.previousProcessImage}>&lt;</button>
+                    <button className="zoom-btn" onClick={this.processLightbox}>Zoom</button>
+                    <button className="next-btn" onClick={this.nextProcessImage}>&gt;</button>
+                  </div>
                 </div>
-
+                
               )}
             </div>
-            <div className="image-nav-btn next-btn" onClick={this.props.moveNext}>
-              <FontAwesomeIcon icon="chevron-circle-right" size="lg" />
+            <div className="image-nav-btn next-btn" onClick={moveNext}>
+              {/* <FontAwesomeIcon icon="chevron-circle-right" size="lg" /> */}
+              <ArrowButton direction="right" />
             </div>
 
             <div className="spacer" />
             <div className="image-info">
-              <div className="title">{info.title}</div>
+              <div className="title">{info.title || 'Untitled'}</div>
               <div className="descript">{info.description}</div>
               {info.location && (
               <div className="info">
@@ -213,28 +199,30 @@ class ImageDisplay extends Component {
               </div>
               )}
 
-              
-              <div className="options">
-                <span className="label">Original:</span>
-                {info.forSale && (
-                  <a 
-                    className="feature buy-orig" 
-                    href="/" 
-                    onClick={this.showOrderForm}
+              {currentImage.public_id.startsWith('art/') && (
+                <div className="options">
+                  <span className="label">Original:</span>
+                  {info.forSale && (
+                    <a 
+                      className="feature buy-orig" 
+                      href="/" 
+                      onClick={this.showOrderForm}
+                      >
+                        ${info.price}
+                    </a>
+                  )}
+                  {!info.forSale && (
+                    <a 
+                      className="feature nfs" 
+                      href="/" 
+                      onClick={this.suppressLink}
                     >
-                      ${info.price}
-                  </a>
-                )}
-                {!info.forSale && (
-                  <a 
-                    className="feature nfs" 
-                    href="/" 
-                    onClick={this.suppressLink}
-                  >
-                    Sold
-                  </a>
-                )}
-              </div>
+                      Sold
+                    </a>
+                  )}
+                </div>
+              )}
+              
               {info.forPrint && (
                 <div className="options">
                   <span className="label">Derived Products: </span>
@@ -295,9 +283,13 @@ ImageDisplay.propTypes = {
    */
   moveNext: PropTypes.func.isRequired,
   /**
-   * the function to open image in Lightbox
+   * the function to open image in Zoom
    */
-  selectLightbox: PropTypes.func.isRequired
+  selectLightbox: PropTypes.func.isRequired,
+  /**
+   * the image array, for Zoom
+   */
+  imageList: PropTypes.array
 }
 
 ImageDisplay.defaultProps = {

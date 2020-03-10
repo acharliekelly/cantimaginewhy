@@ -4,6 +4,7 @@ import axios from 'axios';
 export const cloudName = 'cantimaginewhy';
 
 export const ImageProtectMode = {
+  unspecified: -1,
   clean: 0,
   watermarked: 1,
   copyright: 2
@@ -26,7 +27,29 @@ export const fetchGallery = tagName => {
 
 // Image URLs
 
-export const defaultCPI = 'sample.jpg';
+export const defaultCPI = 'question_mark';
+export const defaultImg = `${defaultCPI}.jpg`;
+const copyrightText = 'Cant Imagine Why';
+
+const addWatermark = 'w_500,l_ck_logo,o_20/';
+const addCopyright = `l_text:courier_80_bold:${copyrightText},y_50,o_30/`;
+
+const addProtect = publicId => {
+  if (!publicId.startsWith('photos/')) {
+    if (protectionMode === ImageProtectMode.watermarked) {
+      return addWatermark;
+    } else {
+      return addCopyright;
+    }
+  } else {
+    return '';
+  }
+}
+
+const addDefault = `d_${defaultCPI}.jpg/`;
+
+// const wResponsive = 'w_auto,c_scale/';
+
 
 
 // Return source URL for watermarked image
@@ -55,22 +78,21 @@ export const cleanImageSrc = publicId => {
  * 
  * Lightbox component takes image source as string, so 
  * can't use Cloudinary Image component
- * @param {string} publicId 
+ * @param {string} publicId
  */
 export const lightboxImageSrc = publicId => {
   if (publicId.startsWith('photos/')) {
     return cleanImageSrc(publicId);
   } else {
     switch (protectionMode) {
-      case 1:
+      case ImageProtectMode.watermarked:
         return watermarkedImageSrc(publicId);
-      case 2:
+      case ImageProtectMode.copyright:
         return copyrightImageSrc(publicId);
       default:
         return cleanImageSrc(publicId);
     }
   }
-  
 }
 
 // return source URL of arbitrary-sized, non-watermarked image
@@ -81,6 +103,57 @@ export const variableImageSrc = (publicId, imgWidthPx = 500) => {
 // return source URL image, padded to fit height
 export const paddedImageSrc = (publicId, width = 600, height = 400) => {
   return imgSrc + `w_${width},h_${height},c_pad,b_white/d_${defaultCPI}/${publicId}.jpg`;
+}
+
+export const responsiveImageSrc = publicId => {
+  return imgSrc + `w_auto,c_scale/d_${defaultCPI}/${publicId}.jpg`;
+}
+
+export const getImageSrc = (publicId, width = 1000, protect = true) => {
+  let srcUrl = imgSrc + `w_${width}/`;
+  if (protect) {
+    srcUrl += addProtect(publicId);
+  }
+  
+  srcUrl += addDefault + publicId + '.jpg';
+  return srcUrl;
+} 
+
+/**
+ * Return source URL for lightbox
+ * but take JSON object instead of just publicId
+ * and adjust for aspect ratio
+ * @param {object} imgObj 
+ */
+export const zoomImageSrc = imgObj => {
+  if (!imgObj) {
+    return defaultImg;
+  }
+
+  // check if already a CPI string
+  if (typeof imgObj === 'string') {
+    return getImageSrc(imgObj);
+  }
+
+  const publicId = imgObj.public_id;
+  const width = imgObj.width;
+  const height = imgObj.height;
+  
+  let srcUrl = imgSrc;
+  if (width > height) {
+    // landscape
+    srcUrl += 'w_1000/';
+  } else if (height > width) {
+    // portrait
+    srcUrl += 'h_800/'
+  } else {
+    // square
+    srcUrl += 'w_800/';
+  }
+  srcUrl += addProtect(publicId);
+  srcUrl += addDefault;
+  srcUrl += publicId + '.jpg';
+  return srcUrl;
 }
 
 

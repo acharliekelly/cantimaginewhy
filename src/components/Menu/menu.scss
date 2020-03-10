@@ -1,4 +1,4 @@
-$menu-bkg: transparent;
+$menu-bkg: #efeeea;
 $menu-text: #000;
 $menu-active-bkg: #000;
 $menu-active-text: #fff;
@@ -6,7 +6,7 @@ $menu-active-text: #fff;
 .menu {
   display: flex;
   justify-content: space-around;
-  background-color: transparent;
+  background-color: $menu-bkg;
   color: $menu-text;
   
 

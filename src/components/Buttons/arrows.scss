@@ -1,0 +1,36 @@
+// ARROW BUTTONS
+
+$arrow-color: #000;
+$arrow-size: 5em;
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid $arrow-color;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-top: $arrow-size solid $arrow-color;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-right: $arrow-size solid $arrow-color;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-left: $arrow-size solid $arrow-color;
+}

@@ -22,6 +22,17 @@ h1, h2, h3, h4, h5, h6, header {
   
 }
 
+
+.todo::before {
+  content: 'TODO: ';
+}
+
+.dev-msg {
+  background-color: $todo-bkg;
+  color: $todo-text;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .in-progress {
   font-style: italic;
   background-color: #666;
@@ -53,9 +64,6 @@ h1, h2, h3, h4, h5, h6, header {
   border-radius: 4px;
 }
 
-.todo::before {
-  content: 'TODO: ';
-}
 
 .content {
   margin: 1rem auto;

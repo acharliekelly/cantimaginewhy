@@ -1,17 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext } from 'cloudinary-react';
 import SocialMediaLinks from '../SocialMediaLinks';
+import { fetchGallery } from '../../utils/imageApi';
 
 import './menu.scss';
 
-const Menu = () => {
-
+const Menu = props => {
+  const { selectLightbox } = props;
+  const logoId = 'cant_imagine_why';
+  const openZoom = () => {
+    fetchGallery('logo').then(res => {
+      selectLightbox(logoId, res.data.resources);
+    })
+  }
   return (
     <CloudinaryContext className="menu-wrapper" cloudName="cantimaginewhy">
       <header className="menu">
-        <div className="site-logo">
+        <div className="site-logo" onClick={openZoom}>
           <Image publicId="ciw-thumb" height="100" />
         </div>
         <div className="nav-grid">
@@ -39,6 +47,10 @@ const Menu = () => {
       </header>
     </CloudinaryContext>
   );
+}
+
+Menu.propTypes = {
+  selectLightbox: PropTypes.func.isRequired
 }
 
 export default Menu;

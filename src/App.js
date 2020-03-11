@@ -58,7 +58,7 @@ const App = () => {
   return (
     <div className="page-container">
       <Router basename='/'>
-        <Menu />
+        <Menu selectLightbox={selectLightboxImage} />
         <div className="content-wrapper">
           <Route exact path="/">
             <HomePage selectLightbox={selectLightboxImage} />

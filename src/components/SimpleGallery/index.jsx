@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery, defaultCPI } from '../../utils/imageApi';
+import { fetchGallery, defaultCPI, getContextProperty } from '../../utils/imageApi';
 
 class SimpleGallery extends React.Component {
   constructor (props) {
@@ -81,6 +81,7 @@ class SimpleGallery extends React.Component {
             {images.map(image => (
               <Image 
                 key={image.publid_id} 
+                title={getContextProperty(image, 'caption', 'Untitled')}
                 responsive 
                 height={imageHeight}
                 crop="fit" 

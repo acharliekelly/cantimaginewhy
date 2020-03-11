@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { zoomImageSrc, getImageSrc } from '../../utils/imageApi';
+import { zoomImageSrc, getImageSrc, getContextProperty } from '../../utils/imageApi';
 
 import 'react-image-lightbox/style.css';
 
@@ -98,14 +98,18 @@ class ImageZoom extends Component {
 
   render () {
     const { images, currentIndex } = this.state;
- 
+    const title = getContextProperty(images[currentIndex], 'caption', '');
+    const caption = getContextProperty(images[currentIndex], 'alt', '');
     if (images.length === 1) { // single image, no prev or next
       return (
         <Lightbox 
           onCloseRequest={this.props.closeLightbox} 
           discourageDownloads
           clickOutsideToClose
-          mainSrc={zoomImageSrc(images[currentIndex])}
+          mainSrc={zoomImageSrc(images[0])}
+          imageTitle={title}
+          imageCaption={caption}
+          imageLoadErrorMessage="..."
         />
       );
     } else { // multiple images
@@ -119,6 +123,9 @@ class ImageZoom extends Component {
           prevSrc={zoomImageSrc(images[(currentIndex + images.length - 1) % images.length])}
           onMoveNextRequest={this.moveNext}
           onMovePrevRequest={this.movePrevious}
+          imageLoadErrorMessage="..."
+          imageTitle={title}
+          imageCaption={caption}
         />
       );
     }

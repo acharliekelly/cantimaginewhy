@@ -35,7 +35,7 @@ const addWatermark = 'w_500,l_ck_logo,o_20/';
 const addCopyright = `l_text:courier_80_bold:${copyrightText},y_50,o_30/`;
 
 const addProtect = publicId => {
-  if (!publicId.startsWith('photos/')) {
+  if (publicId.startsWith('art/')) {
     if (protectionMode === ImageProtectMode.watermarked) {
       return addWatermark;
     } else {

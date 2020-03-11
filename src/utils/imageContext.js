@@ -9,6 +9,8 @@ export const loadImageProps = imageObj => {
     const ref = getPictureProperty(imageObj, 'key', '-');
     const infoObj = {
       id: imgId,
+      moreInfo: true,
+      hasContext: imageObj.hasOwnProperty('context'),
       title: getPictureProperty(imageObj, 'caption', 'Untitled'),
       description: getPictureProperty(imageObj, 'alt'),
       location: getPictureProperty(imageObj, 'location'),
@@ -21,6 +23,12 @@ export const loadImageProps = imageObj => {
       processImgs: isSeriesExist(ref),
       price: getPictureProperty(imageObj, 'price', 'NFS'),
       materialInfo: hasProperty('medium') && hasProperty('size'),
+    }
+    // determine if image has any info beyond title
+    if (!infoObj.hasContext ||    // no context
+        (infoObj.title === 'Untitled' && !(infoObj.forSale || infoObj.forPrint)) || // no title & no sale
+        (!infoObj.year && !infoObj.description && !infoObj.location)) {   // no other info fields
+      infoObj.moreInfo = false;
     }
     return infoObj;
 }

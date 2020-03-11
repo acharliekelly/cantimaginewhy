@@ -59,7 +59,6 @@ class ImageDisplay extends Component {
   }
 
   setProcessImage = image => {
-    // console.log('setting process image: ' + image)
     this.setState({
       processImageId: image
     })
@@ -140,6 +139,7 @@ class ImageDisplay extends Component {
               <ArrowButton direction="left" />
             </div>
             <div className="image-view">
+              {/* Main image */}
               <Image 
                 className="display-image"
                 publicId={info.id}
@@ -148,6 +148,7 @@ class ImageDisplay extends Component {
                 crop="pad"
                 onClick={this.openLightbox}
               />
+              {/* Process Images */}
               {processImageId && (
                 <div 
                   className="process-image"
@@ -175,88 +176,98 @@ class ImageDisplay extends Component {
               {/* <FontAwesomeIcon icon="chevron-circle-right" size="lg" /> */}
               <ArrowButton direction="right" />
             </div>
-
+            {/* Info Section */}
             <div className="spacer" />
-            <div className="image-info">
-              <div className="title">{info.title || 'Untitled'}</div>
-              <div className="descript">{info.description}</div>
-              {info.location && (
-              <div className="info">
-                <span className="label">Location: </span>
-                <span className="data">{info.location}</span>
+            {info.hasContext && (
+              <div className="image-info">
+                <div className="title">{info.title || 'Untitled'}</div>
+                <div className="descript">{info.description}</div>
+                {info.moreInfo && (
+                  <div className="more-info">
+                    {info.location && (
+                      <div className="info">
+                      <span className="label">Location: </span>
+                      <span className="data">{info.location}</span>
+                    </div>
+                    )}
+                    {info.year && (
+                    <div className="info">
+                      <span className="label">Year: </span>
+                      <span className="data">{info.year}</span>
+                    </div>
+                    )}
+                    {info.materialInfo && (
+                    <div className="info">
+                      <span className="label">Material: </span>
+                      <span className="data">{info.size}, {info.medium}</span>
+                    </div>
+                    )}
+    
+                      {/* Buttons */}
+    
+                    {currentImage.public_id.startsWith('art/') && (
+                      <div className="options">
+                        <span className="label">Original:</span>
+                        {info.forSale && (
+                          <a 
+                            className="feature buy-orig" 
+                            href="/" 
+                            onClick={this.showOrderForm}
+                            >
+                              ${info.price}
+                          </a>
+                        )}
+                        {!info.forSale && (
+                          <a 
+                            className="feature nfs" 
+                            href="/" 
+                            onClick={this.suppressLink}
+                          >
+                            Sold
+                          </a>
+                        )}
+                      </div>
+                    )}
+                    
+                    {info.forPrint && (
+                      <div className="options">
+                        <span className="label">Derived Products: </span>
+                        <a 
+                          className="feature buy-print" 
+                          rel="noopener noreferrer" 
+                          target="_blank" 
+                          href={faaLookup(info.id)}
+                          >Available</a>
+                      </div>
+                    )}
+                    { info.processImgs && (
+                      <div className="options">
+                        <ProgressGallery 
+                          refKey={info.refKey} 
+                          imageHeight={60}
+                          selectImage={this.setProcessImage} 
+                        />
+                      </div>
+                    )}
+                    {(orderFormOpen && info.forSale) && (
+                      <div className="form">
+                        <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
+                        <OrderForm 
+                          className="inner-form"
+                          imageId={info.id}
+                          price={info.price}
+                          closeForm={this.hideOrderForm}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+                {!info.moreInfo && (
+                  <div className="todo">Collapse this block</div>
+                )}
               </div>
-              )}
-              {info.year && (
-              <div className="info">
-                <span className="label">Year: </span>
-                <span className="data">{info.year}</span>
-              </div>
-              )}
-              {info.materialInfo && (
-              <div className="info">
-                <span className="label">Material: </span>
-                <span className="data">{info.size}, {info.medium}</span>
-              </div>
-              )}
-
-              {currentImage.public_id.startsWith('art/') && (
-                <div className="options">
-                  <span className="label">Original:</span>
-                  {info.forSale && (
-                    <a 
-                      className="feature buy-orig" 
-                      href="/" 
-                      onClick={this.showOrderForm}
-                      >
-                        ${info.price}
-                    </a>
-                  )}
-                  {!info.forSale && (
-                    <a 
-                      className="feature nfs" 
-                      href="/" 
-                      onClick={this.suppressLink}
-                    >
-                      Sold
-                    </a>
-                  )}
-                </div>
-              )}
-              
-              {info.forPrint && (
-                <div className="options">
-                  <span className="label">Derived Products: </span>
-                  <a 
-                    className="feature buy-print" 
-                    rel="noopener noreferrer" 
-                    target="_blank" 
-                    href={faaLookup(info.id)}
-                    >Available</a>
-                </div>
-              )}
-              { info.processImgs && (
-                <div className="options">
-                  <ProgressGallery 
-                    refKey={info.refKey} 
-                    imageHeight={60}
-                    selectImage={this.setProcessImage} 
-                  />
-                </div>
-              )}
-              {(orderFormOpen && info.forSale) && (
-                <div className="form">
-                  <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
-                  <OrderForm 
-                    className="inner-form"
-                    imageId={info.id}
-                    price={info.price}
-                    closeForm={this.hideOrderForm}
-                  />
-                </div>
-              )}
-            </div>
+            )}
             <div className="spacer" />
-
           </div>
         </CloudinaryContext>
       );

@@ -99,6 +99,13 @@ $selected-album-text: #000;
   }
 }
 
+// under album list, when no nav selected
+.group-description {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+}
+
 // selected nav name
 .current-nav {
   text-align: center;

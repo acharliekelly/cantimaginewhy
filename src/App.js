@@ -15,18 +15,19 @@ import Footer from './components/Footer/';
 import HomePage from './views/Home/';
 import AboutPage from './views/About/';
 import ArtworkPage from './views/Artwork/';
-// import { lightboxImageSrc } from './utils/imageApi';
 import ImageZoom from './components/ImageZoom/';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
-
+import './css/dev.scss';
+import { allowDevMode } from './utils/system';
 
 const App = () => {
   const [ lightboxOpen, setLightboxOpen ] = useState(false);
   const [ selectedImageId, setSelectedImageId ] = useState('');
   const [ lightboxImages, setLightboxImages ] = useState([]);
   const [ lightboxCurrentIndex, setLightboxCurrentIndex ] = useState(0);
+  const [ developmentMode, setDevelopmentMode ] = useState(false);
 
   /**
    * takes CPI from any child component, opens lightbox
@@ -54,11 +55,21 @@ const App = () => {
     setLightboxOpen(false);
   }
 
+  const toggleDevMode = () => {
+    
+    if (allowDevMode()) {
+      setDevelopmentMode(!developmentMode);
+    }
+    console.log('Dev Mode: ' + (developmentMode ? 'On' : 'Off'))
+  }
+
+  const devCls = developmentMode ? ' dev-mode' : '';
+
   library.add(fab, faChevronCircleLeft, faChevronCircleRight);
   return (
-    <div className="page-container">
+    <div className={'page-container' + devCls}>
       <Router basename='/'>
-        <Menu selectLightbox={selectLightboxImage} />
+        <Menu selectLightbox={selectLightboxImage} devMode={toggleDevMode} />
         <div className="content-wrapper">
           <Route exact path="/">
             <HomePage selectLightbox={selectLightboxImage} />

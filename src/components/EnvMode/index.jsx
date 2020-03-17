@@ -1,25 +1,19 @@
 import React from 'react';
 
+import { allowDevMode, getEnvName, getEnvClass } from '../../utils/system';
+
 import './mode.scss';
 
-const getEnvName = () => {
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      return 'dev';
-    case 'production':
-      return 'live';
-    default:
-      return process.env.NODE_ENV;
-  }
-}
 
-
-
-export default function EnvMode() {
+const EnvMode = props => {
   const mode = getEnvName();
+  const active = allowDevMode() ? ' enabled' : '';
+  const modeCls = getEnvClass();
   return (
-    <div className="current-mode">
-      <span className={process.env.NODE_ENV}>{mode}</span>
+    <div className={'current-mode' + active}>
+      <span className={modeCls} onClick={props.devMode}>{mode}</span>
     </div>
   )
 }
+
+export default EnvMode;

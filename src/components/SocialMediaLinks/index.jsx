@@ -40,25 +40,25 @@ const faImg = link => (
 
 
 // if FontAwesome isn't working
-export const cloudinaryLinks = () => {
+export const cloudinaryLinks = props => {
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
       <div className="right-col social">
         {links.map(link => smLink(link, true))}
       </div>
-      <EnvMode />
+      <EnvMode devMode={props.devMode} />
     </CloudinaryContext>
   )
 }
 
 
-export default function SocialMediaLinks() {
+export default function SocialMediaLinks (props) {
   return (
     <div className="right-col social">
       <div className="links">
         {links.map(link => smLink(link))}
       </div>
-      <EnvMode />
+      <EnvMode devMode={props.devMode} />
     </div>
   )
 }

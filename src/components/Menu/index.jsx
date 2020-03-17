@@ -9,7 +9,7 @@ import { fetchGallery } from '../../utils/imageApi';
 import './menu.scss';
 
 const Menu = props => {
-  const { selectLightbox } = props;
+  const { selectLightbox, devMode } = props;
   const logoId = 'cant_imagine_why';
   const openZoom = () => {
     fetchGallery('logo').then(res => {
@@ -41,7 +41,7 @@ const Menu = props => {
             </Nav.Item>
           </Nav>
           
-          <SocialMediaLinks />
+          <SocialMediaLinks devMode={devMode} />
         </div>
         
       </header>
@@ -50,7 +50,8 @@ const Menu = props => {
 }
 
 Menu.propTypes = {
-  selectLightbox: PropTypes.func.isRequired
+  selectLightbox: PropTypes.func.isRequired,
+  devMode: PropTypes.func.isRequired
 }
 
 export default Menu;

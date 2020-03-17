@@ -17,15 +17,31 @@
   .development {
     background-color: #900;
     color: #fff;
+    border: thin outset silver;
+    cursor: pointer;
   }
   .test {
     background-color: #990;
     color: #000;
+    border: 1px #990 solid;
   }
   .production {
     background-color: transparent;
     color: #aaa;
     font-variant: small-caps;
+    border: none;
   }
 
+}
+
+.dev-mode {
+  .current-mode {
+    .development {
+      background-color: #0ff;
+      color: #000;
+      font-variant: small-caps;
+      font-weight: bold;
+    }
+  }
+  
 }

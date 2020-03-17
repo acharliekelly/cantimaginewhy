@@ -1,0 +1,83 @@
+// Only show when in development environment and Dev mode
+
+.dev-mode {
+  .todo {
+    font-family: 'Courier New', Courier, monospace;
+    color: #0ff;
+    background-color: #000;
+    
+  }
+  
+  
+  .todo::before {
+    content: 'TODO: ';
+  }
+  
+  .dev-msg {
+    background-color: #000;
+    color: #0cc;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .in-progress {
+    font-style: italic;
+    background-color: #666;
+    color: #fff;
+    border-radius: 3px;
+    padding: 2px 5px;
+    text-align: center;
+  }
+  .in-progress-message {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+  .menu {
+    outline: thin black solid;
+
+    .nav-grid {
+      outline: red thin dashed;
+      .left-col {
+        outline: thin green solid;
+      }
+      .right-col {
+        outline: thin blue solid;
+      }
+    }
+  }
+
+  .content {
+    outline: thin black solid;
+  
+  
+    header {
+      outline: thin orange solid;
+  
+    }
+  
+    .display-area {
+      outline: thin green dashed;
+
+      .gallery {
+        outline: thin blue solid;
+      }
+
+      .image-box {
+        outline: thin red solid;
+
+        .image-nav-btn {
+          outline: thin gray dashed;
+        }
+
+        .image-view {
+          outline: thin green solid;
+        }
+      }
+    }
+  }
+  
+  
+  
+}

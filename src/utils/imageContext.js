@@ -22,7 +22,7 @@ export const loadImageProps = imageObj => {
       refKey: ref,
       processImgs: isSeriesExist(ref),
       price: getPictureProperty(imageObj, 'price', 'NFS'),
-      materialInfo: hasProperty('medium') && hasProperty('size'),
+      materialInfo: hasProperty(imageObj, 'medium') && hasProperty(imageObj, 'size'),
     }
     // determine if image has any info beyond title
     if (!infoObj.hasContext ||    // no context

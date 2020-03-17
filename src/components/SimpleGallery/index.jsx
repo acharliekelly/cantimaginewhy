@@ -78,20 +78,23 @@ class SimpleGallery extends React.Component {
     return (
       <div className="gallery-wrapper">
         <div className="basic-gallery">
-            {images.map(image => (
-              <Image 
-                key={image.publid_id} 
-                title={getContextProperty(image, 'caption', 'Untitled')}
-                responsive 
-                height={imageHeight}
-                crop="fit" 
-                cloudName="cantimaginewhy" 
-                publicId={image.public_id}
-                onClick={() => this.zoomImage(image.public_id)}
-              >
-                <Transformation defaultImage={defaultCPI} />
-              </Image>
-            ))}
+            {images.map(image => {
+              let title = getContextProperty(image, 'caption', 'Untitled');
+              title += ' - [Click to enlarge]';
+              return (
+                <Image 
+                  key={image.publid_id} 
+                  title={title}
+                  responsive 
+                  height={imageHeight}
+                  crop="fit" 
+                  cloudName="cantimaginewhy" 
+                  publicId={image.public_id}
+                  onClick={() => this.zoomImage(image.public_id)}
+                >
+                  <Transformation defaultImage={defaultCPI} />
+                </Image>
+            )})}
           </div>
         </div>
     );

@@ -3,18 +3,33 @@ import PropTypes from 'prop-types';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import Nav from 'react-bootstrap/Nav';
 import { defaultImg } from '../../utils/imageApi';
-import { albumGroups } from '../../utils/albums';
+import { albumGroups } from '../../config/albums';
 
-import './nav.scss';
+import '../../css/nav.scss';
 
 class AlbumNav extends Component {
   constructor (props) {
     super(props);
     this.state = {
       groupIndex: 0,
+      hoverGroup: -1,
       navAlbums: [],
       selectedNav: null
     }
+  }
+
+  groupHover = idx => {
+    // const group = ev.target.eventKey;
+    this.setState({
+      hoverGroup: idx
+    });
+    console.log('Hover on ' + idx)
+  }
+
+  dropHover = ev => {
+    this.setState({
+      hoverGroup: -1
+    });
   }
 
   componentDidMount () {
@@ -36,13 +51,14 @@ class AlbumNav extends Component {
     this.setState({
       groupIndex: eventKey,
       navAlbums: albumGroups[eventKey].albums,
-      selectedNav: null
+      selectedNav: null,
+      hoverGroup: -1
     })
     
   }
 
   render () {
-    const { navAlbums, groupIndex, selectedNav } = this.state;
+    const { navAlbums, groupIndex, selectedNav, hoverGroup } = this.state;
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <Nav 
@@ -53,7 +69,9 @@ class AlbumNav extends Component {
           >
             <span className="label">Albums:</span>
             {albumGroups.map((group, index) => (
-              <Nav.Item key={index}>
+              <Nav.Item key={index} 
+                onMouseEnter={() => this.groupHover(index)} 
+                onMouseLeave={this.dropHover}>
                 <Nav.Link eventKey={index}>{group.name}</Nav.Link>
               </Nav.Item>
             ))}
@@ -71,7 +89,7 @@ class AlbumNav extends Component {
                         publicId={`${album.thumbnail}`}
                         dpr="auto"
                         responsive
-                        height="100"
+                        height="80"
                         crop="fit"
                     >
                         <Transformation defaultImage={defaultImg} />
@@ -80,6 +98,9 @@ class AlbumNav extends Component {
                 </div>
               );
             })}
+          </div>
+          <div className="group-description">
+            {hoverGroup >= 0 && (albumGroups[hoverGroup].description)}
           </div>
         {selectedNav && (
           <div className="current-nav">

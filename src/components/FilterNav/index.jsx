@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Nav from 'react-bootstrap/Nav';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../utils/imageApi';
-import { filters } from '../../utils/filters';
-import './filter-nav.scss';
+import { filters } from '../../config/filters';
+import '../../css/nav.scss';
 
 class FilterNav extends Component {
 
@@ -13,6 +13,7 @@ class FilterNav extends Component {
 
     this.state = {
       filterIndex: 0,
+      hoverFilter: -1,
       selectedNav: null
     }
   }
@@ -41,8 +42,21 @@ class FilterNav extends Component {
     this.props.handleNavChange(nav);
   }
 
+  filterHover = idx => {
+    // const filter = ev.target.eventKey;
+    this.setState({
+      hoverFilter: idx
+    })
+  }
+
+  dropHover = ev => {
+    this.setState({
+      hoverFilter: -1
+    })
+  }
+
   render () {
-    const { filterIndex, selectedNav } = this.state;
+    const { filterIndex, selectedNav, hoverFilter } = this.state;
     const activeFilter = filters[filterIndex];
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
@@ -54,7 +68,9 @@ class FilterNav extends Component {
         >
           <span className="label">Filter By:</span>
           {filters.map((filter, index) => (
-            <Nav.Item key={filter.name}>
+            <Nav.Item key={index}
+                onMouseEnter={() => this.filterHover(index)} 
+                onMouseLeave={this.dropHover}>
               <Nav.Link eventKey={index}>{filter.name}</Nav.Link>
             </Nav.Item>
             )
@@ -70,9 +86,10 @@ class FilterNav extends Component {
                 <div key={option.tag} id={option.tag} className={cls} onClick={() => this.handleNavClick(option)}>
                     <Image  
                         publicId={`${option.thumbnail}`}
-                        height="100"
+                        dpr="auto"
+                        responsive
+                        height="80"
                         crop="fit"
-                        quality="80"
                     >
                         <Transformation quality="auto" fetchFormat="auto" />
                         <Transformation defaultImage={defaultImg} />
@@ -81,6 +98,9 @@ class FilterNav extends Component {
                 </div>
               );
             })}
+          </div>
+          <div className="group-description">
+            {hoverFilter >= 0 && (filters[hoverFilter].description)}
           </div>
         {selectedNav && (
           <div className="current-nav">

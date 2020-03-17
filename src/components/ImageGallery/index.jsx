@@ -130,10 +130,9 @@ class ImageGallery extends Component {
                     <Image 
                       className={cls}
                       publicId={picture.public_id}
-                      height="80"
-                      crop="fit"
                       onClick={() => this.openImage(index)}
                     >
+                      <Transformation height="100" width="100" crop="fill" />
                       <Transformation defaultImage={defaultImg} />
                     </Image>
                   </div>

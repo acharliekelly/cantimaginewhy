@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Modal from 'react-bootstrap/Modal';
-import { encode } from '../../utils/forms';
+import { encode, formsTarget } from '../../utils/system';
 
 // import 'bootstrap/dist/css/bootstrap.min.css'; // imported by App.js
 
@@ -18,8 +18,8 @@ export const OrderForm = props => {
   const { imageId, price, closeForm } = props;
   const imgRef = imageId.split('/')[1];
   return (
-    <Form name="orderForm" className="order-form">
-      <input type="hidden" name="form-name" value="order-form" />
+    <Form name="orderForm" className="order-form" action={formsTarget} method="POST">
+      {/* <input type="hidden" name="form-name" value="order-form" /> */}
       <InputGroup className="mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text>Name:</InputGroup.Text>
@@ -91,13 +91,17 @@ export class StatefulOrderForm extends React.Component {
   }
 
   handleSubmit = e => {
-    fetch('/', {
+    const { submitSuccess, submitFail } = this.props;
+    fetch(formsTarget, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: encode({ 'form-name': 'order-form', ...this.state })
     })
-    .then(this.props.submitSuccess)
-    .catch(error => alert(error));
+    .then(submitSuccess)
+    .catch(error => {
+      console.error(error);
+      submitFail();
+    })
     e.preventDefault();
   }
 

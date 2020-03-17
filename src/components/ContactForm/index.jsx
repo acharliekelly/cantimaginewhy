@@ -1,41 +1,44 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { encode } from '../../utils/forms';
+import { encode, formsTarget } from '../../utils/system';
 
 import './forms.scss';
 
 
 
 
-export const ContactForm = () => (
-  <Form className="contact-form" >
-    <input type="hidden" name="form-name" value="contact-form" />
-    <Form.Group controlId="contactForm.name">
-      <Form.Label>Name:</Form.Label>
-      <Form.Control type="text" />
-    </Form.Group>
-    <Form.Group controlId="contactForm.email">
-      <Form.Label>Email:</Form.Label>
-      <Form.Control type="email" />
-    </Form.Group>
-    <Form.Group controlId="contactForm.reason">
-      <Form.Label>Reason:</Form.Label>
-      <Form.Control as="select" >
-        <option>General</option>
-        <option>Report Problem</option>
-      </Form.Control>
-    </Form.Group>
-    <Form.Group controlId="contactForm.message">
-      <Form.Label>Message:</Form.Label>
-      <Form.Control 
-        as="textarea" 
-        rows="5" 
-      />
-    </Form.Group>
-    <Button variant="dark" type="submit">Submit</Button>
-  </Form>
-)
+export const ContactForm = () => {
+
+  return (
+    <Form className="contact-form" action={formsTarget} >
+      <input type="hidden" name="form-name" value="contact-form" />
+      <Form.Group controlId="contactForm.name">
+        <Form.Label>Name:</Form.Label>
+        <Form.Control type="text" />
+      </Form.Group>
+      <Form.Group controlId="contactForm.email">
+        <Form.Label>Email:</Form.Label>
+        <Form.Control type="email" />
+      </Form.Group>
+      <Form.Group controlId="contactForm.reason">
+        <Form.Label>Reason:</Form.Label>
+        <Form.Control as="select" >
+          <option>General</option>
+          <option>Report Problem</option>
+        </Form.Control>
+      </Form.Group>
+      <Form.Group controlId="contactForm.message">
+        <Form.Label>Message:</Form.Label>
+        <Form.Control 
+          as="textarea" 
+          rows="5" 
+        />
+      </Form.Group>
+      <Button variant="dark" type="submit">Submit</Button>
+    </Form>
+  )
+}
 
 export class StatefulContactForm extends React.Component {
   constructor (props) {
@@ -49,7 +52,7 @@ export class StatefulContactForm extends React.Component {
   }
 
   handleSubmit = e => {
-    fetch('/', {
+    fetch(formsTarget, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: encode({ 'form-name': 'contact-form', ...this.state })

@@ -1,10 +1,22 @@
 // filters.js
+/**
+ * Structure:
+ * name
+ * description
+ * options:
+ * - name
+ * - tag
+ * - thumbnail
+ * - description
+ * - sortField
+ */
 export const filters = [
   {
     "name": "Location",
+    "description": "Filter by where image was painted",
     "options": [
       {
-        "name": "Downtown Boston",
+        "name": "Boston",
         "tag": "downtown-boston",
         "thumbnail": "art/esplanade-sunset_2018",
         "description": "Scenes from Downtown Boston",
@@ -49,12 +61,13 @@ export const filters = [
   },
   {
     "name": "Medium",
+    "description": "Filter by method (pencil, watercolor, etc)",
     "options": [
       {
         "name": "Pencil",
         "tag": "pencil",
         "thumbnail": "art/winter-house",
-        "description": "Graphite / Colored Pencil",
+        "description": "Graphite / Colored Pencil / WC Pencil",
         "sortField": ".caption"
       },
       {
@@ -82,6 +95,7 @@ export const filters = [
   },
   {
     "name": "Surface",
+    "description": "Filter by type of surface, as opposed to method",
     "options": [
       {
         "name": "Paper",
@@ -99,12 +113,13 @@ export const filters = [
         "name": "Panel",
         "tag": "panel",
         "thumbnail": "art/autumn_woods",
-        "description": "Painted on panel"
+        "description": "Painted on clay surface"
       },
     ]
   },
   {
     "name": "Style",
+    "description": "Different artistic styles used",
     "options": [
       {
         "name": "Triptych",
@@ -140,12 +155,13 @@ export const filters = [
         "name": "Plein Air",
         "tag": "en plein air",
         "thumbnail": "art/early_fall_mt_feake",
-        "description": "Painted on site"
+        "description": "Painted on site, instead of from a photo"
       }
     ]
   },
   {
     "name": "Season",
+    "description": "Filter by what season the image comes from",
     "options": [
       {
         "name": "Summer",
@@ -175,6 +191,7 @@ export const filters = [
   },
   {
     "name": "Color",
+    "description": "Filter by which colors appear dominant in the image",
     "options": [
       {
         "name": "Blue",
@@ -193,11 +210,18 @@ export const filters = [
         "tag": "red",
         "thumbnail": "art/winter-holidays-card-2015",
         "description": "Images with some version of red in them"
+      },
+      {
+        "name": "Yellow",
+        "tag": "yellow",
+        "thumbnail": "",
+        "description": "Images with some amount of yellow in them"
       }
     ]
   },
   {
     "name": "Availability",
+    "description": "Filter by availability of images for purchase or printing",
     "options": [
       {
         "name": "Original for Sale",
@@ -215,7 +239,7 @@ export const filters = [
         "name": "Viewing Only",
         "tag": "nfs",
         "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-        "description": "You can look at these"
+        "description": "You can look at these, but I have neither originals for sale, nor any derived products available for purchase."
       }
     ]
   }

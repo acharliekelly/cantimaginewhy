@@ -1,7 +1,19 @@
 // albums.js
+/**
+ * Structure:
+ * name
+ * description
+ * albums:
+ * - name
+ * - tag
+ * - thumbnail
+ * - description
+ * - sortField
+ */
 export const albumGroups = [
   {
-    "name": "Recent (2016 - Present)",
+    "name": "Recent Work",
+    "description": "Artwork completed since 2016",
     "albums": [
       {
         "name": "Plein Air",
@@ -24,13 +36,13 @@ export const albumGroups = [
         "description": "Recent attempts at portraiture",
         "sortField": ".alb-order"
       },
-      {
-        "name": "Watchmen",
-        "tag": "watchmen",
-        "thumbnail": "nfs/watchmen",
-        "description": "Suddenly inspired to draw some comic book characters",
-        "sortField": ".alb-order"
-      },
+      // {
+      //   "name": "Watchmen",
+      //   "tag": "watchmen",
+      //   "thumbnail": "nfs/watchmen",
+      //   "description": "Suddenly inspired to draw some comic book characters",
+      //   "sortField": ".alb-order"
+      // },
       {
         "name": "Name Tags",
         "tag": "nametag",
@@ -43,15 +55,16 @@ export const albumGroups = [
         "tag": "illumination",
         "thumbnail": "nfs/michele-cantara_2018",
         "description": "Like name tags, but bigger",
-        "sortField": ".year"
+        "sortField": ".alb-order"
       },
     ]
   },
   {
-    "name": "Older (2010 - 2015)",
+    "name": "Older Work",
+    "description": "Artwork completed between 2010 - 2015",
     "albums": [
       {
-        "name": "Scenery",
+        "name": "Landscapes",
         "tag": "scenery-old",
         "thumbnail": "art/salisbury-pond_2011",
         "description": "Painted from a photograph",

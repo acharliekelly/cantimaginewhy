@@ -11,6 +11,7 @@ export const loadImageProps = imageObj => {
       id: imgId,
       moreInfo: true,
       hasContext: imageObj.hasOwnProperty('context'),
+      showOptions: imgId.startsWith('art/'),
       title: getPictureProperty(imageObj, 'caption', 'Untitled'),
       description: getPictureProperty(imageObj, 'alt'),
       location: getPictureProperty(imageObj, 'location'),

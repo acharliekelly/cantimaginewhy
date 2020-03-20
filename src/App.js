@@ -20,6 +20,7 @@ import ImageZoom from './components/ImageZoom/';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
+
 import './css/dev.scss';
 import { allowDevMode } from './utils/system';
 

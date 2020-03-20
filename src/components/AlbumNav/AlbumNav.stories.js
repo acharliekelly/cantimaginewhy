@@ -2,18 +2,18 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AlbumNav from './';
 
-import '../FilterNav/filter-nav.scss';
+import '../../css/nav.scss';
 
 const mockNavChange = tagName => {
-  console.log('Filter has changed to ' + tagName);
+  console.log('Album has changed to ' + tagName);
 }
 
 const mockClearGallery = () => {
   console.log('Gallery cleared');
 }
 
-const stories = storiesOf('FilterNav', module);
-stories.add('Filter Navigation', () => (
+const stories = storiesOf('AlbumNav', module);
+stories.add('Album Navigation', () => (
   <AlbumNav 
     handleNavChange={mockNavChange} 
     handleClearGallery={mockClearGallery}  

@@ -100,6 +100,7 @@ class AlbumNav extends Component {
             })}
           </div>
           <div className="group-description">
+            <span>&nbsp;</span>
             {hoverGroup >= 0 && (albumGroups[hoverGroup].description)}
           </div>
         {selectedNav && (

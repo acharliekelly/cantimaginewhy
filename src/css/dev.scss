@@ -1,6 +1,8 @@
 // Only show when in development environment and Dev mode
 
 .dev-mode {
+
+  /* DEV STUFF */
   .todo {
     font-family: 'Courier New', Courier, monospace;
     color: #0ff;
@@ -34,32 +36,60 @@
   }
 
 
-  .menu {
-    outline: thin black solid;
+  /* MENU */
 
-    .nav-grid {
-      outline: red thin dashed;
-      .left-col {
-        outline: thin green solid;
-      }
-      .right-col {
-        outline: thin blue solid;
+  $menu-edge: red;
+  $logo-bkg: orange;
+  $logo-hvr: orangered;
+  $social-edge: pink;
+  $nav-edge: #0cc;
+
+  .menu {
+    outline: thin $menu-edge solid;
+
+    .site-logo {
+      border-radius: 0;
+      border-color: $logo-bkg;
+      background-color: $logo-bkg;
+      &:hover {
+        border-color: $logo-hvr;
+        background-color: $logo-hvr;
       }
     }
+
+    .nav {
+      outline: 2px solid $nav-edge;
+    }
+
+    .social {
+      outline: thin solid $social-edge;
+    }
+   
   }
 
+
+  // MAIN CONTENT
+  $content-edge: #000;
+
   .content {
-    outline: thin black solid;
+    outline: thin $content-edge solid;
   
   
     header {
       outline: thin orange solid;
   
     }
+
+
   
+
+    // DISPLAY
     .display-area {
       outline: thin green dashed;
 
+
+
+      // GALLERY
       .gallery {
         outline: thin blue solid;
       }
@@ -68,7 +98,9 @@
         outline: thin red solid;
 
         .image-nav-btn {
-          outline: thin gray dashed;
+          outline: thin silver solid;
+          background-color: white;
+          opacity: 0.4;
         }
 
         .image-view {
@@ -79,5 +111,11 @@
   }
   
   
+  // FOOTER
+  $footer-txt: yellow;
+  .footer {
+    color: $footer-txt;
+  }
   
 }
+

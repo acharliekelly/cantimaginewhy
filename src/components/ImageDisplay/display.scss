@@ -1,25 +1,32 @@
-.image-box {
-  width: 60vw;
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 1fr;
 
+// the whole display area
+.image-box {
+  margin: 0 1em;
+
+  // nav buttons
   .image-nav-btn {
-    // margin-top: 30%;
+    
     cursor: pointer;
-    * {
-      margin-top: 5em;
+    height: 100%;
+    z-index: 10;
+    color: black;
+    padding-top: 30%;
+
+    &.prev-btn {
+     float: left;
+
+    }
+    &.next-btn {
+      float: right;
+      
     }
   }
-
-  .prev-btn * {
-    margin-left: 1em;
-  }
-
   
 }
+
+// Main image
 .image-view {
-  
+  display: inline;
   // margin: 10px 5px;
   text-align: center;
   border-radius: 5px;
@@ -28,37 +35,40 @@
     cursor: pointer;
   }
 
-  .process-image {
-    z-index: 100;
-    margin-top: -400px;
-    text-align: center;
-    width: 600px;
-    height: 400px;
-    background-color: black;
-    cursor: pointer;
+  
 
-    opacity: .9;
+}
 
-    img {
-      opacity: 1;
-      margin: 10px auto;
-    }
+// overlay
+.process-image {
+  z-index: 100;
+  margin-top: -400px;
+  text-align: center;
+  width: 600px;
+  height: 400px;
+  background-color: black;
+  cursor: pointer;
 
-    .process-ctrl {
-      
-      opacity: 1;
-      height: 1.2em;
-      padding: 0.1em;
-      margin-top: -20px;
+  opacity: .9;
 
-      .arrow-btn {
-        display: inline;  
-      }
-    }
-
-    
-
+  img {
+    opacity: 1;
+    margin: 10px auto;
   }
+
+  .process-ctrl {
+    
+    opacity: 1;
+    height: 1.2em;
+    padding: 0.1em;
+    margin-top: -20px;
+
+    .arrow-btn {
+      display: inline;  
+    }
+  }
+
+  
 
 }
   
@@ -86,26 +96,33 @@
     font-weight: normal;
   }
 
-  .label {
-    font-size: 1em;
-    font-weight: normal;
-    text-align: right;
-    color: #666;
-  }
+  
   .info {
-    font-size: 1.2em;
-    text-align: left;
-    font-weight: bold;
-    color: #000;
+    
+
+    .label {
+      font-size: 1em;
+      font-weight: normal;
+      text-align: right;
+      color: #666;
+    }
+
+    .data {
+      font-size: 1.2em;
+      text-align: left;
+      color: #000;
+      margin-left: 2em;
+    }
   }
 }
 
 .feature {
-  margin: 0 2px;
+  margin-left: 60%;
   padding: 2px 4px;
   border-radius: 6px;
   text-align: center;
   cursor: pointer;
+  background-color: #666;
   color: #fff;
   &:hover {
     color: #fff;
@@ -134,8 +151,8 @@
   background-color: #00f;
 }
 .nfs, .nfs:hover {
-  background-color: #000;
-  color: #fff;
+  color: #666;
+  margin-left: 1em;
 }
 
 .close-btn, .close-btn:hover {

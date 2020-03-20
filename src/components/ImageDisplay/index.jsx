@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ArrowButton } from '../Buttons';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+// import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { ArrowButton } from '../Buttons';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import  { faaLookup } from '../../utils/fineArtApi';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 import { nextImageId, previousImageId } from '../../utils/processUtils';
 import { loadImageProps } from '../../utils/imageContext';
-import { OrderForm } from '../OrderForm/';
+import { StatefulOrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
 
 import './display.scss';
@@ -21,7 +25,8 @@ class ImageDisplay extends Component {
     super(props);
     this.state = {
       orderFormOpen: false,
-      processImageId: null
+      processImageId: null,
+      currentIndex: 0
     }
   }
 
@@ -96,8 +101,7 @@ class ImageDisplay extends Component {
   showOrderForm = ev => {
     ev.preventDefault();
     this.setState({
-      orderFormOpen: true,
-      processOpen: false
+      orderFormOpen: true
     })
   }
 
@@ -112,163 +116,168 @@ class ImageDisplay extends Component {
     ev.preventDefault();
     const { orderFormOpen } = this.state;
     this.setState({
-      orderFormOpen: !orderFormOpen,
-      processOpen: false
+      orderFormOpen: !orderFormOpen
     })
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (prevProps.currentImage !== this.props.currentImage) {
-      this.setState({
-        orderFormOpen: false,
-        processImageId: null
-      })
+    if ((prevProps.currentImage !== this.props.currentImage) 
+        || (prevProps.index !== this.props.index)) {
+          this.setState({
+            orderFormOpen: false,
+            processImageId: null
+          })
     }
   }
 
+  handleNext = ev => {
+    ev.preventDefault();
+    const { moveNext } = this.props;
+    // console.log('Next clicked.')
+    moveNext(ev);
+  }
+
+  handlePrevious = ev => {
+    ev.preventDefault();
+    const { movePrevious } = this.props;
+    // console.log('Prev clicked.')
+    movePrevious(ev);
+  }
+
   render () {
-    const { currentImage, moveNext, movePrevious } = this.props;
+    const { currentImage } = this.props;
     const { orderFormOpen, processImageId } = this.state;
     if (currentImage) {
       const info = loadImageProps(currentImage);
       return (
         <CloudinaryContext cloudName="cantimaginewhy">
           <div className="image-box">
-            <div className="image-nav-btn prev-btn" onClick={movePrevious}>
-              {/* <FontAwesomeIcon icon="chevron-circle-left" size="lg" /> */}
-              <ArrowButton direction="left" />
-            </div>
             <div className="image-view">
+              <span className="image-nav-btn prev-btn" onClick={this.handlePrevious}>
+                <FontAwesomeIcon icon="chevron-left" size="7x" />
+              </span>
               {/* Main image */}
-              <Image 
-                className="display-image"
-                publicId={info.id}
-                width="600"
-                height="400"
-                crop="pad"
-                onClick={this.openLightbox}
-              />
-              {/* Process Images */}
-              {processImageId && (
-                <div 
-                  className="process-image"
-                  onClick={this.closeProcess}
-                >
-                  
-                  <Image 
-                    publicId={processImageId}
-                    onClick={this.openLightbox}
-                    width="500"
-                    height="350"
-                    crop="pad"
-                    background="black"
-                  />
-                  <div className="process-ctrl">
-                    <button className="prev-btn" onClick={this.previousProcessImage}>&lt;</button>
-                    <button className="zoom-btn" onClick={this.processLightbox}>Zoom</button>
-                    <button className="next-btn" onClick={this.nextProcessImage}>&gt;</button>
-                  </div>
-                </div>
-                
-              )}
-            </div>
-            <div className="image-nav-btn next-btn" onClick={moveNext}>
-              {/* <FontAwesomeIcon icon="chevron-circle-right" size="lg" /> */}
-              <ArrowButton direction="right" />
-            </div>
-            {/* Info Section */}
-            <div className="spacer" />
-            {info.hasContext && (
-              <div className="image-info">
-                <div className="title">{info.title || 'Untitled'}</div>
-                <div className="descript">{info.description}</div>
-                {info.moreInfo && (
-                  <div className="more-info">
-                    {info.location && (
-                      <div className="info">
-                      <span className="label">Location: </span>
-                      <span className="data">{info.location}</span>
+              <Image
+                  className="display-image"
+                  publicId={info.id}
+                  onClick={this.openLightbox}
+                  height="400"
+                  width="600"
+                  crop="lpad"
+                  background="white"
+                />
+                {/* Process image */}
+                {processImageId && (
+                  <div className="process-image" onClick={this.closeProcess} >
+                    <Image 
+                      publicId={processImageId}
+                      onClick={this.openLightbox}
+                      width="500"
+                      height="350"
+                      crop="pad"
+                      background="black"
+                    />
+                    <div className="process-ctrl">
+                      <button className="prev-btn" onClick={this.previousProcessImage}>&lt;</button>
+                      <button className="zoom-btn" onClick={this.processLightbox}>Zoom</button>
+                      <button className="next-btn" onClick={this.nextProcessImage}>&gt;</button>
                     </div>
-                    )}
-                    {info.year && (
-                    <div className="info">
-                      <span className="label">Year: </span>
-                      <span className="data">{info.year}</span>
-                    </div>
-                    )}
-                    {info.materialInfo && (
-                    <div className="info">
-                      <span className="label">Material: </span>
-                      <span className="data">{info.size}, {info.medium}</span>
-                    </div>
-                    )}
-    
-                      {/* Buttons */}
-    
-                    {currentImage.public_id.startsWith('art/') && (
-                      <div className="options">
-                        <span className="label">Original:</span>
-                        {info.forSale && (
-                          <a 
-                            className="feature buy-orig" 
-                            href="/" 
-                            onClick={this.showOrderForm}
-                            >
-                              ${info.price}
-                          </a>
-                        )}
-                        {!info.forSale && (
-                          <a 
-                            className="feature nfs" 
-                            href="/" 
-                            onClick={this.suppressLink}
-                          >
-                            Sold
-                          </a>
-                        )}
-                      </div>
-                    )}
-                    
-                    {info.forPrint && (
-                      <div className="options">
-                        <span className="label">Derived Products: </span>
-                        <a 
-                          className="feature buy-print" 
-                          rel="noopener noreferrer" 
-                          target="_blank" 
-                          href={faaLookup(info.id)}
-                          >Available</a>
-                      </div>
-                    )}
-                    { info.processImgs && (
-                      <div className="options">
-                        <ProgressGallery 
-                          refKey={info.refKey} 
-                          imageHeight={60}
-                          selectImage={this.setProcessImage} 
-                        />
-                      </div>
-                    )}
-                    {(orderFormOpen && info.forSale) && (
-                      <div className="form">
-                        <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
-                        <OrderForm 
-                          className="inner-form"
-                          imageId={info.id}
-                          price={info.price}
-                          closeForm={this.hideOrderForm}
-                        />
-                      </div>
-                    )}
                   </div>
                 )}
-                {!info.moreInfo && (
-                  <div className="todo">Collapse this block</div>
-                )}
-              </div>
-            )}
-            <div className="spacer" />
+              <span className="image-nav-btn next-btn" onClick={this.handleNext}>
+                <FontAwesomeIcon icon="chevron-right" size="7x" />
+              </span>
+            </div>
+            
           </div>
+        {info.hasContext && (
+          <Container className="image-info">
+            <Row>
+              <Col className="title">{info.title}</Col>
+            </Row>
+            <Row>
+              <Col className="descript">{info.description}</Col>
+            </Row>
+          {info.location && (
+            <Row className="info">
+              <Col className="label">Location: </Col>
+              <Col className="data">{info.location}</Col>
+            </Row>
+          )}
+          {info.year && (
+          <Row className="info">
+            <Col className="label">Year: </Col>
+            <Col className="data">{info.year}</Col>
+          </Row>
+          )}
+          {info.materialInfo && (
+          <Row className="info">
+            <Col className="label">Material: </Col>
+            <Col className="data">{info.medium}, {info.size}</Col>
+          </Row>
+          )}
+          </Container>
+        )}
+        {info.showOptions && (
+          <Container className="image-info">
+            <Row className="info">
+              <Col className="label">Original Picture: </Col>
+              {info.forSale && (
+              <Col className="data">$ {info.price}</Col>
+              )}
+              {/* {info.forSale && (
+              <Col className="btn">
+                <Button className="feature" onClick={this.showOrderForm}>Buy</Button>
+              </Col>
+              )} */}
+              {!info.forSale && (
+              <Col className="nfs">Not Available</Col>
+              )}
+            </Row>
+            <Row className="info">
+              <Col className="label">Prints &amp; Whatnot: </Col>
+              {info.forPrint && (
+                <Col className="data">Available</Col>
+              )}
+              {info.forPrint && (
+                <Col className="btn">
+                  <a 
+                    className="feature btn btn-primary" 
+                    rel="noopener noreferrer" 
+                    target="_blank" 
+                    href={faaLookup(info.id)}>Buy</a>
+                </Col>
+              )}
+              {!info.forPrint && (
+                  <Col className="nfs">Not Available</Col>
+              )}
+            </Row>
+            { info.processImgs && (
+            <Row>
+              <Col className="options">
+                <ProgressGallery 
+                  refKey={info.refKey} 
+                  imageHeight={60}
+                  selectImage={this.setProcessImage} 
+                />
+              </Col>
+            </Row>
+            )}
+            {(orderFormOpen && info.forSale) && (
+            <Row>
+              <Col className="form">
+                <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
+                <StatefulOrderForm 
+                  className="inner-form"
+                  imageId={info.id}
+                  price={info.price}
+                  closeForm={this.hideOrderForm}
+                />
+              </Col>
+            </Row>
+            )}
+          </Container>
+        )}
         </CloudinaryContext>
       );
     } else {

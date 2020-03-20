@@ -100,6 +100,7 @@ class FilterNav extends Component {
             })}
           </div>
           <div className="group-description">
+            <span>&nbsp;</span>
             {hoverFilter >= 0 && (filters[hoverFilter].description)}
           </div>
         {selectedNav && (

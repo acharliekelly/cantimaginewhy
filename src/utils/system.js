@@ -1,12 +1,20 @@
 // System Utilities
 
 
-export const formsTarget = 'https://formsubmit.co/cant.imagine.why00@gmail.com';
 
 export const allowDevMode = () => {
   return (process.env.NODE_ENV === 'development');
 }
 
+const envIcons = {
+  'development': 'cog',
+  'test': 'check',
+  'production': 'heart'
+}
+
+export const getEnvIcon = () => {
+  return envIcons[process.env.NODE_ENV];
+}
 
 
 export const getEnvName = () => {
@@ -24,13 +32,3 @@ export const getEnvClass = () => {
   return process.env.NODE_ENV;
 }
 
-
-/**
- * used in Netlify forms
- * @param {*} data 
- */
-export const encode = data => {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
-}

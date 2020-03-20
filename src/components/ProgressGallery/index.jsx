@@ -57,7 +57,7 @@ class ProgressGallery extends React.Component {
               height={imageHeight}
               onClick={() => selectImage(image.public_id)}
             >
-              <Transformation height={imageHeight} crop="thumb" />
+              <Transformation height={imageHeight} crop="fill" />
               <Transformation defaultImage={defaultCPI} />
             </Image>
           ))}     

@@ -6,7 +6,8 @@ import {
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronLeft, faChevronRight, 
+  faCheck, faCog, faHeart } from '@fortawesome/free-solid-svg-icons';
 // import Lightbox from 'react-image-lightbox';
 
 import Menu from './components/Menu/';
@@ -65,7 +66,9 @@ const App = () => {
 
   const devCls = developmentMode ? ' dev-mode' : '';
 
-  library.add(fab, faChevronCircleLeft, faChevronCircleRight);
+  // Initialize FontAwesome library
+  library.add(fab, faBars, faChevronLeft, faChevronRight, faCheck, faCog, faHeart);
+
   return (
     <div className={'page-container' + devCls}>
       <Router basename='/'>

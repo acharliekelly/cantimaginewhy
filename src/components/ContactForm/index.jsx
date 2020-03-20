@@ -1,15 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { encode, formsTarget } from '../../utils/system';
+import { 
+  encode, 
+  SubmissionMethod, 
+  formSubmissionTarget,
+  handleFormSuccess,
+  handleFormFail 
+} from '../../utils/forms';
 
 import './forms.scss';
 
 
 
 
-export const ContactForm = () => {
-
+export const ContactForm = props => {
+  const { formSubmitType } = props;
+  const formsTarget = formSubmissionTarget(formSubmitType);
   return (
     <Form className="contact-form" action={formsTarget} >
       <input type="hidden" name="form-name" value="contact-form" />
@@ -40,6 +48,32 @@ export const ContactForm = () => {
   )
 }
 
+ContactForm.propTypes = {
+  /**
+   * function to close the form
+   */
+  closeForm: PropTypes.func,
+  /**
+   * function for successful submission
+   */
+  submitSuccess: PropTypes.func,
+  /**
+   * function for failed submission
+   */
+  submitFail: PropTypes.func,
+  /**
+   * how to submit form
+   */
+  formSubmitType: PropTypes.number
+};
+
+ContactForm.defaultProps = {
+  formSubmitType: SubmissionMethod.Undetermined,
+  submitSuccess: handleFormSuccess,
+  submitFail: handleFormFail
+}
+
+
 export class StatefulContactForm extends React.Component {
   constructor (props) {
     super(props);
@@ -52,13 +86,18 @@ export class StatefulContactForm extends React.Component {
   }
 
   handleSubmit = e => {
-    fetch(formsTarget, {
+    const { submitSuccess, submitFail, formSubmitType } = this.props;
+    const formAction = formSubmissionTarget(formSubmitType);
+    fetch(formAction, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: encode({ 'form-name': 'contact-form', ...this.state })
     })
-    .then(() => alert('Success!'))
-    .catch(error => alert(error));
+    .then(submitSuccess)
+    .catch(error => {
+      console.error(error);
+      submitFail();
+    })
     e.preventDefault();
   }
 
@@ -75,11 +114,11 @@ export class StatefulContactForm extends React.Component {
         <input type="hidden" name="form-name" value="contact-form" />
         <Form.Group controlId="contactForm.name">
           <Form.Label>Name:</Form.Label>
-          <Form.Control type="text" placeholder="Your Name" value={name} onChange={this.handleChange} />
+          <Form.Control type="text" value={name} onChange={this.handleChange} />
         </Form.Group>
         <Form.Group controlId="contactForm.email">
           <Form.Label>Email:</Form.Label>
-          <Form.Control type="email" placeholder="your.name@email.com" value={email} onChange={this.handleChange} />
+          <Form.Control type="email" value={email} onChange={this.handleChange} />
         </Form.Group>
         <Form.Group controlId="contactForm.reason">
           <Form.Label>Reason:</Form.Label>
@@ -92,7 +131,6 @@ export class StatefulContactForm extends React.Component {
           <Form.Label>Message:</Form.Label>
           <Form.Control 
             as="textarea" 
-            placeholder="Enter your message here" 
             rows="5" 
             value={message}
             onChange={this.handleChange}
@@ -103,3 +141,25 @@ export class StatefulContactForm extends React.Component {
     );
   }
 }
+
+StatefulContactForm.propTypes = {
+  formSubmitType: PropTypes.number,
+  /**
+   * function to close the form
+   */
+  closeForm: PropTypes.func,
+  /**
+   * function for successful submission
+   */
+  submitSuccess: PropTypes.func,
+  /**
+   * function for failed submission
+   */
+  submitFail: PropTypes.func,
+};
+
+StatefulContactForm.defaultProps = {
+  formSubmitType: SubmissionMethod.Undetermined,
+  submitSuccess: handleFormSuccess,
+  submitFail: handleFormFail
+};

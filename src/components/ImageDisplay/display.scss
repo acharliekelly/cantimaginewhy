@@ -1,16 +1,16 @@
 
 // the whole display area
 .image-box {
-  margin: 0 1em;
+  margin: 0;
 
   // nav buttons
   .image-nav-btn {
     
     cursor: pointer;
-    height: 100%;
-    z-index: 10;
+    // height: 100%;
+    // z-index: 10;
     color: black;
-    padding-top: 30%;
+    padding-top: 20%;
 
     &.prev-btn {
      float: left;
@@ -27,6 +27,7 @@
 // Main image
 .image-view {
   display: inline;
+  margin: 0;
   // margin: 10px 5px;
   text-align: center;
   border-radius: 5px;

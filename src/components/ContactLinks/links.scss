@@ -1,0 +1,48 @@
+.links {
+  li {
+    list-style-type: none;
+  }
+  &.horiz li {
+    display: inline;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  a:hover {
+    color: #036;
+  }
+
+  img, svg {
+    margin-right: 5px;
+  }
+  img {
+    height: 2rem;
+  }
+
+  .link-text {
+    text-decoration: none;
+    padding: 0 1em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .mix-hide {
+    .link-text {
+      visibility: hidden;
+    }
+
+    &:hover .link-text {
+     visibility: visible;
+    }
+  }
+
+  .mix-show .link-text {
+    visibility: visible;
+  }
+
+  
+}

@@ -4,8 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import SocialMediaLinks from '../SocialMediaLinks/';
-import EnvMode from '../EnvMode/'
+import ContactLinks from '../ContactLinks/';
+// import EnvMode from '../EnvMode/'
 import { fetchGallery } from '../../utils/imageApi';
 import { selectLightboxUtil} from '../../utils/imageUtils';
 
@@ -13,7 +13,7 @@ import { selectLightboxUtil} from '../../utils/imageUtils';
 import './menu.scss';
 
 const Menu = props => {
-  const { selectLightbox, devMode } = props;
+  const { selectLightbox } = props;
   const logoId = 'ciw4';
 
   const openZoom = () => {
@@ -39,9 +39,8 @@ const Menu = props => {
             <Nav.Link href="#contact">Contact</Nav.Link>
           </Nav>
         </Container>
-        <Container className="pull-right">
-          <SocialMediaLinks />
-          <EnvMode type="icon" devMode={devMode} />
+        <Container className="justify-content-end">
+          <ContactLinks layout="horiz" displayType="icon" size={2} />
         </Container>
       </Navbar>
     </CloudinaryContext>

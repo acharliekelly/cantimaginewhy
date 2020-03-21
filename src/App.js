@@ -2,27 +2,24 @@ import React, { useState } from 'react';
 import { 
   HashRouter as Router, 
   Route
-} from 'react-router-dom';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faBars, faChevronLeft, faChevronRight, 
-  faCheck, faCog, faHeart } from '@fortawesome/free-solid-svg-icons';
-// import Lightbox from 'react-image-lightbox';
+} from 'react-router-dom';  
 
 import Menu from './components/Menu/';
+import EnvMode from './components/EnvMode/';
 import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
 import HomePage from './views/Home/';
 import AboutPage from './views/About/';
 import ArtworkPage from './views/Artwork/';
 import ImageZoom from './components/ImageZoom/';
+import { allowDevMode } from './utils/system';
+import { initializeLibrary } from './utils/faLibrary';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 
 import './css/dev.scss';
-import { allowDevMode } from './utils/system';
+
 
 const App = () => {
   const [ lightboxOpen, setLightboxOpen ] = useState(false);
@@ -68,12 +65,13 @@ const App = () => {
   const devCls = developmentMode ? ' dev-mode' : '';
 
   // Initialize FontAwesome library
-  library.add(fab, faBars, faChevronLeft, faChevronRight, faCheck, faCog, faHeart);
+  initializeLibrary();
 
   return (
     <div className={'page-container' + devCls}>
       <Router basename='/'>
-        <Menu selectLightbox={selectLightboxImage} devMode={toggleDevMode} />
+        <Menu selectLightbox={selectLightboxImage} />
+        <EnvMode type="icon" devMode={toggleDevMode} />
         <div className="content-wrapper">
           <Route exact path="/">
             <HomePage selectLightbox={selectLightboxImage} />

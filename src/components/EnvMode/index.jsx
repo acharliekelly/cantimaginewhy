@@ -22,6 +22,7 @@ const EnvMode = props => {
     <div className={`current-mode ${active} ${type}`}>
       {type === 'icon' ? iconMode(modeCls, devMode) : textMode(modeCls, devMode)}
     </div>
+    
   )
 }
 

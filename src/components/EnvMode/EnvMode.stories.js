@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import EnvMode from './';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck, faCog, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { initializeLibrary } from '../../utils/faLibrary';
 
 import './mode.scss';
 
@@ -10,7 +9,7 @@ const mockDevMode = () => {
   console.log('Dev Mode Toggled');
 }
 
-library.add(faCheck, faCog, faHeart);
+initializeLibrary();
 
 const stories = storiesOf('EnvMode', module);
 stories

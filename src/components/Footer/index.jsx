@@ -4,7 +4,7 @@ import './footer.scss';
 
 const Footer = () => (
   <div className="footer">
-    <span className="copyright">&copy;2019 by Charlie Kelly</span>
+    <span className="copyright">&copy;2020 by Charlie Kelly</span>
   </div>
 );
 

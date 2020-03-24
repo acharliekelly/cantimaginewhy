@@ -30,6 +30,12 @@
     }
   }
 
+  .url-text {
+    color: #224;
+    font-style: italic;
+    text-decoration: none !important;
+  }
+
   .mix-hide {
     .link-text {
       visibility: hidden;
@@ -42,6 +48,19 @@
 
   .mix-show .link-text {
     visibility: visible;
+  }
+
+  .mix-url {
+    .link-text {
+      visibility: visible;
+    }
+    .url-text {
+      padding-left: 3em;
+      visibility: hidden;
+    }
+    &:hover .url-text {
+      visibility: visible;
+    }
   }
 
   

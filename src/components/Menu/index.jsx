@@ -5,7 +5,6 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import ContactLinks from '../ContactLinks/';
-// import EnvMode from '../EnvMode/'
 import { fetchGallery } from '../../utils/imageApi';
 import { selectLightboxUtil} from '../../utils/imageUtils';
 
@@ -24,19 +23,19 @@ const Menu = props => {
 
   return (
     <CloudinaryContext className="menu-wrapper" cloudName="cantimaginewhy">
-      <Navbar expand="lg" bg="light">
+      <Navbar expand="lg" bg="light" className="justify-content-between">
         <Navbar.Brand>
           <Image publicId="logo_th" onClick={openZoom}>
             <Transformation height="80" width="80" radius="max" crop="scale" />
           </Image>
         </Navbar.Brand>
-        <Container>
-          <Nav className="mr-auto" defaultActiveKey="#home">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#artwork">Artwork</Nav.Link>
-            <Nav.Link href="#about">About</Nav.Link>
+        <Container className="justify-content-end">
+          <Nav >
+            <Nav.Link href="#/home">Home</Nav.Link>
+            <Nav.Link href="#/artwork">Artwork</Nav.Link>
+            <Nav.Link href="#/about">About</Nav.Link>
             <Nav.Link href="https://charlie-kelly.pixels.com" target="_blank" rel="noreferrer noopener">Shop</Nav.Link>
-            <Nav.Link href="#contact">Contact</Nav.Link>
+            <Nav.Link href="#/contact">Contact</Nav.Link>
           </Nav>
         </Container>
         <Container className="justify-content-end">

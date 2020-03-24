@@ -214,7 +214,7 @@ export const filters = [
       {
         "name": "Yellow",
         "tag": "yellow",
-        "thumbnail": "",
+        "thumbnail": "art/easter-card-2012",
         "description": "Images with some amount of yellow in them"
       }
     ]
@@ -239,8 +239,15 @@ export const filters = [
         "name": "Viewing Only",
         "tag": "nfs",
         "thumbnail": "nfs/eye_26745608572_o_zqbocw",
-        "description": "You can look at these, but I have neither originals for sale, nor any derived products available for purchase."
+        "description": "You can look at these"
       }
     ]
   }
-]
+];
+
+export const navDescription = `
+I've got a lot of artwork, and it's kind of hard to sort through. So, I've devised this 
+filtering system. On the top row are categories you can group by, such as medium 
+(eg. pencil, watercolor), or location (Boston, Maine). When you click one of the image buttons
+(eg 'Boston'), you'll see all my paintings from Downtown Boston. What you can do with each 
+painting varies by painting; some let you buy stuff, while others can just be looked at.`;

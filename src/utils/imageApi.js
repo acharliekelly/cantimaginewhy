@@ -234,14 +234,13 @@ const defaultSortFn = compareUploadDate;
 /**
  * Sorts gallery on field specified in sortField of album list
  * 
- * @param {*} nav nav object from albums.js or filters.js
- * @param {*} gallery the fetched object list to sort
+ * @param {string} fieldName string
+ * @param {Array} gallery the fetched object list to sort
  */
-export const sortGallery = (nav, gallery) => {
+export const sortByField = (gallery, fieldName) => {
   let sortFn = defaultSortFn;
-  if (nav.sortField) {
-    const field = nav.sortField;
-    switch (field) {
+  if (fieldName) {
+    switch (fieldName) {
       case '.year':
         sortFn = compareYear;
         break;
@@ -265,5 +264,20 @@ export const sortGallery = (nav, gallery) => {
   }
 
   return gallery.sort(sortFn);
+}
+
+/**
+ * Sorts gallery on field specified in sortField of album list
+ * 
+ * @param {object} nav nav object from albums.js or filters.js
+ * @param {Array} gallery the fetched object list to sort
+ */
+export const sortGallery = (nav, gallery) => {
+  if (nav.sortField) {
+    return sortByField(gallery, nav.sortField)
+  } else {
+    return sortByField(gallery);
+  }
+   
 }
 

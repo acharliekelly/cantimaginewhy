@@ -72,15 +72,29 @@ class ProgressGallery extends React.Component {
 }
 
 ProgressGallery.propTypes = {
+  /**
+   * the lookup reference key
+   */
   refKey: PropTypes.string.isRequired,
+  /**
+   * height of thumbnail
+   */
   imageHeight: PropTypes.number.isRequired,
-  selectImage: PropTypes.func.isRequired
+  /**
+   * callback for selecting an image
+   */
+  selectImage: PropTypes.func.isRequired,
+  /**
+   * 'horiz' or 'vert'
+   */
+  orientation: PropTypes.string
 }
 
 ProgressGallery.defaultProps = {
   refKey: 'missing_key',
   imageHeight: 80,
-  selectImage: selectLightboxUtil
+  selectImage: selectLightboxUtil,
+  orientation: 'horiz'
 }
 
 export default ProgressGallery;

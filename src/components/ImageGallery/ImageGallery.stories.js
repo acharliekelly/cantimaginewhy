@@ -4,7 +4,13 @@ import ImageGallery from './';
 
 import './gallery.scss';
 
+const mockAlbum = {
+  "name": "Scenery",
+  "tag": "scenery",
+  "thumbnail": "art/midwinter",
+  "description": "Painted from a photograph",
+  "sortField": ".year"
+}
+
 const stories = storiesOf('ImageGallery', module);
-stories
-  .add('Filtered Gallery', () => <ImageGallery galleryType={0} />)
-  .add('Album Gallery', ()=> <ImageGallery galleryType={1} />)
+stories.add('Gallery', () => <ImageGallery currentAlbum={mockAlbum} isGalleryEmpty={false} />)

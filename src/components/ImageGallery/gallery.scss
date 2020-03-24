@@ -9,8 +9,7 @@
 }
 
 .display-area {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  width: 100%;
 
   .gallery {
     display: flex;
@@ -18,7 +17,7 @@
     background-color: #ddd;
     border-radius: 0.3em;
     justify-content: center;
-    max-height: 60vh;
+    max-height: 100vh;
     overflow: auto;
 
     .thumbnail {

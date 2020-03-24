@@ -1,6 +1,12 @@
-// processUtils.js
-
-import { fetchGallery } from './imageApi';
+/**
+ * Process Utils
+ * 
+ * Tools for handling Process Images (photos of paintings in progress),
+ * based on table of image count by refKey, as opposed to Onsite Utils,
+ * which rely on pulling live data from Cloudinary. Using table is probably 
+ * less accurate, but much faster
+ * 
+ */
 
 const processData = {
   "caterpillar_hill": 4,
@@ -51,8 +57,7 @@ const processData = {
 const imageSeries = (referenceKey, imageCount) => {
   const series = [];
   const imgStr = `photos/onsite-${referenceKey}-`;
-  series.push(imgStr + 'view');
-  for (let i = 1; i <= imageCount; i++) {
+  for (let i = 0; i <= imageCount; i++) {
     series.push(imgStr + i);
   }
   series.push(imgStr + 'final');
@@ -76,89 +81,44 @@ export const generateSeries = referenceKey => {
   }
 }
 
-/**
- * Returns array of CPI strings for images in series
- * if validate, will check them against cloud library
- * @param {str} referenceKey 
- * @param {bool} validate 
- */
-export const getImageSeries = (referenceKey, validate = false) => {
-  if (validate) {
-    console.log('validating progress series')
-    initLibrary();
-    return validateSeries(referenceKey);
-  } else {
-    console.log('skipping series validation')
-    return generateSeries(referenceKey);
-  }
-}
-
-let library = [];
-
-const loadLibrary = () => {
-  fetchGallery('onsite')
-    .then(res => {
-      library = res.data.resources
-    })
-}
-
-
-const initLibrary = () => {
-  if (library.length === 0) {
-    loadLibrary();
-    console.log('loaded library with ' + library.length + ' images')
-    if (library.length > 0) {
-      console.log('first item: ', library[0]);
-    }
-    
-  }
-}
-
-// compare list data to imageSeries, remove missing items from series
-export const validateSeries = refKey => {
-  const series = generateSeries(refKey);
-  console.log('Generated Series: ' + series.length + ' images')
-  const validated = [];
-  series.forEach(imageId => {
-    console.log('validating: ' + imageId)
-    if (library.find(res => res.public_id === imageId)) {
-      validated.push(imageId);
+export const nextImageId = currentImageId => {
+  const refKey = currentImageId.split('-')[1];
+  const imgOrder = currentImageId.split('-')[2];
+  
+  let strNext = '0';
+  if (imgOrder.length === 1) { // imgOrder is a number
+    const nMax = lookupSeriesCount(refKey);
+    const nNext = parseInt(imgOrder) + 1;
+    if (nNext <= nMax) {
+      strNext = nNext.toString();
     } else {
-      console.log(imageId + ' not found');
+      strNext = 'final';
     }
-  })
-  console.log('validated ' + validated.length + ' of ' + series.length)
-  return validated;
+  } // else imgOrder is 'final', so next should be '0'
+  
+  return `photos/onsite-${refKey}-${strNext}`;
+  
 }
 
-
-
-/**
- * Returns array of resource objects
- * @param {*} refKey 
- */
-export const getSeriesData = refKey => {
-  initLibrary();
-  // filtered list of resources
-  const list = library.filter(res => (res.context.custom.ref === refKey))
-  return list;
-}
-
-
-
-// // assumes both are last part of progress image cpis
-// const progressSuffixSort = (strA, strB) => {
-//   if (strA === strB) return 0;
-//   if (strA === 'final') { // itemA is last
-//     return 1;
-//   } else if (strB === 'final') { // itemB is last
-//     return -1;
-//   } else if (strA === 'sale') {
-
-//   } else if (strB === 'sale') {
+export const previousImageId = currentImageId => {
+  const refKey = currentImageId.split('-')[1];
+  const imgOrder = currentImageId.split('-')[2];
+  let strNext = '0';
+  if (imgOrder.length === 1) { // imgOrder is a number
+    // return order - 1, or last image if 0
+    const nOrder = parseInt(imgOrder);
+    if (nOrder === 0) {
+      strNext = 'final';
+    } else {
+      strNext = (nOrder - 1).toString();
+    }
     
-//   } else { // both are numbers
-//     return strA.localeCompare(strB);
-//   }
-// }
+  } else { // imgOrder is a word
+    const nMax = lookupSeriesCount(refKey);
+    strNext = nMax.toString();
+  }
+  
+  return `photos/onsite-${refKey}-${strNext}`;
+}
+
 

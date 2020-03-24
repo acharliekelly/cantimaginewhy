@@ -13,7 +13,7 @@ const mockClearGallery = () => {
 const stories = storiesOf('FilterNav', module);
 stories.add('Filter Navigation', () => (
   <FilterNav 
-    handleNavChange={mockNavChange} 
-    handleClearGallery={mockClearGallery}  
+    updateSelectNav={mockNavChange} 
+    updateClearGallery={mockClearGallery}  
   />
 ));

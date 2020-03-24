@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
+import { selectLightboxUtil } from '../../utils/imageUtils';
 import { defaultCPI } from '../../utils/imageApi';
 import './process.scss';
 
@@ -56,7 +57,7 @@ class ProgressGallery extends React.Component {
               height={imageHeight}
               onClick={() => selectImage(image.public_id)}
             >
-              <Transformation height={imageHeight} crop="thumb" />
+              <Transformation height={imageHeight} crop="fill" />
               <Transformation defaultImage={defaultCPI} />
             </Image>
           ))}     
@@ -71,14 +72,29 @@ class ProgressGallery extends React.Component {
 }
 
 ProgressGallery.propTypes = {
+  /**
+   * the lookup reference key
+   */
   refKey: PropTypes.string.isRequired,
+  /**
+   * height of thumbnail
+   */
   imageHeight: PropTypes.number.isRequired,
-  selectImage: PropTypes.func.isRequired
+  /**
+   * callback for selecting an image
+   */
+  selectImage: PropTypes.func.isRequired,
+  /**
+   * 'horiz' or 'vert'
+   */
+  orientation: PropTypes.string
 }
 
 ProgressGallery.defaultProps = {
   refKey: 'missing_key',
-  imageHeight: 80
+  imageHeight: 80,
+  selectImage: selectLightboxUtil,
+  orientation: 'horiz'
 }
 
 export default ProgressGallery;

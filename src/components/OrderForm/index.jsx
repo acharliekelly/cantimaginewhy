@@ -5,9 +5,13 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Modal from 'react-bootstrap/Modal';
-import { encode } from '../../utils/forms';
-
-// import 'bootstrap/dist/css/bootstrap.min.css'; // imported by App.js
+import { 
+  encode, 
+  SubmissionMethod, 
+  formSubmissionTarget,
+  handleFormSuccess,
+  handleFormFail 
+} from '../../utils/forms';
 
 const orderMessage = price => {
   return `I would like to purchase this original painting, currently for sale at $${price}. Please contact me about how to proceed.`;
@@ -15,10 +19,11 @@ const orderMessage = price => {
 
 
 export const OrderForm = props => {
-  const { imageId, price, closeForm } = props;
+  const { imageId, price, closeForm, formSubmitType } = props;
   const imgRef = imageId.split('/')[1];
+  const formAction = formSubmissionTarget(formSubmitType);
   return (
-    <Form name="orderForm" className="order-form">
+    <Form name="orderForm" className="order-form" action={formAction} method="POST">
       <input type="hidden" name="form-name" value="order-form" />
       <InputGroup className="mb-3">
         <InputGroup.Prepend>
@@ -76,8 +81,18 @@ OrderForm.propTypes = {
   /**
    * function for failed submission
    */
-  submitFail: PropTypes.func
+  submitFail: PropTypes.func,
+  /**
+   * form submit type
+   */
+  formSubmitType: PropTypes.number
 };
+
+OrderForm.defaultProps = {
+  formSubmitType: SubmissionMethod.Undetermined,
+  submitSuccess: handleFormSuccess,
+  submitFail: handleFormFail
+}
 
 
 export class StatefulOrderForm extends React.Component {
@@ -91,13 +106,17 @@ export class StatefulOrderForm extends React.Component {
   }
 
   handleSubmit = e => {
-    fetch('/', {
+    const { submitSuccess, submitFail, closeForm, formSubmitType } = this.props;
+    const formAction = formSubmissionTarget(formSubmitType);
+    const frmName = 'StatefulOrderForm';
+    fetch(formAction, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: encode({ 'form-name': 'order-form', ...this.state })
     })
-    .then(this.props.submitSuccess)
-    .catch(error => alert(error));
+    .then(() => submitSuccess(frmName, formSubmitType))
+    .catch(error => submitFail(frmName, error))
+    .finally(closeForm)
     e.preventDefault();
   }
 
@@ -167,9 +186,18 @@ StatefulOrderForm.propTypes = {
   /**
    * function for failed submission
    */
-  submitFail: PropTypes.func
+  submitFail: PropTypes.func,
+  /**
+   * where to send form
+   */
+  formSubmitType: PropTypes.number
 };
 
+StatefulOrderForm.defaultProps = {
+  formSubmitType: SubmissionMethod.Undetermined,
+  submitSuccess: handleFormSuccess,
+  submitFail: handleFormFail
+};
 
 
 

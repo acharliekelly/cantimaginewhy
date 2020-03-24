@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery, defaultCPI } from '../../utils/imageApi';
+import { fetchGallery, defaultCPI, getContextProperty } from '../../utils/imageApi';
 
 class SimpleGallery extends React.Component {
   constructor (props) {
@@ -64,6 +64,11 @@ class SimpleGallery extends React.Component {
     }
   }
 
+  zoomImage = index => {
+    const { selectLightbox } = this.props;
+    const { images } = this.state;
+    selectLightbox('', images, index);
+  }
   
 
   render () {
@@ -72,19 +77,21 @@ class SimpleGallery extends React.Component {
     return (
       <div className="gallery-wrapper">
         <div className="basic-gallery">
-            {images.map(image => (
-              <Image 
-                key={image.publid_id} 
-                className="responsive" 
-                height={imageHeight}
-                crop="fit" 
-                cloudName="cantimaginewhy" 
-                publicId={image.public_id}
-                onClick={() => this.props.selectLightbox(image.public_id)}
-              >
-                <Transformation defaultImage={defaultCPI} />
-              </Image>
-            ))}
+            {images.map((image, index) => {
+              return (
+                <Image 
+                  key={index} 
+                  title={getContextProperty(image, 'caption', 'Untitled')}
+                  responsive 
+                  height={imageHeight}
+                  crop="fit" 
+                  cloudName="cantimaginewhy" 
+                  publicId={image.public_id}
+                  onClick={() => this.zoomImage(index)}
+                >
+                  <Transformation defaultImage={defaultCPI} />
+                </Image>
+            )})}
           </div>
         </div>
     );
@@ -95,7 +102,13 @@ SimpleGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
-  selectLightbox: PropTypes.func
-}
+  selectLightbox: PropTypes.func.isRequired
+};
+
+SimpleGallery.defaultProps = {
+  tagName: 'favorite',
+  gallerySize: 4,
+  imageHeight: 200
+};
 
 export default SimpleGallery;

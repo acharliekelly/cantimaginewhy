@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, CloudinaryContext } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import EnvMode from '../EnvMode';
+import { cloudName } from '../../utils/imageApi';
 
 import './social.scss';
 
@@ -24,14 +24,14 @@ const links = [
 const smLink = (link, cloud = false) => {
   const img = cloud ? cloudImg(link) : faImg(link);
   return (
-    <a target="_blank" rel="noopener noreferrer" href={link.url}>
+    <a key={link.name} target="_blank" rel="noopener noreferrer" href={link.url}>
       {img}
     </a>
   )
 };
 
 const cloudImg = link => (
-  <Image publicId={`icon/${link.name}_logo`} height="100" />
+  <Image cloudName={cloudName} publicId={`icon/${link.name}_logo`} height="100" />
 );
 
 const faImg = link => (
@@ -42,23 +42,17 @@ const faImg = link => (
 // if FontAwesome isn't working
 export const cloudinaryLinks = () => {
   return (
-    <CloudinaryContext cloudName="cantimaginewhy">
-      <div className="right-col social">
-        {links.map(link => smLink(link, true))}
-      </div>
-      <EnvMode />
-    </CloudinaryContext>
+    <div className="social" >
+      {links.map(link => smLink(link, true))}
+    </div>
   )
 }
 
 
-export default function SocialMediaLinks() {
+export default function SocialMediaLinks () {
   return (
-    <div className="right-col social">
-      <div className="links">
-        {links.map(link => smLink(link))}
-      </div>
-      <EnvMode />
+    <div className="social">
+      {links.map(link => smLink(link))}
     </div>
   )
 }

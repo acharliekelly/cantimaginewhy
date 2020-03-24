@@ -14,28 +14,13 @@ h1, h2, h3, h4, h5, h6, header {
 }
 
 // GLOBAL CLASSES
-
 .todo {
-  font-family: 'Courier New', Courier, monospace;
-  color: $todo-text;
-  background-color: $todo-bkg;
-  
+  display: none;
 }
 
-.in-progress {
-  font-style: italic;
-  background-color: #666;
-  color: #fff;
-  border-radius: 3px;
-  padding: 2px 5px;
-  text-align: center;
+.dev-msg {
+  display: none;
 }
-.in-progress-message {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  text-align: center;
-}
-
 
 .no-data {
   font-family: 'Courier New', Courier, monospace;
@@ -53,9 +38,6 @@ h1, h2, h3, h4, h5, h6, header {
   border-radius: 4px;
 }
 
-.todo::before {
-  content: 'TODO: ';
-}
 
 .content {
   margin: 1rem auto;
@@ -68,23 +50,18 @@ h1, h2, h3, h4, h5, h6, header {
     text-align: center;
     margin: 1em 2em;
 
-    .page-title {
-      font-family: 'Great Vibes';
-      text-align: center;
-    }
-
-    .page-desc {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      margin: 1em auto;
-      max-width: 60%;
-    }
   }
 
   .display-area {
     text-align: center;
-    margin: 0 1em;
+    margin: 0;
   }
+}
+
+
+.toolbar {
+  text-align: center;
+  margin: 0.5em 0;
 }
 
 
@@ -92,9 +69,11 @@ h1, h2, h3, h4, h5, h6, header {
   position: relative;
   min-height: 100vh;
   text-align: center;
+  // background-color: #000;
 }
 .content-wrapper {
   padding-bottom: 2rem;
+  // background-color: #000;
 }
 
 

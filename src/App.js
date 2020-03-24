@@ -2,49 +2,76 @@ import React, { useState } from 'react';
 import { 
   HashRouter as Router, 
   Route
-} from 'react-router-dom';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
-import Lightbox from 'react-image-lightbox';
+} from 'react-router-dom';  
 
 import Menu from './components/Menu/';
+import EnvMode from './components/EnvMode/';
 import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
 import HomePage from './views/Home/';
 import AboutPage from './views/About/';
-import ArtworkPage from './views/Artwork';
-import { lightboxImageSrc } from './utils/imageApi';
+import ArtworkPage from './views/Artwork/';
+import ImageZoom from './components/ImageZoom/';
+import { allowDevMode } from './utils/system';
+import { initializeLibrary } from './utils/faLibrary';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
-import 'react-image-lightbox/style.css';
+
+import './css/dev.scss';
 
 
 const App = () => {
   const [ lightboxOpen, setLightboxOpen ] = useState(false);
   const [ selectedImageId, setSelectedImageId ] = useState('');
+  const [ lightboxImages, setLightboxImages ] = useState([]);
+  const [ lightboxCurrentIndex, setLightboxCurrentIndex ] = useState(0);
+  const [ developmentMode, setDevelopmentMode ] = useState(false);
 
   /**
    * takes CPI from any child component, opens lightbox
    * @param {*} imageId 
    */
-  const selectLightboxImage = imageId => {
-    setSelectedImageId(imageId);
+  const selectLightboxImage = (imageId, images = [], currentIndex = -1) => {
+    if (images.length > 0) {
+      setLightboxImages(images);
+      let idx = currentIndex;
+      if (idx < 0) {
+        idx = images.findIndex(img => img.public_id === imageId);
+      }
+      setLightboxCurrentIndex(idx);
+    } else {
+      setSelectedImageId(imageId);
+    }
+    console.log('opening Zoom')
     setLightboxOpen(true);
   }
 
   const closeLightbox = () => {
     setSelectedImageId('');
+    setLightboxImages([]);
+    setLightboxCurrentIndex(0);
     setLightboxOpen(false);
   }
 
-  library.add(fab, faChevronCircleLeft, faChevronCircleRight);
+  const toggleDevMode = () => {
+    
+    if (allowDevMode()) {
+      setDevelopmentMode(!developmentMode);
+    }
+    console.log('Dev Mode: ' + (developmentMode ? 'On' : 'Off'))
+  }
+
+  const devCls = developmentMode ? ' dev-mode' : '';
+
+  // Initialize FontAwesome library
+  initializeLibrary();
+
   return (
-    <div className="page-container">
+    <div className={'page-container' + devCls}>
       <Router basename='/'>
-        <Menu />
+        <Menu selectLightbox={selectLightboxImage} />
+        <EnvMode type="icon" devMode={toggleDevMode} />
         <div className="content-wrapper">
           <Route exact path="/">
             <HomePage selectLightbox={selectLightboxImage} />
@@ -64,13 +91,17 @@ const App = () => {
         </div>
       </Router>
       <Footer />
+
       { lightboxOpen && (
-        <Lightbox 
-          mainSrc={lightboxImageSrc(selectedImageId)}
-          onCloseRequest={closeLightbox}
-          discourageDownloads
-      />
+        <ImageZoom 
+          imageList={lightboxImages}
+          selectedIndex={lightboxCurrentIndex}
+          selectedImageId={selectedImageId}
+          closeLightbox={closeLightbox}
+        />
       )}
+      
+       
     </div>
   );
 }

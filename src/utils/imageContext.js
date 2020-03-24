@@ -1,32 +1,37 @@
-import { paddedImageSrc } from './imageApi';
+// imageContext.js
+
 import { faaAvailable } from './fineArtApi';
+import { isSeriesExist } from './onsiteUtils';
 
 
 export const loadImageProps = imageObj => {
-  const infoObj = {
-    id: imageObj.public_id,
-    source: paddedImageSrc(imageObj.public_id, 600, 400),
-    title: getPictureCaption(),
-    description: getPictureProperty('alt'),
-    location: getPictureProperty('location'),
-    medium: getPictureProperty('medium'),
-    size: getPictureProperty('size'),
-    year: getPictureProperty('year'),
-    forSale: (getPictureProperty('original') === 'available'),
-    forPrint: (faaAvailable(imageObj.public_id)),
-    refKey: getPictureProperty('key', '-'),
-    // processImgs: (getPictureProperty('key', '-') !== '-'),
-    processImgs: false,
-    price: getPictureProperty('price', 'NFS'),
-    materialInfo: hasProperty('medium') && hasProperty('size'),
-  }
-  console.log('image info: ' + infoObj);
-  return infoObj;
-}
-
-
-const getPictureCaption = () => {
-  return getPictureProperty('caption', 'Untitled');
+  const imgId = imageObj.public_id;
+    const ref = getPictureProperty(imageObj, 'key', '-');
+    const infoObj = {
+      id: imgId,
+      moreInfo: true,
+      hasContext: imageObj.hasOwnProperty('context'),
+      showOptions: imgId.startsWith('art/'),
+      title: getPictureProperty(imageObj, 'caption', 'Untitled'),
+      description: getPictureProperty(imageObj, 'alt'),
+      location: getPictureProperty(imageObj, 'location'),
+      medium: getPictureProperty(imageObj, 'medium'),
+      size: getPictureProperty(imageObj, 'size'),
+      year: getPictureProperty(imageObj, 'year'),
+      forSale: ((getPictureProperty(imageObj, 'original')) === 'available'),
+      forPrint: (faaAvailable(imgId)),
+      refKey: ref,
+      processImgs: isSeriesExist(ref),
+      price: getPictureProperty(imageObj, 'price', 'NFS'),
+      materialInfo: hasProperty(imageObj, 'medium') && hasProperty(imageObj, 'size'),
+    }
+    // determine if image has any info beyond title
+    if (!infoObj.hasContext ||    // no context
+        (infoObj.title === 'Untitled' && !(infoObj.forSale || infoObj.forPrint)) || // no title & no sale
+        (!infoObj.year && !infoObj.description && !infoObj.location)) {   // no other info fields
+      infoObj.moreInfo = false;
+    }
+    return infoObj;
 }
 
 const getPictureProperty = (pictureObj, property, errValue = '') => {

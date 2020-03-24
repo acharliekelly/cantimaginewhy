@@ -1,98 +1,102 @@
-$menu-bkg: transparent;
+$menu-bkg: #efeeea;
 $menu-text: #000;
 $menu-active-bkg: #000;
 $menu-active-text: #fff;
 
+
+
+
+
+
+
+
+
+.menu-wrapper {
+  background-color: $menu-bkg;
+
+
+  .navbar-nav {
+    // display: inline;
+    text-align: center;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  a.nav-link {
+    color: $menu-text;
+    text-decoration: none;
+    padding: 0 2px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active, &.active:hover {
+      background-color: $menu-active-bkg;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #fff !important;
+    }
+
+    &.homelink {
+      color: $menu-text;
+      background-color: $menu-bkg;
+      text-decoration: none;
+    }
+  }
+
+}
+
+
 .menu {
-  display: flex;
-  justify-content: space-around;
-  background-color: transparent;
+  // display: flex;
+  // justify-content: space-around;
+
+  background-color: $menu-bkg;
   color: $menu-text;
   
 
   .site-logo {
-    padding: 1rem 0 0 1rem;
-  }
-
-  .site-title {
-    font-size: 2em;
-    font-family: 'Great Vibes', cursive;
-  }
-
-  .nav-grid {
-    width: 80vw;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-
-    div {
-      padding-top: 1em;
-      vertical-align: bottom;
+    padding: 0.3em;
+    border: solid 0.4em silver;
+    border-radius: 50px;
+    background-color: silver;
+    cursor: pointer;
+    &:hover {
+      border-color: #888;
+      background-color: #888;
     }
   }
 
-  .top-row {
-    text-align: center;
-  }
 
-  .bottom-row {
-    padding-top: 1rem;
-    vertical-align: bottom;
-  }
-
-  .right-col {
-    text-align: right;
-  }
-  
-  
-
-  .nav {
-    display: inline;
+  .navbar-nav {
+    // display: inline;
     text-align: center;
     font-variant: small-caps;
     font-weight: bold;
     font-size: 2rem;
   }
+  a.nav-link {
+    color: $menu-text;
+    text-decoration: none;
+    padding: 0 2px;
 
-  .nav-item {
-    display: inline;
-    padding: 0 1em;
-
-    a {
-      color: $menu-text;
-      text-decoration: none;
-      padding: 0 2px;
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &.active, &.active:hover {
-        background-color: $menu-active-bkg;
-        border-radius: 3px;
-        text-decoration: none;
-        color: $menu-active-text;
-      }
-
-      &.homelink {
-        color: $menu-text;
-        background-color: $menu-bkg;
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: underline;
     }
 
-  }
+    &.active, &.active:hover {
+      background-color: $menu-active-bkg;
+      border-radius: 3px;
+      text-decoration: none;
+      color: $menu-active-text;
+    }
 
-  .login-text {
-    padding: 1em 1em 0 1em;
-    color: $menu-text;
-    font-size: 12px;
-    font-variant: normal;
-    font-weight: normal;
+    &.homelink {
+      color: $menu-text;
+      background-color: $menu-bkg;
+      text-decoration: none;
+    }
   }
-
-  .login, .cart {
-    cursor: pointer;
-  }
-
 }
 

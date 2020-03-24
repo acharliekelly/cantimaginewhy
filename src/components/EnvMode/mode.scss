@@ -1,9 +1,11 @@
 
 .current-mode {
-  display: none;
-  
-  margin-left: 90%;
-  margin-top: -1em;
+  // display: none;
+  position: absolute;
+  top: 5em;
+  right: 3em;
+  // margin-left: 90%;
+  // margin-top: -1em;
   height: 1.5em;
   max-width: 3em;
 

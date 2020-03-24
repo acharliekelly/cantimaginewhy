@@ -11,13 +11,16 @@ import {
   faHeart,
   faPaperPlane,
   faImage,
-  faShoppingCart
+  faShoppingCart,
+  faQuestionCircle,
+  faSearchPlus,
  } from '@fortawesome/free-solid-svg-icons';
 
  export const initializeLibrary = () => {
 
   library.add(fab, faBars, faChevronLeft, faChevronRight, 
-    faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, faImage);
+    faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
+    faImage, faQuestionCircle, faSearchPlus);
  }
 
  

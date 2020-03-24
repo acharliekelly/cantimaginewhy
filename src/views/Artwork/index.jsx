@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import Button from 'react-bootstrap/Button';
 import { selectLightboxUtil } from '../../utils/imageUtils';
-import ImageGallery from '../../components/ImageGallery';
+import ImageGallery from '../../components/ImageGallery/';
+import FilterNav from '../../components/FilterNav/';
+import AlbumNav from '../../components/AlbumNav/';
 
 import './artwork.scss';
 
@@ -20,6 +21,16 @@ const getType = ev => {
 const ArtworkPage = props => {
   const [ galleryType, setGalleryType ] = useState(0);
   const [ currentLabel, setCurrentLabel ] = useState(0);
+  const [ currentNav, setCurrentNav ] = useState(null);
+  const [ emptyGallery, setEmptyGallery ] = useState(true);
+
+  const clearGallery = () => {
+    setEmptyGallery(true);
+  }  
+  const selectGallery = nav => {
+    setEmptyGallery(false);
+    setCurrentNav(nav);
+  }
   
   const typeClass = type => {
     let cls = 'option';
@@ -64,9 +75,20 @@ const ArtworkPage = props => {
           {galleryDescriptions[currentLabel]}
         </span>
       </div>
+
+      {galleryType === 1 ? (
+        <AlbumNav updateSelectNav={selectGallery} updateClearGallery={clearGallery} />
+      ) : (
+        <FilterNav 
+          updateSelectNav={selectGallery} 
+          updateClearGallery={clearGallery} />
+      )}
+      
+      
       <ImageGallery 
         selectLightbox={props.selectLightbox} 
-        galleryType={galleryType} 
+        isGalleryEmpty={emptyGallery}
+        currentAlbum={currentNav}
       />
     </div>
   )

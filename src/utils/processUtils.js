@@ -4,19 +4,27 @@
  * Tools for handling Process Images (photos of paintings in progress),
  * based on table of image count by refKey, as opposed to Onsite Utils,
  * which rely on pulling live data from Cloudinary. Using table is probably 
- * less accurate, but much faster
+ * less accurate, but much faster.
  * 
  */
 
+ /**
+  * Each image key (usually same as original filename)
+  * mapped to number of process photos, not including 
+  * Initial or Final views. If count is 0, the image has
+  * an Initial and a Final view. If -1, only a Final.
+  * If there is no Final image, then the image key is
+  * not listed.
+  */
 const processData = {
   "caterpillar_hill": 4,
-  "charles_river": 0,
+  "charles_river": -1,
   "capitol": 2,
   "cambridge_hyatt": 5,
   "cronins_landing": 0,
   "buildings_n_stuff": 4,
   "bpg_hancock": 6,
-  "eliot_bridge": 0,
+  "eliot_bridge": -1,
   "fall_mt_feake": 3,
   "fall_colors": 2,
   "first_parish": 2,
@@ -30,23 +38,22 @@ const processData = {
   "norumbega_tower": 2,
   "memorial_drive": 4,
   "gosport_harbor": 3,
-  "portsmouth": 0,
-  "hatch_shell_east": 0,
+  "portsmouth": -1,
+  "hatch_shell_east": -1,
   "herter_birch": 3,
   "watertown_dam": 3,
   "tea_crabapple": 2,
   "beaver_brook": 2,
-  "cambridge_common": 0,
+  "cambridge_common": -1,
   "parker_point": 9,
-  "jfk_park": 0,
-  "mit_sunset": 0,
-  "mit_night": 0,
+  "jfk_park": -1,
+  "mit_sunset": -1,
   "footbridge": 3,
-  "herter": 0,
+  "herter": -1,
   "public_garden_2": 3,
   "dunster": 1,
-  "longfellow_night": 0,
-  "skyline": 0
+  "longfellow_night": -1,
+  "skyline": -1
 };
 
 /**
@@ -65,7 +72,7 @@ const imageSeries = (referenceKey, imageCount) => {
 }
 
 export const lookupSeriesCount = referenceKey => {
-  return processData[referenceKey] || -1;
+  return processData[referenceKey] || NaN;
 }
 
 /**
@@ -84,12 +91,17 @@ export const generateSeries = referenceKey => {
 export const nextImageId = currentImageId => {
   const refKey = currentImageId.split('-')[1];
   const imgOrder = currentImageId.split('-')[2];
+  const imgCount = lookupSeriesCount(refKey);
+
+  if (isNaN(imgCount) || imgCount < 0) {
+    // no other process images exist
+    return currentImageId;
+  }
   
   let strNext = '0';
   if (imgOrder.length === 1) { // imgOrder is a number
-    const nMax = lookupSeriesCount(refKey);
     const nNext = parseInt(imgOrder) + 1;
-    if (nNext <= nMax) {
+    if (nNext <= imgCount) {
       strNext = nNext.toString();
     } else {
       strNext = 'final';
@@ -100,9 +112,21 @@ export const nextImageId = currentImageId => {
   
 }
 
+/**
+ * Get the previous image in a set of Process Photos
+ * 
+ * @param {string} currentImageId 
+ */
 export const previousImageId = currentImageId => {
   const refKey = currentImageId.split('-')[1];
   const imgOrder = currentImageId.split('-')[2];
+  const imgCount = lookupSeriesCount(refKey);
+
+  if (isNaN(imgCount) || imgCount < 0) {
+    // no other process images exist
+    return currentImageId;
+  }
+
   let strNext = '0';
   if (imgOrder.length === 1) { // imgOrder is a number
     // return order - 1, or last image if 0
@@ -114,8 +138,13 @@ export const previousImageId = currentImageId => {
     }
     
   } else { // imgOrder is a word
-    const nMax = lookupSeriesCount(refKey);
-    strNext = nMax.toString();
+    if (imgOrder === 'final') {
+      // previous image is same as count
+      strNext = imgCount.toString();
+    } else {
+      // imgOrder = 'sale'
+      strNext = 'final';
+    }
   }
   
   return `photos/onsite-${refKey}-${strNext}`;

@@ -50,23 +50,18 @@ h1, h2, h3, h4, h5, h6, header {
     text-align: center;
     margin: 1em 2em;
 
-    .page-title {
-      font-family: 'Great Vibes';
-      text-align: center;
-    }
-
-    .page-desc {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      margin: 1em auto;
-      max-width: 60%;
-    }
   }
 
   .display-area {
     text-align: center;
-    margin: 0 1em;
+    margin: 0;
   }
+}
+
+
+.toolbar {
+  text-align: center;
+  margin: 0.5em 0;
 }
 
 

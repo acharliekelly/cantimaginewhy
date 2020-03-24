@@ -15,7 +15,7 @@ const mockClearGallery = () => {
 const stories = storiesOf('AlbumNav', module);
 stories.add('Album Navigation', () => (
   <AlbumNav 
-    handleNavChange={mockNavChange} 
-    handleClearGallery={mockClearGallery}  
+    updateSelectNav={mockNavChange} 
+    updateClearGallery={mockClearGallery}  
   />
 ));

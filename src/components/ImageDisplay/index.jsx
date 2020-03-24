@@ -4,20 +4,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 // import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { ArrowButton } from '../Buttons';
+// import ButtonGroup from 'react-bootstrap/ButtonGroup';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import  { faaLookup } from '../../utils/fineArtApi';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 import { nextImageId, previousImageId } from '../../utils/processUtils';
 import { loadImageProps } from '../../utils/imageContext';
-import { StatefulOrderForm } from '../OrderForm/';
 import ProgressGallery from '../ProgressGallery/';
+import ImageToolbar from '../ImageToolbar/';
 
 import './display.scss';
-
-// TODO: break this up into smaller components!
 
 class ImageDisplay extends Component {
   
@@ -146,21 +144,17 @@ class ImageDisplay extends Component {
 
   render () {
     const { currentImage } = this.props;
-    const { orderFormOpen, processImageId } = this.state;
+    const { processImageId } = this.state;
     if (currentImage) {
       const info = loadImageProps(currentImage);
       return (
         <CloudinaryContext cloudName="cantimaginewhy">
-          <div className="image-box">
-            <div className="image-view">
-              <span className="image-nav-btn prev-btn" onClick={this.handlePrevious}>
-                <FontAwesomeIcon icon="chevron-left" size="7x" />
-              </span>
+          <Container className="image-box">
+            <Container className="image-view">
               {/* Main image */}
               <Image
                   className="display-image"
                   publicId={info.id}
-                  onClick={this.openLightbox}
                   height="400"
                   width="600"
                   crop="lpad"
@@ -168,28 +162,33 @@ class ImageDisplay extends Component {
                 />
                 {/* Process image */}
                 {processImageId && (
-                  <div className="process-image" onClick={this.closeProcess} >
+                  <Container className="process-overlay" onClick={this.closeProcess} >
                     <Image 
                       publicId={processImageId}
-                      onClick={this.openLightbox}
-                      width="500"
-                      height="350"
-                      crop="pad"
-                      background="black"
+                      height="300"
                     />
-                    <div className="process-ctrl">
-                      <button className="prev-btn" onClick={this.previousProcessImage}>&lt;</button>
-                      <button className="zoom-btn" onClick={this.processLightbox}>Zoom</button>
-                      <button className="next-btn" onClick={this.nextProcessImage}>&gt;</button>
-                    </div>
-                  </div>
+                    <ImageToolbar
+                      toolbarClass="process-toolbar"
+                      variant="light"
+                      imgSize="1x"
+                      prevImageFn={this.previousProcessImage}
+                      nextImageFn={this.nextProcessImage}
+                      zoomImageFn={this.processLightbox}
+                    />
+                  </Container>
                 )}
-              <span className="image-nav-btn next-btn" onClick={this.handleNext}>
-                <FontAwesomeIcon icon="chevron-right" size="7x" />
-              </span>
-            </div>
-            
-          </div>
+            </Container>
+
+            <ImageToolbar 
+              toolbarClass="display-toolbar"
+              variant="dark"
+              imgSize="3x"
+              prevImageFn={this.handlePrevious}
+              nextImageFn={this.handleNext}
+              zoomImageFn={this.openLightbox}
+            />
+
+          </Container>
         {info.hasContext && (
           <Container className="image-info">
             <Row>
@@ -259,19 +258,6 @@ class ImageDisplay extends Component {
                   refKey={info.refKey} 
                   imageHeight={60}
                   selectImage={this.setProcessImage} 
-                />
-              </Col>
-            </Row>
-            )}
-            {(orderFormOpen && info.forSale) && (
-            <Row>
-              <Col className="form">
-                <a className="close-btn" href="/" onClick={this.hideOrderForm}>X</a>
-                <StatefulOrderForm 
-                  className="inner-form"
-                  imageId={info.id}
-                  price={info.price}
-                  closeForm={this.hideOrderForm}
                 />
               </Col>
             </Row>

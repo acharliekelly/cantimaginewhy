@@ -7,18 +7,20 @@
   .image-nav-btn {
     
     cursor: pointer;
-    // height: 100%;
-    // z-index: 10;
     color: black;
-    padding-top: 20%;
-
+    height: 100%;
+    z-index: 10;
+    background-color: white;
+    opacity: 0.1;
+    padding-top: 10%;
+    &:hover {
+      opacity: 0.5;
+    }
     &.prev-btn {
      float: left;
-
     }
     &.next-btn {
       float: right;
-      
     }
   }
   
@@ -26,22 +28,20 @@
 
 // Main image
 .image-view {
-  display: inline;
-  margin: 0;
+  margin: 0 1em;
   // margin: 10px 5px;
   text-align: center;
   border-radius: 5px;
 
-  .display-image {
-    cursor: pointer;
-  }
+}
 
-  
 
+.display-toolbar {
+  width: 25%;
 }
 
 // overlay
-.process-image {
+.process-overlay {
   z-index: 100;
   margin-top: -400px;
   text-align: center;
@@ -49,24 +49,18 @@
   height: 400px;
   background-color: black;
   cursor: pointer;
-
-  opacity: .9;
+  opacity: 0.9;
 
   img {
     opacity: 1;
     margin: 10px auto;
   }
 
-  .process-ctrl {
-    
+  .process-toolbar {
     opacity: 1;
-    height: 1.2em;
-    padding: 0.1em;
-    margin-top: -20px;
-
-    .arrow-btn {
-      display: inline;  
-    }
+    // padding: 0.1em 0.3em 0.6em 0.3em;
+    margin-bottom: 1em;
+    // margin-top: -20px;
   }
 
   

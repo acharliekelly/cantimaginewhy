@@ -11,116 +11,215 @@ $album-text: #000;
 $selected-album-bkg: #ccc;
 $selected-album-text: #000;
 
-// Gallery Nav (filter types)
-.gallery-nav {
-  background-color: $nav-bkg;
-  border-radius: 5px;
-  padding: 2px 3px;
-  cursor: pointer;
-  text-align: center;
-  color: $nav-text;
 
-  div {
-    display: inline;
-    margin: 0 5px;
+
+.category-bar {
+  background-color: $nav-bkg;
+  font-variant: normal;
+  font-size: 1em;
+
+  .nav-item {
+    padding: 2px 3px;
   }
 
-  a {
-    text-decoration: none;
+  .nav-link {
     color: $nav-link-text;
-    padding: 2px 3px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &.active, &.active:hover {
-      background-color: #333 !important;
-      text-decoration: none;
-      color: $nav-active-text;
+    text-decoration: none;
+    
+    &.active {
+      background-color: $nav-active-bkg !important;
+      color: $nav-active-text !important;
       border-radius: 2px;
     }
-  }
-}
 
-// Filter Options
-.album-list {
-  // margin: 10px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.select-label {
-  font-size: 14px;
-}
-
-.list-title {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 22px;
-}
-
-.album-btn {
-  border: outset thin;
-  padding: auto;
-  margin: 2px;
-  cursor: pointer;
-  text-align: center;
-
-  .album-name {
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: $album-text;
   }
 
-  .album-desc {
-    font-size: 10px;
-    text-align: left;
-    margin: 5px;
-    visibility: hidden;
+  .category-desc {
+    font-size: 0.8em;
+    width: 25%;
+    overflow: hidden;
+
+    .active-desc {
+      font-style: normal;
+      color: #000;
+    }
+    .hover-desc {
+      font-style: italic;
+      color: #888;
+    }
   }
 
   &:hover {
-    .album-desc {
-      visibility: visible;
+    .active-desc {
+      display: none;
     }
   }
-}
-.selected-nav {
-  border: inset thin;
-  background-color: $selected-album-bkg;
 
-  .album-name {
-    color: $selected-album-text;
-    font-weight: 600;
+  .help-btn {
+    margin-right: 2em;
   }
+  
 }
 
-// under album list, when no nav selected
-.group-description {
-  text-align: center;
-  font-size: 14px;
-  color: #000;
+.album-bar {
+
+  .explain-box {
+    // display: inline-block;
+    margin-top: 1em;
+    // border: thin solid black;
+    border-radius: 0.3em;
+    padding: 0.5em;
+    text-align: left;
+
+    .explanation {
+      font-size: 1em;
+      font-style: italic;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+  
+
+  .albums {
+    text-align: center;
+    .album-btn {
+      display: inline-block;
+      border: outset thin;
+      padding: auto;
+      margin: 2px;
+      cursor: pointer;
+      text-align: center;
+    
+      .album-name {
+        font-size: 0.8em;
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        color: $album-text;
+      }
+    
+    }
+    .selected-nav {
+      border: inset thin;
+      background-color: $selected-album-bkg;
+    
+      .album-name {
+        color: $selected-album-text;
+        font-weight: 600;
+      }
+    }
+  }
+
+
+  .explain-closed {
+    margin-left: 5em;
+
+    .current-item {
+      margin-top: 1em;
+      // border: thin solid;
+      border-radius: 0.2em;
+      padding: 0.3em;
+  
+      .nav-title {
+        text-align: left;
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+      .nav-description {
+        text-align: left;
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.8em;
+        font-weight: normal;
+      }
+    }
+
+  }
+
+  
+  
 }
 
-// selected nav name
-.current-nav {
-  text-align: center;
-  margin: 5px auto;
-  color: $album-text;
+// DEVELOPMENT MODE
 
-  .nav-title {
-    font-size: 2em;
-    font-weight: 600;
-    font-family: 'Great Vibes', cursive;
+$dev-nav-bkg: #ddd;
+$dev-nav-text: #003;
+$dev-nav-link-text: #066;
+$dev-nav-active-bkg: #033;
+$dev-nav-active-text: #fff;
+
+$dev-album-bkg: #0ff;
+$dev-album-text: #000;
+
+$dev-selected-album-bkg: #0cc;
+$dev-selected-album-text: #000;
+
+
+.dev-mode {
+
+  .category-bar {
+    background-color: $dev-nav-bkg;
+
+    .label {
+      color: $dev-nav-text;
+    }
+
+    .nav-link {
+      color: $dev-nav-link-text;
+      
+      &.active {
+        background-color: $dev-nav-active-bkg !important;
+        color: $dev-nav-active-text !important;
+      }
+
+    }
+
+    .category-desc {
+
+      .active-desc {
+        color: #000;
+      }
+      .hover-desc {
+        color: #088;
+      }
+    }
+    
   }
 
-  .nav-description {
-    font-size: 1em;
-    font-weight: normal;
-    font-family: 'Source Code Pro', monospace;
+  .album-bar {
+    outline: thin double #870;
+
+    .explanation {
+      font-family: 'Courier New', Courier, monospace;
+      outline: thin dashed #800;
+      max-height: 10vh;
+    }
+
+    .albums {
+      .album-btn {
+        .album-name {
+          font-family: 'Courier New', Courier, monospace;
+          color: $dev-album-text;
+        }
+      
+      }
+      .selected-nav {
+        background-color: $dev-selected-album-bkg;
+      
+        .album-name {
+          color: $dev-selected-album-text;
+        }
+      }
+    }
+
+    .current-item {
+      border: thin solid #c0c;
+      border-radius: 0.2em;
+      padding: 0.3em;
+
+      .nav-description {
+        font-family: 'Courier New', Courier, monospace;
+      }
+    }
+    
   }
+
 }

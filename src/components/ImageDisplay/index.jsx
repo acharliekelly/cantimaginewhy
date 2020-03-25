@@ -19,27 +19,36 @@ class ImageDisplay extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      orderFormOpen: false,
       processImageId: null,
       currentIndex: 0
     }
   }
 
-  suppressLink = ev => {
-    ev.preventDefault();
+  componentDidMount () {
+    if (this.props.imageIndex) {
+      this.setState({
+        currentIndex: this.props.imageIndex
+      })
+    }
   }
 
   /**
    * Open main image in Zoom
    */
   openLightbox = () => {
-    const { currentImage, selectLightbox, imageList } = this.props;
-    const imgId = currentImage.public_id;
+    const { selectLightbox, imageList } = this.props;
+    const imgId = this.getTheImage().public_id;
     if (imageList) {
       selectLightbox(imgId, imageList);
     } else {
       selectLightbox(imgId);
     }
+  }
+
+  getTheImage = () => {
+    const { currentImage, imageList } = this.props;
+    const { currentIndex } = this.state;
+    return currentImage || imageList[currentIndex]
   }
 
   /**
@@ -93,33 +102,10 @@ class ImageDisplay extends Component {
   }
 
 
-  showOrderForm = ev => {
-    ev.preventDefault();
-    this.setState({
-      orderFormOpen: true
-    })
-  }
-
-  hideOrderForm = ev => {
-    ev.preventDefault();
-    this.setState({
-      orderFormOpen: false
-    })
-  }
-
-  toggleOrderForm = ev => {
-    ev.preventDefault();
-    const { orderFormOpen } = this.state;
-    this.setState({
-      orderFormOpen: !orderFormOpen
-    })
-  }
-
   componentDidUpdate (prevProps, prevState) {
     if ((prevProps.currentImage !== this.props.currentImage) 
-        || (prevProps.index !== this.props.index)) {
+        || (prevProps.imageIndex !== this.props.imageIndex)) {
           this.setState({
-            orderFormOpen: false,
             processImageId: null
           })
     }
@@ -140,10 +126,10 @@ class ImageDisplay extends Component {
   }
 
   render () {
-    const { currentImage } = this.props;
     const { processImageId } = this.state;
-    if (currentImage) {
-      const info = loadImageProps(currentImage);
+    const theImage = this.getTheImage();
+    if (theImage) {
+      const info = loadImageProps(theImage);
       return (
         <CloudinaryContext cloudName="cantimaginewhy">
           <Container className="image-box">
@@ -221,11 +207,6 @@ class ImageDisplay extends Component {
               {info.forSale && (
               <Col className="data">$ {info.price}</Col>
               )}
-              {/* {info.forSale && (
-              <Col className="btn">
-                <Button className="feature" onClick={this.showOrderForm}>Buy</Button>
-              </Col>
-              )} */}
               {!info.forSale && (
               <Col className="nfs">Not Available</Col>
               )}
@@ -276,7 +257,7 @@ ImageDisplay.propTypes = {
   /**
    * the selected Cloudinary image object
    */
-  currentImage: PropTypes.object.isRequired,
+  currentImage: PropTypes.object,
   /**
    * the function to move back
    */
@@ -292,11 +273,14 @@ ImageDisplay.propTypes = {
   /**
    * the image array, for Zoom
    */
-  imageList: PropTypes.array
+  imageList: PropTypes.array,
+  /**
+   * instead of currentImage
+   */
+  imageIndex: PropTypes.number
 }
 
 ImageDisplay.defaultProps = {
-  currentImage: null,
   selectLightbox: selectLightboxUtil,
   moveNext: moveNextUtil,
   movePrevious: movePreviousUtil

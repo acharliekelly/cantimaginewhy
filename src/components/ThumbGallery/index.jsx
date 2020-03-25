@@ -15,10 +15,6 @@ const ThumbGallery = props => {
     selectThumbnail(index);
   }
 
-  // if (props.imageIndex) {
-  //   setCurrentIndex(props.imageIndex);
-  // }
-
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
       <Container fluid className="gallery">
@@ -55,7 +51,7 @@ ThumbGallery.propTypes = {
   /**
    * index
    */
-  imageIndex: PropTypes.number
+  imageIndex: PropTypes.number,
 }
 
 ThumbGallery.defaultProps = {

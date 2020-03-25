@@ -6,14 +6,14 @@ import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 const HelpButton = props => (
-  <OverlayTrigger trigger="click" placement="bottom" overlay={
+  <OverlayTrigger trigger="click" placement={props.location} overlay={
     <Popover>
       <Popover.Title>{props.header}</Popover.Title>
       <Popover.Content>{props.content}</Popover.Content>
     </Popover>
   }>
     <Button className="help-btn" variant="outline-info">
-      <FontAwesomeIcon icon="question-circle" />
+      <FontAwesomeIcon icon="question-circle" size={`${props.size}x`} />
     </Button>
   </OverlayTrigger>
 );
@@ -21,11 +21,15 @@ const HelpButton = props => (
 
 HelpButton.propTypes = {
   header: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
+  location: PropTypes.string,
+  size: PropTypes.number
 }
 
 HelpButton.defaultProps = {
-  header: 'Help'
+  header: 'Help',
+  location: 'bottom',
+  size: 1
 }
 
 export default HelpButton;

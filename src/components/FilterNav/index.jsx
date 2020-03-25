@@ -42,7 +42,6 @@ class FilterNav extends Component {
   selectItem = nav => {
     // nav is object (option) from filter list
     // { name, tag, thumbnail, description, sortField }
-    // also, close explanation so as not to interfere with gallery
     this.setState({
       selectedNav: nav
     });
@@ -63,63 +62,57 @@ class FilterNav extends Component {
   }
 
   render () {
-    const { filterIndex, selectedNav, hoverIndex, explanOpen } = this.state;
+    const { filterIndex, selectedNav, hoverIndex } = this.state;
     const activeFilter = filters[filterIndex];
     const { updateSwitch } = this.props;
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <Navbar className="category-bar justify-content-between">
 
-            <Button className="nav-switch" variant="outline-dark" onClick={updateSwitch}>
-              <FontAwesomeIcon icon="images" title="Browse by Album" />
-            </Button>
+          <Button className="nav-switch" variant="outline-dark" onClick={updateSwitch}>
+            <FontAwesomeIcon icon="images" title="Browse by Album" size="2x" />
+          </Button>
 
+          <Container className="mr-auto">
               
             <Nav className="filters" 
               variant="pills" 
               defaultActiveKey={0}  
-              onSelect={this.selectFilter}
-            >
-              <Navbar.Text>Filter by:&nbsp;</Navbar.Text>
-              {filters.map((filter, index) => (
-                <Nav.Item 
-                  key={index}
-                  onMouseEnter={() => this.hoverOnFilter(index)} 
-                  onMouseLeave={this.hoverOff}>
-                  <Nav.Link eventKey={index}>{filter.name}</Nav.Link>
-                </Nav.Item>
-                )
-              )}
-            </Nav>
+              onSelect={this.selectFilter}>
+                <Navbar.Text>Filter by:&nbsp;</Navbar.Text>
+                {filters.map((filter, index) => (
+                  <Nav.Item 
+                    key={index}
+                    onMouseEnter={() => this.hoverOnFilter(index)} 
+                    onMouseLeave={this.hoverOff}>
+                    <Nav.Link eventKey={index}>{filter.name}</Nav.Link>
+                  </Nav.Item>
+                  )
+                )}
+              </Nav>
               
               <div className="category-desc">
-                <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
-                {hoverIndex >= 0 && (
+              {hoverIndex >= 0 ? (
                 <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
-                )}
+              ) : (
+                <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
+              )}
               </div>
+            </Container>
               
-              <HelpButton header="Filters" content={navDescription} />
+            <HelpButton header="Filters" content={navDescription} size={2} />
              
         </Navbar>
 
         <Container fluid expand="lg" className="album-bar justify-content-between">
           <Row>
             <Col md={3}>
-              {explanOpen ? (
-                <div className="explain-box">
-                  <span className="explanation">{navDescription}</span>
-                </div>
-              ) : (
-                <div className="explain-closed">
-                {selectedNav && (
-                  <div className="current-item">
-                    <div className="nav-title">{selectedNav.name}</div>
-                    <div className="nav-description">{selectedNav.description}</div>
-                  </div>
-                )}
-                </div>
-              )}
+            {selectedNav && (
+              <div className="current-item">
+                <div className="nav-title">{selectedNav.name}</div>
+                <div className="nav-description">{selectedNav.description}</div>
+              </div>
+            )}
             </Col>
             <Col md={6} className="album-col">
               <ul className="albums">

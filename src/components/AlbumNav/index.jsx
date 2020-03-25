@@ -5,12 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../utils/imageApi';
 import { albums, navDescription } from '../../config/albums';
+import HelpButton from '../Buttons/HelpButton/';
 
 import '../../css/nav.scss';
 
@@ -52,17 +51,7 @@ class AlbumNav extends Component {
             <span className="browse-title">Browse by Album</span>
           </Navbar.Text>
               
-
-          <OverlayTrigger trigger="click" placement="bottom" overlay={
-            <Popover>
-              <Popover.Title>Albums</Popover.Title>
-              <Popover.Content>{navDescription}</Popover.Content>
-            </Popover>
-          }>
-            <Button className="help-btn" variant="outline-info">
-              <FontAwesomeIcon icon="question-circle" />
-            </Button>
-          </OverlayTrigger>
+          <HelpButton header="Albums" content={navDescription} />
         
         </Navbar>
 

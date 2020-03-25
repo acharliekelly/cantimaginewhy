@@ -6,12 +6,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Popover from 'react-bootstrap/Popover';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../utils/imageApi';
 import { filters, navDescription } from '../../config/filters';
+import HelpButton from '../Buttons/HelpButton/';
 import '../../css/nav.scss';
 
 class FilterNav extends Component {
@@ -100,16 +99,7 @@ class FilterNav extends Component {
                 )}
               </div>
               
-                <OverlayTrigger trigger="click" placement="bottom" overlay={
-                  <Popover>
-                    <Popover.Title>Filters</Popover.Title>
-                    <Popover.Content>{navDescription}</Popover.Content>
-                  </Popover>
-                  }>
-                  <Button className="help-btn" variant="outline-info">
-                    <FontAwesomeIcon icon="question-circle" />
-                  </Button>
-                </OverlayTrigger>
+              <HelpButton header="Filters" content={navDescription} />
              
         </Navbar>
 

@@ -17,7 +17,7 @@ $selected-album-text: #000;
   background-color: $nav-bkg;
   font-variant: normal;
   font-size: 1em;
-  padding: 2px;
+  padding: 2px 2em;
 
   .browse-title {
     color: $nav-text;
@@ -42,30 +42,31 @@ $selected-album-text: #000;
 
   }
 
+  .filters {
+    margin-left: 7rem;
+  }
+
   .category-desc {
+
     font-size: 0.8em;
-    width: 25%;
-    overflow: hidden;
+    // width: 25%;
+    // overflow: hidden;
 
     .active-desc {
       font-style: normal;
       color: #000;
     }
     .hover-desc {
-      font-style: italic;
+      // font-style: italic;
       color: #888;
     }
   }
 
-  &:hover {
-    .active-desc {
-      display: none;
-    }
-  }
-
-  .help-btn {
-    margin-right: 2em;
-  }
+  // &:hover {
+  //   .active-desc {
+  //     display: none;
+  //   }
+  // }
   
 }
 
@@ -102,19 +103,20 @@ $selected-album-text: #000;
 
 
   .current-item {
-    margin-top: 1em;
+    margin: 1em auto;
+    text-align: right;
     // border: thin solid;
     border-radius: 0.2em;
     padding: 0.3em;
 
     .nav-title {
-      text-align: left;
+      text-align: center;
       font-family: 'Great Vibes', cursive;
       font-size: 1.5em;
       font-weight: 600;
     }
     .nav-description {
-      text-align: left;
+      text-align: center;
       font-family: 'Roboto', sans-serif;
       font-size: 0.8em;
       font-weight: normal;

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import Button from 'react-bootstrap/Button';
-// import ButtonGroup from 'react-bootstrap/ButtonGroup';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import  { faaLookup } from '../../utils/fineArtApi';
@@ -46,7 +43,7 @@ class ImageDisplay extends Component {
   }
 
   /**
-   * Open process image in Zoom
+   * Open process image in lightbox
    */
   processLightbox = ev => {
     

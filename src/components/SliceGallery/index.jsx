@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Image, Transformation } from 'cloudinary-react';
+import React from './react';
+import PropTypes from './prop-types';
+import { Image, Transformation } from './cloudinary-react';
 import { fetchGallery, defaultCPI, getContextProperty } from '../../utils/imageApi';
 
-class SimpleGallery extends React.Component {
+class SliceGallery extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -98,17 +98,17 @@ class SimpleGallery extends React.Component {
   }
 }
 
-SimpleGallery.propTypes = {
+SliceGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
   selectLightbox: PropTypes.func.isRequired
 };
 
-SimpleGallery.defaultProps = {
+SliceGallery.defaultProps = {
   tagName: 'favorite',
   gallerySize: 4,
   imageHeight: 200
 };
 
-export default SimpleGallery;
+export default SliceGallery;

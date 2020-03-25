@@ -10,7 +10,7 @@ const textMode = (cls, devFn) => (
 )
 
 const iconMode = (cls, devFn) => (
-  <FontAwesomeIcon className={cls} icon={getEnvIcon()} onClick={devFn} />
+  <FontAwesomeIcon className={cls} icon={getEnvIcon()} onClick={devFn} title={getEnvName()} />
 )
 
 const EnvMode = props => {

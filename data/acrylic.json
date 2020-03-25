@@ -1,0 +1,1133 @@
+{
+  "resources": [
+  {
+  "public_id": "art/midwinter",
+  "version": 1580146743,
+  "format": "jpg",
+  "width": 3809,
+  "height": 2715,
+  "type": "upload",
+  "created_at": "2020-01-27T17:39:03Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "Night view from Blue Heron Bridge, mid-winter",
+  "caption": "Midwinter",
+  "key": "midwinter",
+  "location": "Watertown, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "200",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/fox_park",
+  "version": 1576086996,
+  "format": "jpg",
+  "width": 3915,
+  "height": 2837,
+  "type": "upload",
+  "created_at": "2019-12-11T17:56:36Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "a sliver of moon rising on a clear, cold evening",
+  "caption": "Fox Park",
+  "key": "fox_park",
+  "location": "Waltham, MA",
+  "medium": "acrylic on scratchbord",
+  "original": "available",
+  "price": "90",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/first_parish",
+  "version": 1573333648,
+  "format": "jpg",
+  "width": 3589,
+  "height": 2876,
+  "type": "upload",
+  "created_at": "2019-11-09T21:07:28Z",
+  "context": {
+  "custom": {
+  "alb-order": "42",
+  "album": "Plein Air",
+  "alt": "UU church in Waltham, MA",
+  "caption": "First Parish",
+  "key": "first_parish",
+  "location": "Waltham, MA",
+  "medium": "acrylic on panel",
+  "original": "sold",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/cronins_landing",
+  "version": 1573181788,
+  "format": "jpg",
+  "width": 2838,
+  "height": 2893,
+  "type": "upload",
+  "created_at": "2019-11-08T02:56:28Z",
+  "context": {
+  "custom": {
+  "alb-order": "41",
+  "alt": "Moody Street",
+  "caption": "Cronin's Landing",
+  "key": "cronins_landing",
+  "location": "Waltham, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "80",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/fall_footbridge",
+  "version": 1572297634,
+  "format": "jpg",
+  "width": 3747,
+  "height": 2828,
+  "type": "upload",
+  "created_at": "2019-10-28T21:20:34Z",
+  "context": {
+  "custom": {
+  "alb-order": "40",
+  "album": "Plein Air",
+  "alt": "View of footbridge from Watertown Dam, October",
+  "caption": "Fall Footbridge",
+  "key": "fall_footbridge",
+  "location": "Watertown, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "250",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/fall_colors",
+  "version": 1572297627,
+  "format": "jpg",
+  "width": 3850,
+  "height": 2714,
+  "type": "upload",
+  "created_at": "2019-10-28T21:20:27Z",
+  "context": {
+  "custom": {
+  "alb-order": "38",
+  "album": "Plein Air",
+  "alt": "View of river, Waltham",
+  "caption": "Fall Colors",
+  "key": "fall_colors",
+  "location": "Waltham, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "80",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/waltham_waterfall",
+  "version": 1572412201,
+  "format": "jpg",
+  "width": 5018,
+  "height": 2534,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:06Z",
+  "context": {
+  "custom": {
+  "alb-order": "39",
+  "album": "Plein Air",
+  "alt": "Just across the river from my house, early fall",
+  "caption": "Waterfall",
+  "key": "waltham_waterfall",
+  "location": "Waltham, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "300",
+  "size": "16\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/autumn_woods",
+  "version": 1572065286,
+  "format": "jpg",
+  "width": 3777,
+  "height": 2957,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:06Z",
+  "context": {
+  "custom": {
+  "alb-order": "37",
+  "album": "Plein Air",
+  "alt": "The boardwalk approaching Blue Heron Bridge from the south side of the river, mid fall",
+  "caption": "Autumn Woods",
+  "key": "autumn_woods",
+  "location": "Watertown, MA",
+  "medium": "acrylic on panel",
+  "original": "sold",
+  "price": "180",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/public_garden_swan",
+  "version": 1572065285,
+  "format": "jpg",
+  "width": 3506,
+  "height": 2770,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:05Z",
+  "context": {
+  "custom": {
+  "alb-order": "35",
+  "album": "Plein Air",
+  "alt": "View of the Swan Boat pond in the Public Garden, late summer",
+  "caption": "Public Garden Swan",
+  "key": "swan_pond",
+  "location": "Boston, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "120",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/lake_mansfield",
+  "version": 1572065284,
+  "format": "jpg",
+  "width": 3674,
+  "height": 2893,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:04Z",
+  "context": {
+  "custom": {
+  "alb-order": "36",
+  "album": "Plein Air",
+  "alt": "Peak foliage in Great Barrington",
+  "caption": "Lake Mansfield",
+  "key": "lake_mansfield",
+  "location": "Great Barrington, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "120",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/portsmouth_terminal",
+  "version": 1572065282,
+  "format": "jpg",
+  "width": 1924,
+  "height": 2673,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:02Z",
+  "context": {
+  "custom": {
+  "alb-order": "32",
+  "album": "Plein Air",
+  "alt": "Had some time to kill at the bus terminal in Portsmouth",
+  "caption": "Portsmouth Transportation Center",
+  "key": "portsmouth_terminal",
+  "location": "Portsmouth, NH",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "80",
+  "size": "5\" x 7\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/boston_nightscape",
+  "version": 1572065281,
+  "format": "jpg",
+  "width": 3332,
+  "height": 2402,
+  "type": "upload",
+  "created_at": "2019-10-26T04:48:01Z",
+  "context": {
+  "custom": {
+  "alb-order": "23",
+  "album": "Plein Air",
+  "alt": "Short stretch of riverfront, from Cambridge",
+  "caption": "Boston Night Skyline",
+  "key": "boston_nightscape",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "80",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/early_fall_mt_feake",
+  "version": 1569878322,
+  "format": "jpg",
+  "width": 3741,
+  "height": 2964,
+  "type": "upload",
+  "created_at": "2019-09-30T21:18:42Z",
+  "context": {
+  "custom": {
+  "alb-order": "34",
+  "album": "Plein Air",
+  "alt": "A Sunday afternoon at Mt. Feake cemetery, just as the leaves are starting to turn",
+  "caption": "Eternal Rest in Early Autumn",
+  "key": "fall_mt_feake",
+  "location": "Waltham, MA",
+  "medium": "acrylic on panel",
+  "original": "sold",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/a_friday_in_september",
+  "version": 1569878320,
+  "format": "jpg",
+  "width": 3782,
+  "height": 2905,
+  "type": "upload",
+  "created_at": "2019-09-30T21:18:40Z",
+  "context": {
+  "custom": {
+  "alb-order": "33",
+  "album": "Plein Air",
+  "alt": "On the Esplanade, looking across the Charles on a Friday afternoon",
+  "caption": "A Friday in September",
+  "key": "september_esplanade",
+  "location": "Boston, MA",
+  "medium": "acrylic on clay",
+  "original": "available",
+  "price": "200",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/memorial_drive",
+  "version": 1568852547,
+  "format": "jpg",
+  "width": 3923,
+  "height": 2772,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:27Z",
+  "context": {
+  "custom": {
+  "alb-order": "26",
+  "album": "Plein Air",
+  "alt": "Late summer in JFK Memorial Park, looking east along the Charles towards Anderson Bridge",
+  "caption": "Memorial Drive",
+  "key": "memorial_drive",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "300",
+  "size": "14\" x 10\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/hatch_shell_east",
+  "version": 1568852546,
+  "format": "jpg",
+  "width": 3794,
+  "height": 2845,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:26Z",
+  "context": {
+  "custom": {
+  "alb-order": "27",
+  "album": "Plein Air",
+  "alt": "Just past the Hatch Shell amphitheater, looking west towards the Prudential building",
+  "caption": "East of Hatch Shell",
+  "key": "hatch_shell_east",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "50",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/seven_hills_park",
+  "version": 1568852546,
+  "format": "jpg",
+  "width": 3519,
+  "height": 2711,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:26Z",
+  "context": {
+  "custom": {
+  "alb-order": "28",
+  "album": "Plein Air",
+  "alt": "Behind the Davis Square T station on a damp Thursday in August",
+  "caption": "Seven Hills Park",
+  "key": "seven_hills_park",
+  "location": "Somerville, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "80",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/gosport_harbor",
+  "version": 1568852545,
+  "format": "jpg",
+  "width": 3828,
+  "height": 2979,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:25Z",
+  "context": {
+  "custom": {
+  "alb-order": "31",
+  "album": "Plein Air",
+  "alt": "View through the window of the Art Barn at Star Island",
+  "caption": "Gosport Harbor",
+  "key": "gosport_harbor",
+  "location": "Isles of Shoals, NH",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "150",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/norumbega_tower",
+  "version": 1568852545,
+  "format": "jpg",
+  "width": 2816,
+  "height": 2860,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:25Z",
+  "context": {
+  "custom": {
+  "alb-order": "29",
+  "album": "Plein Air",
+  "alt": "Built to commemorate the arrival of Leif Erikson in Waltham, and event which unfortunately did not happen",
+  "caption": "Norumbega Tower",
+  "key": "norumbega_tower",
+  "location": "Weston, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "180",
+  "size": "8\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/tea_crabapple_tree",
+  "version": 1568852545,
+  "format": "jpg",
+  "width": 2545,
+  "height": 2545,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:25Z",
+  "context": {
+  "custom": {
+  "alb-order": "10",
+  "album": "Plein Air",
+  "alt": "Fun-shaped little tree in the Public Garden, July",
+  "caption": "Tea Crabapple Tree",
+  "key": "tea_crabapple",
+  "location": "Boston, MA",
+  "medium": "acrylic on panel",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/sarah_mildred_long_bridge",
+  "version": 1568852543,
+  "format": "jpg",
+  "width": 3496,
+  "height": 2489,
+  "type": "upload",
+  "created_at": "2019-09-19T00:22:23Z",
+  "context": {
+  "custom": {
+  "alb-order": "30",
+  "album": "Plein Air",
+  "alt": "Aerial bridge in Portsmouth; painted while waiting for the ferry to Star Island",
+  "caption": "Sarah Mildred Long Bridge",
+  "key": "portsmouth",
+  "location": "Portsmouth, NH",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "100",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/herter_birch",
+  "version": 1567531055,
+  "format": "jpg",
+  "width": 3580,
+  "height": 2598,
+  "type": "upload",
+  "created_at": "2019-09-03T17:17:35Z",
+  "context": {
+  "custom": {
+  "alb-order": "22",
+  "album": "Plein Air",
+  "caption": "Birches in Herter Park",
+  "key": "herter_birch",
+  "location": "Allston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "100",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/dunster",
+  "version": 1567531054,
+  "format": "jpg",
+  "width": 2818,
+  "height": 2818,
+  "type": "upload",
+  "created_at": "2019-09-03T17:17:34Z",
+  "context": {
+  "custom": {
+  "alb-order": "25",
+  "album": "Plein Air",
+  "alt": "View of iconic Harvard residence and bridge",
+  "caption": "Dunster House",
+  "key": "dunster",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on panel",
+  "original": "sold",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/caterpillar_hill",
+  "version": 1567531054,
+  "format": "jpg",
+  "width": 2798,
+  "height": 2782,
+  "type": "upload",
+  "created_at": "2019-09-03T17:17:34Z",
+  "context": {
+  "custom": {
+  "alb-order": "24",
+  "album": "Plein Air",
+  "alt": "View of Maine coast from Caterpillar Hill",
+  "caption": "Caterpillar Hill",
+  "key": "caterpillar_hill",
+  "location": "Blue Hill, ME",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "150",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/parker_point",
+  "version": 1567530851,
+  "format": "jpg",
+  "width": 3828,
+  "height": 2870,
+  "type": "upload",
+  "created_at": "2019-09-03T17:14:11Z",
+  "context": {
+  "custom": {
+  "alb-order": "23",
+  "album": "Plein Air",
+  "alt": "A cozy little blue house in Maine",
+  "caption": "Parker Point",
+  "key": "parker_point",
+  "location": "Blue Hill, ME",
+  "medium": "acrylic on canvas",
+  "original": "sold",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/riparian_balcony",
+  "version": 1565708896,
+  "format": "jpg",
+  "width": 3710,
+  "height": 2782,
+  "type": "upload",
+  "created_at": "2019-08-13T15:08:16Z",
+  "context": {
+  "custom": {
+  "alb-order": "19",
+  "album": "Plein Air",
+  "alt": "One of many picturesque scenes along the river",
+  "caption": "Riparian Balcony",
+  "key": "riparian_balcony",
+  "location": "Waltham, MA",
+  "medium": "acrylic on paper",
+  "original": "available",
+  "price": "150",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/watertown_dam",
+  "version": 1565708896,
+  "format": "jpg",
+  "width": 3744,
+  "height": 2737,
+  "type": "upload",
+  "created_at": "2019-08-13T15:08:16Z",
+  "context": {
+  "custom": {
+  "alb-order": "21",
+  "album": "Plein Air",
+  "alt": "View of overlook from the Footbridge featured in other paintings",
+  "caption": "Watertown Dam",
+  "key": "watertown_dam",
+  "location": "Watertown, MA",
+  "medium": "acrylic on canvas",
+  "original": "sold",
+  "price": "150",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/buildings_n_stuff",
+  "version": 1575474718,
+  "format": "jpg",
+  "width": 2781,
+  "height": 3732,
+  "type": "upload",
+  "created_at": "2019-08-13T15:08:13Z",
+  "context": {
+  "custom": {
+  "alb-order": "18",
+  "album": "Plein Air",
+  "alt": "Downtown Boston from the Public Garden",
+  "caption": "Buildings and Stuff",
+  "key": "buildings_n_stuff",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "200",
+  "size": "9\" x 12\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/fishing",
+  "version": 1565708882,
+  "format": "jpg",
+  "width": 2929,
+  "height": 2929,
+  "type": "upload",
+  "created_at": "2019-08-13T15:08:02Z",
+  "context": {
+  "custom": {
+  "alb-order": "20",
+  "album": "Plein Air",
+  "alt": "Summer afternoon on a cozy little nook of river",
+  "caption": "Fishing",
+  "key": "fishing",
+  "location": "Watertown, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "200",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/cambridge_common",
+  "version": 1565708876,
+  "format": "jpg",
+  "width": 3673,
+  "height": 2792,
+  "type": "upload",
+  "created_at": "2019-08-13T15:07:56Z",
+  "context": {
+  "custom": {
+  "alb-order": "17",
+  "album": "Plein Air",
+  "alt": "John Harvard statue in center of Common",
+  "caption": "Cambridge Common",
+  "key": "cambridge_common",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "100",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/hatch_esplanade",
+  "version": 1565708865,
+  "format": "jpg",
+  "width": 2745,
+  "height": 3517,
+  "type": "upload",
+  "created_at": "2019-08-13T15:07:45Z",
+  "context": {
+  "custom": {
+  "alb-order": "2",
+  "album": "Plein Air",
+  "caption": "Esplanade, Looking East",
+  "key": "hatch_esplanade",
+  "location": "Boston, MA",
+  "medium": "acrylic on paper",
+  "original": "available",
+  "price": "80",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/capitol",
+  "version": 1572313716,
+  "format": "jpg",
+  "width": 2828,
+  "height": 2828,
+  "type": "upload",
+  "created_at": "2019-08-13T15:07:42Z",
+  "context": {
+  "custom": {
+  "alb-order": "15",
+  "album": "Plein Air",
+  "alt": "View of the statehouse capitol dome, from Cambridge",
+  "caption": "Capitol",
+  "key": "capitol",
+  "location": "Boston, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "150",
+  "size": "6\" x 6\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/longfellow_night",
+  "version": 1565708859,
+  "format": "jpg",
+  "width": 3788,
+  "height": 2841,
+  "type": "upload",
+  "created_at": "2019-08-13T15:07:39Z",
+  "context": {
+  "custom": {
+  "alb-order": "14",
+  "album": "Plein Air",
+  "caption": "Longfellow Bridge, night",
+  "key": "longfellow_night",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "120",
+  "size": "10\" x 8\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/mit_sunset",
+  "version": 1565708854,
+  "format": "jpg",
+  "width": 3699,
+  "height": 2534,
+  "type": "upload",
+  "created_at": "2019-08-13T15:07:34Z",
+  "context": {
+  "custom": {
+  "alb-order": "16",
+  "album": "Plein Air",
+  "alt": "View of MIT from Esplanade",
+  "caption": "MIT, sunset",
+  "key": "mit_sunset",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "100",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/willow",
+  "version": 1564114055,
+  "format": "jpg",
+  "width": 3024,
+  "height": 4032,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:35Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Willow",
+  "medium": "acrylic on canvas",
+  "original": "sold",
+  "size": "12\" x 16\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/salt-pond",
+  "version": 1564114039,
+  "format": "jpg",
+  "width": 3867,
+  "height": 2867,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:19Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Salt Pond",
+  "medium": "acrylic",
+  "original": "sold",
+  "size": "16\" x 12\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/herter-park_2019",
+  "version": 1564114018,
+  "format": "jpg",
+  "width": 4032,
+  "height": 2943,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:58Z",
+  "context": {
+  "custom": {
+  "alb-order": "3",
+  "album": "Plein Air",
+  "alt": "Trying to get the hang of sunlight on water",
+  "caption": "Herter Park",
+  "key": "herter_park",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "80",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/jfk-memorial-park",
+  "version": 1564114007,
+  "format": "jpg",
+  "width": 3851,
+  "height": 2764,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:47Z",
+  "context": {
+  "custom": {
+  "alb-order": "7",
+  "album": "Plein Air",
+  "caption": "JFK Memorial Park",
+  "key": "jfk_park",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "50",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/rainbow-end_2017",
+  "version": 1564114003,
+  "format": "jpg",
+  "width": 749,
+  "height": 556,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Rainbow End",
+  "medium": "mixed",
+  "original": "sold",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/footbridge-watertown-dam",
+  "version": 1564113998,
+  "format": "jpg",
+  "width": 4032,
+  "height": 3024,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:38Z",
+  "context": {
+  "custom": {
+  "alb-order": "12",
+  "album": "Plein Air",
+  "alt": "View from the overlook at Watertown Dam",
+  "caption": "Footbridge at Watertown Dam",
+  "key": "footbridge",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "140",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/migration_2014",
+  "version": 1564113990,
+  "format": "jpg",
+  "width": 1542,
+  "height": 633,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:30Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Migration",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/not-dunster_2018",
+  "version": 1564113980,
+  "format": "jpg",
+  "width": 3896,
+  "height": 3019,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:20Z",
+  "context": {
+  "custom": {
+  "album": "Plein Air",
+  "alt": "First ever plein air painting; failed to include Dunster House",
+  "caption": "Not Dunster",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "50",
+  "size": "10\" x 8\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/charles-river-watertown",
+  "version": 1564113965,
+  "format": "jpg",
+  "width": 4032,
+  "height": 3024,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:05Z",
+  "context": {
+  "custom": {
+  "alb-order": "4",
+  "album": "Plein Air",
+  "caption": "Charles River, Watertown",
+  "key": "charles_river",
+  "location": "Watertown, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "80",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/esplanade-sunset_2018",
+  "version": 1564113960,
+  "format": "jpg",
+  "width": 3823,
+  "height": 2823,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:00Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Esplanade",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "200",
+  "size": "12\" x 9\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/eliot-bridge",
+  "version": 1564113958,
+  "format": "jpg",
+  "width": 3834,
+  "height": 2626,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:58Z",
+  "context": {
+  "custom": {
+  "alb-order": "6",
+  "album": "Plein Air",
+  "alt": "Caught in a midsummer thunderstorm under Eliot Bridge; luckily had my easel with me",
+  "caption": "Under Eliot Bridge",
+  "key": "eliot_bridge",
+  "location": "Boston, MA",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "130",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/cambridge-hyatt",
+  "version": 1575474052,
+  "format": "jpg",
+  "width": 3820,
+  "height": 2757,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:54Z",
+  "context": {
+  "custom": {
+  "alb-order": "11",
+  "album": "Plein Air",
+  "alt": "aka Aztec Pyramid, at sunset",
+  "caption": "Hyatt Regency",
+  "key": "cambridge_hyatt",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "120",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/boston-skyline_2019",
+  "version": 1564113936,
+  "format": "jpg",
+  "width": 3830,
+  "height": 2687,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:36Z",
+  "context": {
+  "custom": {
+  "alb-order": "5",
+  "album": "Plein Air",
+  "alt": "sky and water painted on different days",
+  "caption": "Boston Skyline",
+  "key": "skyline",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "100",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/boston-public-gardens",
+  "version": 1564113931,
+  "format": "jpg",
+  "width": 2972,
+  "height": 3814,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:31Z",
+  "context": {
+  "custom": {
+  "alb-order": "8",
+  "album": "Plein Air",
+  "alt": "John Hancock tower from the Swan Pond. Subsequently bought by passing tourist.",
+  "caption": "Boston Public Gardens",
+  "key": "bpg_hancock",
+  "location": "Boston, MA",
+  "medium": "acrylic on canvas",
+  "original": "sold",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/beaver-brook-north",
+  "version": 1564113902,
+  "format": "jpg",
+  "width": 2724,
+  "height": 1980,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:02Z",
+  "context": {
+  "custom": {
+  "alb-order": "1",
+  "album": "Plein Air",
+  "alt": "My first Plein Air painting of 2019",
+  "caption": "Beaver Brook North",
+  "key": "beaver_brook",
+  "location": "Waltham, MA",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "80",
+  "size": "12\" x 9\"",
+  "year": "2019"
+  }
+  }
+  }
+  ],
+  "updated_at": "2020-03-24T14:41:40Z"
+  }

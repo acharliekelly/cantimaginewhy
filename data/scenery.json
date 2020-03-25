@@ -1,0 +1,843 @@
+{
+  "resources": [
+  {
+  "public_id": "art/midwinter",
+  "version": 1580146743,
+  "format": "jpg",
+  "width": 3809,
+  "height": 2715,
+  "type": "upload",
+  "created_at": "2020-01-27T17:39:03Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "Night view from Blue Heron Bridge, mid-winter",
+  "caption": "Midwinter",
+  "key": "midwinter",
+  "location": "Watertown, MA",
+  "medium": "acrylic on panel",
+  "original": "available",
+  "price": "200",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/fox_park",
+  "version": 1576086996,
+  "format": "jpg",
+  "width": 3915,
+  "height": 2837,
+  "type": "upload",
+  "created_at": "2019-12-11T17:56:36Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "a sliver of moon rising on a clear, cold evening",
+  "caption": "Fox Park",
+  "key": "fox_park",
+  "location": "Waltham, MA",
+  "medium": "acrylic on scratchbord",
+  "original": "available",
+  "price": "90",
+  "size": "7\" x 5\"",
+  "year": "2019"
+  }
+  }
+  },
+  {
+  "public_id": "art/wachusett-reservoir",
+  "version": 1564114056,
+  "format": "jpg",
+  "width": 4204,
+  "height": 3294,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:36Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Wachusett Reservoir",
+  "medium": "watercolor on clay",
+  "original": "available",
+  "price": "300",
+  "size": "12\" x 9\"",
+  "year": "2012"
+  }
+  }
+  },
+  {
+  "public_id": "art/willow",
+  "version": 1564114055,
+  "format": "jpg",
+  "width": 3024,
+  "height": 4032,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:35Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Willow",
+  "medium": "acrylic on canvas",
+  "original": "sold",
+  "size": "12\" x 16\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/winter-yosemite",
+  "version": 1564114047,
+  "format": "jpg",
+  "width": 1291,
+  "height": 1110,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:27Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Yosemite in Winter",
+  "medium": "colored pencil",
+  "original": "sold",
+  "size": "11\" x 8.5\"",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/winter-walk",
+  "version": 1564114046,
+  "format": "jpg",
+  "width": 2582,
+  "height": 1936,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:26Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Winter Walk",
+  "medium": "watercolor",
+  "original": "available",
+  "price": "200",
+  "size": "8\" x 6\"",
+  "year": "2016"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/winter-moon_26805289026_o_ajyiyi",
+  "version": 1564114044,
+  "format": "jpg",
+  "width": 1300,
+  "height": 1111,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:24Z",
+  "context": {
+  "custom": {
+  "caption": "Winter Moon 1",
+  "medium": "colored pencil",
+  "original": "unavailable"
+  }
+  }
+  },
+  {
+  "public_id": "art/winter-village",
+  "version": 1564114043,
+  "format": "jpg",
+  "width": 1061,
+  "height": 407,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:23Z",
+  "context": {
+  "custom": {
+  "caption": "Winter Village",
+  "original": "unavailable",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/winter-moon-2",
+  "version": 1568830519,
+  "format": "jpg",
+  "width": 1030,
+  "height": 474,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:21Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Winter Moon 2",
+  "original": "unavailable",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/winter-bridge_26745657112_o_k740dx",
+  "version": 1564114041,
+  "format": "jpg",
+  "width": 2186,
+  "height": 1676,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:21Z",
+  "context": {
+  "custom": {
+  "caption": "Winter Bridge",
+  "medium": "mixed",
+  "original": "available",
+  "price": "80",
+  "year": "2016"
+  }
+  }
+  },
+  {
+  "public_id": "art/salt-pond",
+  "version": 1564114039,
+  "format": "jpg",
+  "width": 3867,
+  "height": 2867,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:19Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Salt Pond",
+  "medium": "acrylic",
+  "original": "sold",
+  "size": "16\" x 12\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/winter-house",
+  "version": 1564114038,
+  "format": "jpg",
+  "width": 1649,
+  "height": 1316,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:18Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Winter Home",
+  "medium": "graphite",
+  "original": "available",
+  "price": "100",
+  "size": "11\" x 8.5\"",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/star-island-obelisk",
+  "version": 1564114021,
+  "format": "jpg",
+  "width": 2535,
+  "height": 1972,
+  "type": "upload",
+  "created_at": "2019-07-26T04:07:01Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Star Island Obelisk",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "100",
+  "size": "12\" x 9\"",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/the-watch-factory",
+  "version": 1564114019,
+  "format": "jpg",
+  "width": 1097,
+  "height": 524,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:59Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "The Watch Factory",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "100",
+  "size": "12\" x 6\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/sunset-at-fishers-island_2016",
+  "version": 1564114016,
+  "format": "jpg",
+  "width": 712,
+  "height": 525,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:56Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Sunset at Fishers Island",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "50",
+  "size": "8\" x 6\"",
+  "year": "2016"
+  }
+  }
+  },
+  {
+  "public_id": "art/star-island-lighthouse_2015",
+  "version": 1564114014,
+  "format": "jpg",
+  "width": 2642,
+  "height": 1892,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:54Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Star Island Lighthouse",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "100",
+  "size": "8\" x 6\"",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/salisbury-pond-2015",
+  "version": 1564114012,
+  "format": "jpg",
+  "width": 2540,
+  "height": 1968,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:52Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Salisbury Pond 2015",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "100",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/rural-cemetary_26515465343_o_gvw3u0",
+  "version": 1564114010,
+  "format": "jpg",
+  "width": 2619,
+  "height": 1909,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:50Z",
+  "context": {
+  "custom": {
+  "caption": "Rural Cemetery",
+  "medium": "mixed",
+  "original": "sold",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/salisbury-pond_2011",
+  "version": 1564114009,
+  "format": "jpg",
+  "width": 1750,
+  "height": 1218,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:49Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Salisbury Pond 2011",
+  "original": "no",
+  "year": "2011"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/saguaro_26805291216_o_evfx0h",
+  "version": 1564114009,
+  "format": "jpg",
+  "width": 1319,
+  "height": 1049,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:49Z",
+  "context": {
+  "custom": {
+  "caption": "Saguaro",
+  "medium": "colored pencil",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/raystown-lake_2014",
+  "version": 1564114008,
+  "format": "jpg",
+  "width": 1047,
+  "height": 1300,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:48Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Raystown Lake",
+  "medium": "watercolor",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/reflections_2012",
+  "version": 1564114004,
+  "format": "jpg",
+  "width": 1494,
+  "height": 1195,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:44Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Reflections",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "120",
+  "size": "12\" x 9\"",
+  "year": "2012"
+  }
+  }
+  },
+  {
+  "public_id": "art/new-england-harbor_2015",
+  "version": 1564114003,
+  "format": "jpg",
+  "width": 4277,
+  "height": 2849,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "New England Harbor",
+  "medium": "mixed",
+  "original": "available",
+  "price": "160",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/rainbow-end_2017",
+  "version": 1564114003,
+  "format": "jpg",
+  "width": 749,
+  "height": 556,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Rainbow End",
+  "medium": "mixed",
+  "original": "sold",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/railroad-bridge_2016",
+  "version": 1564114001,
+  "format": "jpg",
+  "width": 719,
+  "height": 546,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:41Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Railroad Bridge",
+  "framed": "yes",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "60",
+  "year": "2016"
+  }
+  }
+  },
+  {
+  "public_id": "art/lighthouse_2015",
+  "version": 1564113994,
+  "format": "jpg",
+  "width": 2477,
+  "height": 2018,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:34Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Lighthouse",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/muddy-river_28564679927_o_cai10w",
+  "version": 1564113993,
+  "format": "jpg",
+  "width": 997,
+  "height": 745,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:33Z",
+  "context": {
+  "custom": {
+  "caption": "Muddy River",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/migration_2014",
+  "version": 1564113990,
+  "format": "jpg",
+  "width": 1542,
+  "height": 633,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:30Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Migration",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/leaving-star-island_2015",
+  "version": 1564113988,
+  "format": "jpg",
+  "width": 1070,
+  "height": 813,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:28Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Leaving Star Island",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/late-spring-on-the-charles_2017",
+  "version": 1564113985,
+  "format": "jpg",
+  "width": 651,
+  "height": 467,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:25Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Charles",
+  "location": "Watertown, MA",
+  "medium": "watercolor on paper",
+  "original": "sold",
+  "size": "7\" x 5\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/not-dunster_2018",
+  "version": 1564113980,
+  "format": "jpg",
+  "width": 3896,
+  "height": 3019,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:20Z",
+  "context": {
+  "custom": {
+  "album": "Plein Air",
+  "alt": "First ever plein air painting; failed to include Dunster House",
+  "caption": "Not Dunster",
+  "location": "Cambridge, MA",
+  "medium": "acrylic on canvas",
+  "original": "available",
+  "price": "50",
+  "size": "10\" x 8\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/fun-with-dots_2017",
+  "version": 1564113964,
+  "format": "jpg",
+  "width": 728,
+  "height": 548,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:04Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "Charles River, from Blue Heron Bridge",
+  "caption": "Fun With Dots",
+  "location": "Watertown, MA",
+  "medium": "watercolor on paper",
+  "original": "available",
+  "price": "120",
+  "size": "8\" x 6\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/fishers-island-deck_2016",
+  "version": 1564113961,
+  "format": "jpg",
+  "width": 1091,
+  "height": 526,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:01Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Fishers Island",
+  "location": "Fishers Island",
+  "medium": "watercolor pencil on paper",
+  "original": "available",
+  "price": "120",
+  "size": "12\" x 6\"",
+  "year": "2016"
+  }
+  }
+  },
+  {
+  "public_id": "art/esplanade-sunset_2018",
+  "version": 1564113960,
+  "format": "jpg",
+  "width": 3823,
+  "height": 2823,
+  "type": "upload",
+  "created_at": "2019-07-26T04:06:00Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Esplanade",
+  "medium": "acrylic",
+  "original": "available",
+  "price": "200",
+  "size": "12\" x 9\"",
+  "year": "2018"
+  }
+  }
+  },
+  {
+  "public_id": "art/exiting-osborn_2015",
+  "version": 1564113959,
+  "format": "jpg",
+  "width": 4139,
+  "height": 2874,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:59Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Exiting Osborn",
+  "location": "Somers, CT",
+  "medium": "watercolor on paper",
+  "original": "available",
+  "price": "200",
+  "size": "12\" x 9\"",
+  "year": "2015"
+  }
+  }
+  },
+  {
+  "public_id": "art/ferry-beach_2017",
+  "version": 1564113959,
+  "format": "jpg",
+  "width": 753,
+  "height": 560,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:59Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Ferry Beach",
+  "location": "Ferry Beach, ME",
+  "medium": "watercolor on paper",
+  "original": "available",
+  "price": "100"
+  }
+  }
+  },
+  {
+  "public_id": "art/double-rainbow_2017",
+  "version": 1564113940,
+  "format": "jpg",
+  "width": 1121,
+  "height": 541,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:40Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Double Rainbow",
+  "location": "Ferry Beach, ME",
+  "medium": "watercolor on paper",
+  "original": "sold",
+  "size": "12\" x 6\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/cardinals_2014",
+  "version": 1564113905,
+  "format": "jpg",
+  "width": 528,
+  "height": 1207,
+  "type": "upload",
+  "created_at": "2019-07-26T04:05:05Z",
+  "context": {
+  "custom": {
+  "caption": "Cardinals",
+  "medium": "watercolor",
+  "original": "sold",
+  "year": "2014"
+  }
+  }
+  },
+  {
+  "public_id": "art/boston-tetraptych_2012",
+  "version": 1564113884,
+  "format": "jpg",
+  "width": 2518,
+  "height": 612,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:44Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "alt": "from Boston Harbor",
+  "caption": "Boston Tetraptych",
+  "location": "Boston, MA",
+  "medium": "watercolor pencil",
+  "original": "sold",
+  "size": "(6\" x 6\") x4",
+  "year": "2012"
+  }
+  }
+  },
+  {
+  "public_id": "art/bodiam-castle_2011",
+  "version": 1564113883,
+  "format": "jpg",
+  "width": 1750,
+  "height": 1275,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Bodiam Castle",
+  "framed": "1",
+  "location": "East Sussex, UK",
+  "medium": "watercolor pencil",
+  "original": "available",
+  "price": "200",
+  "size": "20\" x 16\"",
+  "year": "2011"
+  }
+  }
+  },
+  {
+  "public_id": "art/alpine-christmas_2014",
+  "version": 1564113883,
+  "format": "jpg",
+  "width": 3473,
+  "height": 1357,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Alpine Christmas"
+  }
+  }
+  },
+  {
+  "public_id": "art/autumn-at-mt-feake_2017",
+  "version": 1564113883,
+  "format": "jpg",
+  "width": 771,
+  "height": 573,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:43Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "Autumn at Mt Feake",
+  "framed": "1",
+  "location": "Waltham, MA",
+  "medium": "watercolor",
+  "original": "available",
+  "price": "200",
+  "size": "8\" x 6\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/bartholomews-cobble_2017",
+  "version": 1564113881,
+  "format": "jpg",
+  "width": 737,
+  "height": 535,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:41Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "A Walk in the Woods",
+  "location": "Great Barrington, MA",
+  "medium": "watercolor",
+  "original": "sold",
+  "size": "8\" x 6\"",
+  "year": "2017"
+  }
+  }
+  },
+  {
+  "public_id": "art/13-montvale-road_2012",
+  "version": 1564113881,
+  "format": "jpg",
+  "width": 1750,
+  "height": 1275,
+  "type": "upload",
+  "created_at": "2019-07-26T04:04:41Z",
+  "context": {
+  "custom": {
+  "album": "Scenery",
+  "caption": "13 Montvale",
+  "location": "Worcester, MA",
+  "medium": "watercolor pencil on panel",
+  "original": "sold",
+  "size": "12\" x 9\"",
+  "year": "2012"
+  }
+  }
+  }
+  ],
+  "updated_at": "2020-03-23T20:53:21Z"
+  }

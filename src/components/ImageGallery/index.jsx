@@ -174,7 +174,6 @@ ImageGallery.propTypes = {
    * the nav object to filter on (must be obj, not string)
    */
   currentAlbum: PropTypes.object,
-  
 }
 
 ImageGallery.defaultProps = {

@@ -1,13 +1,8 @@
 $menu-bkg: #efeeea;
 $menu-text: #000;
+$menu-item-border: #aaa;
 $menu-active-bkg: #000;
 $menu-active-text: #fff;
-
-
-
-
-
-
 
 
 
@@ -24,25 +19,21 @@ $menu-active-text: #fff;
   }
   a.nav-link {
     color: $menu-text;
+    border: 2px solid transparent;
+    border-radius: 3px;
     text-decoration: none;
     padding: 0 2px;
 
     &:hover {
-      text-decoration: underline;
+      border-color: $menu-item-border;
     }
 
     &.active, &.active:hover {
+      border-color: $menu-active-bkg;
       background-color: $menu-active-bkg;
-      border-radius: 3px;
-      text-decoration: none;
-      color: #fff !important;
+      color: $menu-active-text !important;
     }
 
-    &.homelink {
-      color: $menu-text;
-      background-color: $menu-bkg;
-      text-decoration: none;
-    }
   }
 
 }

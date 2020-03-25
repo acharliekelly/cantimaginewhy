@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../utils/imageApi';
 import { filters, navDescription } from '../../config/filters';
+import HelpButton from '../Buttons/HelpButton/';
 import '../../css/nav.scss';
 
 class FilterNav extends Component {
@@ -20,8 +21,7 @@ class FilterNav extends Component {
     this.state = {
       filterIndex: 0,
       hoverIndex: -1,
-      selectedNav: null,
-      explanOpen: true
+      selectedNav: null
     }
   }
 
@@ -44,8 +44,7 @@ class FilterNav extends Component {
     // { name, tag, thumbnail, description, sortField }
     // also, close explanation so as not to interfere with gallery
     this.setState({
-      selectedNav: nav,
-      explanOpen: false
+      selectedNav: nav
     });
 
     this.props.updateSelectNav(nav);
@@ -63,30 +62,25 @@ class FilterNav extends Component {
     })
   }
 
-  toggleExplanation = () => {
-    const { explanOpen } = this.state;
-    this.setState({
-      explanOpen: !explanOpen
-    })
-  }
-
   render () {
     const { filterIndex, selectedNav, hoverIndex, explanOpen } = this.state;
     const activeFilter = filters[filterIndex];
-    const helpBtnVar = explanOpen ? 'info' : 'outline-info';
+    const { updateSwitch } = this.props;
     return (
       <CloudinaryContext cloudName="cantimaginewhy">
         <Navbar className="category-bar justify-content-between">
-          <Button className="help-btn" variant={helpBtnVar} onClick={this.toggleExplanation}>
-            <FontAwesomeIcon icon="question-circle" />
-          </Button>
-          <Navbar.Collapse className="justify-content-end">
+
+            <Button className="nav-switch" variant="outline-dark" onClick={updateSwitch}>
+              <FontAwesomeIcon icon="images" title="Browse by Album" />
+            </Button>
+
+              
             <Nav className="filters" 
-                variant="pills" 
-                defaultActiveKey={0}  
-                onSelect={this.selectFilter}
-              >
-              <Navbar.Text>Filter By:&nbsp;</Navbar.Text>
+              variant="pills" 
+              defaultActiveKey={0}  
+              onSelect={this.selectFilter}
+            >
+              <Navbar.Text>Filter by:&nbsp;</Navbar.Text>
               {filters.map((filter, index) => (
                 <Nav.Item 
                   key={index}
@@ -97,13 +91,16 @@ class FilterNav extends Component {
                 )
               )}
             </Nav>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end category-desc">
-            <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
-            {hoverIndex >= 0 && (
-            <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
-            )}
-          </Navbar.Collapse>
+              
+              <div className="category-desc">
+                <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
+                {hoverIndex >= 0 && (
+                <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
+                )}
+              </div>
+              
+              <HelpButton header="Filters" content={navDescription} />
+             
         </Navbar>
 
         <Container fluid expand="lg" className="album-bar justify-content-between">

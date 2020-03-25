@@ -17,11 +17,11 @@ export const links = [
     icon: 'github',
     url: 'https://github.com/acharliekelly'
   },
-  // {
-  //   name: 'Shop',
-  //   icon: 'shopping-cart',
-  //   url: 'https://charlie-kelly.pixels.com'
-  // },
+  {
+    name: 'Blog',
+    icon: 'blog',
+    url: 'https://cantimaginehow.blogspot.com/'
+  },
   {
     name: 'Email',
     icon: 'paper-plane',

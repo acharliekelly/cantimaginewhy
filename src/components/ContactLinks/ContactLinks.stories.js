@@ -14,3 +14,4 @@ stories
   .add('Icon', () => <ContactLinks displayType="icon" size={2} layout="horiz" />)
   .add('Both', () => <ContactLinks displayType="both" layout="vert" size={3} />)
   .add('Hidden', () => <ContactLinks displayType="hide" layout="vert" size={4} />)
+  .add('Full', () => <ContactLinks displayType="full" layout="vert" size={3} />)

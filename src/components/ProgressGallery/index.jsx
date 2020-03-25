@@ -4,6 +4,7 @@ import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import { defaultCPI } from '../../utils/imageApi';
+import HelpButton from '../Buttons/HelpButton/';
 import './process.scss';
 
 
@@ -60,7 +61,12 @@ class ProgressGallery extends React.Component {
               <Transformation height={imageHeight} crop="fill" />
               <Transformation defaultImage={defaultCPI} />
             </Image>
-          ))}     
+          ))} 
+          <div className="process-label" style={{textAlign: 'right'}}>
+            <HelpButton header="Process" location="top"
+                content="Series of photos documenting the creative process, from initial view to finished product." />  
+          </div>  
+          
         </div>
         </CloudinaryContext>
       )

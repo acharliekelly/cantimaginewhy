@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
 import { selectLightboxUtil } from '../../utils/imageUtils';
-import SimpleGallery from '../../components/SimpleGallery/';
+import SliceGallery from '../../components/SliceGallery/';
 
 import './home.scss'; 
 
@@ -15,7 +15,7 @@ const HomePage = props => {
 
         <div className="featured">
           <h3 className="header">Featured Artwork</h3>
-          <SimpleGallery 
+          <SliceGallery 
             tagName="favorite" 
             imageHeight={200} 
             gallerySize={4}

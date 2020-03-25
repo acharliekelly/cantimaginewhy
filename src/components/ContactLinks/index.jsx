@@ -15,13 +15,38 @@ const getLink = (link, node) => (
 
 const getIcon = (link, size) => {
   const ico = (link.lib) ? [link.lib, link.icon] : link.icon;
-  return <FontAwesomeIcon icon={ico} size={`${size}x`} />
+  return <FontAwesomeIcon icon={ico} size={`${size}x`} title={link.name} />
 };
 
 const getText = (link, size) => (
   <span className="link-text" style={{fontSize: `${size}em`}}>{link.name}</span>
 );
 
+const getUrlText = (link, size) => {
+  let text;
+  if (link.url.startsWith('mailto:')) {
+    text = link.url.slice(7);
+  } else {
+    text = link.url.split('://')[1];
+  }
+  return (
+    <span className="url-text" style={{fontSize: `${size-1}em`}}>{text}</span>
+  )
+}
+
+// Icon & Text, URL on hover
+const getFull = (link, size) => {
+  const icon = getIcon(link, size); 
+  const text = getText(link, size);
+  const url = getUrlText(link, size);
+  return (
+    <span className="mix-url">
+      {icon}&nbsp;{text}&nbsp;{url}
+    </span>
+  )
+}
+
+// Icon & Text
 const getMixed = (link, size) => {
   const icon = getIcon(link, size); 
   const text = getText(link, size);
@@ -32,6 +57,7 @@ const getMixed = (link, size) => {
   )
 }
 
+// Icon, Text on hover
 const getHidden = (link, size) => {
   const icon = getIcon(link, size); 
   const text = getText(link, size);
@@ -56,6 +82,9 @@ const ContactLinks = props => {
     case 'hide':
       nodeFn = getHidden
     break;
+    case 'full':
+      nodeFn = getFull
+    break;
     default:
       nodeFn = getMixed
   }
@@ -76,7 +105,11 @@ ContactLinks.propTypes = {
    */
   layout: PropTypes.string.isRequired,
   /**
-   * 'icon' || 'text' || 'both'
+   * icon: Show icon only
+   * text: Show text only
+   * both: Show icon & text
+   * hide: Show icon, text on hover
+   * full: Show icon & text, url on hover
    */
   displayType: PropTypes.string.isRequired,
   /**

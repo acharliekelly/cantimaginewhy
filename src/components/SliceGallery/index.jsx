@@ -1,6 +1,6 @@
-import React from './react';
-import PropTypes from './prop-types';
-import { Image, Transformation } from './cloudinary-react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery, defaultCPI, getContextProperty } from '../../utils/imageApi';
 
 class SliceGallery extends React.Component {

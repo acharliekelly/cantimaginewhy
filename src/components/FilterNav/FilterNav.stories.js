@@ -10,10 +10,15 @@ const mockClearGallery = () => {
   console.log('Gallery cleared');
 }
 
+const mockSwitch = () => {
+  console.log('Switch to Albums')
+}
+
 const stories = storiesOf('FilterNav', module);
 stories.add('Filter Navigation', () => (
   <FilterNav 
     updateSelectNav={mockNavChange} 
-    updateClearGallery={mockClearGallery}  
+    updateClearGallery={mockClearGallery}
+    updateSwitch={mockSwitch}
   />
 ));

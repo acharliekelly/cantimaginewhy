@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, radios, text, number } from '@storybook/addon-knobs';
+import { withKnobs, radios, number } from '@storybook/addon-knobs';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import SimpleGallery from './';
 
@@ -46,19 +46,6 @@ stories
         tagName="favorite" 
         imageHeight={200} 
         gallerySize={4} 
-        selectLightbox={selectLightboxUtil}
-      />
-    )
-  })
-  .add('Gallery with text', () => {
-    const tagText = text('Tag', 'favorite');
-    const sizeText = number('Gallery Size', 4);
-    const heightText = number('Image Height', 200);
-    return (
-      <SimpleGallery 
-        tagName={tagText} 
-        imageHeight={heightText} 
-        gallerySize={sizeText} 
         selectLightbox={selectLightboxUtil}
       />
     )

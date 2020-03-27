@@ -11,7 +11,11 @@ const HomePage = props => {
     <div className="content">
       <main className="home">
 
-        <Image cloudName="cantimaginewhy" publicId="art/boston-tetraptych_2012" height={300} />
+        <Image className="banner" 
+          cloudName="cantimaginewhy" 
+          publicId="art/boston-tetraptych_2012" 
+          width={800} 
+        />
 
         <div className="featured">
           <h3 className="header">Featured Artwork</h3>

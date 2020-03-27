@@ -1,6 +1,7 @@
 
 
 main.home {
+  border-radius: 5px;
   background-color: black;
   text-align: center;
   opacity: 1;
@@ -10,8 +11,9 @@ main.home {
     font-size: 3em;
     font-weight: bold;
   }
-  .carousel {
-    opacity: 1.0;
+  .banner {
+    width: 90%;
+    height: auto;
   }
 
   .featured {
@@ -25,6 +27,7 @@ main.home {
 .basic-gallery {
   display: flex;
   justify-content: space-around;
+
 
   img {
     margin: 1em;

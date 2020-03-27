@@ -1,6 +1,7 @@
 import axios from 'axios';
-// import cloudinary from 'cloudinary-core';
 
+
+// PUBLIC CONSTANTS 
 export const cloudName = 'cantimaginewhy';
 
 export const ImageProtectMode = {
@@ -22,8 +23,31 @@ const jsonImgList = tagName => {
 // Return all JSON data of images tagged with tagName
 export const fetchGallery = tagName => {
   const url = jsonImgList(tagName);
-  return axios(url);
+  return axios(url).then(res => res.data.resources);
 }
+
+
+/**
+ * Get thumbnail size based on image count
+ * @param {int} listSize 
+ */
+export const getThumbnailSize = listSize => {
+  let px = 0;
+  if (listSize < 1) return px;
+  if (listSize <= 9) {
+    px = 100;
+  } else if (listSize <= 24) {
+    px = 90;
+  } else if (listSize <= 36) {
+    px = 80;
+  } else if (listSize <= 48) {
+    px = 70;
+  } else {
+    px = 60;
+  }
+  return px;
+}
+
 
 // Image URLs
 
@@ -48,7 +72,6 @@ const addProtect = publicId => {
 
 const addDefault = `d_${defaultCPI}.jpg/`;
 
-// const wResponsive = 'w_auto,c_scale/';
 
 
 

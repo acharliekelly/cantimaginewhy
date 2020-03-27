@@ -46,17 +46,13 @@ const jsonObjectSort = (imageA, imageB) => {
   return 0;
 }
 
-const fetchOnsite = () => {
-  return fetchGallery('onsite').then(res => res.data.resources)
-}
-
 /**
  * Returns CIO array
  * @param {str} refKey 
  * @param {boolean} useContext 
  */
 export const onsitePhotos = (refKey, useContext = true) => {
-  return fetchOnsite()
+  return fetchGallery('onsite')
     .then(resources => filterResources(resources, refKey, useContext))
     .then(series => series.sort(jsonObjectSort))
 }
@@ -66,7 +62,7 @@ export const onsitePhotos = (refKey, useContext = true) => {
  * @param {str} refKey 
  */
 export const isSeriesExist = refKey => {
-  return fetchOnsite()
+  return fetchGallery('onsite')
     .then(resources => exists(resources, refKey))
 }
 
@@ -79,7 +75,7 @@ const exists = (resources, key) => {
  * @param {str} refKey 
  */
 export const getSeriesCount = refKey => {
-  return fetchOnsite()
+  return fetchGallery('onsite')
     .then(resources => filterResources(resources, refKey, true))
     .then(filtered => resCount(filtered))
 }

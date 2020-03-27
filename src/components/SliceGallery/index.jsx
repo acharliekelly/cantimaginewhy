@@ -33,8 +33,8 @@ class SliceGallery extends React.Component {
   // fetch images with tagName
   updateImages = (tagName, gallerySize) => {
     fetchGallery(tagName)
-      .then(res => {
-        let arr = res.data.resources;
+      .then(resources => {
+        let arr = resources;
         this.shuffleImages(arr);
         this.setState({
           images: arr.slice(0, gallerySize)
@@ -75,7 +75,7 @@ class SliceGallery extends React.Component {
     const { images } = this.state;
     const { imageHeight } = this.props;
     return (
-      <div className="gallery-wrapper">
+      <div className="wrapper">
         <div className="basic-gallery">
             {images.map((image, index) => {
               return (

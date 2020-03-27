@@ -59,64 +59,31 @@ export const filters = [
       }
     ]
   },
-  {
-    "name": "Medium",
-    "description": "Filter by method (pencil, watercolor, etc)",
-    "options": [
-      {
-        "name": "Pencil",
-        "tag": "pencil",
-        "thumbnail": "art/winter-house",
-        "description": "Graphite / Colored Pencil / WC Pencil",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Watercolor Pencil",
-        "tag": "watercolor pencil",
-        "thumbnail": "art/leaving-star-island_2015",
-        "description": "First drawn with WC pencil, then painted with water to create watercolor",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Watercolor",
-        "tag": "watercolor",
-        "thumbnail": "art/late-spring-on-the-charles_2017",
-        "description": "Traditional watercolor painting with brush",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Acrylic",
-        "tag": "acrylic",
-        "thumbnail": "art/riparian_balcony",
-        "description": "Layered acrylic paints",
-        "sortField": ".caption"
-      }
-    ]
-  },
-  {
-    "name": "Surface",
-    "description": "Filter by type of surface, as opposed to method",
-    "options": [
-      {
-        "name": "Paper",
-        "tag": "paper",
-        "thumbnail": "art/leaving-star-island_2015",
-        "description": "Drawn or painted on paper"
-      },
-      {
-        "name": "Canvas",
-        "tag": "canvas",
-        "thumbnail": "art/fall_footbridge",
-        "description": "Painted on canvas"
-      },
-      {
-        "name": "Panel",
-        "tag": "panel",
-        "thumbnail": "art/autumn_woods",
-        "description": "Painted on clay surface"
-      },
-    ]
-  },
+  
+  // {
+  //   "name": "Surface",
+  //   "description": "Filter by type of surface, as opposed to method",
+  //   "options": [
+  //     {
+  //       "name": "Paper",
+  //       "tag": "paper",
+  //       "thumbnail": "art/leaving-star-island_2015",
+  //       "description": "Drawn or painted on paper"
+  //     },
+  //     {
+  //       "name": "Canvas",
+  //       "tag": "canvas",
+  //       "thumbnail": "art/fall_footbridge",
+  //       "description": "Painted on canvas"
+  //     },
+  //     {
+  //       "name": "Panel",
+  //       "tag": "panel",
+  //       "thumbnail": "art/autumn_woods",
+  //       "description": "Painted on clay surface"
+  //     },
+  //   ]
+  // },
   {
     "name": "Style",
     "description": "Filter by artistic style",
@@ -216,6 +183,40 @@ export const filters = [
         "tag": "yellow",
         "thumbnail": "art/easter-card-2012",
         "description": "Images with some amount of yellow in them"
+      }
+    ]
+  },
+  {
+    "name": "Medium",
+    "description": "Filter by method (pencil, watercolor, etc)",
+    "options": [
+      {
+        "name": "Pencil",
+        "tag": "pencil",
+        "thumbnail": "art/winter-house",
+        "description": "Graphite / Colored Pencil / WC Pencil",
+        "sortField": ".caption"
+      },
+      {
+        "name": "Watercolor Pencil",
+        "tag": "watercolor pencil",
+        "thumbnail": "art/leaving-star-island_2015",
+        "description": "First drawn with WC pencil, then painted with water to create watercolor",
+        "sortField": ".caption"
+      },
+      {
+        "name": "Watercolor",
+        "tag": "watercolor",
+        "thumbnail": "art/late-spring-on-the-charles_2017",
+        "description": "Traditional watercolor painting with brush",
+        "sortField": ".caption"
+      },
+      {
+        "name": "Acrylic",
+        "tag": "acrylic",
+        "thumbnail": "art/riparian_balcony",
+        "description": "Layered acrylic paints",
+        "sortField": ".caption"
       }
     ]
   },

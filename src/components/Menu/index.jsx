@@ -51,10 +51,10 @@ const Menu = props => {
             {menuNavs.map((nav, index) => (
               <Nav.Item key={index}>
                 {nav.external ? (
-                  <NavLink to={nav.location} className="external-link" target="_blank" rel="noreferrer noopener">
+                  <a href={nav.location} className="external-link" target="_blank" rel="noreferrer noopener">
                     {nav.name} 
                     {/* <FontAwesomeIcon icon="external-link-alt" size="sm" /> */}
-                  </NavLink>
+                  </a>
                 ) : (
                   <NavLink to={nav.location}>{nav.name}</NavLink>
                 )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { links } from '../../config/links';
 
 import './links.scss';
@@ -13,16 +14,16 @@ const getLink = (link, node) => (
     </a>
 )
 
-const getIcon = (link, size) => {
+const getIcon = (link, iconSize, textSize) => {
   const ico = (link.lib) ? [link.lib, link.icon] : link.icon;
-  return <FontAwesomeIcon icon={ico} size={`${size}x`} title={link.name} />
+  return <FontAwesomeIcon icon={ico} size={iconSize} title={link.name} />
 };
 
-const getText = (link, size) => (
-  <span className="link-text" style={{fontSize: `${size}em`}}>{link.name}</span>
+const getText = (link, iconSize, textSize) => (
+  <span className="link-text" style={{fontSize: textSize}}>{link.name}</span>
 );
 
-const getUrlText = (link, size) => {
+const getUrlText = (link, iconSize, textSize) => {
   let text;
   if (link.url.startsWith('mailto:')) {
     text = link.url.slice(7);
@@ -30,15 +31,15 @@ const getUrlText = (link, size) => {
     text = link.url.split('://')[1];
   }
   return (
-    <span className="url-text" style={{fontSize: `${size-1}em`}}>{text}</span>
+    <span className="url-text">{text}</span>
   )
 }
 
 // Icon & Text, URL on hover
-const getFull = (link, size) => {
-  const icon = getIcon(link, size); 
-  const text = getText(link, size);
-  const url = getUrlText(link, size);
+const getFull = (link, iconSize, textSize) => {
+  const icon = getIcon(link, iconSize); 
+  const text = getText(link, textSize);
+  const url = getUrlText(link);
   return (
     <span className="mix-url">
       {icon}&nbsp;{text}&nbsp;{url}
@@ -47,9 +48,9 @@ const getFull = (link, size) => {
 }
 
 // Icon & Text
-const getMixed = (link, size) => {
-  const icon = getIcon(link, size); 
-  const text = getText(link, size);
+const getMixed = (link, iconSize, textSize) => {
+  const icon = getIcon(link, iconSize); 
+  const text = getText(link, textSize);
   return (
     <span className="mix-show">
       {icon}&nbsp;{text}
@@ -58,9 +59,9 @@ const getMixed = (link, size) => {
 }
 
 // Icon, Text on hover
-const getHidden = (link, size) => {
-  const icon = getIcon(link, size); 
-  const text = getText(link, size);
+const getHidden = (link, iconSize, textSize) => {
+  const icon = getIcon(link, iconSize); 
+  const text = getText(link, textSize);
   return (
     <span className="mix-hide">
       {icon}&nbsp;{text}
@@ -69,8 +70,16 @@ const getHidden = (link, size) => {
 }
 
 const ContactLinks = props => {
-  const { displayType, size, layout } = props;
-  const cls = 'links ' + layout;
+  const { displayType, size, textSize, horizontal } = props;
+  const itemStyle = {
+    border: 'none', 
+    backgroundColor: 'transparent', 
+    textAlign: horizontal ? 'center' : 'left',
+    margin: horizontal ? '0 3px' : '3px 0',
+    fontSize: textSize,
+    padding: 0
+  }
+  
   let nodeFn;
   switch (displayType) {
     case 'icon':
@@ -89,21 +98,22 @@ const ContactLinks = props => {
       nodeFn = getMixed
   }
   return (
-    <ul className={cls}>
+    <ListGroup as="ul" className="links" horizontal={horizontal}>
       {links.map(link => (
-        <li key={link.name}>
+        <ListGroup.Item as="li" size={size} style={itemStyle} key={link.name} action>
         {getLink(link, nodeFn(link, size))}
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   )
 }
 
 ContactLinks.propTypes = {
   /**
-   * 'horiz' || 'vert'
+   * size variable ('sm'|'md'|...)
+   * point at which to stop being horizontal
    */
-  layout: PropTypes.string.isRequired,
+  horizontal: PropTypes.string,
   /**
    * icon: Show icon only
    * text: Show text only
@@ -113,15 +123,19 @@ ContactLinks.propTypes = {
    */
   displayType: PropTypes.string.isRequired,
   /**
-   * height
+   * size variable
    */
-  size: PropTypes.number.isRequired
+  size: PropTypes.string,
+  /**
+   * font size, since bootstrap size has no impact on font
+   */
+  textSize: PropTypes.string
 };
 
 ContactLinks.defaultProps = {
-  layout: 'horiz',
   displayType: 'icon',
-  size: 2
+  size: 'lg',
+  textSize: '1em'
 };
 
 

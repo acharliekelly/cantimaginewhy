@@ -2,12 +2,9 @@
   li {
     list-style-type: none;
   }
-  &.horiz li {
-    display: inline;
-  }
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: #000;
   }
   a:hover {

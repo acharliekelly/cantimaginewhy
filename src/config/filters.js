@@ -59,46 +59,21 @@ export const filters = [
       }
     ]
   },
-  
-  // {
-  //   "name": "Surface",
-  //   "description": "Filter by type of surface, as opposed to method",
-  //   "options": [
-  //     {
-  //       "name": "Paper",
-  //       "tag": "paper",
-  //       "thumbnail": "art/leaving-star-island_2015",
-  //       "description": "Drawn or painted on paper"
-  //     },
-  //     {
-  //       "name": "Canvas",
-  //       "tag": "canvas",
-  //       "thumbnail": "art/fall_footbridge",
-  //       "description": "Painted on canvas"
-  //     },
-  //     {
-  //       "name": "Panel",
-  //       "tag": "panel",
-  //       "thumbnail": "art/autumn_woods",
-  //       "description": "Painted on clay surface"
-  //     },
-  //   ]
-  // },
   {
     "name": "Style",
     "description": "Filter by artistic style",
     "options": [
       {
-        "name": "Triptych",
-        "tag": "triptych",
-        "thumbnail": "art/winter-yosemite",
-        "description": "Picture divided into multiple panels"
-      },
-      {
         "name": "Pointillist",
         "tag": "pointillist",
         "thumbnail": "art/fun-with-dots_2017",
         "description": "Created by making tiny dots instead of brush strokes"
+      },
+      {
+        "name": "Triptych",
+        "tag": "triptych",
+        "thumbnail": "art/winter-yosemite",
+        "description": "Picture divided into multiple panels"
       },
       {
         "name": "Nightscape",
@@ -198,10 +173,10 @@ export const filters = [
         "sortField": ".caption"
       },
       {
-        "name": "Watercolor Pencil",
+        "name": "WC Pencil",
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
-        "description": "First drawn with WC pencil, then painted with water to create watercolor",
+        "description": "First drawn with watercolor pencil, then painted with water to create watercolor",
         "sortField": ".caption"
       },
       {

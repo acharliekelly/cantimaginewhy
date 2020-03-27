@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactLinks from '../ContactLinks/';
 import Logo from '../Logo/';
 import { selectLightboxUtil} from '../../utils/imageUtils';
@@ -63,7 +63,7 @@ const Menu = props => {
           </Nav>
         </Container>
         <Container className="justify-content-end">
-          <ContactLinks layout="horiz" displayType="icon" size={2} />
+          <ContactLinks displayType="icon" size="2x" horizontal="md" />
         </Container>
       </Navbar>
     </div>

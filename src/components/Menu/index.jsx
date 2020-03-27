@@ -1,48 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactLinks from '../ContactLinks/';
-import { fetchGallery } from '../../utils/imageApi';
+import Logo from '../Logo/';
 import { selectLightboxUtil} from '../../utils/imageUtils';
 
 
 import './menu.scss';
 
-const Menu = props => {
-  const { selectLightbox } = props;
-  const logoId = 'ciw4';
 
-  const openZoom = () => {
-    fetchGallery('logo').then(res => {
-      selectLightbox(logoId, res.data.resources);
-    })
+
+const menuNavs = [
+  {
+    name: "Home",
+    location: "home",
+  },
+  {
+    name: "Artwork",
+    location: "artwork"
+  },
+  {
+    name: "About",
+    location: "about",
+  },
+  {
+    name: "Contact",
+    location: "contact"
+  },
+  {
+    name: "Shop",
+    location: "https://charlie-kelly.pixels.com",
+    external: true
   }
+];
 
+
+const Menu = props => {
   return (
-    <CloudinaryContext className="menu-wrapper" cloudName="cantimaginewhy">
+    <div className="menu-wrapper">
       <Navbar expand="lg" bg="light" className="justify-content-between">
         <Navbar.Brand>
-          <Image publicId="logo_th" onClick={openZoom}>
-            <Transformation height="80" width="80" radius="max" crop="scale" />
-          </Image>
+          <Logo selectLightbox={props.selectLightbox} />
         </Navbar.Brand>
         <Container className="justify-content-end">
           <Nav >
-            <Nav.Link href="#/home">Home</Nav.Link>
-            <Nav.Link href="#/artwork">Artwork</Nav.Link>
-            <Nav.Link href="#/about">About</Nav.Link>
-            <Nav.Link href="https://charlie-kelly.pixels.com" target="_blank" rel="noreferrer noopener">Shop</Nav.Link>
-            <Nav.Link href="#/contact">Contact</Nav.Link>
+            {menuNavs.map((nav, index) => (
+              <Nav.Item key={index}>
+                {nav.external ? (
+                  <NavLink to={nav.location} className="external-link" target="_blank" rel="noreferrer noopener">
+                    {nav.name} 
+                    {/* <FontAwesomeIcon icon="external-link-alt" size="sm" /> */}
+                  </NavLink>
+                ) : (
+                  <NavLink to={nav.location}>{nav.name}</NavLink>
+                )}
+              </Nav.Item>
+            ))}
           </Nav>
         </Container>
         <Container className="justify-content-end">
           <ContactLinks layout="horiz" displayType="icon" size={2} />
         </Container>
       </Navbar>
-    </CloudinaryContext>
+    </div>
   );
 }
 

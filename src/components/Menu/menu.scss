@@ -3,6 +3,7 @@ $menu-text: #000;
 $menu-item-border: #aaa;
 $menu-active-bkg: #000;
 $menu-active-text: #fff;
+$menu-ext-link: #006;
 
 
 
@@ -15,79 +16,51 @@ $menu-active-text: #fff;
     text-align: center;
     font-variant: small-caps;
     font-weight: bold;
-    font-size: 1.5rem;
-  }
-  a.nav-link {
-    color: $menu-text;
-    border: 2px solid transparent;
-    border-radius: 3px;
-    text-decoration: none;
-    padding: 0 2px;
-
-    &:hover {
-      border-color: $menu-item-border;
-    }
-
-    &.active, &.active:hover {
-      border-color: $menu-active-bkg;
-      background-color: $menu-active-bkg;
-      color: $menu-active-text !important;
-    }
-
-  }
-
-}
-
-
-.menu {
-  // display: flex;
-  // justify-content: space-around;
-
-  background-color: $menu-bkg;
-  color: $menu-text;
-  
-
-  .site-logo {
-    padding: 0.3em;
-    border: solid 0.4em silver;
-    border-radius: 50px;
-    background-color: silver;
-    cursor: pointer;
-    &:hover {
-      border-color: #888;
-      background-color: #888;
-    }
-  }
-
-
-  .navbar-nav {
-    // display: inline;
-    text-align: center;
-    font-variant: small-caps;
-    font-weight: bold;
     font-size: 2rem;
   }
-  a.nav-link {
-    color: $menu-text;
-    text-decoration: none;
-    padding: 0 2px;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  .nav-item {
+    margin: 0 0.2em;
 
-    &.active, &.active:hover {
-      background-color: $menu-active-bkg;
+    a {
+      color: $menu-text;
+      border: 1px solid transparent;
       border-radius: 3px;
       text-decoration: none;
-      color: $menu-active-text;
+      padding: 0 0.5em;
+  
+      &:hover {
+        border-color: $menu-item-border;
+      }
+  
+      &.active, &.active:hover {
+        border-color: $menu-active-bkg;
+        background-color: $menu-active-bkg;
+        color: $menu-active-text !important;
+      }
+  
+      &.external-link {
+
+        // padding: 0;
+        svg {
+          // float: right;
+          // visibility: hidden;
+          font-size: 0.5rem;
+          display: inline;
+        }
+        &:hover {
+          border-color: $menu-ext-link;
+          color: $menu-ext-link;
+          // background-color: $menu-ext-bkg;
+          // color: $menu-active-text;
+        }
+      }
+    
     }
 
-    &.homelink {
-      color: $menu-text;
-      background-color: $menu-bkg;
-      text-decoration: none;
-    }
   }
+
 }
+
+
 

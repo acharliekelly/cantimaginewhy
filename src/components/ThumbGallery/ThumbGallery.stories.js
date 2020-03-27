@@ -9,6 +9,11 @@ import './gallery.scss';
 
 const images = sortByField(resources, '.caption');
 
+const mockNav = {
+  name: 'Acrylic',
+  description: 'Layered acrylic paints'
+}
+
 const mockSelect = index => {
   console.log(images[index].public_id + ' selected');
 }
@@ -36,6 +41,14 @@ stories
     selectThumbnail={mockSelect}
     thumbSize={80}
   />))
+  .add('Heading', () => (
+    <ThumbGallery 
+        galleryImages={images} 
+        selectThumbnail={mockSelect} 
+        thumbSize={60}
+        heading={mockNav}
+      />
+  ))
   .add('Knobs', () => {
     const sizes = number('Thumbnail Size', 100, sizeCtrl);
     const selected = number('Selected', 0, indexCtrl);

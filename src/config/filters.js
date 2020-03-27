@@ -54,7 +54,7 @@ export const filters = [
         "name": "Elsewhere",
         "tag": "elsewhere",
         "thumbnail": "art/bodiam-castle_2011",
-        "description": "Scenes from elsewhere",
+        "description": "Scenes from farther afield",
         "sortField": ".location"
       }
     ]
@@ -74,7 +74,7 @@ export const filters = [
         "name": "Watercolor Pencil",
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
-        "description": "Drawn first, then turned into watercolor by applying water",
+        "description": "First drawn with WC pencil, then painted with water to create watercolor",
         "sortField": ".caption"
       },
       {
@@ -119,7 +119,7 @@ export const filters = [
   },
   {
     "name": "Style",
-    "description": "Different artistic styles used",
+    "description": "Filter by artistic style",
     "options": [
       {
         "name": "Triptych",

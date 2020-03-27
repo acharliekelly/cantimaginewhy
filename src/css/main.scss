@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Roboto|Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Gotu|Indie+Flower&display=swap');
 @import 'colors';
 
 body {
   // background-color: $base-bkg;
   background-color: #fff;
   color: $base-text;
-  font-family: Roboto;
+  font-family: Gotu, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, header {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Gotu', sans-serif;
   color: $base-header;
 }
 
@@ -41,27 +41,26 @@ h1, h2, h3, h4, h5, h6, header {
 
 .content {
   margin: 1rem auto;
-  padding: 10px;
+  // padding: 10px;
   min-height: 75vh;
 
 
   header {
     // font-size: 3em;
     text-align: center;
-    margin: 1em 2em;
+    margin: 0.2rem;
 
   }
 
-  .display-area {
-    text-align: center;
-    margin: 0;
-  }
 }
 
 
 .toolbar {
   text-align: center;
   margin: 0.5em 0;
+  .max {
+    width: 100%;
+  }
 }
 
 

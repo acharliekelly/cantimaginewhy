@@ -37,7 +37,8 @@ const ProgressView = props => {
 
   const magnifyImage = () => {
     const { selectLightbox } = props;
-    selectLightbox('', progressImages, progressIndex);
+    const imgId = progressImages[progressIndex].public_id;
+    selectLightbox(imgId, progressImages);
   }
 
   return (

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Modal from 'react-bootstrap/Modal';
-import { encode } from '../../utils/system';
+import { encode } from '/utils/system';
 
 
 export const CommissionForm = props => {

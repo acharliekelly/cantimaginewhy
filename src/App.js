@@ -14,6 +14,7 @@ import ArtworkPage from './views/Artwork/';
 import ImageZoom from './components/ImageZoom/';
 import { allowDevMode } from './utils/system';
 import { initializeLibrary } from './utils/faLibrary';
+import { updateFavicon } from './utils/system';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
@@ -36,8 +37,10 @@ const App = () => {
     if (images.length > 0) {
       setLightboxImages(images);
       let idx = currentIndex;
-      if (idx < 0) {
+      if (idx < 0 && imageId.length > 0) {
         idx = images.findIndex(img => img.public_id === imageId);
+      } else {
+        idx = 0;
       }
       setLightboxCurrentIndex(idx);
     } else {
@@ -64,8 +67,12 @@ const App = () => {
 
   const devCls = developmentMode ? ' dev-mode' : '';
 
+  // set Favicon according to current env
+  updateFavicon();
+
   // Initialize FontAwesome library
   initializeLibrary();
+  
 
   return (
     <div className={'page-container' + devCls}>

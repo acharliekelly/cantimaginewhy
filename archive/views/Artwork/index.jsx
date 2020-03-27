@@ -1,14 +1,15 @@
-// USE ALBUMS
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-// import Button from 'react-bootstrap/Button';
-import { selectLightboxUtil } from '../../utils/imageUtils';
+import React, { useState } from './react';
+import PropTypes from './prop-types';
+import { selectLightboxUtil } from '/utils/imageUtils';
 import ImageGallery from '../../components/ImageGallery/';
+import FilterNav from '../../components/FilterNav/';
 import AlbumNav from '../../components/AlbumNav/';
 
 import './artwork.scss';
 
+
 const ArtworkPage = props => {
+  const [ navFilter, setNavFilter ] = useState(true);  // true = filter
   const [ currentNav, setCurrentNav ] = useState(null);
   const [ emptyGallery, setEmptyGallery ] = useState(true);
 
@@ -19,11 +20,27 @@ const ArtworkPage = props => {
     setEmptyGallery(false);
     setCurrentNav(nav);
   }
+  
+  const switchNavType = () => {
+    setNavFilter(!navFilter);
+  }
+
   return (
     <div className="content">
-      <AlbumNav 
-        updateSelectNav={selectGallery} 
-        updateClearGallery={clearGallery} />
+
+      { navFilter ? (
+        <FilterNav 
+          updateSelectNav={selectGallery} 
+          updateClearGallery={clearGallery} 
+          updateSwitch={switchNavType}
+          />
+      ) : (
+        <AlbumNav
+          updateSelectNav={selectGallery}
+          updateClearGallery={clearGallery}
+          updateSwitch={switchNavType}
+        />
+      )}
       
       <ImageGallery 
         selectLightbox={props.selectLightbox} 

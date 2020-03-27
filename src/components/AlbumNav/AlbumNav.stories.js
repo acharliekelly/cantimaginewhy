@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AlbumNav from './';
 
-import '../../css/nav.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const mockNavChange = tagName => {
   console.log('Album has changed to ' + tagName);

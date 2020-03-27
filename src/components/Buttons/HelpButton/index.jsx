@@ -5,6 +5,15 @@ import Button from 'react-bootstrap/Button';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
+
+const imgOnlyStyle = {
+  padding: '2px', 
+  borderRadius: '2px', 
+  backgroundColor: 'transparent',
+  color: '#eee',
+  cursor: 'pointer'
+}
+
 const HelpButton = props => (
   <OverlayTrigger trigger="click" placement={props.location} overlay={
     <Popover>
@@ -12,24 +21,52 @@ const HelpButton = props => (
       <Popover.Content>{props.content}</Popover.Content>
     </Popover>
   }>
-    <Button className="help-btn" variant="outline-info">
-      <FontAwesomeIcon icon="question-circle" size={`${props.size}x`} />
-    </Button>
+    {props.imageOnly ? (
+      <div className="help-btn" style={imgOnlyStyle}>
+        <FontAwesomeIcon icon="question-circle" size={props.size} />
+      </div>
+    ) : (
+      <Button className="help-btn" variant={props.variant}>
+        <FontAwesomeIcon icon="question-circle" size={props.size} />
+      </Button>
+    )}
   </OverlayTrigger>
 );
 
 
 HelpButton.propTypes = {
+  /**
+   * Title of the help message
+   */
   header: PropTypes.string,
+  /**
+   * the help message
+   */
   content: PropTypes.string,
+  /**
+   * placement of the message
+   */
   location: PropTypes.string,
-  size: PropTypes.number
+  /**
+   * size of the icon
+   */
+  size: PropTypes.string,
+  /**
+   * just make a clickable icon, no button
+   */
+  imageOnly: PropTypes.bool,
+  /**
+   * button color
+   */
+  variant: PropTypes.string
 }
 
 HelpButton.defaultProps = {
   header: 'Help',
   location: 'bottom',
-  size: 1
+  size: 'lg',
+  imageOnly: false,
+  variant: 'outline-info'
 }
 
 export default HelpButton;

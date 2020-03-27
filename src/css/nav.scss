@@ -31,7 +31,7 @@ $selected-album-text: #000;
   }
 
   .nav-link {
-    color: $nav-link-text;
+    color: $nav-link-text !important;
     text-decoration: none;
     
     &.active {
@@ -42,32 +42,34 @@ $selected-album-text: #000;
 
   }
 
-  .filters {
-    margin-left: 7rem;
+  .filter-wrapper {
+    border: 1px solid $nav-text;
+    border-radius: 5px;
+    padding: 1px 0;
+
+    .filters {
+      margin-left: 0.5em;
+
+      .navbar-text {
+        // line-height: 1;
+        font-size: small;
+        padding-bottom: 0 !important;
+        padding-top: 0.7rem !important;
+      }
+    }
   }
 
   .category-desc {
-
     font-size: 0.8em;
-    // width: 25%;
-    // overflow: hidden;
+    margin-right: 0.5em;
 
     .active-desc {
-      font-style: normal;
       color: #000;
     }
     .hover-desc {
-      // font-style: italic;
       color: #888;
     }
   }
-
-  // &:hover {
-  //   .active-desc {
-  //     display: none;
-  //   }
-  // }
-  
 }
 
 .album-bar {
@@ -84,7 +86,7 @@ $selected-album-text: #000;
     
       .album-name {
         font-size: 0.8em;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Gotu', sans-serif;
         text-align: center;
         color: $album-text;
       }
@@ -101,26 +103,31 @@ $selected-album-text: #000;
     }
   }
 
+  .gallery-col {
+    text-align: right;
+  }
 
   .current-item {
-    margin: 1em auto;
-    text-align: right;
-    // border: thin solid;
-    border-radius: 0.2em;
-    padding: 0.3em;
+    display: none;
+    // width: 100%;
+    // padding: 0 auto;
+    // padding-top: 2em;
+    // text-align: right;
+    // // border: thin solid;
+    // border-radius: 0.2em;
 
-    .nav-title {
-      text-align: center;
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.5em;
-      font-weight: 600;
-    }
-    .nav-description {
-      text-align: center;
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.8em;
-      font-weight: normal;
-    }
+    // .nav-title {
+    //   text-align: center;
+    //   font-family: 'Great Vibes', cursive;
+    //   font-size: 1.5em;
+    //   font-weight: 600;
+    // }
+    // .nav-description {
+    //   text-align: center;
+    //   font-family: 'Gotu', sans-serif;
+    //   font-size: 0.8em;
+    //   font-weight: normal;
+    // }
   }
   
   
@@ -143,8 +150,14 @@ $dev-selected-album-text: #000;
 
 .dev-mode {
 
+  .col {
+    outline: thin dashed gray;
+  }
+
   .category-bar {
     background-color: $dev-nav-bkg;
+
+   
 
     .label {
       color: $dev-nav-text;
@@ -197,6 +210,8 @@ $dev-selected-album-text: #000;
         }
       }
     }
+
+    
 
     .current-item {
       border: thin solid #c0c;

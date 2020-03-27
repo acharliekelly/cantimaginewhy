@@ -5,8 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ImageDisplay from '../ImageDisplay/';
-import { fetchGallery, defaultImg, sortGallery } from '../../utils/imageApi';
-import { selectLightboxUtil } from '../../utils/imageUtils';
+import { fetchGallery, defaultImg, sortGallery } from '/utils/imageApi';
+import { selectLightboxUtil } from '/utils/imageUtils';
 
 import './gallery.scss';
 

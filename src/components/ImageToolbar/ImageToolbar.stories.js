@@ -8,8 +8,6 @@ const stories = storiesOf('ImageToolbar', module);
 stories
   .add('default', () => <ImageToolbar />)
   .add('settings', () => (
-    <ImageToolbar 
-      variant="info" 
-      toolbarClass="test"
-      imgSize="4x" />
+    <ImageToolbar variant="info" imgSize="4x" fullWidth={false} />
   ))
+ 

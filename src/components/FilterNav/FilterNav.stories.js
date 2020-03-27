@@ -2,6 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import FilterNav from './';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const mockNavChange = tagName => {
   console.log('Filter has changed to ' + tagName);
 }

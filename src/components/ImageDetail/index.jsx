@@ -17,13 +17,16 @@ const ImageDetail = props => {
     setCurrentImage(imageList[imageIndex]);
   }, [imageList, imageIndex]); 
 
+  const magnifyImage = () => {
+    props.selectLightbox(currentImage.public_id, imageList);
+  }
 
   if (currentImage) {
     const info = loadImageProps(currentImage);
     return (
       <Container className="image-detail">
         <Container className="image-view">
-          <Image cloudName="cantimaginewhy" publicId={info.id}>
+          <Image cloudName="cantimaginewhy" publicId={info.id} onClick={magnifyImage}>
             <Transformation height={displayHeight} width={displayWidth} crop="pad" background="black" />
           </Image>
         </Container>
@@ -34,7 +37,7 @@ const ImageDetail = props => {
             fullWidth
             prevImageFn={props.movePrevious}
             nextImageFn={props.moveNext}
-            zoomImageFn={() => props.selectLightbox(currentImage.public_id, imageList)}
+            zoomImageFn={magnifyImage}
             disableCarousel={imageList.length < 2}
           />
         

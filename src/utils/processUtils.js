@@ -11,7 +11,7 @@
  /**
   * Each image key (usually same as original filename)
   * mapped to number of process photos, not including 
-  * Initial or Final views. If count is 0, the image has
+  * Final views. If count is 0, the image has
   * an Initial and a Final view. If -1, only a Final.
   * If there is no Final image, then the image key is
   * not listed.
@@ -73,6 +73,10 @@ const imageSeries = (referenceKey, imageCount) => {
 
 export const lookupSeriesCount = referenceKey => {
   return processData[referenceKey] || NaN;
+}
+
+export const hasProgressSeries = referenceKey => {
+  return !isNaN(lookupSeriesCount(referenceKey));
 }
 
 /**

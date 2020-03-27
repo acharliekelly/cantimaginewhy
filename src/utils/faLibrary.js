@@ -17,7 +17,8 @@ import {
   faBlog,
   faFilter,
   faSort,
-  faImages
+  faImages,
+  faExternalLinkAlt
  } from '@fortawesome/free-solid-svg-icons';
 
  export const initializeLibrary = () => {
@@ -25,7 +26,7 @@ import {
   library.add(fab, faBars, faChevronLeft, faChevronRight, 
     faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
     faImage, faQuestionCircle, faSearchPlus, faBlog,
-    faFilter, faSort, faImages);
+    faFilter, faSort, faImages, faExternalLinkAlt);
  }
 
  

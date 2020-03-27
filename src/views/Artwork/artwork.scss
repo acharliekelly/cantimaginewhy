@@ -3,7 +3,7 @@
   text-align: left;
   height: 2em;
   font-size: 12px;
-  font-family: 'Roboto';
+  font-family: 'Gotu', sans-serif;
 
   .label {
     color: #333;
@@ -37,5 +37,18 @@
 
   &:hover .gallery-description {
     visibility: visible;
+  }
+}
+
+.progress-img-wrapper {
+  padding: 1em auto;
+  text-align: center;
+  max-width: 100%;
+  border-radius: 0.4em;
+  border: thin inset #333;
+
+  img {
+    max-width: 90%;
+    
   }
 }

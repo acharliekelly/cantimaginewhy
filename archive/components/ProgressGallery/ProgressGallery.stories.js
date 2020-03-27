@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, radios, number } from '@storybook/addon-knobs';
 import { Image } from 'cloudinary-react';
-import ProgressGallery from './';
+import ProgressGallery from '.';
 
 import './process.scss';
 

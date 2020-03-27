@@ -3,7 +3,7 @@ const {
   fetchAlbum,
   fetchProcessImages,
   fetchTagImages
-} = require('../src/utils/advImageApi');
+} = require('./advImageApi');
 
 
 test('check new expression', () => {

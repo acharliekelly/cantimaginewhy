@@ -38,6 +38,10 @@ const ArtworkPage = props => {
     setThumbSize(size);
   }, [artImages]);
 
+  useEffect(() => {
+    clearArtGallery();
+  }, [navFilter])
+
   const clearProgress = () => {
     setRefKey(null);
   }

@@ -41,18 +41,27 @@ $menu-ext-link: #006;
   
       &.external-link {
 
-        // padding: 0;
+        font-size: 2rem !important;
+        display: inline-block;
+        color: $menu-ext-link;
         svg {
-          // float: right;
-          // visibility: hidden;
           font-size: 0.5rem;
           display: inline;
         }
         &:hover {
           border-color: $menu-ext-link;
           color: $menu-ext-link;
-          // background-color: $menu-ext-bkg;
-          // color: $menu-active-text;
+          background-color: $menu-ext-link;
+          color: $menu-active-text;
+        }
+      }
+
+      &.btn.btn-outline-info {
+        font-size: 2rem;
+        display: inline-block;
+        svg {
+          font-size: 0.5rem;
+          display: inline;
         }
       }
     

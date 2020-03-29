@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactLinks from '../ContactLinks/';
 import Logo from '../Logo/';
+// import ExternalLink from '../Buttons/ExternalLink';
 import { selectLightboxUtil} from '../../utils/imageUtils';
 
 
@@ -42,7 +43,7 @@ const menuNavs = [
 const Menu = props => {
   return (
     <div className="menu-wrapper">
-      <Navbar expand="lg" bg="light" className="justify-content-between">
+      <Navbar bg="light" className="justify-content-between">
         <Navbar.Brand>
           <Logo selectLightbox={props.selectLightbox} />
         </Navbar.Brand>
@@ -51,10 +52,8 @@ const Menu = props => {
             {menuNavs.map((nav, index) => (
               <Nav.Item key={index}>
                 {nav.external ? (
-                  <a href={nav.location} className="external-link" target="_blank" rel="noreferrer noopener">
-                    {nav.name} 
-                    {/* <FontAwesomeIcon icon="external-link-alt" size="sm" /> */}
-                  </a>
+                  <a href={nav.location} className="external-link" 
+                    target="_blank" rel="noreferrer noopener">{nav.name}</a>
                 ) : (
                   <NavLink to={nav.location}>{nav.name}</NavLink>
                 )}

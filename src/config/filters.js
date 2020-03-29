@@ -3,17 +3,22 @@
  * Structure:
  * name
  * description
+ * display: (apply to children)
  * options:
  * - name
  * - tag
  * - thumbnail
  * - description
  * - sortField
+ * - display []
  */
 export const filters = [
   {
     "name": "Location",
     "description": "Filter by where image was painted",
+    "display": [
+      "gallery", "detail", "progress", "explan"
+    ],
     "options": [
       {
         "name": "Boston",
@@ -62,6 +67,9 @@ export const filters = [
   {
     "name": "Style",
     "description": "Filter by artistic style",
+    "display": [
+      "gallery", "detail"
+    ],
     "options": [
       {
         "name": "Pointillist",
@@ -168,8 +176,8 @@ export const filters = [
       {
         "name": "Pencil",
         "tag": "pencil",
-        "thumbnail": "art/winter-house",
-        "description": "Graphite / Colored Pencil / WC Pencil",
+        "thumbnail": "nfs/christian-science-plaza",
+        "description": "Graphite / Colored Pencil",
         "sortField": ".caption"
       },
       {
@@ -177,14 +185,16 @@ export const filters = [
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
         "description": "First drawn with watercolor pencil, then painted with water to create watercolor",
-        "sortField": ".caption"
+        "sortField": ".caption",
+        "display": [ "-progress", "-explan" ]
       },
       {
         "name": "Watercolor",
         "tag": "watercolor",
         "thumbnail": "art/late-spring-on-the-charles_2017",
         "description": "Traditional watercolor painting with brush",
-        "sortField": ".caption"
+        "sortField": ".caption",
+        "display": [ "-progress", "-explan" ]
       },
       {
         "name": "Acrylic",
@@ -200,19 +210,19 @@ export const filters = [
     "description": "Filter by availability of images for purchase or printing",
     "options": [
       {
-        "name": "Original for Sale",
+        "name": "Original",
         "tag": "for-sale",
         "thumbnail": "art/memorial_drive",
-        "description": "You can purchase these original paintings"
+        "description": "Original painting is available"
       },
       {
-        "name": "Stuff for Sale",
+        "name": "Prints, etc",
         "tag": "for-print",
         "thumbnail": "art/esplanade-sunset_2018",
-        "description": "You can buy stuff made from these pictures"
+        "description": "Buy products made from these"
       },
       {
-        "name": "Viewing Only",
+        "name": "View",
         "tag": "nfs",
         "thumbnail": "nfs/eye_26745608572_o_zqbocw",
         "description": "You can look at these"
@@ -222,8 +232,7 @@ export const filters = [
 ];
 
 export const navDescription = `
-I've got a lot of artwork, and it's kind of hard to sort through. So, I've devised this 
-filtering system. On the top row are categories you can group by, such as medium 
+I've devised this filtering system in an attempt to make my artwork more searchable. 
+On the top row are categories you can group by, such as medium 
 (eg. pencil, watercolor), or location (Boston, Maine). When you click one of the image buttons
-(eg 'Boston'), you'll see all my paintings from Downtown Boston. What you can do with each 
-painting varies by painting; some let you buy stuff, while others can just be looked at.`;
+(eg 'Boston'), you'll see all my paintings from Downtown Boston.`;

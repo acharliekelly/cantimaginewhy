@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import ThumbGallery from '../../components/ThumbGallery/';
-import FilterNav from '../../components/FilterNav/';
+import FilterNav from '../../components/FilterNav/alt';
 import AlbumNav from '../../components/AlbumNav/';
 import ImageDetail from '../../components/ImageDetail/';
 import ProgressView from '../../components/ProgressView';
@@ -75,9 +75,6 @@ const ArtworkPage = props => {
     const prev = (currentIndex + artImages.length - 1) % artImages.length;
     setCurrentIndex(prev)
   }
-
-
-  
 
   return (
     <div className="content">

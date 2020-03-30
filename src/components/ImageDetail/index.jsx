@@ -45,28 +45,33 @@ const ImageDetail = props => {
             <Container className="image-info">
               {info.forPrint && (
                 <div style={{float: 'right'}}>
-                  <ProductButton imageId={info.id} size="2x" />
+                  <ProductButton imageId={info.productKey} size="2x" />
                 </div>
               )}
               <div className="title">{info.title}</div>
               <p className="mb-2 text-muted">{info.description}</p>
-              
+              {info.completed && (
+                <div className="info">
+                  <span className="label">Completed: </span>
+                  <span className="data"><em>{info.dateCompleted.toDateString()}</em></span>
+                </div>
+              )}
               {info.location && (
                 <div className="info">
                   <span className="label">Location: </span>
                   <span className="data">{info.location}</span>
                 </div>
               )}
-              {info.year && (
-                <div className="info">
-                  <span className="label">Year: </span>
-                  <span className="data">{info.year}</span>
-                </div>
-              )}
               {info.materialInfo && (
                 <div className="info">
                   <span className="label">Material: </span>
                   <span className="data">{info.medium}, {info.size}</span>
+                </div>
+              )}
+              {info.year && (
+                <div className="info">
+                  <span className="label">Year: </span>
+                  <span className="data">{info.year}</span>
                 </div>
               )}
               {info.forSale && (

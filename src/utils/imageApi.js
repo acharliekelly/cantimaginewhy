@@ -202,6 +202,13 @@ export const getContextProperty = (cImgObj, propertyName, defaultValue = '') => 
 const defaultYear = '2010';
 const defaultTitle = 'Untitled';
 
+const getContextProps = (ab, propertyName, defaultValue) => {
+  const [a, b] = ab;
+  const aVal = getContextProperty(a, propertyName, defaultValue);
+  const bVal = getContextProperty(b, propertyName, defaultValue);
+  return [aVal, bVal];
+}
+
 const compareUploadDate = (a, b) => {
   // use Creation date
   const aDate = Date.parse(a.created_at);
@@ -209,15 +216,18 @@ const compareUploadDate = (a, b) => {
   return aDate - bDate;
 }
 
+const compareCompletedOn = (a, b) => {
+  const [aStr, bStr] = getContextProps([a,b], 'completed', '2009-01-01');
+  return Date.parse(aStr) - Date.parse(bStr);
+}
+
 const compareYear = (a, b) => {
-  const aYear = getContextProperty(a, 'year', defaultYear);
-  const bYear = getContextProperty(b, 'year', defaultYear);
+  const [aYear, bYear] = getContextProps([a,b], 'year', defaultYear);
   return aYear - bYear;
 }
 
 const compareTitle = (a, b) => {
-  const aTitle = getContextProperty(a, 'caption', defaultTitle);
-  const bTitle = getContextProperty(b, 'caption', defaultTitle);
+  const [aTitle,bTitle] = getContextProps([a,b], 'caption', defaultTitle);
   if (aTitle && bTitle)
     return aTitle.toLowerCase().localeCompare(bTitle.toLowerCase());
   else
@@ -225,26 +235,21 @@ const compareTitle = (a, b) => {
 }
 
 const compareFilename = (a, b) => {
-  const aFile = a.public_id.split('/')[1];
-  const bFile = b.public_id.split('/')[1];
-  return aFile.localeCompare(bFile);
+  return a.public_id.localeCompare(b.public_id);
 }
 
 const compareAlbumOrder = (a, b) => {
-  const aOrder = parseInt(getContextProperty(a, 'alb-order', 0));
-  const bOrder = parseInt(getContextProperty(b, 'alb-order', 0));
-  return aOrder - bOrder;
+  const [aOrder, bOrder] = getContextProps([a,b], 'alb-order', 0);
+  return parseInt(aOrder) - parseInt(bOrder);
 }
 
 const comparePrice = (a, b) => {
-  const aPrice = parseInt(getContextProperty(a, 'price', 0));
-  const bPrice = parseInt(getContextProperty(b, 'price', 0));
-  return aPrice - bPrice;
+  const [aPrice, bPrice] = getContextProps([a,b], 'price', 0);
+  return parseInt(aPrice) - parseInt(bPrice);
 }
 
 const compareLocation = (a, b) => {
-  const aLoc = getContextProperty(a, 'location', 'z');
-  const bLoc = getContextProperty(b, 'location', 'z');
+  const [aLoc, bLoc] = getContextProps([a,b], 'location', 'z');
   if (aLoc && bLoc)
     return aLoc.localeCompare(bLoc);
   else 
@@ -279,6 +284,9 @@ export const sortByField = (gallery, fieldName) => {
       case '.location':
         sortFn = compareLocation;
         break;
+      case '.completed':
+        sortFn = compareCompletedOn;
+      break;
       default:
         sortFn = compareFilename;
     }

@@ -1,13 +1,7 @@
 
 .current-mode {
-  // display: none;
-  position: absolute;
-  top: 5em;
-  right: 3em;
-  // margin-left: 90%;
-  // margin-top: -1em;
-  height: 1.5em;
-  max-width: 3em;
+  float: right;
+  margin-right: 1em;
 
   &.text {
     font-family: 'Courier New', Courier, monospace;
@@ -33,7 +27,7 @@
     }
     .production {
       background-color: transparent;
-      color: #bbb;
+      color: #222;
       font-variant: small-caps;
       border: none;
     }

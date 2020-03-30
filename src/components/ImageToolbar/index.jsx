@@ -9,9 +9,29 @@ import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/
 const ImageToolbar = props => {
   const { fullWidth, variant, prevImageFn, nextImageFn, zoomImageFn, imgSize, disableCarousel } = props;
   const grpCls = fullWidth ? 'max' : '';
+
+  const keyDown = event => {
+    switch (event.keyCode) {
+      case 37:
+      // left arrow
+        prevImageFn();
+      break;
+      case 39:
+      // right arrow
+        nextImageFn();
+      break;
+      case 13:
+      // enter
+        zoomImageFn();
+      break;
+      default:
+        // do nothing
+    }
+  }
+
   return (
     <Container className="toolbar">
-      <ButtonGroup className={grpCls} >
+      <ButtonGroup className={grpCls} onKeyDown={keyDown} >
         <Button variant={variant} title="Previous Image" onClick={prevImageFn} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-left" size={imgSize} />
         </Button>

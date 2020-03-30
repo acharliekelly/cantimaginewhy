@@ -1,12 +1,22 @@
 // albums.js
+/**
+ * Basic navigation object:
+ * - name: Title
+ * - tag: search slug for request
+ * - thumbnail: example image
+ * - description: descriptive text
+ * - sortField: field to sort results on
+ *   - 'field' = item.field
+ *   - '.field' = item.context.custom.field
+ */
 
 export const albums = [
   {
     "name": "Plein Air",
-    "tag": "en plein air",
+    "tag": "plein-air-acrylic",
     "thumbnail": "art/early_fall_mt_feake",
     "description": "Painted on site",
-    "sortField": ".alb-order"
+    "sortField": ".completed"
   },
   {
     "name": "Scenery",
@@ -21,6 +31,20 @@ export const albums = [
     "thumbnail": "nfs/luthien-5",
     "description": "Recent attempts at portraiture",
     "sortField": ".alb-order"
+  },
+  {
+    "name": "Logos",
+    "tag": "logo",
+    "thumbnail": "ciw4",
+    "description": "Different logos I've made, either as monograms or specifically for this site",
+    "sortField": ".alb-order"
+  },
+  {
+    "name": "Sketch",
+    "tag": "sketch",
+    "thumbnail": "nfs/davis-t",
+    "description": "Onsite pencil sketches of local landmarks",
+    "sortField": ".completed"
   },
   {
     "name": "Name Tags",
@@ -51,17 +75,25 @@ export const albums = [
     "sortField": '.year'
   },
   {
-    "name": "People",
+    "name": "AANE",
+    "tag": "aane",
+    "thumbnail": "nfs/golden",
+    "description": "A series of the letters A-A-N-E, arranged artistically",
+    "sortField": ".alb-order"
+  },
+  {
+    "name": "Celebrities",
     "tag": "portrait-old",
-    "thumbnail": "nfs/rihanna_26805063606_o_guugen",
+    "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
     "sortField": ".caption"
   },
   {
     "name": "Plaitwork",
     "tag": "plaitwork",
-    "thumbnail": "nfs/mandelbrot-set",
-    "description": "My first type of artwork; like knotwork, but with all right angles"
+    "thumbnail": "nfs/lattice_mandelbrot-set",
+    "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
+    "sortField": ".completed"
   },
   {
     "name": "Archive",
@@ -71,4 +103,6 @@ export const albums = [
   }
 ];
 
-export const navDescription = `Here is all my art, organized into albums.`;
+export const navDescription = `This is my entire collection of artwork from the past 
+10 years or so, grouped by album. A lot of it doesn't have any other information,
+such as Year or Title, so it can't be easily filtered.`;

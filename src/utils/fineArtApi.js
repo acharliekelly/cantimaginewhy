@@ -2,7 +2,7 @@
 
 const FAA_URL = 'https://charlie-kelly.pixels.com/';
 
-const faaUrl = productKey => {
+export const faaUrl = productKey => {
   if (productKey) {
     return `${FAA_URL}featured/${productKey}-charlie-kelly.html`;
   } else {
@@ -21,7 +21,7 @@ const faaProducts = {
   "art/boston-public-gardens-2": "public-gardens-2",
   "art/boston_nightscape": "boston-nightscape",
   "art/boston_skyline": "boston-skyline",
-  "art/buildings_n_stuff-fs": "buildings-n-stuff",
+  "art/buildings_n_stuff": "buildings-n-stuff",
   "art/cambridge-hyatt": "cambridge-hyatt",
   "art/cambridge-night": "cambridge-skyline",
   "art/capitol-fs": "capitol",
@@ -64,6 +64,7 @@ export const faaAvailable = cloudinaryId => {
 }
 
 // returns FineArtAmerica URL for Cloudinary ID
+// or root url if not found
 export const faaLookup = cloudinaryId => {
   const key = faaProducts[cloudinaryId];
   return faaUrl(key);

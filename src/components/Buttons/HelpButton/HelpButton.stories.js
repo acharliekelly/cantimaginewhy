@@ -7,6 +7,6 @@ import { loremIpsum } from '../../../../data/lorem';
 const stories = storiesOf('Buttons', module);
 stories.add('Help Button', () => (
   <div style={{width: '100%', textAlign: 'center'}}>
-    <HelpButton header="Lorem Ipsum" size={3} content={loremIpsum} />
+    <HelpButton header="Lorem Ipsum" size="3x" content={loremIpsum} />
   </div>
 ));

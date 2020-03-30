@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'cloudinary-react';
+import { Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
@@ -56,7 +56,9 @@ const ProgressView = props => {
         
           <Image cloudName="cantimaginewhy" 
             publicId={progressImages[progressIndex].public_id} 
-          />
+            onClick={magnifyImage} >
+              <Transformation height="200" width="auto" crop="fill" />
+          </Image>
           <ImageToolbar 
             variant="success"
             prevImageFn={movePrev}

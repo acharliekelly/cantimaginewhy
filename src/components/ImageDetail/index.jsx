@@ -17,13 +17,16 @@ const ImageDetail = props => {
     setCurrentImage(imageList[imageIndex]);
   }, [imageList, imageIndex]); 
 
+  const magnifyImage = () => {
+    props.selectLightbox(currentImage.public_id, imageList);
+  }
 
   if (currentImage) {
     const info = loadImageProps(currentImage);
     return (
       <Container className="image-detail">
         <Container className="image-view">
-          <Image cloudName="cantimaginewhy" publicId={info.id}>
+          <Image cloudName="cantimaginewhy" publicId={info.id} onClick={magnifyImage}>
             <Transformation height={displayHeight} width={displayWidth} crop="pad" background="black" />
           </Image>
         </Container>
@@ -34,7 +37,7 @@ const ImageDetail = props => {
             fullWidth
             prevImageFn={props.movePrevious}
             nextImageFn={props.moveNext}
-            zoomImageFn={() => props.selectLightbox(currentImage.public_id, imageList)}
+            zoomImageFn={magnifyImage}
             disableCarousel={imageList.length < 2}
           />
         
@@ -42,28 +45,33 @@ const ImageDetail = props => {
             <Container className="image-info">
               {info.forPrint && (
                 <div style={{float: 'right'}}>
-                  <ProductButton imageId={info.id} size="2x" />
+                  <ProductButton imageId={info.productKey} size="2x" />
                 </div>
               )}
               <div className="title">{info.title}</div>
               <p className="mb-2 text-muted">{info.description}</p>
-              
+              {info.completed && (
+                <div className="info">
+                  <span className="label">Completed: </span>
+                  <span className="data"><em>{info.dateCompleted.toDateString()}</em></span>
+                </div>
+              )}
               {info.location && (
                 <div className="info">
                   <span className="label">Location: </span>
                   <span className="data">{info.location}</span>
                 </div>
               )}
-              {info.year && (
-                <div className="info">
-                  <span className="label">Year: </span>
-                  <span className="data">{info.year}</span>
-                </div>
-              )}
               {info.materialInfo && (
                 <div className="info">
                   <span className="label">Material: </span>
                   <span className="data">{info.medium}, {info.size}</span>
+                </div>
+              )}
+              {info.year && (
+                <div className="info">
+                  <span className="label">Year: </span>
+                  <span className="data">{info.year}</span>
                 </div>
               )}
               {info.forSale && (

@@ -1,13 +1,15 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 import { Parallax } from "react-parallax";
 import { cleanImageSrc } from '../../utils/imageApi';
+import ExternalLink from '../../components/Buttons/ExternalLink';
 
 
 import './about.scss';
 
 const AboutPage = props => (
   <div className="content">
-    <div className="about-content">
+    <Container className="about-content">
       <div className="me-text">
         <section>
         My name is Charlie Kelly. I’ve been drawing and painting stuff for about a decade, 
@@ -54,13 +56,21 @@ const AboutPage = props => (
         <section>
         I'm also into making websites. This is one such. It's actually way more complicated than necessary - if I were just trying
         to display and/or sell art, there are dozens of commercial products available. But that wouldn't really be fun for me.
-        So instead I've created an application that is currently only semi-functional, but uses several interesting technologies that
-        I'm trying to learn. If this topic interests you, more information is available in this <a href="https://cantimaginehow.blogspot.com" target="_blank" rel="noopener noreferrer">blog</a>, 
-        and also in this <a href="https://github.com/acharliekelly/cantimaginewhy/" target="_blank" rel="noopener noreferrer">repository</a>.
+        So instead I've created an application from scratch, that uses several interesting technologies
+        I've been trying to learn. If this topic interests you, more information is available in this 
+        <ExternalLink 
+          linkOnly 
+          destinationUrl="https://cantimaginehow.blogspot.com" 
+          linkText="blog" />, and also in this 
+        <ExternalLink 
+          linkOnly 
+          destinationUrl="https://github.com/acharliekelly/cantimaginewhy/" 
+          linkText="respository" />.
+        
         </section>
         
       </div>
-    </div>
+    </Container>
     
 
   </div>

@@ -12,7 +12,7 @@ const ContactPage = props => (
     <main className="contact">
       
       <div className="contact-links">
-        <ContactLinks layout="vert" displayType="full" size={3} />
+        <ContactLinks displayType="full" size="2x" textSize="2em" />
       </div>
       
     </main>

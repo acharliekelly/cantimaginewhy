@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,37 +11,19 @@ import HelpButton from '../Buttons/HelpButton/';
 
 import '../../css/nav.scss';
 
-class AlbumNav extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      selectedNav: null
-    }
+const AlbumNav = props => {
+  const [ selectedNav, setSelectedNav ] = useState(null);
+
+  const selectItem = navObj => {
+    setSelectedNav(navObj);
+    props.updateSelectNav(navObj);
   }
 
-  componentDidMount () {
-    // this.selectGroup(0);
-    this.props.updateClearGallery();
-  }
-
-  selectItem = nav => {
-    // nav is object (album) from album list
-    // { name, tag, thumbnail, description, sortField }
-    this.setState({
-      selectedNav: nav
-    })
-    this.props.updateSelectNav(nav);
-  }
-
-
-  render () {
-    const { selectedNav } = this.state;
-    const { thumbnailHeight } = this.props;
-    return (
+  return (
       <CloudinaryContext cloudName="cantimaginewhy">
          <Navbar className="category-bar justify-content-between">
 
-          <Button className="nav-switch" variant="outline-dark" onClick={this.props.updateSwitch}>
+          <Button className="nav-switch" variant="outline-dark" onClick={props.updateSwitch}>
             <FontAwesomeIcon icon="filter" title="Browse by Filter" size="2x" />
           </Button>
 
@@ -65,11 +47,14 @@ class AlbumNav extends Component {
                   key={index} 
                   id={album.tag} 
                   className={cls} 
-                  onClick={() => this.selectItem(album)}
+                  onClick={() => selectItem(album)}
                 >
                   <Image publicId={`${album.thumbnail}`}>
                     <Transformation defaultImage={defaultImg} />
-                    <Transformation height={thumbnailHeight} width={thumbnailHeight} crop="fill" />   
+                    <Transformation 
+                      height={props.thumbnailHeight} 
+                      width={props.thumbnailHeight} 
+                      crop="fill" />   
                   </Image>
                   <div className="album-name">{album.name}</div>
                 </li>
@@ -80,7 +65,6 @@ class AlbumNav extends Component {
       </CloudinaryContext>
     );
         
-  }
 }
 
 AlbumNav.propTypes = {

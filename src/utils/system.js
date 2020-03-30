@@ -50,3 +50,34 @@ export const getEnvClass = () => {
   return process.env.NODE_ENV;
 }
 
+
+// should probably go someplace else
+export const extractHostName = url=> {
+  let hostName;
+  // find and remove protocol
+  if (url.indexOf('//') > -1) {
+    hostName = url.split('/')[2];
+  } else {
+    hostName = url.split('/')[0];
+  }
+
+  // remove port number
+  hostName = hostName.split(':')[0];
+
+  // remove '?'
+  hostName = hostName.split('?')[0];
+
+  return hostName;
+}
+
+// just the domain name
+export const extractDomainName = url => {
+
+  let domainName = extractHostName(url);
+  
+  if (domainName.split('.').length > 2) {
+    domainName = domainName.split('.').slice(-2).join('.');
+  } 
+
+  return domainName;
+}

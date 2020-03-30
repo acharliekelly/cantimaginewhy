@@ -51,7 +51,7 @@ const jsonObjectSort = (imageA, imageB) => {
  * @param {str} refKey 
  * @param {boolean} useContext 
  */
-export const onsitePhotos = (refKey, useContext = true) => {
+export const onsitePhotos = (refKey, useContext = false) => {
   return fetchGallery('onsite')
     .then(resources => filterResources(resources, refKey, useContext))
     .then(series => series.sort(jsonObjectSort))
@@ -67,7 +67,7 @@ export const isSeriesExist = refKey => {
 }
 
 const exists = (resources, key) => {
-  return resources.some(resource => resource.context.custom.ref === key)
+  return resources.some(resource => resource.public_id.includes(key))
 }
 
 /**

@@ -3,135 +3,85 @@
  * Structure:
  * name
  * description
+ * display: (apply to children)
  * options:
  * - name
  * - tag
  * - thumbnail
  * - description
  * - sortField
+ * - display []
  */
 export const filters = [
   {
     "name": "Location",
     "description": "Filter by where image was painted",
+    "display": [
+      "gallery", "detail", "progress", "explan"
+    ],
     "options": [
       {
         "name": "Boston",
         "tag": "downtown-boston",
         "thumbnail": "art/esplanade-sunset_2018",
         "description": "Scenes from Downtown Boston",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Cambridge",
         "tag": "cambridge",
         "thumbnail": "art/memorial_drive",
         "description": "Scenes from Cambridge",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Waltham",
         "tag": "waltham",
         "thumbnail": "art/early_fall_mt_feake",
         "description": "Scenes from Waltham",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Charles River",
         "tag": "charles-river",
         "thumbnail": "art/watertown_dam",
         "description": "Scenes from along the Charles",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Maine",
         "tag": "maine",
         "thumbnail": "art/parker_point",
         "description": "Scenes from Maine",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Elsewhere",
         "tag": "elsewhere",
         "thumbnail": "art/bodiam-castle_2011",
         "description": "Scenes from farther afield",
-        "sortField": ".location"
+        "sortField": ".completed"
       }
-    ]
-  },
-  {
-    "name": "Medium",
-    "description": "Filter by method (pencil, watercolor, etc)",
-    "options": [
-      {
-        "name": "Pencil",
-        "tag": "pencil",
-        "thumbnail": "art/winter-house",
-        "description": "Graphite / Colored Pencil / WC Pencil",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Watercolor Pencil",
-        "tag": "watercolor pencil",
-        "thumbnail": "art/leaving-star-island_2015",
-        "description": "First drawn with WC pencil, then painted with water to create watercolor",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Watercolor",
-        "tag": "watercolor",
-        "thumbnail": "art/late-spring-on-the-charles_2017",
-        "description": "Traditional watercolor painting with brush",
-        "sortField": ".caption"
-      },
-      {
-        "name": "Acrylic",
-        "tag": "acrylic",
-        "thumbnail": "art/riparian_balcony",
-        "description": "Layered acrylic paints",
-        "sortField": ".caption"
-      }
-    ]
-  },
-  {
-    "name": "Surface",
-    "description": "Filter by type of surface, as opposed to method",
-    "options": [
-      {
-        "name": "Paper",
-        "tag": "paper",
-        "thumbnail": "art/leaving-star-island_2015",
-        "description": "Drawn or painted on paper"
-      },
-      {
-        "name": "Canvas",
-        "tag": "canvas",
-        "thumbnail": "art/fall_footbridge",
-        "description": "Painted on canvas"
-      },
-      {
-        "name": "Panel",
-        "tag": "panel",
-        "thumbnail": "art/autumn_woods",
-        "description": "Painted on clay surface"
-      },
     ]
   },
   {
     "name": "Style",
     "description": "Filter by artistic style",
+    "display": [
+      "gallery", "detail"
+    ],
     "options": [
-      {
-        "name": "Triptych",
-        "tag": "triptych",
-        "thumbnail": "art/winter-yosemite",
-        "description": "Picture divided into multiple panels"
-      },
       {
         "name": "Pointillist",
         "tag": "pointillist",
         "thumbnail": "art/fun-with-dots_2017",
         "description": "Created by making tiny dots instead of brush strokes"
+      },
+      {
+        "name": "Triptych",
+        "tag": "triptych",
+        "thumbnail": "art/winter-yosemite",
+        "description": "Picture divided into multiple panels"
       },
       {
         "name": "Nightscape",
@@ -220,23 +170,96 @@ export const filters = [
     ]
   },
   {
+    "name": "Era",
+    "description": "Filter by when the piece was completed",
+    "options": [
+      {
+        "name": "Learning",
+        "tag": "era-learning",
+        "thumbnail": "nfs/lattice_prism",
+        "description": "Learning to draw: 2009-10"
+      },
+      {
+        "name": "Early Work",
+        "tag": "early-work",
+        "thumbnail": "nfs/orangerie",
+        "description": "Expanding horizons: 2010-2012"
+      },
+      {
+        "name": "Sabbatical",
+        "tag": "sabbatical",
+        "thumbnail": "nfs/winter-yosemite",
+        "description": "Limited access to materials: 2013-15"
+      },
+      {
+        "name": "Recent",
+        "tag": "era-recent",
+        "thumbnail": "nfs/winthrop-square",
+        "description": "Recent past: 2015-19"
+      },
+      {
+        "name": "Current",
+        "tag": "era-current",
+        "thumbnail": "art/waltham_waterfall",
+        "description": "Summer 2019 - Present",
+        "sortField": ".completed"
+      }
+    ]
+  },
+  {
+    "name": "Medium",
+    "description": "Filter by method (pencil, watercolor, etc)",
+    "options": [
+      {
+        "name": "Pencil",
+        "tag": "pencil",
+        "thumbnail": "nfs/christian-science-plaza",
+        "description": "Graphite / Colored Pencil",
+        "sortField": ".caption"
+      },
+      {
+        "name": "WC Pencil",
+        "tag": "watercolor pencil",
+        "thumbnail": "art/leaving-star-island_2015",
+        "description": "First drawn with watercolor pencil, then painted with water to create watercolor",
+        "sortField": ".caption",
+        "display": [ "-progress", "-explan" ]
+      },
+      {
+        "name": "Watercolor",
+        "tag": "watercolor",
+        "thumbnail": "art/late-spring-on-the-charles_2017",
+        "description": "Traditional watercolor painting with brush",
+        "sortField": ".caption",
+        "display": [ "-progress", "-explan" ]
+      },
+      {
+        "name": "Acrylic",
+        "tag": "acrylic",
+        "thumbnail": "art/riparian_balcony",
+        "description": "Layered acrylic paints",
+        "sortField": ".caption"
+      }
+    ]
+  },
+  {
     "name": "Availability",
     "description": "Filter by availability of images for purchase or printing",
     "options": [
       {
-        "name": "Original for Sale",
+        "name": "Original",
         "tag": "for-sale",
         "thumbnail": "art/memorial_drive",
-        "description": "You can purchase these original paintings"
+        "description": "Original painting is available"
       },
       {
-        "name": "Stuff for Sale",
+        "name": "Prints, etc",
         "tag": "for-print",
         "thumbnail": "art/esplanade-sunset_2018",
-        "description": "You can buy stuff made from these pictures"
+        "description": "Buy products made from these"
       },
       {
-        "name": "Viewing Only",
+        "name": "View",
         "tag": "nfs",
         "thumbnail": "nfs/eye_26745608572_o_zqbocw",
         "description": "You can look at these"
@@ -246,8 +269,7 @@ export const filters = [
 ];
 
 export const navDescription = `
-I've got a lot of artwork, and it's kind of hard to sort through. So, I've devised this 
-filtering system. On the top row are categories you can group by, such as medium 
+I've devised this filtering system in an attempt to make my artwork more searchable. 
+On the top row are categories you can group by, such as medium 
 (eg. pencil, watercolor), or location (Boston, Maine). When you click one of the image buttons
-(eg 'Boston'), you'll see all my paintings from Downtown Boston. What you can do with each 
-painting varies by painting; some let you buy stuff, while others can just be looked at.`;
+(eg 'Boston'), you'll see all my paintings from Downtown Boston.`;

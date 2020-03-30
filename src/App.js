@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';  
 
 import Menu from './components/Menu/';
-import EnvMode from './components/EnvMode/';
 import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
 import HomePage from './views/Home/';
@@ -78,7 +77,6 @@ const App = () => {
     <div className={'page-container' + devCls}>
       <Router basename='/'>
         <Menu selectLightbox={selectLightboxImage} />
-        <EnvMode type="icon" devMode={toggleDevMode} />
         <div className="content-wrapper">
           <Route exact path="/">
             <HomePage selectLightbox={selectLightboxImage} />
@@ -97,7 +95,7 @@ const App = () => {
           </Route>
         </div>
       </Router>
-      <Footer />
+      <Footer devMode={toggleDevMode} />
 
       { lightboxOpen && (
         <ImageZoom 

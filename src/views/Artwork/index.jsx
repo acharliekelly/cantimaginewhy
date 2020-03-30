@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { selectLightboxUtil } from '../../utils/imageUtils';
 import ThumbGallery from '../../components/ThumbGallery/';
-import FilterNav from '../../components/FilterNav/';
+import FilterNav from '../../components/FilterNav';
 import AlbumNav from '../../components/AlbumNav/';
 import ImageDetail from '../../components/ImageDetail/';
 import ProgressView from '../../components/ProgressView';
@@ -15,7 +15,7 @@ import {
   getContextProperty, 
   getThumbnailSize 
 } from '../../utils/imageApi';
-import { hasProgressSeries } from '../../utils/processUtils';
+import { isSeriesExist } from '../../utils/onsiteUtils';
 
 import './artwork.scss';
 
@@ -37,6 +37,10 @@ const ArtworkPage = props => {
     const size = getThumbnailSize(artImages.length);
     setThumbSize(size);
   }, [artImages]);
+
+  useEffect(() => {
+    clearArtGallery();
+  }, [navFilter])
 
   const clearProgress = () => {
     setRefKey(null);
@@ -71,9 +75,6 @@ const ArtworkPage = props => {
     const prev = (currentIndex + artImages.length - 1) % artImages.length;
     setCurrentIndex(prev)
   }
-
-
-  
 
   return (
     <div className="content">
@@ -113,7 +114,7 @@ const ArtworkPage = props => {
             />
           </Col>
           <Col xs={12} sm={8} md={3} lg={3} className="process">
-            {hasProgressSeries(refKey) && (
+            {refKey && isSeriesExist(refKey) && (
               <ProgressView 
                 selectLightbox={props.selectLightbox} 
                 refKey={refKey} />

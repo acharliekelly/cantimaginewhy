@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
@@ -13,119 +11,114 @@ import { filters, navDescription } from '../../config/filters';
 import HelpButton from '../Buttons/HelpButton/';
 import '../../css/nav.scss';
 
-class FilterNav extends Component {
+const FilterNav = props => {
+  const [ filterIndex, setFilterIndex ] = useState(0);
+  const [ hoverIndex, setHoverIndex ] = useState(-1);
+  const [ selectedNav, setSelectedNav ] = useState(null);
 
-  constructor (props) {
-    super(props);
+  const selectFilter = index => {
+    // const key = ev.target.eventKey;
+    setFilterIndex(index);
+    setSelectedNav(null);
 
-    this.state = {
-      filterIndex: 0,
-      hoverIndex: -1,
-      selectedNav: null
-    }
-  }
-
-  componentDidMount () {
-    this.selectFilter(0);
-  }
-
-  selectFilter = eventKey => {
-    // console.log('Sort selected: ' + eventKey);
-    this.setState({
-      filterIndex: eventKey,
-      selectedNav: null
-    });
     // clear thumbnails
-    this.props.updateClearGallery();
+    props.updateClearGallery();
   }
 
-  selectItem = nav => {
+  const selectItem = nav => {
     // nav is object (option) from filter list
     // { name, tag, thumbnail, description, sortField }
-    this.setState({
-      selectedNav: nav
-    });
-
-    this.props.updateSelectNav(nav);
+    setSelectedNav(nav);
+    props.updateSelectNav(nav);
   }
 
-  hoverOnFilter = index => {
-    this.setState({
-      hoverIndex: index
-    })
+  const hoverOnFilter = index => {
+    // const index = ev.target.eventKey
+    setHoverIndex(index);
   }
 
-  hoverOff = ev => {
-    this.setState({
-      hoverIndex: -1
-    })
+  const hoverOff = () => {
+    setHoverIndex(-1);
   }
 
-  render () {
-    const { filterIndex, selectedNav, hoverIndex } = this.state;
-    const activeFilter = filters[filterIndex];
-    const { updateSwitch } = this.props;
-    return (
-      <CloudinaryContext cloudName="cantimaginewhy">
-        <Navbar className="category-bar justify-content-between">
-
-          <Button className="nav-switch" variant="outline-dark" onClick={updateSwitch}>
-            <FontAwesomeIcon icon="images" title="Browse by Album" size="2x" />
-          </Button>
-
-          <Container className="filter-wrapper mr-auto" lg={8} md={6} sm={4}>
-              
-            <Nav className="filters" 
-              variant="pills" 
-              defaultActiveKey={0}  
-              onSelect={this.selectFilter}>
-                <Navbar.Text className="lbl">Filter by:&nbsp;</Navbar.Text>
-                {filters.map((filter, index) => (
-                  <Nav.Item 
-                    key={index}
-                    onMouseEnter={() => this.hoverOnFilter(index)} 
-                    onMouseLeave={this.hoverOff}>
-                    <Nav.Link eventKey={index}>{filter.name}</Nav.Link>
-                  </Nav.Item>
-                  )
-                )}
-              </Nav>
-              
-              <div className="category-desc">
-              {hoverIndex >= 0 ? (
-                <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
-              ) : (
-                <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
-              )}
-              </div>
-            </Container>
-              
-            <HelpButton header="Filters" content={navDescription} size="2x" />
-             
-        </Navbar>
-
-        <Container expand="lg" className="album-bar">
-          <ul className="albums">
-            {activeFilter.options.map(option => {
-              let cls = 'album-btn responsive thumbnail';
-              if (selectedNav && selectedNav.tag === option.tag) {
-                cls += ' selected-nav'
-              }
-              return (
-                <li key={option.tag} id={option.tag} className={cls} onClick={() => this.selectItem(option)}>
-                  <Image publicId={`${option.thumbnail}`}>
-                    <Transformation defaultImage={defaultImg} />
-                    <Transformation height="80" width="80" crop="fill" />   
-                  </Image>
-                  <div className="album-name">{option.name}</div>
-                </li>
-              );
-            })}
-          </ul>
-        </Container>
-      </CloudinaryContext>
-    );
+  const itemStyle = isActive => {
+    const active = {
+      backgroundColor: '#222',
+      borderColor: '#222',
+      color: '#fff'
+    }
+    
+    return isActive ? active : {};
   }
+
+
+  return (
+    <CloudinaryContext cloudName="cantimaginewhy">
+      <Navbar className="category-bar justify-content-between">
+
+        <Button className="nav-switch" variant="outline-dark" onClick={props.updateSwitch}>
+          <FontAwesomeIcon icon="images" title="Browse by Album" size="2x" />
+        </Button>
+
+        <Container className="filter-wrapper justify-content-center" lg={4} md={6} sm={8}>
+          <ListGroup className="filters" horizontal="md">
+            <Navbar.Text className="lbl" style={{paddingRight: '1em'}}>Filter: </Navbar.Text>
+            {filters.map((filter, index) => {
+              const isActive = (index === filterIndex);
+              return(
+              <ListGroup.Item 
+                action
+                active={isActive}
+                style={itemStyle(isActive)}
+                key={index}
+                eventKey={index} 
+                onMouseEnter={() => hoverOnFilter(index)}
+                onMouseLeave={hoverOff}
+                onClick={() => selectFilter(index)}>
+                  {filter.name}
+                </ListGroup.Item>
+            )})}
+          </ListGroup>
+          </Container>
+            
+          <HelpButton header="Filters" content={navDescription} size="2x" />
+            
+      </Navbar>
+
+      
+
+      <Container expand="lg" className="album-bar">
+
+
+        <div className="category-desc">
+          {hoverIndex >= 0 ? (
+            <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
+          ) : (
+            <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
+          )}
+        </div>
+        
+
+        <ul className="albums">
+          {filters[filterIndex].options.map(option => {
+            let cls = 'album-btn responsive thumbnail';
+            if (selectedNav && selectedNav.tag === option.tag) {
+              cls += ' selected-nav'
+            }
+            return (
+              <li key={option.tag} id={option.tag} className={cls} onClick={() => selectItem(option)}>
+                <Image publicId={`${option.thumbnail}`}>
+                  <Transformation defaultImage={defaultImg} />
+                  <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />   
+                </Image>
+                <div className="album-name">{option.name}</div>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
+    </CloudinaryContext>
+  );
 }
 
 FilterNav.propTypes = {

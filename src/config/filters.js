@@ -25,42 +25,42 @@ export const filters = [
         "tag": "downtown-boston",
         "thumbnail": "art/esplanade-sunset_2018",
         "description": "Scenes from Downtown Boston",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Cambridge",
         "tag": "cambridge",
         "thumbnail": "art/memorial_drive",
         "description": "Scenes from Cambridge",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Waltham",
         "tag": "waltham",
         "thumbnail": "art/early_fall_mt_feake",
         "description": "Scenes from Waltham",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Charles River",
         "tag": "charles-river",
         "thumbnail": "art/watertown_dam",
         "description": "Scenes from along the Charles",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Maine",
         "tag": "maine",
         "thumbnail": "art/parker_point",
         "description": "Scenes from Maine",
-        "sortField": ".location"
+        "sortField": ".completed"
       },
       {
         "name": "Elsewhere",
         "tag": "elsewhere",
         "thumbnail": "art/bodiam-castle_2011",
         "description": "Scenes from farther afield",
-        "sortField": ".location"
+        "sortField": ".completed"
       }
     ]
   },
@@ -166,6 +166,43 @@ export const filters = [
         "tag": "yellow",
         "thumbnail": "art/easter-card-2012",
         "description": "Images with some amount of yellow in them"
+      }
+    ]
+  },
+  {
+    "name": "Era",
+    "description": "Filter by when the piece was completed",
+    "options": [
+      {
+        "name": "Learning",
+        "tag": "era-learning",
+        "thumbnail": "nfs/lattice_prism",
+        "description": "Learning to draw: 2009-10"
+      },
+      {
+        "name": "Early Work",
+        "tag": "early-work",
+        "thumbnail": "nfs/orangerie",
+        "description": "Expanding horizons: 2010-2012"
+      },
+      {
+        "name": "Sabbatical",
+        "tag": "sabbatical",
+        "thumbnail": "nfs/winter-yosemite",
+        "description": "Limited access to materials: 2013-15"
+      },
+      {
+        "name": "Recent",
+        "tag": "era-recent",
+        "thumbnail": "nfs/winthrop-square",
+        "description": "Recent past: 2015-19"
+      },
+      {
+        "name": "Current",
+        "tag": "era-current",
+        "thumbnail": "art/waltham_waterfall",
+        "description": "Summer 2019 - Present",
+        "sortField": ".completed"
       }
     ]
   },

@@ -8,13 +8,6 @@
  * - sortField: field to sort results on
  *   - 'field' = item.field
  *   - '.field' = item.context.custom.field
- * TODO:
- * - display: which components to show
- *   - default is [ gallery, detail ]
- *   - only necessary if it needs more
- *   - options: gallery || detail || progress || explan
- *   - 'progress' means always show progress
- *   - '-progress' means never show progress
  */
 
 export const albums = [
@@ -23,18 +16,14 @@ export const albums = [
     "tag": "plein-air-acrylic",
     "thumbnail": "art/early_fall_mt_feake",
     "description": "Painted on site",
-    "sortField": ".alb-order",
-    "display": [
-      "gallery", "detail", "progress", "explan"
-    ]
+    "sortField": ".completed"
   },
   {
     "name": "Scenery",
     "tag": "scenery",
     "thumbnail": "art/midwinter",
     "description": "From photographs of landscapes",
-    "sortField": ".year",
-    "display": [ "-progress" ]
+    "sortField": ".year"
   },
   {
     "name": "Portrait",
@@ -55,27 +44,21 @@ export const albums = [
     "tag": "sketch",
     "thumbnail": "nfs/davis-t",
     "description": "Onsite pencil sketches of local landmarks",
-    "sortField": ".alb-order"
+    "sortField": ".completed"
   },
   {
     "name": "Name Tags",
     "tag": "nametag",
     "thumbnail": "nfs/charlie-7_37671079756_o_fvboho",
     "description": "Name tags I made for various people, mostly me",
-    "sortField": ".year",
-    "display": [
-      "gallery", "detail", "explan"
-    ]
+    "sortField": ".year"
   },
   {
     "name": "Name Plates",
     "tag": "illumination",
     "thumbnail": "nfs/emrys_2011",
     "description": "Like name tags, but bigger",
-    "sortField": ".alb-order",
-    "display": [
-      "gallery", "detail", "explan"
-    ]
+    "sortField": ".alb-order"
   },
   {
     "name": "Knotwork",
@@ -96,26 +79,21 @@ export const albums = [
     "tag": "aane",
     "thumbnail": "nfs/golden",
     "description": "A series of the letters A-A-N-E, arranged artistically",
-    "sortField": ".alb-order",
-    "display": [
-      "gallery", "detail", "explan"
-     ]
+    "sortField": ".alb-order"
   },
   {
     "name": "Celebrities",
     "tag": "portrait-old",
     "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
-    "sortField": ".caption",
-    "display": [
-      "gallery", "detail", "explan"
-     ]
+    "sortField": ".caption"
   },
   {
     "name": "Plaitwork",
     "tag": "plaitwork",
-    "thumbnail": "nfs/mandelbrot-set",
-    "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats."
+    "thumbnail": "nfs/lattice_mandelbrot-set",
+    "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
+    "sortField": ".completed"
   },
   {
     "name": "Archive",

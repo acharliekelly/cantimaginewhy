@@ -62,7 +62,7 @@ const FilterNav = props => {
 
         <Container className="filter-wrapper justify-content-center" lg={4} md={6} sm={8}>
           <ListGroup className="filters" horizontal="md">
-            <Navbar.Text className="lbl" style={{paddingRight: '1em'}}>Filter by: </Navbar.Text>
+            <Navbar.Text className="lbl" style={{paddingRight: '1em'}}>Filter: </Navbar.Text>
             {filters.map((filter, index) => {
               const isActive = (index === filterIndex);
               return(

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'react-bootstrap/Button';
-import  { faaLookup } from '../../../utils/fineArtApi';
+import  { faaUrl } from '../../../utils/fineArtApi';
 
 // Assumes product page exists for this image
 const ProductButton = props => {
-  const { imageId, variant, size, buttonText } = props;
+  const { productKey, variant, size, buttonText } = props;
   return (
     <Button
       size={size}
@@ -16,7 +16,7 @@ const ProductButton = props => {
       variant={variant}
       rel="noopener noreferrer"
       target="_blank" 
-      href={faaLookup(imageId)}
+      href={faaUrl(productKey)}
       >
         {buttonText && `${buttonText} `}
         <FontAwesomeIcon icon="shopping-cart" size={size} />

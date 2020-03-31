@@ -81,26 +81,36 @@ $selected-album-text: #fff;
 
 .album-bar {
 
-  .category-desc {
-    // display: inline-block;
+  .descript {
     z-index: 2;
     font-size: 0.8em;
-    border: 1px solid #000;
+    border: 1px solid;
     border-radius: 3px;
-    float: right;
     text-align: center;
     padding: 4px;
     margin-top: 1.5em;
-    // width: 10rem;
+  }
+
+  .category-desc {
+    border-color: #000;
+    float: right;
 
     .active-desc {
       color: #000;
-      // visibility: hidden;
     }
     .hover-desc {
-      
       color: #555;
     }
+  }
+
+  .album-desc {
+    float: left;
+    color: #333;
+    visibility: hidden;
+    .hover-on {
+      visibility: visible;
+    }
+
   }
 
   .albums {

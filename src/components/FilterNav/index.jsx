@@ -13,7 +13,8 @@ import '../../css/nav.scss';
 
 const FilterNav = props => {
   const [ filterIndex, setFilterIndex ] = useState(0);
-  const [ hoverIndex, setHoverIndex ] = useState(-1);
+  const [ hoverFilterIndex, setHoverFilterIndex ] = useState(-1);
+  const [ hoverNavIndex, setHoverNavIndex ] = useState(-1);
   const [ selectedNav, setSelectedNav ] = useState(null);
 
   const selectFilter = index => {
@@ -32,13 +33,21 @@ const FilterNav = props => {
     props.updateSelectNav(nav);
   }
 
-  const hoverOnFilter = index => {
-    // const index = ev.target.eventKey
-    setHoverIndex(index);
+  const hoverOnNav = index => {
+    setHoverNavIndex(index);
   }
 
-  const hoverOff = () => {
-    setHoverIndex(-1);
+  const hoverOffNav = () => {
+    setHoverNavIndex(-1);
+  }
+
+  const hoverOnFilter = index => {
+    // const index = ev.target.eventKey
+    setHoverFilterIndex(index);
+  }
+
+  const hoverOffFilter = () => {
+    setHoverFilterIndex(-1);
   }
 
   const itemStyle = isActive => {
@@ -51,8 +60,12 @@ const FilterNav = props => {
     return isActive ? active : {};
   }
 
-  const descCls = hoverIndex >= 0 ? 'hover-desc' : 'active-desc';
-  const descIdx = hoverIndex >= 0 ? hoverIndex : filterIndex;
+  const filterDescClass = hoverFilterIndex >= 0 ? 'hover-desc' : 'active-desc';
+  const filterDescIndex = hoverFilterIndex >= 0 ? hoverFilterIndex : filterIndex;
+
+  const navDescCls = hoverNavIndex >= 0 ? 'hover-on' : 'hover-off';
+  const albumDesc = hoverNavIndex >= 0 ? filters[filterIndex].options[hoverNavIndex].description : '';
+  const descStyle = { width: `${props.thumbSize * 3}px` };
 
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
@@ -75,7 +88,7 @@ const FilterNav = props => {
                 key={index}
                 eventKey={index} 
                 onMouseEnter={() => hoverOnFilter(index)}
-                onMouseLeave={hoverOff}
+                onMouseLeave={hoverOffFilter}
                 onClick={() => selectFilter(index)}>
                   {filter.name}
                 </ListGroup.Item>
@@ -90,19 +103,27 @@ const FilterNav = props => {
       
 
       <Container expand="lg" className="album-bar">
-        <div className="category-desc" style={{width: `${props.thumbSize * 3}px`}}>
-          <Navbar.Text className={descCls}>{filters[descIdx].description}</Navbar.Text>
+        <div className="descript album-desc" style={descStyle}>
+          <Navbar.Text className={navDescCls}>{albumDesc}</Navbar.Text>
+        </div>
+
+        <div className="descript category-desc" style={descStyle}>
+          <Navbar.Text className={filterDescClass}>{filters[filterDescIndex].description}</Navbar.Text>
         </div>
 
         <ul className="albums">
 
-          {filters[filterIndex].options.map(option => {
+          {filters[filterIndex].options.map((option, index) => {
             let cls = 'album-btn responsive thumbnail';
             if (selectedNav && selectedNav.tag === option.tag) {
               cls += ' selected-nav'
             }
             return (
-              <li key={option.tag} id={option.tag} className={cls} onClick={() => selectItem(option)}>
+              <li key={option.tag} id={option.tag} className={cls} 
+                onClick={() => selectItem(option)}
+                onMouseEnter={() => hoverOnNav(index)}
+                onMouseLeave={hoverOffNav}
+                >
                 <Image publicId={`${option.thumbnail}`}>
                   <Transformation defaultImage={defaultImg} />
                   <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />   

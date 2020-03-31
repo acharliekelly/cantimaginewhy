@@ -51,6 +51,8 @@ const FilterNav = props => {
     return isActive ? active : {};
   }
 
+  const descCls = hoverIndex >= 0 ? 'hover-desc' : 'active-desc';
+  const descIdx = hoverIndex >= 0 ? hoverIndex : filterIndex;
 
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
@@ -88,18 +90,12 @@ const FilterNav = props => {
       
 
       <Container expand="lg" className="album-bar">
-
-
-        <div className="category-desc">
-          {hoverIndex >= 0 ? (
-            <Navbar.Text className="hover-desc">{filters[hoverIndex].description}</Navbar.Text>
-          ) : (
-            <Navbar.Text className="active-desc">{filters[filterIndex].description}</Navbar.Text>
-          )}
+        <div className="category-desc" style={{width: `${props.thumbSize * 3}px`}}>
+          <Navbar.Text className={descCls}>{filters[descIdx].description}</Navbar.Text>
         </div>
-        
 
         <ul className="albums">
+
           {filters[filterIndex].options.map(option => {
             let cls = 'album-btn responsive thumbnail';
             if (selectedNav && selectedNav.tag === option.tag) {
@@ -116,6 +112,7 @@ const FilterNav = props => {
             );
           })}
         </ul>
+        
       </Container>
     </CloudinaryContext>
   );

@@ -82,19 +82,20 @@ $selected-album-text: #fff;
 .album-bar {
 
   .category-desc {
+    // display: inline-block;
     z-index: 2;
     font-size: 0.8em;
-    // border: 1px solid #000;
+    border: 1px solid #000;
     border-radius: 3px;
-    float: left;
+    float: right;
     text-align: center;
     padding: 4px;
     margin-top: 1.5em;
-    width: 10rem;
+    // width: 10rem;
 
     .active-desc {
       color: #000;
-      visibility: hidden;
+      // visibility: hidden;
     }
     .hover-desc {
       
@@ -104,6 +105,7 @@ $selected-album-text: #fff;
 
   .albums {
     text-align: center;
+    list-style-type: none;
 
     // eg Boston, Cambridge
     .album-btn {

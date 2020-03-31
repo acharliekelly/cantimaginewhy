@@ -9,7 +9,7 @@ import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
 import HomePage from './views/Home/';
 import AboutPage from './views/About/';
-import ArtworkPage from './views/Artwork/';
+import ArtworkPage from './views/Artwork';
 import ImageZoom from './components/ImageZoom/';
 import { allowDevMode } from './utils/system';
 import { initializeLibrary } from './utils/faLibrary';

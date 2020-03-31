@@ -17,14 +17,8 @@ const ProgressView = props => {
   const [ progressImages, setProgressImages ] = useState([]);
   const [ progressIndex, setProgressIndex ] = useState(0);
 
-  const clearProgressGallery = () => {
-    setProgressImages([]);
-    setProgressIndex(0);
-  }
-
   useEffect(() => {
     onsitePhotos(refKey).then(resources => setProgressImages(resources));
-    return clearProgressGallery;
   }, [refKey]);
 
   const moveNext = () => {
@@ -80,7 +74,7 @@ const ProgressView = props => {
             <HelpButton 
               header="View Process" 
               content={helpText} 
-              size="md" 
+              size="sm" 
               placement="top"
               variant={`outline-${props.variant}`} />
         </Card.Body>

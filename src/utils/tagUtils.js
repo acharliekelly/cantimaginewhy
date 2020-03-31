@@ -22,14 +22,14 @@ export const getFilterGroup = groupIndex => {
 }
 
 export const hasExplan = tagName => {
-  return (albumExplanations[tagName] && albumExplanations[tagName].length > 0);
+  return (albumExplanations[tagName] && albumExplanations[tagName].length > 0)
 }
 
-export const getExplanation = tagObj => {
+export const getExplanation = (tagObj, useDesc = false) => {
   if (hasExplan(tagObj.tag)) {
     return albumExplanations[tagObj.tag];
   } else {
-    return false;
+    return useDesc ? tagObj.description : false;
   }
 }
 

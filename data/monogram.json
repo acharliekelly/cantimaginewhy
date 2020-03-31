@@ -1,0 +1,322 @@
+{
+  "resources": [
+  {
+  "public_id": "ck_logo",
+  "version": 1565118790,
+  "format": "png",
+  "width": 200,
+  "height": 192,
+  "type": "upload",
+  "created_at": "2019-08-06T19:13:10Z",
+  "context": {
+  "custom": {
+  "alb-order": "15",
+  "album": "Logos",
+  "alt": "Stone",
+  "caption": "CK"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/ck-rhomboid-color_monogram",
+  "version": 1564114438,
+  "format": "jpg",
+  "width": 2952,
+  "height": 2748,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:58Z",
+  "context": {
+  "custom": {
+  "alt": "rhomboid, full color",
+  "caption": "CK"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/ck_rhomboid_graphite",
+  "version": 1564114436,
+  "format": "jpg",
+  "width": 2894,
+  "height": 2717,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:56Z",
+  "context": {
+  "custom": {
+  "caption": "CK graphite"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/rose_27119178175_o_rxptp5",
+  "version": 1564114435,
+  "format": "png",
+  "width": 1181,
+  "height": 632,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:55Z"
+  },
+  {
+  "public_id": "ck_fire",
+  "version": 1564114432,
+  "format": "jpg",
+  "width": 3411,
+  "height": 2984,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:52Z",
+  "context": {
+  "custom": {
+  "alb-order": "17",
+  "album": "Logos",
+  "alt": "Fire",
+  "caption": "CK",
+  "medium": "watercolor"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/trio_26745898772_o_hnsemp",
+  "version": 1564114432,
+  "format": "jpg",
+  "width": 1262,
+  "height": 1510,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:52Z"
+  },
+  {
+  "public_id": "nfs/thistle_26745898832_o_ytlh1k",
+  "version": 1564114431,
+  "format": "jpg",
+  "width": 751,
+  "height": 893,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:51Z"
+  },
+  {
+  "public_id": "nfs/quattro_26745899062_o_plcnyc",
+  "version": 1564114430,
+  "format": "jpg",
+  "width": 1253,
+  "height": 1531,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:50Z"
+  },
+  {
+  "public_id": "nfs/square_26745898872_o_jjvruq",
+  "version": 1564114430,
+  "format": "jpg",
+  "width": 467,
+  "height": 455,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:50Z"
+  },
+  {
+  "public_id": "nfs/monogram-2_26745899132_o_wk2xmz",
+  "version": 1564114428,
+  "format": "jpg",
+  "width": 628,
+  "height": 805,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:48Z"
+  },
+  {
+  "public_id": "nfs/pointillist_31279174952_o_lu86bn",
+  "version": 1564114427,
+  "format": "jpg",
+  "width": 206,
+  "height": 171,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:47Z"
+  },
+  {
+  "public_id": "nfs/mmxv_26489746413_o_gem9kf",
+  "version": 1564114427,
+  "format": "jpg",
+  "width": 935,
+  "height": 930,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:47Z"
+  },
+  {
+  "public_id": "nfs/monogram-1_26745899142_o_qicvfu",
+  "version": 1564114427,
+  "format": "jpg",
+  "width": 629,
+  "height": 775,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:47Z"
+  },
+  {
+  "public_id": "nfs/lf_graphite",
+  "version": 1564114426,
+  "format": "jpg",
+  "width": 866,
+  "height": 1039,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:46Z",
+  "context": {
+  "custom": {
+  "caption": "L.F.",
+  "medium": "graphite",
+  "original": "sold"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/mmxv_31279175272_o_msrivs",
+  "version": 1564114426,
+  "format": "jpg",
+  "width": 367,
+  "height": 223,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:46Z"
+  },
+  {
+  "public_id": "ck_ice",
+  "version": 1564114425,
+  "format": "jpg",
+  "width": 2913,
+  "height": 2913,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:45Z",
+  "context": {
+  "custom": {
+  "alb-order": "18",
+  "album": "Logos",
+  "alt": "Ice",
+  "caption": "CK",
+  "medium": "watercolor"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/ak-knotwork-butterfly-monogram",
+  "version": 1564114424,
+  "format": "jpg",
+  "width": 1601,
+  "height": 706,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:44Z"
+  },
+  {
+  "public_id": "nfs/ivy_31279175282_o_aay6wb",
+  "version": 1564114422,
+  "format": "jpg",
+  "width": 450,
+  "height": 340,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:42Z"
+  },
+  {
+  "public_id": "nfs/grass_26745899212_o_u9jsfr",
+  "version": 1564114421,
+  "format": "jpg",
+  "width": 751,
+  "height": 956,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:41Z"
+  },
+  {
+  "public_id": "nfs/crescents_27025244661_o_nen6xr",
+  "version": 1564114421,
+  "format": "jpg",
+  "width": 975,
+  "height": 972,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:41Z"
+  },
+  {
+  "public_id": "nfs/floral_30421257486_o_lshuyg",
+  "version": 1564114419,
+  "format": "jpg",
+  "width": 294,
+  "height": 303,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:39Z"
+  },
+  {
+  "public_id": "nfs/ck-square",
+  "version": 1564114418,
+  "format": "jpg",
+  "width": 2801,
+  "height": 2486,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:38Z",
+  "context": {
+  "custom": {
+  "caption": "Red Square"
+  }
+  }
+  },
+  {
+  "public_id": "ck-diamond",
+  "version": 1564114418,
+  "format": "jpg",
+  "width": 2824,
+  "height": 2814,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:38Z",
+  "context": {
+  "custom": {
+  "alb-order": "16",
+  "album": "Logos",
+  "alt": "Diamond",
+  "caption": "CK"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/ak-blue-heart-monogram",
+  "version": 1564114408,
+  "format": "jpg",
+  "width": 986,
+  "height": 786,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:28Z"
+  },
+  {
+  "public_id": "nfs/ak_26805427586_o_a4ragv",
+  "version": 1564114408,
+  "format": "jpg",
+  "width": 940,
+  "height": 711,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:28Z"
+  },
+  {
+  "public_id": "ck-gothic_monogram",
+  "version": 1564114408,
+  "format": "jpg",
+  "width": 304,
+  "height": 333,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:28Z",
+  "context": {
+  "custom": {
+  "alb-order": "19",
+  "album": "Logos",
+  "alt": "Gothic",
+  "caption": "CK"
+  }
+  }
+  },
+  {
+  "public_id": "nfs/bars_31279175312_o_atc1er",
+  "version": 1564114408,
+  "format": "jpg",
+  "width": 344,
+  "height": 262,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:28Z"
+  },
+  {
+  "public_id": "nfs/blue_31279175022_o_ba8pfo",
+  "version": 1564114408,
+  "format": "jpg",
+  "width": 225,
+  "height": 285,
+  "type": "upload",
+  "created_at": "2019-07-26T04:13:28Z"
+  }
+  ],
+  "updated_at": "2020-03-31T03:02:25Z"
+  }

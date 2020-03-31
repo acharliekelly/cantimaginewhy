@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Explan from '../Explan';
 import StackGallery from '../StackGallery';
 import ProgressView from '../ProgressView';
-import { hasExplan } from '../../utils/tagUtils';
+import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
 
 
@@ -13,16 +13,16 @@ import { isSeriesExist } from '../../utils/onsiteUtils';
  * Makes accordion of stacked components
  */
 const Stacker = props => {
-  const [ hasExp, setHasExp ] = useState(false);
+  const [ albumAbout, setAlbumAbout ] = useState(null);
   const [ hasProgress, setHasProgress ] = useState(false);
 
   const { tagObject, refKey } = props;
   
   useEffect(() => {
-    if (tagObject && tagObject.tag) {
-      setHasExp(hasExplan(tagObject.tag))
+    if (tagObject) {
+      setAlbumAbout(getExplanation(tagObject, false));
     } else {
-      setHasExp(false);
+      setAlbumAbout(null);
     }
   }, [tagObject]);
 
@@ -38,20 +38,23 @@ const Stacker = props => {
     return (
       <div className="stacker">
         <Accordion defaultActiveKey={0}>
-          {hasExp && (
-            <Explan tagObject={tagObject} stackPosition={0} />
+          {albumAbout && (
+            <Explan 
+              tagObject={tagObject} 
+              fullText={albumAbout} 
+              stackPosition={0} />
           )}
           
           <StackGallery 
             tagObject={tagObject} 
-            stackPosition={hasExp ? 1 : 0} 
+            stackPosition={(albumAbout) ? 1 : 0} 
             galleryImages={props.galleryImages}
             selectThumbnail={props.selectThumbnail}
             thumbSize={props.thumbSize}
             imageIndex={props.imageIndex} />
 
           {hasProgress && (
-            <ProgressView stackPosition={hasExp ? 2 : 1}
+            <ProgressView stackPosition={(albumAbout) ? 2 : 1}
               selectLightbox={props.selectLightbox}
               refKey={props.refKey} />
           )}
@@ -85,7 +88,7 @@ Stacker.propTypes = {
   /**
    * Gallery heading (name & description)
    */
-  tagObject: PropTypes.object.isRequired,
+  tagObject: PropTypes.object,
   /**
    * 
    */

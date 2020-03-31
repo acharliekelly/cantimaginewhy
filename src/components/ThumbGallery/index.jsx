@@ -8,7 +8,7 @@ import './gallery.scss';
 
 const ThumbGallery = props => {
   const [ currentIndex, setCurrentIndex ] = useState(0);
-  const { galleryImages, selectThumbnail, thumbSize, imageIndex, heading } = props;
+  const { galleryImages, selectThumbnail, thumbSize, imageIndex, maxHeight } = props;
 
   const clickImage = index => {
     setCurrentIndex(index);
@@ -22,28 +22,20 @@ const ThumbGallery = props => {
 
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
-      <div className="gallery-wrapper">
-      {heading && (
-        <header className="gallery-title">
-          <div className="title">{heading.name}</div>
-          <div className="description">{heading.description}</div>
-        </header>
-      )}
-        <Container className="gallery">
-          {galleryImages.map((thumb, index) => (
-            <div key={index}>
-              <Image 
-                className={`responsive thumbnail ${index === currentIndex && 'selected'}`}
-                title={getContextProperty(thumb, 'caption')}
-                publicId={thumb.public_id}
-                onClick={() => clickImage(index)}>
-                <Transformation height={thumbSize} width={thumbSize} crop="fill" />
-                <Transformation defaultImage={defaultImg} />
-              </Image>
-            </div>
-          ))}
-        </Container>
-      </div>
+      <Container className="gallery" style={maxHeight && {maxHeight: `${maxHeight}vh`}}>
+        {galleryImages.map((thumb, index) => (
+          <div key={index}>
+            <Image 
+              className={`responsive thumbnail ${index === currentIndex && 'selected'}`}
+              title={getContextProperty(thumb, 'caption')}
+              publicId={thumb.public_id}
+              onClick={() => clickImage(index)}>
+              <Transformation height={thumbSize} width={thumbSize} crop="fill" />
+              <Transformation defaultImage={defaultImg} />
+            </Image>
+          </div>
+        ))}
+      </Container>
     </CloudinaryContext>
   )
 }
@@ -66,9 +58,10 @@ ThumbGallery.propTypes = {
    */
   imageIndex: PropTypes.number,
   /**
-   * Gallery heading (name & description)
+   * maximum height, in vh
+   * (used to be in CSS)
    */
-  heading: PropTypes.object
+  maxHeight: PropTypes.number
 }
 
 ThumbGallery.defaultProps = {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'react-bootstrap/Button';
-import  { faaUrl } from '../../../utils/fineArtApi';
+import  { faaUrl } from '../../../utils/imageUtils';
 
 // Assumes product page exists for this image
 const ProductButton = props => {
@@ -25,7 +25,7 @@ const ProductButton = props => {
 }
 
 ProductButton.propTypes = {
-  imageId: PropTypes.string.isRequired,
+  productKey: PropTypes.string.isRequired,
   variant: PropTypes.string,
   size: PropTypes.string,
   buttonText: PropTypes.string

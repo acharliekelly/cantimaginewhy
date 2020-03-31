@@ -20,12 +20,10 @@
  */
 export const loadImageProps = imageObj => {
   const imgId = imageObj.public_id;
-    const ref = getPictureProperty(imageObj, 'key', '-');
     const infoObj = {
       id: imgId,
       moreInfo: true,
       hasContext: imageObj.hasOwnProperty('context'),
-      showOptions: imgId.startsWith('art/'),
       title: getPictureProperty(imageObj, 'caption', 'Untitled'),
       description: getPictureProperty(imageObj, 'alt'),
       location: getPictureProperty(imageObj, 'location'),
@@ -36,7 +34,7 @@ export const loadImageProps = imageObj => {
       forSale: ((getPictureProperty(imageObj, 'original')) === 'available'),
       forPrint: hasProperty(imageObj, 'faa'),
       productKey: getPictureProperty(imageObj, 'faa'),
-      refKey: ref,
+      refKey: getPictureProperty(imageObj, 'key', '-'),
       price: getPictureProperty(imageObj, 'price', 'NFS'),
       materialInfo: hasProperty(imageObj, 'medium') && hasProperty(imageObj, 'size'),
     }

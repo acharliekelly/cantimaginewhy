@@ -8,7 +8,6 @@ export const faaUrl = productKey => {
   } else {
     return FAA_URL;
   }
-  
 }
 
 // format: Cloudinary_ID: FAA product key

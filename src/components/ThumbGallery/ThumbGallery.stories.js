@@ -46,7 +46,7 @@ stories
         galleryImages={images} 
         selectThumbnail={mockSelect} 
         thumbSize={60}
-        heading={mockNav}
+        tagOb={mockNav}
       />
   ))
   .add('Knobs', () => {

@@ -22,7 +22,9 @@ const ImageDetail = props => {
   }
 
   if (currentImage) {
+
     const info = loadImageProps(currentImage);
+
     return (
       <Container className="image-detail">
         <Container className="image-view">
@@ -45,7 +47,7 @@ const ImageDetail = props => {
             <Container className="image-info">
               {info.forPrint && (
                 <div style={{float: 'right'}}>
-                  <ProductButton imageId={info.productKey} size="2x" />
+                  <ProductButton productKey={info.productKey} size="2x" />
                 </div>
               )}
               <div className="title">{info.title}</div>
@@ -77,7 +79,7 @@ const ImageDetail = props => {
               {info.forSale && (
                 <div className="info">
                   <span className="label">Price: </span>
-                  <span className="data">$ {info.price}</span>
+                  <span className="data">${info.price}</span>
                 </div>
               )}
               

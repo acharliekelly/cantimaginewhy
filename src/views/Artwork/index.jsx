@@ -4,29 +4,33 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { selectLightboxUtil } from '../../utils/imageUtils';
-import ThumbGallery from '../../components/ThumbGallery/';
 import FilterNav from '../../components/FilterNav';
 import AlbumNav from '../../components/AlbumNav/';
 import ImageDetail from '../../components/ImageDetail/';
-import ProgressView from '../../components/ProgressView';
+import Stacker from '../../components/Stacker';
 import { 
   fetchGallery, 
   sortGallery, 
   getContextProperty, 
   getThumbnailSize 
 } from '../../utils/imageApi';
-import { isSeriesExist } from '../../utils/onsiteUtils';
 
 import './artwork.scss';
 
 
 const ArtworkPage = props => {
   const [ navFilter, setNavFilter ] = useState(true);  // true = filter
+  
+  const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
+  const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
   const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
-  const [ selectedAlbum, setSelectedAlbum ] = useState(null); // nav obj
-  const [ thumbSize, setThumbSize ] = useState(0);
+  
+
+  useEffect(() => {
+    clearArtGallery();
+  }, [navFilter])
 
   useEffect(() => {
     setRefKey(getContextProperty(artImages[currentIndex], 'key', null));
@@ -37,10 +41,6 @@ const ArtworkPage = props => {
     const size = getThumbnailSize(artImages.length);
     setThumbSize(size);
   }, [artImages]);
-
-  useEffect(() => {
-    clearArtGallery();
-  }, [navFilter])
 
   const clearProgress = () => {
     setRefKey(null);
@@ -95,16 +95,19 @@ const ArtworkPage = props => {
       
       <Container style={{width: '100%'}}>
         <Row>
-          <Col xs={12} sm={6} md={3} lg={4}>
-            <ThumbGallery 
+          <Col xs={12} sm={4}>
+            <Stacker 
+              tagObject={selectedAlbum} 
               selectThumbnail={setCurrentIndex} 
               galleryImages={artImages}
               imageIndex={currentIndex}
               thumbSize={thumbSize}
-              heading={selectedAlbum}
+              refKey={refKey}
+              maximumHeight={60}
+              selectLightbox={props.selectLightbox}
             />
           </Col>
-          <Col xs={12} sm={6} md={6} lg={5}>
+          <Col xs={12} sm={8}>
             <ImageDetail 
               selectLightbox={props.selectLightbox}
               moveNext={moveNext}
@@ -112,13 +115,6 @@ const ArtworkPage = props => {
               imageList={artImages}
               imageIndex={currentIndex}
             />
-          </Col>
-          <Col xs={12} sm={8} md={3} lg={3} className="process">
-            {refKey && isSeriesExist(refKey) && (
-              <ProgressView 
-                selectLightbox={props.selectLightbox} 
-                refKey={refKey} />
-            )}
           </Col>
         </Row>
       </Container>

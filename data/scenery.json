@@ -86,25 +86,6 @@
   }
   },
   {
-  "public_id": "art/winter-yosemite",
-  "version": 1564114047,
-  "format": "jpg",
-  "width": 1291,
-  "height": 1110,
-  "type": "upload",
-  "created_at": "2019-07-26T04:07:27Z",
-  "context": {
-  "custom": {
-  "album": "Scenery",
-  "caption": "Yosemite in Winter",
-  "medium": "colored pencil",
-  "original": "sold",
-  "size": "11\" x 8.5\"",
-  "year": "2014"
-  }
-  }
-  },
-  {
   "public_id": "art/winter-walk",
   "version": 1564114046,
   "format": "jpg",
@@ -121,38 +102,6 @@
   "price": "200",
   "size": "8\" x 6\"",
   "year": "2016"
-  }
-  }
-  },
-  {
-  "public_id": "nfs/winter-moon_26805289026_o_ajyiyi",
-  "version": 1564114044,
-  "format": "jpg",
-  "width": 1300,
-  "height": 1111,
-  "type": "upload",
-  "created_at": "2019-07-26T04:07:24Z",
-  "context": {
-  "custom": {
-  "caption": "Winter Moon 1",
-  "medium": "colored pencil",
-  "original": "unavailable"
-  }
-  }
-  },
-  {
-  "public_id": "art/winter-village",
-  "version": 1564114043,
-  "format": "jpg",
-  "width": 1061,
-  "height": 407,
-  "type": "upload",
-  "created_at": "2019-07-26T04:07:23Z",
-  "context": {
-  "custom": {
-  "caption": "Winter Village",
-  "original": "unavailable",
-  "year": "2014"
   }
   }
   },
@@ -207,26 +156,6 @@
   "original": "sold",
   "size": "16\" x 12\"",
   "year": "2018"
-  }
-  }
-  },
-  {
-  "public_id": "art/winter-house",
-  "version": 1564114038,
-  "format": "jpg",
-  "width": 1649,
-  "height": 1316,
-  "type": "upload",
-  "created_at": "2019-07-26T04:07:18Z",
-  "context": {
-  "custom": {
-  "album": "Scenery",
-  "caption": "Winter Home",
-  "medium": "graphite",
-  "original": "available",
-  "price": "100",
-  "size": "11\" x 8.5\"",
-  "year": "2014"
   }
   }
   },
@@ -364,39 +293,6 @@
   }
   },
   {
-  "public_id": "nfs/saguaro_26805291216_o_evfx0h",
-  "version": 1564114009,
-  "format": "jpg",
-  "width": 1319,
-  "height": 1049,
-  "type": "upload",
-  "created_at": "2019-07-26T04:06:49Z",
-  "context": {
-  "custom": {
-  "caption": "Saguaro",
-  "medium": "colored pencil",
-  "year": "2014"
-  }
-  }
-  },
-  {
-  "public_id": "art/raystown-lake_2014",
-  "version": 1564114008,
-  "format": "jpg",
-  "width": 1047,
-  "height": 1300,
-  "type": "upload",
-  "created_at": "2019-07-26T04:06:48Z",
-  "context": {
-  "custom": {
-  "album": "Scenery",
-  "caption": "Raystown Lake",
-  "medium": "watercolor",
-  "year": "2015"
-  }
-  }
-  },
-  {
   "public_id": "art/reflections_2012",
   "version": 1564114004,
   "format": "jpg",
@@ -486,21 +382,6 @@
   "album": "Scenery",
   "caption": "Lighthouse",
   "year": "2015"
-  }
-  }
-  },
-  {
-  "public_id": "nfs/muddy-river_28564679927_o_cai10w",
-  "version": 1564113993,
-  "format": "jpg",
-  "width": 997,
-  "height": 745,
-  "type": "upload",
-  "created_at": "2019-07-26T04:06:33Z",
-  "context": {
-  "custom": {
-  "caption": "Muddy River",
-  "year": "2014"
   }
   }
   },
@@ -702,23 +583,6 @@
   }
   },
   {
-  "public_id": "art/cardinals_2014",
-  "version": 1564113905,
-  "format": "jpg",
-  "width": 528,
-  "height": 1207,
-  "type": "upload",
-  "created_at": "2019-07-26T04:05:05Z",
-  "context": {
-  "custom": {
-  "caption": "Cardinals",
-  "medium": "watercolor",
-  "original": "sold",
-  "year": "2014"
-  }
-  }
-  },
-  {
   "public_id": "art/boston-tetraptych_2012",
   "version": 1564113884,
   "format": "jpg",
@@ -839,5 +703,5 @@
   }
   }
   ],
-  "updated_at": "2020-03-23T20:53:21Z"
+  "updated_at": "2020-03-30T01:16:30Z"
   }

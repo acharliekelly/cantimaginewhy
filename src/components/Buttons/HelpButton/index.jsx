@@ -15,7 +15,7 @@ const imgOnlyStyle = {
 }
 
 const HelpButton = props => (
-  <OverlayTrigger trigger="click" placement={props.location} overlay={
+  <OverlayTrigger trigger="click" placement={props.placement} overlay={
     <Popover>
       <Popover.Title>{props.header}</Popover.Title>
       <Popover.Content>{props.content}</Popover.Content>
@@ -46,7 +46,7 @@ HelpButton.propTypes = {
   /**
    * placement of the message
    */
-  location: PropTypes.string,
+  placement: PropTypes.string,
   /**
    * size of the icon
    */
@@ -63,7 +63,7 @@ HelpButton.propTypes = {
 
 HelpButton.defaultProps = {
   header: 'Help',
-  location: 'bottom',
+  placement: 'bottom',
   size: 'lg',
   imageOnly: false,
   variant: 'outline-info'

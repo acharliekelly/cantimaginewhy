@@ -71,3 +71,16 @@ export class CarouselWrapper {
     stubSelectLightbox(imageId);
   }
 }
+
+
+
+// moved from fineArtApi.js
+const FAA_URL = 'https://charlie-kelly.pixels.com/';
+
+export const faaUrl = productKey => {
+  if (productKey) {
+    return `${FAA_URL}featured/${productKey}-charlie-kelly.html`;
+  } else {
+    return FAA_URL;
+  }
+}

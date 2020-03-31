@@ -1,4 +1,4 @@
-const { faaAvailable, faaLookup } = require('../src/utils/fineArtApi');
+const { faaAvailable, faaLookup } = require('../archive/utils/fineArtApi');
 
 
 test('check if image exists in dictionary', () => {

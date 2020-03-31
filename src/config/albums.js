@@ -14,7 +14,7 @@ export const albums = [
   {
     "name": "Plein Air",
     "tag": "plein-air-acrylic",
-    "thumbnail": "art/early_fall_mt_feake",
+    "thumbnail": "art/a_friday_in_september",
     "description": "Painted on site",
     "sortField": ".completed"
   },

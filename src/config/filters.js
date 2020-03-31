@@ -10,15 +10,11 @@
  * - thumbnail
  * - description
  * - sortField
- * - display []
  */
 export const filters = [
   {
     "name": "Location",
     "description": "Filter by where image was painted",
-    "display": [
-      "gallery", "detail", "progress", "explan"
-    ],
     "options": [
       {
         "name": "Boston",
@@ -67,9 +63,6 @@ export const filters = [
   {
     "name": "Style",
     "description": "Filter by artistic style",
-    "display": [
-      "gallery", "detail"
-    ],
     "options": [
       {
         "name": "Pointillist",
@@ -105,7 +98,7 @@ export const filters = [
         "name": "Plein Air",
         "tag": "en plein air",
         "thumbnail": "art/early_fall_mt_feake",
-        "description": "Painted on site, instead of from a photo"
+        "description": "Created on site, as opposed to from a photo"
       }
     ]
   },
@@ -170,8 +163,8 @@ export const filters = [
     ]
   },
   {
-    "name": "Era",
-    "description": "Filter by when the piece was completed",
+    "name": "Period",
+    "description": "Filter by (my) historical period",
     "options": [
       {
         "name": "Learning",
@@ -261,7 +254,7 @@ export const filters = [
       {
         "name": "View",
         "tag": "nfs",
-        "thumbnail": "nfs/eye_26745608572_o_zqbocw",
+        "thumbnail": "nfs/lattice_eye",
         "description": "You can look at these"
       }
     ]

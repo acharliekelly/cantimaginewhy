@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-import { albumExplanations } from '../../config/text';
+import { getExplanation } from '../../utils/tagUtils';
 // import { variableImageSrc } from '../../utils/imageApi';
 
 /**
@@ -10,10 +10,12 @@ import { albumExplanations } from '../../config/text';
  * @param {*} props 
  */
 const Explan = props => {
-  const { tagObject, stackPosition, cardTitle } = props;
+  const { tagObject, stackPosition, cardTitle, fullText } = props;
   let explanText;
-  if (tagObject) {
-    explanText = albumExplanations[tagObject.tag];
+  if (fullText) {
+    explanText = fullText;
+  } else if (tagObject) {
+    explanText = getExplanation(tagObject, true);
   }
   if (explanText) {
     return (
@@ -47,6 +49,10 @@ Explan.propTypes = {
    * title for card
    */
   cardTitle: PropTypes.string,
+  /**
+   * just pass in the text instead of the key
+   */
+  fullText: PropTypes.string,
   variant: PropTypes.string
 };
 

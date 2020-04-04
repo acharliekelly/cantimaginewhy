@@ -1,6 +1,15 @@
 
 main.contact {
   text-align: left;
+  margin: 0 3em;
+  border: thin solid #999;
+  border-radius: 0.3em;
+
+  .nav-item {
+    .nav-link {
+      font-size: 2em;
+    }
+  }
 }
 
 
@@ -10,4 +19,5 @@ main.contact {
   padding: 2em;
   background-color: #ddd;
   border-radius: 0.3em;
+  overflow: hidden;
 }

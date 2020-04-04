@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
 import { selectLightboxUtil } from '../../utils/imageUtils';
-import SliceGallery from '../../components/SliceGallery/';
+import SliceGallery from '../../components/SliceGallery';
 
 import './home.scss'; 
 
@@ -23,7 +23,7 @@ const HomePage = props => {
             tagName="favorite" 
             imageHeight={200} 
             gallerySize={4}
-            selectLightbox={props.selectLightbox}
+            {...props}
           />
         </div>
         

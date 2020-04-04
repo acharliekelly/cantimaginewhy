@@ -1,8 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import Card from 'react-bootstrap/Card';
-import Accordion from 'react-bootstrap/Accordion';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
@@ -38,49 +36,45 @@ const ProgressView = props => {
   }
 
   return (
-    <Card className="progress-view" border={props.variant} text={props.variant} >
-      <Accordion.Toggle as={Card.Header} eventKey={props.stackPosition}>
-        <strong>Artistic Process</strong>
-      </Accordion.Toggle>
-      <Accordion.Collapse eventKey={props.stackPosition}>
-        <Card.Body>
-        <div className="view-wrapper">
-          {progressImages[progressIndex] && (
-            <div className="img-wrapper">
-              <Image cloudName="cantimaginewhy" 
-                publicId={progressImages[progressIndex].public_id} 
-                onClick={magnifyImage} >
-                  <Transformation height="200" width="auto" crop="fill" />
-              </Image>
-              <ImageToolbar 
-                variant={props.variant}
-                prevImageFn={movePrev}
-                nextImageFn={moveNext}
-                zoomImageFn={magnifyImage}
-                disableCarousel={progressImages.length < 2}
-              />
-            </div>
-            )}
-          </div>
-            {progressImages.length > 1 && (
-              <ThumbGallery 
-                className="process-images"
-                selectThumbnail={setProgressIndex} 
-                galleryImages={progressImages} 
-                imageIndex={progressIndex}
-                thumbSize={thumbSize}
-                />
-            )}
-            <HelpButton 
-              header="View Process" 
-              content={helpText} 
-              size="sm" 
-              placement="top"
-              variant={`outline-${props.variant}`} />
-        </Card.Body>
-      </Accordion.Collapse>
+    <>
+    <div className="view-wrapper">
+    {progressImages[progressIndex] && (
+      <div className="img-wrapper">
+        <Image cloudName="cantimaginewhy" 
+          publicId={progressImages[progressIndex].public_id} 
+          onClick={magnifyImage} >
+            <Transformation height="200" width="auto" crop="fill" />
+        </Image>
+        <ImageToolbar 
+          variant={props.variant}
+          prevImageFn={movePrev}
+          nextImageFn={moveNext}
+          zoomImageFn={magnifyImage}
+          disableCarousel={progressImages.length < 2}
+        />
+      </div>
+      )}
+    </div>
+      {progressImages.length > 1 && (
+        <ThumbGallery 
+          className="process-images"
+          selectThumbnail={setProgressIndex} 
+          galleryImages={progressImages} 
+          imageIndex={progressIndex}
+          thumbSize={thumbSize}
+          />
+      )}
+      <div style={{textAlign: 'right'}}>
+        <HelpButton 
+          header="View Process" 
+          content={helpText} 
+          size="sm" 
+          placement="top"
+          variant={`outline-${props.variant}`}
+          style={{float: 'right'}} />
+      </div>
       
-    </Card>
+    </>
   )
 }
 
@@ -88,8 +82,6 @@ ProgressView.propTypes = {
   selectLightbox: PropTypes.func.isRequired,
   refKey: PropTypes.string,
   thumbSize: PropTypes.number,
-  stackPosition: PropTypes.number,
-  variant: PropTypes.string
 }
 
 ProgressView.defaultProps = {

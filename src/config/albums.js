@@ -20,9 +20,16 @@ export const albums = [
   },
   {
     "name": "Scenery",
-    "tag": "scenery",
+    "tag": "scenery-loc",
     "thumbnail": "art/midwinter",
-    "description": "From photographs of landscapes",
+    "description": "From a photograph I took",
+    "sortField": ".year"
+  },
+  {
+    "name": "Landscape",
+    "tag": "scenery-noloc",
+    "thumbnail": "art/bodiam-castle_2011",
+    "description": "From a photograph somebody took",
     "sortField": ".year"
   },
   {

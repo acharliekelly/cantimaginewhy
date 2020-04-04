@@ -14,7 +14,7 @@
 export const filters = [
   {
     "name": "Location",
-    "description": "Filter by where image was painted",
+    "description": "Filter by the location of the thing being depicted",
     "options": [
       {
         "name": "Boston",
@@ -167,22 +167,11 @@ export const filters = [
     "description": "Filter by (my) historical period",
     "options": [
       {
-        "name": "Learning",
-        "tag": "era-learning",
-        "thumbnail": "nfs/lattice_prism",
-        "description": "Learning to draw: 2009-10"
-      },
-      {
-        "name": "Early Work",
-        "tag": "early-work",
-        "thumbnail": "nfs/orangerie",
-        "description": "Expanding horizons: 2010-2012"
-      },
-      {
-        "name": "Sabbatical",
-        "tag": "sabbatical",
-        "thumbnail": "nfs/winter-yosemite",
-        "description": "Limited access to materials: 2013-15"
+        "name": "Current",
+        "tag": "era-current",
+        "thumbnail": "art/waltham_waterfall",
+        "description": "Summer 2019 - Present",
+        "sortField": ".completed"
       },
       {
         "name": "Recent",
@@ -191,11 +180,22 @@ export const filters = [
         "description": "Recent past: 2015-19"
       },
       {
-        "name": "Current",
-        "tag": "era-current",
-        "thumbnail": "art/waltham_waterfall",
-        "description": "Summer 2019 - Present",
-        "sortField": ".completed"
+        "name": "Sabbatical",
+        "tag": "sabbatical",
+        "thumbnail": "nfs/winter-yosemite",
+        "description": "Limited access to materials: 2013-15"
+      },
+      {
+        "name": "Early Work",
+        "tag": "early-work",
+        "thumbnail": "nfs/orangerie",
+        "description": "Expanding horizons: 2010-2012"
+      },
+      {
+        "name": "Learning",
+        "tag": "era-learning",
+        "thumbnail": "nfs/lattice_prism",
+        "description": "Learning to draw: 2009-10"
       }
     ]
   },

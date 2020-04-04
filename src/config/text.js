@@ -12,10 +12,14 @@ export const albumExplanations = {
   I could be treated to a pleasant stream of passers-by complimenting my work. Which turns out to be way more
   fun than painting from a photo, alone in my studio.`,
 
-  "scenery": `Unlike my Plein Air landscapes, which I painted on site, these are paintings I made from
+  "scenery-loc": `Unlike my Plein Air landscapes, which I painted on site, these are paintings I made from
   photographs. However, they were all photographs that I took, with the intention of painting them. That 
   sets them apart somewhat from pictures I copied from postcards or magazines, in that I at least viewed
-  all of these scenes for myself before deciding they needed to be captured.`,
+  all of these scenes for myself before deciding they needed to be captured for posterity.`,
+
+  "scenery-noloc": `As opposed to all my other landscape albums, these all came from photos I found
+  somewhere, but probably never set foot near. For the most part, I don't even know exactly where 
+  they came from; just someplace that looked nice.`,
 
   "portrait-new": `After a long break from portraiture, I decided to give it another try this winter (2019),
   once it got too cold for my outdoor painting. Turns out not to be exactly like riding a bike, but I gradually
@@ -79,7 +83,8 @@ export const albumExplanations = {
 
   "triptych": `A Triptych is a picture on 3 panels (from Greek Tri + Ptuchos, "panel"). Most of these came from my
   Sabbatical period, as a way of fitting neatly into a standardized envelope without permanently damaging the picture
-  with creases. This way, the creases were in between the panels.`,
+  with creases. This way, the creases were in between the panels. Also, it makes it seem like you're looking at
+  the world through bars of some kind.`,
 
   "nightscape": `During my first summer of Plein Air painting, I kept noticing that 1) I spent a lot of time out biking at
   night, when it was too dark to do my usual type of painting, and 2) the lights of Boston at night, especially looking
@@ -93,7 +98,11 @@ export const albumExplanations = {
   a standard-sized envelope, because reasons. Since all my paper was 8.5" x 11", there were basically two ways to accomplish
   this: fold the paper in thirds and make a triptych, or just use an envelope-sized area of the paper. Hence, I have
   a lot of long thin pictures.`,
+
+  "en plein air": `All the pieces that I created outdoors, in the 'fresh air'.`,
+
   "era-learning": ``,
+
   "early-work": ``,
 
   "sabbatical": `For a lot of my work to make sense, it's important to know that I spent some time with limited access to 
@@ -101,11 +110,21 @@ export const albumExplanations = {
   are that during one of my most prolific periods, I had very limited access to materials, and also that everything I made
   on 8.5" x 11" sheets had to fit into a 9" x 4" envelope.`,
 
-  "era-recent": ``,
-  "era-current": ``,
-  "for-sale": ``,
-  "for-print": ``,
-  "nfs": ``
+  "era-recent": `What I call my "recent" period spans the time between ending my sabbatical in July of 2015, and 
+  taking an expected hiatus from art due to a disk error (L5-S1) in the fall of 2018.`,
+  "era-current": `My current era started in the spring of 2019, when my disk recovered enough to let me begin painting again.`,
+
+  "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
+  the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in
+  acquiring an original piece, please just email me.`,
+
+  "for-print": `These paintings I may or may not currently possess, but I've arranged to have them printed on various
+  household products. Because hey, who doesn't love household products? You can also purchase prints, posters, and
+  tote bags, emblazened with my artwork.`,
+  
+  "nfs": `These are the pieces that aren't (currently) available for sale or print, but you're welcome to look at them to your 
+  heart's content. Also, if you feel that you'd like to buy one of my pictures on a tote bag or something, but 
+  the option is not currently available, please contact me and I'll make it happen.`
 };
 
 

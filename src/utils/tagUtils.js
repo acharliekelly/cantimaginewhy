@@ -38,3 +38,16 @@ export const createGalleryFromTag = tagObj => {
   return fetchGallery(tagObj.tag)
     .then(resources => sortByField(resources, tagObj.sortField));
 }
+
+
+export const findFilter = tag => {
+  let fltr;
+  filters.forEach(group => {
+    fltr = group.options.find(option => option.tag === tag)
+  })
+  return fltr;
+}
+
+export const findAlbum = tag => {
+  return albums.find(album => album.tag === tag)
+}

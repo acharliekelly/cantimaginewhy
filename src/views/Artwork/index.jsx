@@ -18,23 +18,44 @@ import {
 import './artwork.scss';
 
 
+const INITIAL_NAV = false;  // true = filter
+
 const ArtworkPage = props => {
-  const [ navFilter, setNavFilter ] = useState(true);  // true = filter
-  
+  const [ useFilter, setUseFilter ] = useState(INITIAL_NAV);  
   const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
   const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
   const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
+  const [ geotag, setGeotag ] = useState('')
   
+  const { navFilter, album, filter } = props;
 
   useEffect(() => {
-    clearArtGallery();
+    if (album)
+      setSelectedAlbum(album);
+  }, [album])
+
+  useEffect(() => {
+    if (filter)
+      setSelectedAlbum(filter);
+  }, [filter])
+
+  useEffect(() => {
+    setUseFilter(navFilter);
   }, [navFilter])
 
   useEffect(() => {
-    setRefKey(getContextProperty(artImages[currentIndex], 'key', null));
-    return clearProgress;
+    clearArtGallery();
+  }, [useFilter])
+
+  useEffect(() => {
+    const img = artImages[currentIndex];
+    if (img) {
+      setRefKey(getContextProperty(img, 'key', null));
+      setGeotag(getContextProperty(img, 'geotag', ''));
+    }
+    return clearImage;
   }, [artImages, currentIndex]);
 
   useEffect(() => {
@@ -42,8 +63,10 @@ const ArtworkPage = props => {
     setThumbSize(size);
   }, [artImages]);
 
-  const clearProgress = () => {
+  // run when no image is selected
+  const clearImage = () => {
     setRefKey(null);
+    setGeotag('');
   }
 
   const clearArtGallery = () => {
@@ -63,7 +86,7 @@ const ArtworkPage = props => {
   }
   
   const switchNavType = () => {
-    setNavFilter(!navFilter);
+    setUseFilter(!useFilter);
   }
 
   const moveNext = () => {
@@ -79,7 +102,7 @@ const ArtworkPage = props => {
   return (
     <div className="content">
 
-      { navFilter ? (
+      { useFilter ? (
         <FilterNav 
           updateSelectNav={selectGallery} 
           updateClearGallery={clearArtGallery} 
@@ -103,17 +126,18 @@ const ArtworkPage = props => {
               imageIndex={currentIndex}
               thumbSize={thumbSize}
               refKey={refKey}
-              maximumHeight={60}
-              selectLightbox={props.selectLightbox}
+              geoTag={geotag}
+              maxHeight={60}
+              {...props}
             />
           </Col>
           <Col xs={12} sm={8}>
             <ImageDetail 
-              selectLightbox={props.selectLightbox}
               moveNext={moveNext}
               movePrevious={movePrev}
               imageList={artImages}
               imageIndex={currentIndex}
+              {...props}
             />
           </Col>
         </Row>
@@ -123,10 +147,14 @@ const ArtworkPage = props => {
 }
 
 ArtworkPage.propTypes = {
-  selectLightbox: PropTypes.func.isRequired
+  selectLightbox: PropTypes.func.isRequired,
+  navFilter: PropTypes.bool,
+  filter: PropTypes.string,
+  album: PropTypes.string
 }
 ArtworkPage.defaultProps = {
-  selectLightbox: selectLightboxUtil
+  selectLightbox: selectLightboxUtil,
+  navFilter: false
 }
 
 export default ArtworkPage;

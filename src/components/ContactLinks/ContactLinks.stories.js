@@ -17,10 +17,6 @@ stories
     </div>
   ))
   .add('Both', () => <ContactLinks displayType="both" size="3x" textSize="3em" />)
-  .add('Hidden', () => <ContactLinks displayType="hide" size="4x" textSize="3em" />)
   .add('Full', () => <ContactLinks displayType="full" size="2x" textSize="2em" />)
-  .add('Collapse on Lg', () => (
-    <div style={{width: '50%'}}>
-      <ContactLinks size="md" horizontal="lg" />
-    </div>
-  ))
+  .add('Art Only', () => <ContactLinks displayType="both" size="2x" textSize="2em" group="art" /> )
+  .add('Tech Only', () => <ContactLinks displayType="icon" size="3x" group="tech" />)

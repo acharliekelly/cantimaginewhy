@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListGroup from 'react-bootstrap/ListGroup';
+// import sizeMe from 'react-sizeme';
 import { links } from '../../config/links';
 
 import './links.scss';
@@ -33,6 +34,10 @@ const getUrlText = (link, iconSize, textSize) => {
   return (
     <span className="url-text">{text}</span>
   )
+}
+
+const groupFilter = group => {
+  return links.filter(link => link.groups.includes(group));
 }
 
 // Icon & Text, URL on hover
@@ -70,7 +75,7 @@ const getHidden = (link, iconSize, textSize) => {
 }
 
 const ContactLinks = props => {
-  const { displayType, size, textSize, horizontal } = props;
+  const { displayType, size, textSize, horizontal, group } = props;
   const itemStyle = {
     border: 'none', 
     backgroundColor: 'transparent', 
@@ -97,10 +102,11 @@ const ContactLinks = props => {
     default:
       nodeFn = getMixed
   }
+  const list = group ? groupFilter(group) : links;
   return (
     <ListGroup as="ul" className="links" horizontal={horizontal}>
-      {links.map(link => (
-        <ListGroup.Item as="li" size={size} style={itemStyle} key={link.name} action>
+      {list.map((link, index) => (
+        <ListGroup.Item as="li" size={size} style={itemStyle} key={index} action>
         {getLink(link, nodeFn(link, size))}
         </ListGroup.Item>
       ))}
@@ -129,7 +135,12 @@ ContactLinks.propTypes = {
   /**
    * font size, since bootstrap size has no impact on font
    */
-  textSize: PropTypes.string
+  textSize: PropTypes.string,
+  /**
+   * group filter
+   * art || tech || contact
+   */
+  group: PropTypes.string
 };
 
 ContactLinks.defaultProps = {

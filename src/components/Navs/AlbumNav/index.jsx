@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../utils/imageApi';
-import { albums, navDescription } from '../../config/albums';
-import HelpButton from '../Buttons/HelpButton/';
+import { defaultImg } from '../../../utils/imageApi';
+import { albums, navDescription } from '../../../config/albums';
+import HelpButton from '../../Buttons/HelpButton/';
+import NavSwitch from '../NavSwitch';
 
-import '../../css/nav.scss';
+import '../nav.scss';
 
 const AlbumNav = props => {
   const [ selectedNav, setSelectedNav ] = useState(null);
@@ -23,9 +22,7 @@ const AlbumNav = props => {
       <CloudinaryContext cloudName="cantimaginewhy">
          <Navbar className="category-bar justify-content-between">
 
-          <Button className="nav-switch" variant="outline-dark" onClick={props.updateSwitch}>
-            <FontAwesomeIcon icon="filter" title="Browse by Filter" size="2x" />
-          </Button>
+          <NavSwitch type="album" {...props} />
 
           <Navbar.Text>
             <span className="browse-title">Browse by Album</span>
@@ -35,7 +32,7 @@ const AlbumNav = props => {
         
         </Navbar>
 
-        <Container fluid expand="lg" className="album-bar justify-content-center">
+        <Container fluid="lg" className="album-bar justify-content-center">
           <ul className="albums">
             {albums.map((album, index) => {
               let cls = 'album-btn responsive thumbnail';
@@ -68,10 +65,10 @@ const AlbumNav = props => {
 }
 
 AlbumNav.propTypes = {
-  updateSelectNav: PropTypes.func.isRequired,
-  updateClearGallery: PropTypes.func.isRequired,
-  updateSwitch: PropTypes.func.isRequired,
-  thumbnailHeight: PropTypes.number
+  updateSelectNav: PropTypes.func,
+  updateClearGallery: PropTypes.func,
+  thumbnailHeight: PropTypes.number,
+  updateNavSwitch: PropTypes.func
 };
 
 AlbumNav.defaultProps = {

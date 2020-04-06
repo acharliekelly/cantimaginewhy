@@ -1,13 +1,30 @@
 
+
+.page-title {
+  font-size: 3vh;
+}
+
 main.contact {
   text-align: left;
+  margin: 0 3em;
+  border: thin solid #999;
+  border-radius: 0.3em;
+
+
+
+  .nav-item {
+    .nav-link {
+      font-size: 2vw;
+    }
+  }
 }
 
 
 
 .contact-links {
-  margin: 1em 4em;
-  padding: 2em;
+  margin: 1vh 1vw;
+  padding: 2vw;
   background-color: #ddd;
   border-radius: 0.3em;
+  overflow: hidden;
 }

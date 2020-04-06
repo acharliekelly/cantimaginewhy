@@ -38,3 +38,41 @@ export const createGalleryFromTag = tagObj => {
   return fetchGallery(tagObj.tag)
     .then(resources => sortByField(resources, tagObj.sortField));
 }
+
+/**
+ * return Tagob from tag
+ */
+export const findFilter = tagName => {
+  let fltr;
+  filters.forEach((group, gpIndex) => {
+    const fIdx = group.options.findIndex(option => option.tag === tagName);
+    if (fIdx >= 0) {
+      fltr = group.options[fIdx];
+      if (fltr) {
+        // add props to tag
+        fltr.source = 'filters';
+        fltr.group = group.name;
+        fltr.groupIndex = gpIndex;
+        fltr.index = fIdx;
+        console.log('found filter: ', fltr)
+        return fltr;
+      }
+    }
+  })
+  return fltr || null;
+}
+
+/**
+ * return Tagob from tag
+ */
+export const findAlbum = tagName => {
+  const idx = albums.findIndex(album => album.tag === tagName);
+  const alb = albums[idx];
+  if (alb) {
+    // add props
+    alb.source = 'albums';
+    alb.index = idx;
+    return alb;
+  }
+  return null;
+}

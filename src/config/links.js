@@ -1,49 +1,66 @@
+
+
+/**
+ * Link object:
+ * - name: link text
+ * - lib: FA icon library (only for brand icons)
+ * - icon: FontAwesome ID
+ * - url: link destination
+ * - group: art || tech || head
+ */
 export const links = [
   {
     name: 'Instagram',
     lib: 'fab',
     icon: 'instagram',
     url: 'https://instagram.com/cant_imagine_why',
-    color: '#ff5733'
+    groups: [ 'art', 'head' ]
   },
   {
     name: 'Facebook',
     lib: 'fab',
     icon: 'facebook',
     url: 'https://facebook.com/acharliekelly',
-    color: '#3b5998'
+    groups: [ 'art', 'head' ]
   },
   {
     name: 'Github',
     lib: 'fab',
     icon: 'github',
     url: 'https://github.com/acharliekelly',
-    color: '#036012'
+    groups: [ 'tech' ]
   },
   {
     name: 'Blog',
     lib: 'fab',
     icon: 'blogger-b',
     url: 'https://cantimaginehow.blogspot.com/',
-    color: '#fc4f08'
+    groups: [ 'tech' ]
   },
   {
     name: 'Flickr',
     lib: 'fab',
     icon: 'flickr',
     url: 'https://www.flickr.com/photos/acharliekelly/albums',
-    color: '#ff33ca'
+    groups: [ 'art' ]
   },
   {
     name: 'LinkedIn',
     lib: 'fab',
     icon: 'linkedin',
-    url: 'https://linkedin.com/in/acharliekelly'
+    url: 'https://linkedin.com/in/acharliekelly',
+    groups: [ 'tech', 'head' ]
+  },
+  {
+    name: 'Portfolio',
+    icon: 'file-alt',
+    url: 'https://acharliekelly.github.io',
+    groups: [ 'tech' ]
   },
   {
     name: 'Email',
     icon: 'paper-plane',
     url: 'mailto:cant.imagine.why00@gmail.com',
-    color: '#122309'
+    groups: [ 'art', 'tech', 'head' ]
   }
 ];

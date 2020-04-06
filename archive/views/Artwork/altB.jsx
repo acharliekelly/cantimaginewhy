@@ -2,7 +2,7 @@
 import React, { useState } from './react';
 import PropTypes from './prop-types';
 // import Button from 'react-bootstrap/Button';
-import { selectLightboxUtil } from '/utils/imageUtils';
+import { selectLightboxUtil } from '/utils/miscUtils';
 import ImageGallery from '../../components/ImageGallery/';
 import AlbumNav from '../../components/AlbumNav/';
 

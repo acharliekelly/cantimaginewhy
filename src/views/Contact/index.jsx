@@ -1,22 +1,39 @@
 import React from 'react';
-
+import Tab from 'react-bootstrap/Tab';
+import TabNavs from '../../components/Navs/TabNavs';
 import ContactLinks from '../../components/ContactLinks/';
 
 import './contact.scss';
 
-const ContactPage = props => (
-  <div className="content">
-    <header className="page-title">
-      <h2><strong>How to Contact Me</strong></h2>
-    </header>
-    <main className="contact">
+
+
+const ContactPage = props => {
+
+  return (
+    <div className="content">
+      <header className="page-title">
+        <strong>Ways to Connect</strong>
+      </header>
       
-      <div className="contact-links">
-        <ContactLinks displayType="full" size="2x" textSize="2em" />
-      </div>
+      <main className="contact">
+        <Tab.Container defaultActiveKey="art">
+          <TabNavs />
+          <Tab.Content className="contact-links">
+            <Tab.Pane eventKey="art">
+              <ContactLinks group="art" displayType="full"/>
+            </Tab.Pane>
+            <Tab.Pane eventKey="tech">
+              <ContactLinks group="tech" displayType="full" />
+            </Tab.Pane>
+          </Tab.Content>
+
+        </Tab.Container>
+      </main>
       
-    </main>
-  </div>
-);
+        
+    </div>
+  )
+  
+}
 
 export default ContactPage;

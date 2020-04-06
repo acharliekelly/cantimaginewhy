@@ -5,6 +5,7 @@
  * - tagName: explanText
  */
 export const albumExplanations = {
+  // ALBUMS
   "plein-air-acrylic": `
   Early in the summer of 2019, I bought a portable easel that I could carry on my bike, along with my other
   art supplies, and started doing acrylic landscape paintings of local landmarks. I quickly discovered that 
@@ -12,10 +13,14 @@ export const albumExplanations = {
   I could be treated to a pleasant stream of passers-by complimenting my work. Which turns out to be way more
   fun than painting from a photo, alone in my studio.`,
 
-  "scenery": `Unlike my Plein Air landscapes, which I painted on site, these are paintings I made from
+  "scenery-loc": `Unlike my Plein Air landscapes, which I painted on site, these are paintings I made from
   photographs. However, they were all photographs that I took, with the intention of painting them. That 
   sets them apart somewhat from pictures I copied from postcards or magazines, in that I at least viewed
-  all of these scenes for myself before deciding they needed to be captured.`,
+  all of these scenes for myself before deciding they needed to be captured for posterity.`,
+
+  "scenery-noloc": `As opposed to all my other landscape albums, these all came from photos I found
+  somewhere, but probably never set foot near. For the most part, I don't even know exactly where 
+  they came from; just someplace that looked nice.`,
 
   "portrait-new": `After a long break from portraiture, I decided to give it another try this winter (2019),
   once it got too cold for my outdoor painting. Turns out not to be exactly like riding a bike, but I gradually
@@ -29,6 +34,18 @@ export const albumExplanations = {
 
   "sketch": `This was my first run at creating art on site, and requires a lot less packing than acrylic painting.
   I'm happy if I can make a landmark recognizable to someone who's seen it before.`,
+
+  "monogram": `I've been kind of obsessed with monograms since long before I started thinking about art as
+  something I could do. And they don't really require any kind of inspiration; all I need is some letters and
+  a style of joining them together - preferably one I haven't used already, at least not in the past week. I've 
+  come up with a few different styles for putting letters together, given limited space and the fact that nobody ever needs
+  to be able to READ the letters, just recognize them. You can 1) form the letters in such a way that they
+  don't overlap; 2) join them into a single shape; 3) stack the letters on top of eachother; 4) weave the 
+  letters together - like stacking but without consistent layering; or 5) do something interesting with the 
+  intersection points, other than merely putting one on top of the other. I've got numerous examples of
+  each method, with various initials (I used to use the intials AK, now I go by CK, and I've been playing with
+  the letters 'CIW' since I realized this website needed a logo). Any letters besides those were probably for
+  somebody else.`,
 
   "nametag": `I've been involved in several different groups that use name tags. A lot of them use single-use 
   stickers (the ones that say "Hello My Name Is" at the top), and that's why I taught myself calligraphy (pays 
@@ -58,10 +75,11 @@ export const albumExplanations = {
   was stunningly dull: just block letters, arranged in a square. I suggested there might be more interesting ways
   of displaying four letters. And then I proceded to demonstrate.`,
 
-  "portrait-old": `Another early artistic interest of mine was portraiture. And a good way to tell if I was getting it right
-  was if my portraits were recognizable. For that to work with strangers, the portrait needs to be of someone universally
-  recognizable, like a celebrity. So for a while in my Early Period, I would buy pop culture magazines and draw anyone I 
-  recognized from them (because if I recogize someone, they have to be really famous).`,
+  "portrait-old": `One of my early artistic phases was sketching people from magazines. Sometimes I know who it is; 
+  a lot of them were from ads. It's fun to draw someone recognizable, and have them be recognized. But it's
+  also somehow more stressful; as though the subject might be offended if it doesn't look right. Irrational
+  though it may be, it's sometimes more relaxing to draw someone nameless. (It's okay if they HAVE a name. I just
+  don't need to know it in order to draw them.)`,
 
   "plaitwork": `The first artistic style that I really adopted as my own was Plaitwork, a variant of knotwork that ends up
   looking more like woven-reed placemats than anything else. This was back when I wasn't really comfortable even admitting
@@ -71,6 +89,8 @@ export const albumExplanations = {
 
   "archive": `My 'Miscellaneous' album, with everything that doesn't fit into some other category`,
 
+  // FILTERS
+
   "pointillist": `When I started learning to paint with watercolors, I lacked access to quality watercolor paper. The 
   trouble with putting watercolor on paper that isn't designed for it is that the paper will start to curl as it becomes
   inconsistently damp. My solution was to apply the watercolor in tiny dots, so no part of the paper was ever wet enough
@@ -79,7 +99,8 @@ export const albumExplanations = {
 
   "triptych": `A Triptych is a picture on 3 panels (from Greek Tri + Ptuchos, "panel"). Most of these came from my
   Sabbatical period, as a way of fitting neatly into a standardized envelope without permanently damaging the picture
-  with creases. This way, the creases were in between the panels.`,
+  with creases. This way, the creases were in between the panels. Also, it makes it seem like you're looking at
+  the world through bars of some kind.`,
 
   "nightscape": `During my first summer of Plein Air painting, I kept noticing that 1) I spent a lot of time out biking at
   night, when it was too dark to do my usual type of painting, and 2) the lights of Boston at night, especially looking
@@ -93,7 +114,11 @@ export const albumExplanations = {
   a standard-sized envelope, because reasons. Since all my paper was 8.5" x 11", there were basically two ways to accomplish
   this: fold the paper in thirds and make a triptych, or just use an envelope-sized area of the paper. Hence, I have
   a lot of long thin pictures.`,
+
+  "en plein air": `All the pieces that I created outdoors, 'in the fresh air'.`,
+
   "era-learning": ``,
+
   "early-work": ``,
 
   "sabbatical": `For a lot of my work to make sense, it's important to know that I spent some time with limited access to 
@@ -101,11 +126,27 @@ export const albumExplanations = {
   are that during one of my most prolific periods, I had very limited access to materials, and also that everything I made
   on 8.5" x 11" sheets had to fit into a 9" x 4" envelope.`,
 
-  "era-recent": ``,
-  "era-current": ``,
-  "for-sale": ``,
-  "for-print": ``,
-  "nfs": ``
+  "era-recent": `What I call my "recent" period spans the time between ending my sabbatical in July of 2015, and 
+  taking an expected hiatus from art due to a disk error (L5-S1) in the fall of 2018.`,
+  "era-current": `My current era started in the spring of 2019, when my disk recovered enough to let me begin painting again.`,
+
+  "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
+  the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in
+  acquiring an original piece, please just email me.`,
+
+  "for-print": `These paintings I may or may not currently possess, but I've arranged to have them printed on various
+  household products. Because hey, who doesn't love household products? You can also purchase prints, posters, and
+  tote bags, emblazened with my artwork.`,
+  
+  "nfs": `These are the pieces that aren't (currently) available for sale or print, but you're welcome to look at them to your 
+  heart's content. Also, if you feel that you'd like to buy one of my pictures on a tote bag or something, but 
+  the option is not currently available, please contact me and I'll make it happen.`,
+
+  "downtown-boston": `It's a little tricky to say whether a lot of my paintings are in Boston or Cambridge, because
+  quite often they depict a scene in one, while having been painted in the other. And I can never remember which way
+  I'm doing it, so it's a little random. Luckily, I should have GPS coordinates for most of these. Just in case
+  you don't recognize them.`
+  
 };
 
 

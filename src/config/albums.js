@@ -20,9 +20,16 @@ export const albums = [
   },
   {
     "name": "Scenery",
-    "tag": "scenery",
+    "tag": "scenery-loc",
     "thumbnail": "art/midwinter",
-    "description": "From photographs of landscapes",
+    "description": "From a photograph I took",
+    "sortField": ".year"
+  },
+  {
+    "name": "Landscape",
+    "tag": "scenery-noloc",
+    "thumbnail": "art/bodiam-castle_2011",
+    "description": "From a photograph somebody took",
     "sortField": ".year"
   },
   {
@@ -104,5 +111,6 @@ export const albums = [
 ];
 
 export const navDescription = `This is my entire collection of artwork from the past 
-10 years or so, grouped by album. A lot of it doesn't have any other information,
-such as Year or Title, so it can't be easily filtered.`;
+10 years or so, grouped by album. A lot of my older work doesn't have any other information,
+such as Year or Title, so it can't be easily filtered. For the ones that can be filtered,
+there's a Filter button on the left.`;

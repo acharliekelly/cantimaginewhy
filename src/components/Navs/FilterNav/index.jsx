@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../utils/imageApi';
-import { filters, navDescription } from '../../config/filters';
-import HelpButton from '../Buttons/HelpButton/';
-import '../../css/nav.scss';
+import { defaultImg } from '../../../utils/imageApi';
+import { filters, navDescription } from '../../../config/filters';
+import HelpButton from '../../Buttons/HelpButton/';
+import NavSwitch from '../NavSwitch';
+import '../nav.scss';
 
 const FilterNav = props => {
   const [ filterIndex, setFilterIndex ] = useState(0);
@@ -17,21 +16,23 @@ const FilterNav = props => {
   const [ hoverNavIndex, setHoverNavIndex ] = useState(-1);
   const [ selectedNav, setSelectedNav ] = useState(null);
 
+  
+
   const selectFilter = index => {
     // const key = ev.target.eventKey;
     setFilterIndex(index);
-    setSelectedNav(null);
 
     // clear thumbnails
     props.updateClearGallery();
   }
 
-  const selectItem = nav => {
+  const selectItem = navObj => {
     // nav is object (option) from filter list
     // { name, tag, thumbnail, description, sortField }
-    setSelectedNav(nav);
-    props.updateSelectNav(nav);
+    setSelectedNav(navObj);
+    props.updateSelectNav(navObj);
   }
+
 
   const hoverOnNav = index => {
     setHoverNavIndex(index);
@@ -71,9 +72,7 @@ const FilterNav = props => {
     <CloudinaryContext cloudName="cantimaginewhy">
       <Navbar className="category-bar justify-content-between">
 
-        <Button className="nav-switch" variant="outline-dark" onClick={props.updateSwitch}>
-          <FontAwesomeIcon icon="images" title="Browse by Album" size="2x" />
-        </Button>
+        <NavSwitch type="filter" {...props} />
 
         <Container className="filter-wrapper justify-content-center" lg={4} md={6} sm={8}>
           <ListGroup className="filters" horizontal="md">
@@ -140,9 +139,10 @@ const FilterNav = props => {
 }
 
 FilterNav.propTypes = {
-  updateSelectNav: PropTypes.func.isRequired,
+  updateSelectNav: PropTypes.func,
   updateClearGallery: PropTypes.func,
-  thumbSize: PropTypes.number
+  thumbSize: PropTypes.number,
+  updateNavSwitch: PropTypes.func
 };
 
 FilterNav.defaultProps = {

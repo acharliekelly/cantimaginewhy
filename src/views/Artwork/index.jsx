@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { selectLightboxUtil } from '../../utils/imageUtils';
-import FilterNav from '../../components/FilterNav';
-import AlbumNav from '../../components/AlbumNav/';
-import ImageDetail from '../../components/ImageDetail/';
+import { lookupGeo } from '../../utils/geoUtils';
+import FilterNav from '../../components/Navs/FilterNav';
+import AlbumNav from '../../components/Navs/AlbumNav';
+import ImageDetail from '../../components/ImageDetail';
 import Stacker from '../../components/Stacker';
 import { 
   fetchGallery, 
@@ -18,32 +17,52 @@ import {
 import './artwork.scss';
 
 
+const INITIAL_NAV = false;  // true = filter
+
 const ArtworkPage = props => {
-  const [ navFilter, setNavFilter ] = useState(true);  // true = filter
-  
+  // STATE VARS
+  const [ useFilter, setUseFilter ] = useState(INITIAL_NAV);  
   const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
   const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
   const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
+  const [ geotag, setGeotag ] = useState('');
   
 
+
+  // switch nav
   useEffect(() => {
     clearArtGallery();
-  }, [navFilter])
+  }, [useFilter])
 
+  // update display image
   useEffect(() => {
-    setRefKey(getContextProperty(artImages[currentIndex], 'key', null));
-    return clearProgress;
+    const img = artImages[currentIndex];
+    if (img) {
+      setRefKey(getContextProperty(img, 'key', null));
+      // look in both image context and data file 
+      const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
+      setGeotag(geo);
+    }
+    return clearImage;
   }, [artImages, currentIndex]);
 
+  // update gallery size
   useEffect(() => {
     const size = getThumbnailSize(artImages.length);
     setThumbSize(size);
   }, [artImages]);
 
-  const clearProgress = () => {
+  // run when no image is selected
+  const clearImage = () => {
     setRefKey(null);
+    setGeotag('');
+  }
+
+  // METHODS
+  const navSwitch = () => {
+    setUseFilter(!useFilter);
   }
 
   const clearArtGallery = () => {
@@ -53,6 +72,7 @@ const ArtworkPage = props => {
     setSelectedAlbum(null);
   }  
 
+  // takes tagob
   const selectGallery = nav => {
     fetchGallery(nav.tag).then(resources => {
       const sorted = sortGallery(nav, resources);
@@ -60,10 +80,6 @@ const ArtworkPage = props => {
       setCurrentIndex(0);
       setSelectedAlbum(nav);
     }).catch(err => console.error(err))
-  }
-  
-  const switchNavType = () => {
-    setNavFilter(!navFilter);
   }
 
   const moveNext = () => {
@@ -76,21 +92,28 @@ const ArtworkPage = props => {
     setCurrentIndex(prev)
   }
 
+
   return (
     <div className="content">
-
-      { navFilter ? (
+      
+      { useFilter ? (
         <FilterNav 
           updateSelectNav={selectGallery} 
           updateClearGallery={clearArtGallery} 
-          updateSwitch={switchNavType}
+          updateNavSwitch={navSwitch}
           />
       ) : (
         <AlbumNav
           updateSelectNav={selectGallery}
           updateClearGallery={clearArtGallery}
-          updateSwitch={switchNavType}
+          updateNavSwitch={navSwitch}
         />
+      )}
+
+      {!selectedAlbum && (
+        <Container className="instructions">
+          <p>Select a thumbnail from the gallery list to view the images.</p>
+        </Container>
       )}
       
       <Container style={{width: '100%'}}>
@@ -103,30 +126,24 @@ const ArtworkPage = props => {
               imageIndex={currentIndex}
               thumbSize={thumbSize}
               refKey={refKey}
-              maximumHeight={60}
-              selectLightbox={props.selectLightbox}
+              geoTag={geotag}
+              maxHeight={60}
+              {...props}
             />
           </Col>
           <Col xs={12} sm={8}>
             <ImageDetail 
-              selectLightbox={props.selectLightbox}
               moveNext={moveNext}
               movePrevious={movePrev}
               imageList={artImages}
               imageIndex={currentIndex}
+              {...props}
             />
           </Col>
         </Row>
       </Container>
     </div>
   )
-}
-
-ArtworkPage.propTypes = {
-  selectLightbox: PropTypes.func.isRequired
-}
-ArtworkPage.defaultProps = {
-  selectLightbox: selectLightboxUtil
 }
 
 export default ArtworkPage;

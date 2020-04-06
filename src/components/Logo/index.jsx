@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery } from '../../utils/imageApi';
-import { selectLightboxUtil} from '../../utils/imageUtils';
-
+import { withLightbox } from '../HigherOrder/withLightbox';
 
 const Logo = props => {
   const { selectLightbox, startId } = props;
@@ -23,14 +22,14 @@ const Logo = props => {
 }
 
 Logo.propTypes = {
-  selectLightbox: PropTypes.func.isRequired,
+  selectLightbox: PropTypes.func,
+  setLightboxArray: PropTypes.func,
   startId: PropTypes.string
 
 }
 
 Logo.defaultProps = {
-  selectLightbox: selectLightboxUtil,
   startId: 'ciw4'
 }
 
-export default Logo;
+export default withLightbox(Logo);

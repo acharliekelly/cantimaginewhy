@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, radios, number } from '@storybook/addon-knobs';
-import { selectLightboxUtil } from '../../utils/imageUtils';
+import { selectLightboxUtil } from '../../utils/miscUtils';
 import SliceGallery from './';
 
 import '../../views/Home/home.scss';

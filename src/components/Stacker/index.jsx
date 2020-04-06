@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from 'react-bootstrap/Accordion';
 import Explan from '../Explan';
-import StackGallery from '../StackGallery';
+import ThumbGallery from '../ThumbGallery';
 import ProgressView from '../ProgressView';
+import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
-
+import { withStacking } from '../HigherOrder/withStacking';
 
 
 /**
@@ -34,29 +35,41 @@ const Stacker = props => {
     }
   }, [refKey]);
 
+  const StackedGallery = withStacking(ThumbGallery);
+
   if (tagObject) {
     return (
       <div className="stacker">
-        <Accordion defaultActiveKey={0}>
+        <Accordion defaultActiveKey="gallery">
           {albumAbout && (
-            <Explan 
-              tagObject={tagObject} 
+            <Explan  
               fullText={albumAbout} 
-              stackPosition={0} />
+              eventKeyName="explan"
+              variant="dark"
+              cardTitle="About Album" 
+              {...props} />
           )}
           
-          <StackGallery 
-            tagObject={tagObject} 
-            stackPosition={(albumAbout) ? 1 : 0} 
-            galleryImages={props.galleryImages}
-            selectThumbnail={props.selectThumbnail}
-            thumbSize={props.thumbSize}
-            imageIndex={props.imageIndex} />
+          <StackedGallery 
+            eventKeyName="gallery" 
+            variant="primary"
+            cardTitle="Gallery"
+            {...props} />
 
           {hasProgress && (
-            <ProgressView stackPosition={(albumAbout) ? 2 : 1}
-              selectLightbox={props.selectLightbox}
-              refKey={props.refKey} />
+            <ProgressView 
+              eventKeyName="progress"
+              cardTitle="Artistic Process"
+              variant="success"
+              {...props} />
+          )}
+
+          {props.geoTag && (
+            <GeoView 
+              eventKeyName="geo"
+              cardTitle="Location"
+              variant="secondary"
+              {...props} />
           )}
           
         </Accordion>
@@ -92,20 +105,24 @@ Stacker.propTypes = {
   /**
    * 
    */
-  maximumHeight: PropTypes.number,
+  maxHeight: PropTypes.number,
   /**
    * for ProgressView
    */
-  selectLightbox: PropTypes.func.isRequired,
-  refKey: PropTypes.string
+  refKey: PropTypes.string,
+  /**
+   * for GeoView
+   */
+  geoTag: PropTypes.string
 };
 
 Stacker.defaultProps = {
   galleryImages: [],
   thumbSize: 100,
   imageIndex: 0,
-  maximumHeight: 60,
+  maxHeight: 60,
   refKey: null,
+  geoTag: null
 }
 
 export default Stacker;

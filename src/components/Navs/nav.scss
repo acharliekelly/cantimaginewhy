@@ -21,6 +21,10 @@ $selected-album-text: #fff;
   font-size: 1em;
   padding: 2px 2em;
 
+  a {
+    color: $nav-text;
+  }
+
   .browse-title {
     color: $nav-text;
     font-size: 1.5em;
@@ -52,23 +56,33 @@ $selected-album-text: #fff;
         margin: 1px 2px;
         border-radius: 3px;
 
+        a {
+          color: $nav-text;
+          text-decoration: none;
+        }
+
         &:hover {
           background-color: $nav-hover-bkg;
           border-color: $nav-hover-bkg;
           color: $nav-hover-text;
+
+          a, a:hover {
+            color: $nav-hover-text;
+            text-decoration: none;
+          }
         }
 
-        // .active {
-        //   background-color: $nav-active-bkg !important;
-        //   border-color: $nav-active-bkg !important;
-        //   color: $nav-active-text !important;
+        .active {
+          background-color: $nav-active-bkg !important;
+          border-color: $nav-active-bkg !important;
+          color: $nav-active-text !important;
 
-        //   &:hover {
-        //     background-color: $nav-active-bkg;
-        //     border-color: $nav-active-bkg;
-        //     color: $nav-active-text;
-        //   }
-        // }
+          &:hover {
+            background-color: $nav-active-bkg;
+            border-color: $nav-active-bkg;
+            color: $nav-active-text;
+          }
+        }
       }
 
     }

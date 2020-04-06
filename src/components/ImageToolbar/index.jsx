@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 
 const ImageToolbar = props => {
   const { fullWidth, variant, prevImageFn, nextImageFn, zoomImageFn, imgSize, disableCarousel } = props;
@@ -83,9 +82,6 @@ ImageToolbar.defaultProps = {
   fullWidth: true,
   imgSize: '2x',
   toolbarClass: 'toolbar',
-  prevImageFn: movePreviousUtil,
-  nextImageFn: moveNextUtil,
-  zoomImageFn: selectLightboxUtil,
   disableCarousel: false,
 }
 

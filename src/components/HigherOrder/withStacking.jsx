@@ -7,7 +7,7 @@ export function withStacking(WrappedComponent) {
   return class extends React.Component {
     
     render () {
-      const { eventKeyName, cardTitle, variant, ...passThroughProps} = this.props;
+      const { eventKeyName, cardTitle, variant, maxHeight, ...passThroughProps} = this.props;
 
       return (
         <Card className="stacked-card" border={variant} text={variant}>
@@ -15,7 +15,7 @@ export function withStacking(WrappedComponent) {
             <strong>{cardTitle}</strong>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={eventKeyName}>
-            <Card.Body>
+            <Card.Body style={{maxHeight: `${maxHeight}vh`, overflow: 'auto'}}>
               <WrappedComponent {...passThroughProps} />
             </Card.Body>
           </Accordion.Collapse>

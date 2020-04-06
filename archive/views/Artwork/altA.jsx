@@ -1,7 +1,7 @@
 // USE FILTERS
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { selectLightboxUtil } from '../../utils/imageUtils';
+import { selectLightboxUtil } from '../../utils/miscUtils';
 import ImageGallery from '../../components/ImageGallery/';
 import FilterNav from '../../components/FilterNav/';
 

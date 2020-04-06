@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { CloudinaryContext, Image } from 'cloudinary-react';
-import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '/utils/imageUtils';
+import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '/utils/miscUtils';
 import  { faaLookup } from '/utils/fineArtApi';
 import { onsitePhotos } from '/utils/onsiteUtils';
 import { nextImageId, previousImageId } from '/utils/processUtils';

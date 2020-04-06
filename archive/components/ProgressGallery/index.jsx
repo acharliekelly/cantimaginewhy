@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CloudinaryContext, Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '/utils/onsiteUtils';
-import { selectLightboxUtil } from '/utils/imageUtils';
+import { selectLightboxUtil } from '/utils/miscUtils';
 import { defaultCPI } from '/utils/imageApi';
 import HelpButton from '/components/Buttons/HelpButton/';
 import './process.scss';

@@ -1,20 +1,65 @@
 
+
+section {
+  text-align: left;
+  p {
+    text-align: left;
+  }
+}
+
+.intro-text {
+  text-align: left;
+  margin-top: 1em;
+}
+
 .about-content {
   
   margin: 2em 1em;
 
-  .me-text {
-    text-align: left;
+  .tab-content {
+    border: 1px solid #dee2e6;
   }
-  .me-photo {
-    border: thin inset;
-    float: left;
-    margin: 5px;
+  .nav.nav-tabs {
+    border-bottom: none;
   }
 
-  section {
-    margin: 0.5em 1em;
-   
+  // background image
+  .bg-area {
+    background-size: cover;
+    min-height: 50vh;
+    background-origin: content-box;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-image: url('https://res.cloudinary.com/cantimaginewhy/w_1000/me/caterpillar2.jpg');
+    // border-radius: 15%;
+    opacity: 0.6;
+    margin-bottom: 1em;
+
+    // causes translucence
+    .me-text {
+      text-align: left;
+      padding: 1em;
+      // opacity: 1;
+      // background-color: white;
+      height: 100%;
+      
+
+      // should be solid opaque white
+      section {
+        text-align: left;
+        margin: 2em 0.5em;
+        padding: 0.3em;
+        opacity: 0.9;
+        color: black;
+        background-color: white;
+        border-radius: 0.5em;
+      }
+    }
+
+
   }
+
+  
+  
   
 }

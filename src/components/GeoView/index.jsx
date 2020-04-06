@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import MapButton from '../Buttons/MapButton';
+import HelpButton from '../Buttons/HelpButton';
+import { withStacking } from '../HigherOrder/withStacking';
 
 
 const extractGeo = geotag => {
   const geo = geotag.split(',');
   if (geo && geo.length === 2) {
     return {
-      lat: parseFloat(geo[0]),
-      lng: parseFloat(geo[1])
+      lat: parseFloat(geo[0].trim()),
+      lng: parseFloat(geo[1].trim())
     }
   } else {
     return null;
@@ -30,8 +33,20 @@ const GeoView = props => {
     return (
       <div>
         <header>Position</header>
+        <div style={{float: 'left'}}>
+          <HelpButton 
+            size="lg"
+            header="Location"
+            content={`Coming Soon: A map component inside this box. For now, 
+            click the button to see location in Google Maps.`}
+          />
+        </div>
+        <div style={{float: 'right'}}>
+          <MapButton variant="outline-info" latitude={position.lat} longitude={position.lng} />
+        </div>
         <div>Latitude: {position.lat}</div>
         <div>Longitude: {position.lng}</div>
+        
       </div>
       // <Map google={props.google}
       //   zoom={8}
@@ -62,4 +77,4 @@ GeoView.propTypes = {
 //   apiKey: 'KEY GOES HERE'
 // })(GeoView);
 
-export default GeoView;
+export default withStacking(GeoView);

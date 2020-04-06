@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { getExplanation } from '../../utils/tagUtils';
+import { withStacking } from '../HigherOrder/withStacking';
 
 
 /**
@@ -39,4 +40,4 @@ Explan.propTypes = {
   fullText: PropTypes.string,
 };
 
-export default Explan;
+export default withStacking(Explan);

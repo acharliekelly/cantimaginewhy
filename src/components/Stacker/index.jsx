@@ -7,7 +7,6 @@ import ProgressView from '../ProgressView';
 import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
-import { withStacking } from '../HigherOrder/withStacking';
 
 
 
@@ -19,11 +18,6 @@ const Stacker = props => {
   const [ hasProgress, setHasProgress ] = useState(false);
 
   const { tagObject, refKey } = props;
-
-  const StackExplan = withStacking(Explan);
-  const StackGallery = withStacking(ThumbGallery);
-  const StackProgress = withStacking(ProgressView);
-  const StackGeo = withStacking(GeoView);
   
   useEffect(() => {
     if (tagObject) {
@@ -46,7 +40,7 @@ const Stacker = props => {
       <div className="stacker">
         <Accordion defaultActiveKey="gallery">
           {albumAbout && (
-            <StackExplan  
+            <Explan  
               fullText={albumAbout} 
               eventKeyName="explan"
               variant="dark"
@@ -54,14 +48,14 @@ const Stacker = props => {
               {...props} />
           )}
           
-          <StackGallery 
+          <ThumbGallery 
             eventKeyName="gallery" 
             variant="primary"
             cardTitle="Gallery"
             {...props} />
 
           {hasProgress && (
-            <StackProgress 
+            <ProgressView 
               eventKeyName="progress"
               cardTitle="Artistic Process"
               variant="success"
@@ -69,7 +63,7 @@ const Stacker = props => {
           )}
 
           {props.geoTag && (
-            <StackGeo 
+            <GeoView 
               eventKeyName="geo"
               cardTitle="Location"
               variant="secondary"

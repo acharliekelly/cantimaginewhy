@@ -5,7 +5,8 @@ import { onsitePhotos } from '../../utils/onsiteUtils';
 import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
 import ImageToolbar from '../ImageToolbar';
-import { selectLightboxUtil } from '../../utils/imageUtils';
+import { withLightbox } from '../HigherOrder/withLightbox';
+import { withStacking } from '../HigherOrder/withStacking';
 import './progress.scss';
 
 const helpText = `Series of photos documenting the creative process, from initial view to finished product.`
@@ -85,10 +86,9 @@ ProgressView.propTypes = {
 }
 
 ProgressView.defaultProps = {
-  selectLightbox: selectLightboxUtil,
   refKey: null,
   thumbSize: 80,
   variant: 'success'
 }
 
-export default ProgressView;
+export default withLightbox(withStacking(ProgressView));

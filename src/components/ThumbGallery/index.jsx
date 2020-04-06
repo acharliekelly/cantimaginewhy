@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import Container from 'react-bootstrap/Container';
 import { defaultImg, getContextProperty } from '../../utils/imageApi';
+import { withStacking } from '../HigherOrder/withStacking';
 
 import './gallery.scss';
 
 const ThumbGallery = props => {
   const [ currentIndex, setCurrentIndex ] = useState(0);
-  const { galleryImages, selectThumbnail, thumbSize, imageIndex, maxHeight } = props;
+  const { galleryImages, selectThumbnail, thumbSize, imageIndex } = props;
 
   const clickImage = index => {
     setCurrentIndex(index);
@@ -22,7 +23,7 @@ const ThumbGallery = props => {
 
   return (
     <CloudinaryContext cloudName="cantimaginewhy">
-      <Container className="gallery" style={maxHeight && {maxHeight: `${maxHeight}vh`}}>
+      <Container className="gallery">
         {galleryImages.map((thumb, index) => (
           <div key={index}>
             <Image 
@@ -70,4 +71,4 @@ ThumbGallery.defaultProps = {
   imageIndex: 0
 }
 
-export default ThumbGallery;
+export default withStacking(ThumbGallery);

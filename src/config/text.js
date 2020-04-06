@@ -5,6 +5,7 @@
  * - tagName: explanText
  */
 export const albumExplanations = {
+  // ALBUMS
   "plein-air-acrylic": `
   Early in the summer of 2019, I bought a portable easel that I could carry on my bike, along with my other
   art supplies, and started doing acrylic landscape paintings of local landmarks. I quickly discovered that 
@@ -74,10 +75,11 @@ export const albumExplanations = {
   was stunningly dull: just block letters, arranged in a square. I suggested there might be more interesting ways
   of displaying four letters. And then I proceded to demonstrate.`,
 
-  "portrait-old": `Another early artistic interest of mine was portraiture. And a good way to tell if I was getting it right
-  was if my portraits were recognizable. For that to work with strangers, the portrait needs to be of someone universally
-  recognizable, like a celebrity. So for a while in my Early Period, I would buy pop culture magazines and draw anyone I 
-  recognized from them (because if I recogize someone, they have to be really famous).`,
+  "portrait-old": `One of my early artistic phases was sketching people from magazines. Sometimes I know who it is; 
+  a lot of them were from ads. It's fun to draw someone recognizable, and have them be recognized. But it's
+  also somehow more stressful; as though the subject might be offended if it doesn't look right. Irrational
+  though it may be, it's sometimes more relaxing to draw someone nameless. (It's okay if they HAVE a name. I just
+  don't need to know it in order to draw them.)`,
 
   "plaitwork": `The first artistic style that I really adopted as my own was Plaitwork, a variant of knotwork that ends up
   looking more like woven-reed placemats than anything else. This was back when I wasn't really comfortable even admitting
@@ -86,6 +88,8 @@ export const albumExplanations = {
   demonstrate rather than trying to describe).`,
 
   "archive": `My 'Miscellaneous' album, with everything that doesn't fit into some other category`,
+
+  // FILTERS
 
   "pointillist": `When I started learning to paint with watercolors, I lacked access to quality watercolor paper. The 
   trouble with putting watercolor on paper that isn't designed for it is that the paper will start to curl as it becomes
@@ -142,6 +146,7 @@ export const albumExplanations = {
   quite often they depict a scene in one, while having been painted in the other. And I can never remember which way
   I'm doing it, so it's a little random. Luckily, I should have GPS coordinates for most of these. Just in case
   you don't recognize them.`
+  
 };
 
 

@@ -6,21 +6,21 @@ import './mode.scss';
 
 
 const textMode = (cls, devFn) => (
-  <span className={cls} onClick={devFn}>{getEnvName()}</span>
+  <span className={cls}>{getEnvName()}</span>
 )
 
 const iconMode = (cls, devFn) => (
-  <FontAwesomeIcon className={cls} icon={getEnvIcon()} onClick={devFn} title={getEnvName()} />
+  <FontAwesomeIcon className={cls} icon={getEnvIcon()} title={getEnvName()} />
 )
 
 const EnvMode = props => {
-  const { type, devMode } = props;
+  const { type } = props;
 
   const active = allowDevMode() ? ' enabled' : '';
   const modeCls = getEnvClass();
   return (
     <div className={`current-mode ${active} ${type}`}>
-      {type === 'icon' ? iconMode(modeCls, devMode) : textMode(modeCls, devMode)}
+      {type === 'icon' ? iconMode(modeCls) : textMode(modeCls)}
     </div>
     
   )

@@ -11,7 +11,7 @@ const geotags = {
 "art/public_garden_swan": "42.3523651,-71.0694239",
 "art/lake_mansfield": "42.2004799,-73.3687122",
 "art/portsmouth_terminal": "43.05961,-70.8037718",
-"art/boston_nightscape": "",
+"art/boston_nightscape": "42.3599051,-71.0857115",
 "art/early_fall_mt_feake": "42.3748201,-71.245658",
 "art/a_friday_in_september": "42.3540753,-71.079559",
 "art/memorial_drive": "42.3717499,-71.1243444",
@@ -37,39 +37,41 @@ const geotags = {
 "art/herter-park_2019": "42.3671303,-71.1347623",
 "art/jfk-memorial-park": "42.3697463,-71.1234886",
 "art/footbridge-watertown-dam": "42.3656105,-71.189271",
-"art/charles-river-watertown": "",
+"art/charles-river-watertown": "42.366842,-71.1942025",
 "art/eliot-bridge": "42.3721311,-71.1338555",
 "art/cambridge-hyatt": "42.3517475,-71.1019996",
 "art/boston-skyline_2019": "42.3599051,-71.0857115",
-"art/cambridge-night": "",
+"art/cambridge-night": "42.3601309,-71.0849762",
 "art/boston-public-gardens-2": "42.3546911,-71.0703416",
 "art/boston-public-gardens": "42.3534111,-71.0712516",
 "art/beaver-brook-north": "42.4042622,-71.1977948",
 
 // scenery
-"art/salt-pond": "",
-"art/rainbow-end_2017": "",
-"art/fox_park": "",
-"art/wachusett-reservoir": "",
-"art/star-island-obelisk": "",
-"art/the-watch-factory": "",
-"art/sunset-at-fishers-island_2016": "",
-"art/star-island-lighthouse_2015": "",
-"art/salisbury-pond-2015": "",
-"nfs/rural-cemetery": "",
-"art/salisbury-pond_2011": "",
-"art/reflections_2012": "",
-"art/railroad-bridge_2016": "",
-"art/leaving-star-island_2015": "",
-"art/late-spring-on-the-charles_2017": "",
-"art/not-dunster_2018": "",
-"art/fishers-island-deck_2016": "",
-"art/esplanade-sunset_2018": "",
-"art/exiting-osborn_2015": "",
-"art/ferry-beach_2017": "",
-"art/double-rainbow_2017": "",
-"art/boston-tetraptych_2012": "",
-"art/13-montvale-road_2012": "",
+"art/salt-pond": "44.359481,-68.565445",
+"art/rainbow-end_2017": "43.472049,-70.384538",
+"art/fox_park": "42.356196,-71.258122",
+"art/wachusett-reservoir": "42.387413,-71.728335",
+"art/star-island-obelisk": "42.9761801,-70.6141189",
+"art/the-watch-factory": "42.366824,-71.246254",
+"art/sunset-at-fishers-island_2016": "41.2602778,-72.0077778",
+"art/star-island-lighthouse_2015": "42.9763088,-70.6138192",
+"art/salisbury-pond-2015": "42.277519,-71.808320",
+"nfs/rural-cemetery": "42.280438,-71.8033886",
+"art/salisbury-pond_2011": "42.277519,-71.808320",
+"art/reflections_2012": "42.278273,-71.808063",
+"art/railroad-bridge_2016": "42.3688889,-71.2238889",
+"art/leaving-star-island_2015": "42.984014,-70.629276",
+"art/late-spring-on-the-charles_2017": "42.3673738,-71.2165507",
+"art/not-dunster_2018": "42.369541,-71.118914",
+"art/fishers-island-deck_2016": "41.2619444,-72.0091667",
+"art/esplanade-sunset_2018": "42.3571968,-71.0746992",
+"art/exiting-osborn_2015": "42.017640,-72.497363",
+"art/ferry-beach_2017": "43.471864,-70.384194",
+"art/double-rainbow_2017": "43.471652,-70.384959",
+"art/boston-tetraptych_2012": "42.353349,-70.775972",
+"art/13-montvale-road_2012": "42.280386,-71.809586",
+"nfs/tower-hill_26771801981_o_gbfaty": "42.363905,-71.726778",
+"nfs/ferry-beach-rock-painting_41932404964_o_lf4uhn": "43.471508,-70.384955"
 };
 
 const entered = {
@@ -110,3 +112,7 @@ export const lookupGeo = publicId => {
   }
 }
 
+export const getMapLink = (latitude, longitude) => {
+  let url = 'https://www.google.com/maps/search/?api=1&map_action=map&basemap=satellite&zoom=11';
+  return `${url}&query=${latitude},${longitude}`;
+}

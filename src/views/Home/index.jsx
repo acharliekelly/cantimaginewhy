@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Image } from 'cloudinary-react';
-import { selectLightboxUtil } from '../../utils/imageUtils';
 import SliceGallery from '../../components/SliceGallery';
 
 import './home.scss'; 
@@ -32,12 +30,5 @@ const HomePage = props => {
   );
 }
 
-HomePage.propTypes = {
-  selectLightbox: PropTypes.func.isRequired
-}
-
-HomePage.defaultProps = {
-  selectLightbox: selectLightboxUtil
-}
 
 export default HomePage;

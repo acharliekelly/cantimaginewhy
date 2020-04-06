@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { Image, Transformation } from 'cloudinary-react';
 import { loadImageProps } from '../../utils/imageContext';
-import { selectLightboxUtil, moveNextUtil, movePreviousUtil } from '../../utils/imageUtils';
 import ImageToolbar from '../ImageToolbar/';
 import ProductButton from '../Buttons/ProductButton/';
+import { withLightbox } from '../HigherOrder/withLightbox';
 
 import './detail.scss';
 
@@ -125,10 +125,7 @@ ImageDetail.propTypes = {
 ImageDetail.defaultProps = {
   imageIndex: 0,
   displayHeight: 400,
-  displayWidth: 600,
-  selectLightbox: selectLightboxUtil,
-  moveNext: moveNextUtil,
-  movePrevious: movePreviousUtil
+  displayWidth: 600
 }
 
-export default ImageDetail;
+export default withLightbox(ImageDetail);

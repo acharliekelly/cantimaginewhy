@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { Image } from 'cloudinary-react';
 import { fetchGallery, getContextProperty } from '../../utils/imageApi';
-import { shuffleArray } from '../../utils/imageUtils';
+import { shuffleArray } from '../../utils/miscUtils';
+import { withLightbox } from '../HigherOrder/withLightbox';
 
 const SliceGallery = props => {
   const [ images, setImages ] = useState([]);
@@ -28,7 +29,7 @@ const SliceGallery = props => {
             cloudName="cantimaginewhy" 
             publicId={image.public_id}
             style={{ margin: '0.5em', cursor: 'pointer' }}
-            onClick={() => props.selectLightbox('', images, index)}
+            onClick={() => props.setLightboxArray(images, index)}
           />
       ))}
     </Container>
@@ -39,7 +40,7 @@ SliceGallery.propTypes = {
   tagName: PropTypes.string.isRequired,
   gallerySize: PropTypes.number.isRequired,
   imageHeight: PropTypes.number.isRequired,
-  selectLightbox: PropTypes.func.isRequired
+  setLightboxArray: PropTypes.func
 };
 
 SliceGallery.defaultProps = {
@@ -48,4 +49,4 @@ SliceGallery.defaultProps = {
   imageHeight: 200
 };
 
-export default SliceGallery;
+export default withLightbox(SliceGallery);

@@ -34,6 +34,18 @@ export const albumExplanations = {
   "sketch": `This was my first run at creating art on site, and requires a lot less packing than acrylic painting.
   I'm happy if I can make a landmark recognizable to someone who's seen it before.`,
 
+  "monogram": `I've been kind of obsessed with monograms since long before I started thinking about art as
+  something I could do. And they don't really require any kind of inspiration; all I need is some letters and
+  a style of joining them together - preferably one I haven't used already, at least not in the past week. I've 
+  come up with a few different styles for putting letters together, given limited space and the fact that nobody ever needs
+  to be able to READ the letters, just recognize them. You can 1) form the letters in such a way that they
+  don't overlap; 2) join them into a single shape; 3) stack the letters on top of eachother; 4) weave the 
+  letters together - like stacking but without consistent layering; or 5) do something interesting with the 
+  intersection points, other than merely putting one on top of the other. I've got numerous examples of
+  each method, with various initials (I used to use the intials AK, now I go by CK, and I've been playing with
+  the letters 'CIW' since I realized this website needed a logo). Any letters besides those were probably for
+  somebody else.`,
+
   "nametag": `I've been involved in several different groups that use name tags. A lot of them use single-use 
   stickers (the ones that say "Hello My Name Is" at the top), and that's why I taught myself calligraphy (pays 
   off every time I go to a Meetup). But some groups use permanent name tags, and I always make a habit of making
@@ -99,7 +111,7 @@ export const albumExplanations = {
   this: fold the paper in thirds and make a triptych, or just use an envelope-sized area of the paper. Hence, I have
   a lot of long thin pictures.`,
 
-  "en plein air": `All the pieces that I created outdoors, in the 'fresh air'.`,
+  "en plein air": `All the pieces that I created outdoors, 'in the fresh air'.`,
 
   "era-learning": ``,
 
@@ -124,7 +136,12 @@ export const albumExplanations = {
   
   "nfs": `These are the pieces that aren't (currently) available for sale or print, but you're welcome to look at them to your 
   heart's content. Also, if you feel that you'd like to buy one of my pictures on a tote bag or something, but 
-  the option is not currently available, please contact me and I'll make it happen.`
+  the option is not currently available, please contact me and I'll make it happen.`,
+
+  "downtown-boston": `It's a little tricky to say whether a lot of my paintings are in Boston or Cambridge, because
+  quite often they depict a scene in one, while having been painted in the other. And I can never remember which way
+  I'm doing it, so it's a little random. Luckily, I should have GPS coordinates for most of these. Just in case
+  you don't recognize them.`
 };
 
 

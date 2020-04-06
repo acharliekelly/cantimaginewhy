@@ -73,7 +73,7 @@ export const filters = [
       {
         "name": "Triptych",
         "tag": "triptych",
-        "thumbnail": "art/winter-yosemite",
+        "thumbnail": "nfs/winter-yosemite",
         "description": "Picture divided into multiple panels"
       },
       {
@@ -93,6 +93,13 @@ export const filters = [
         "tag": "panorama",
         "thumbnail": "art/winter-moon-2",
         "description": "Long and thin"
+      },
+      {
+        "name": "Monogram",
+        "tag": "monogram",
+        "thumbnail": "ck-gothic_monogram",
+        "description": "Artistic arrangements of letters that don't spell anything",
+        "sortField": ".year"
       },
       {
         "name": "Plein Air",

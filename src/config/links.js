@@ -6,7 +6,7 @@
  * - lib: FA icon library (only for brand icons)
  * - icon: FontAwesome ID
  * - url: link destination
- * - group: art || tech || (none)
+ * - group: art || tech || head
  */
 export const links = [
   {
@@ -21,7 +21,7 @@ export const links = [
     lib: 'fab',
     icon: 'facebook',
     url: 'https://facebook.com/acharliekelly',
-    groups: [ 'art' ]
+    groups: [ 'art', 'head' ]
   },
   {
     name: 'Github',
@@ -50,6 +50,12 @@ export const links = [
     icon: 'linkedin',
     url: 'https://linkedin.com/in/acharliekelly',
     groups: [ 'tech', 'head' ]
+  },
+  {
+    name: 'Portfolio',
+    icon: 'file-alt',
+    url: 'https://acharliekelly.github.io',
+    groups: [ 'tech' ]
   },
   {
     name: 'Email',

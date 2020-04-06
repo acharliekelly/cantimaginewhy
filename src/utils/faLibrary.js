@@ -18,15 +18,29 @@ import {
   faFilter,
   faSort,
   faImages,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faEllipsisV,
+  faFileCode,
+  faFileAlt,
+  faSortUp,
+  faSortDown,
+  faPaintBrush,
+  faPalette,
+  faFolderOpen,
+  faMapMarkerAlt,
+  faMapMarkedAlt
  } from '@fortawesome/free-solid-svg-icons';
 
- export const initializeLibrary = () => {
 
+
+ export const initializeLibrary = () => {
   library.add(fab, faBars, faChevronLeft, faChevronRight, 
     faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
     faImage, faQuestionCircle, faSearchPlus, faBlog,
-    faFilter, faSort, faImages, faExternalLinkAlt);
+    faFilter, faSort, faImages, faExternalLinkAlt, 
+    faEllipsisV, faFileAlt, faFileCode, faFolderOpen,
+    faSortUp, faSortDown, faPaintBrush, faPalette,
+    faMapMarkedAlt, faMapMarkerAlt);
  }
 
  

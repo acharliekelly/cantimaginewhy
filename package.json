@@ -20,7 +20,8 @@
     "react-image-lightbox": "^5.1.0",
     "react-parallax": "^2.2.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.4.0"
+    "react-scripts": "^3.4.0",
+    "react-sizes": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

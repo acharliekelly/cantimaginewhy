@@ -104,6 +104,7 @@ class ImageZoom extends Component {
       return (
         <Lightbox 
           onCloseRequest={this.props.closeLightbox} 
+          imageCrossOrigin="anonymous"
           discourageDownloads
           clickOutsideToClose
           mainSrc={zoomImageSrc(images[0])}
@@ -116,6 +117,7 @@ class ImageZoom extends Component {
       return (
         <Lightbox 
           onCloseRequest={this.props.closeLightbox} 
+          imageCrossOrigin="anonymous"
           discourageDownloads
           clickOutsideToClose
           mainSrc={zoomImageSrc(images[currentIndex])}

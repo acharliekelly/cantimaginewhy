@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { selectLightboxUtil } from '../../utils/imageUtils';
-import FilterNav from '../../components/FilterNav';
-import AlbumNav from '../../components/AlbumNav/';
-import ImageDetail from '../../components/ImageDetail/';
+import { lookupGeo } from '../../utils/geoUtils';
+import FilterNav from '../../components/Navs/FilterNav';
+import AlbumNav from '../../components/Navs/AlbumNav';
+import ImageDetail from '../../components/ImageDetail';
 import Stacker from '../../components/Stacker';
 import { 
   fetchGallery, 
@@ -21,43 +20,35 @@ import './artwork.scss';
 const INITIAL_NAV = false;  // true = filter
 
 const ArtworkPage = props => {
+  // STATE VARS
   const [ useFilter, setUseFilter ] = useState(INITIAL_NAV);  
   const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
   const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
   const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
-  const [ geotag, setGeotag ] = useState('')
+  const [ geotag, setGeotag ] = useState('');
   
-  const { navFilter, album, filter } = props;
 
-  useEffect(() => {
-    if (album)
-      setSelectedAlbum(album);
-  }, [album])
 
-  useEffect(() => {
-    if (filter)
-      setSelectedAlbum(filter);
-  }, [filter])
-
-  useEffect(() => {
-    setUseFilter(navFilter);
-  }, [navFilter])
-
+  // switch nav
   useEffect(() => {
     clearArtGallery();
   }, [useFilter])
 
+  // update display image
   useEffect(() => {
     const img = artImages[currentIndex];
     if (img) {
       setRefKey(getContextProperty(img, 'key', null));
-      setGeotag(getContextProperty(img, 'geotag', ''));
+      // look in both image context and data file 
+      const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
+      setGeotag(geo);
     }
     return clearImage;
   }, [artImages, currentIndex]);
 
+  // update gallery size
   useEffect(() => {
     const size = getThumbnailSize(artImages.length);
     setThumbSize(size);
@@ -69,6 +60,11 @@ const ArtworkPage = props => {
     setGeotag('');
   }
 
+  // METHODS
+  const navSwitch = () => {
+    setUseFilter(!useFilter);
+  }
+
   const clearArtGallery = () => {
     setArtImages([]);
     setCurrentIndex(0);
@@ -76,6 +72,7 @@ const ArtworkPage = props => {
     setSelectedAlbum(null);
   }  
 
+  // takes tagob
   const selectGallery = nav => {
     fetchGallery(nav.tag).then(resources => {
       const sorted = sortGallery(nav, resources);
@@ -83,10 +80,6 @@ const ArtworkPage = props => {
       setCurrentIndex(0);
       setSelectedAlbum(nav);
     }).catch(err => console.error(err))
-  }
-  
-  const switchNavType = () => {
-    setUseFilter(!useFilter);
   }
 
   const moveNext = () => {
@@ -99,21 +92,28 @@ const ArtworkPage = props => {
     setCurrentIndex(prev)
   }
 
+
   return (
     <div className="content">
-
+      
       { useFilter ? (
         <FilterNav 
           updateSelectNav={selectGallery} 
           updateClearGallery={clearArtGallery} 
-          updateSwitch={switchNavType}
+          updateNavSwitch={navSwitch}
           />
       ) : (
         <AlbumNav
           updateSelectNav={selectGallery}
           updateClearGallery={clearArtGallery}
-          updateSwitch={switchNavType}
+          updateNavSwitch={navSwitch}
         />
+      )}
+
+      {!selectedAlbum && (
+        <Container className="instructions">
+          <p>Select a thumbnail from the gallery list to view the images.</p>
+        </Container>
       )}
       
       <Container style={{width: '100%'}}>
@@ -144,17 +144,6 @@ const ArtworkPage = props => {
       </Container>
     </div>
   )
-}
-
-ArtworkPage.propTypes = {
-  selectLightbox: PropTypes.func.isRequired,
-  navFilter: PropTypes.bool,
-  filter: PropTypes.string,
-  album: PropTypes.string
-}
-ArtworkPage.defaultProps = {
-  selectLightbox: selectLightboxUtil,
-  navFilter: false
 }
 
 export default ArtworkPage;

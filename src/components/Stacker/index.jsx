@@ -7,7 +7,7 @@ import ProgressView from '../ProgressView';
 import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
-
+import { withStacking } from '../HigherOrder/withStacking';
 
 
 /**
@@ -35,6 +35,8 @@ const Stacker = props => {
     }
   }, [refKey]);
 
+  const StackedGallery = withStacking(ThumbGallery);
+
   if (tagObject) {
     return (
       <div className="stacker">
@@ -48,7 +50,7 @@ const Stacker = props => {
               {...props} />
           )}
           
-          <ThumbGallery 
+          <StackedGallery 
             eventKeyName="gallery" 
             variant="primary"
             cardTitle="Gallery"

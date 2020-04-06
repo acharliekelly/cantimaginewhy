@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import Container from 'react-bootstrap/Container';
 import { defaultImg, getContextProperty } from '../../utils/imageApi';
-import { withStacking } from '../HigherOrder/withStacking';
+// import { withStacking } from '../HigherOrder/withStacking';
 
 import './gallery.scss';
 
@@ -71,4 +71,5 @@ ThumbGallery.defaultProps = {
   imageIndex: 0
 }
 
-export default withStacking(ThumbGallery);
+// export default withStacking(ThumbGallery);
+export default ThumbGallery;

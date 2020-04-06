@@ -2,33 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListGroup from 'react-bootstrap/ListGroup';
-// import sizeMe from 'react-sizeme';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import { links } from '../../config/links';
+import { withSizes } from 'react-sizes';
 
 import './links.scss';
 
 
 
 const getLink = (link, node) => (
-    <a target="_blank" rel="noopener noreferrer" href={link.url}>
-      {node}
-    </a>
+  <a target="_blank" rel="noopener noreferrer" href={link.url}>
+    {node}
+  </a>
 )
 
-const getIcon = (link, iconSize, textSize) => {
+const getIcon = link => {
   const ico = (link.lib) ? [link.lib, link.icon] : link.icon;
-  return <FontAwesomeIcon icon={ico} size={iconSize} title={link.name} />
+  return <FontAwesomeIcon icon={ico} size="lg" title={link.name} />
 };
 
-const getText = (link, iconSize, textSize) => (
-  <span className="link-text" style={{fontSize: textSize}}>{link.name}</span>
+const getText = link => (
+  <span className="link-text">{link.name}</span>
 );
 
-const getUrlText = (link, iconSize, textSize) => {
+const getUrlText = link => {
   let text;
-  if (link.url.startsWith('mailto:')) {
+  if (link.url.startsWith('#')) {
+    // Command
+    text = '';
+  } else if (link.url.startsWith('mailto:')) {
+    // email address
     text = link.url.slice(7);
   } else {
+    // regular link
     text = link.url.split('://')[1];
   }
   return (
@@ -41,9 +48,9 @@ const groupFilter = group => {
 }
 
 // Icon & Text, URL on hover
-const getFull = (link, iconSize, textSize) => {
-  const icon = getIcon(link, iconSize); 
-  const text = getText(link, textSize);
+const getFull = link => {
+  const icon = getIcon(link); 
+  const text = getText(link);
   const url = getUrlText(link);
   return (
     <span className="mix-url">
@@ -53,9 +60,9 @@ const getFull = (link, iconSize, textSize) => {
 }
 
 // Icon & Text
-const getMixed = (link, iconSize, textSize) => {
-  const icon = getIcon(link, iconSize); 
-  const text = getText(link, textSize);
+const getMixed = link => {
+  const icon = getIcon(link); 
+  const text = getText(link);
   return (
     <span className="mix-show">
       {icon}&nbsp;{text}
@@ -63,28 +70,7 @@ const getMixed = (link, iconSize, textSize) => {
   )
 }
 
-// Icon, Text on hover
-const getHidden = (link, iconSize, textSize) => {
-  const icon = getIcon(link, iconSize); 
-  const text = getText(link, textSize);
-  return (
-    <span className="mix-hide">
-      {icon}&nbsp;{text}
-    </span>
-  )
-}
-
-const ContactLinks = props => {
-  const { displayType, size, textSize, horizontal, group } = props;
-  const itemStyle = {
-    border: 'none', 
-    backgroundColor: 'transparent', 
-    textAlign: horizontal ? 'center' : 'left',
-    margin: horizontal ? '0 3px' : '3px 0',
-    fontSize: textSize,
-    padding: 0
-  }
-  
+const getNodeFunc = (displayType, isShowUrl) => {
   let nodeFn;
   switch (displayType) {
     case 'icon':
@@ -93,26 +79,80 @@ const ContactLinks = props => {
     case 'text':
       nodeFn = getText;
     break;
-    case 'hide':
-      nodeFn = getHidden
-    break;
     case 'full':
-      nodeFn = getFull
+      nodeFn = isShowUrl ? getFull : getMixed
     break;
     default:
       nodeFn = getMixed
   }
-  const list = group ? groupFilter(group) : links;
+  return nodeFn;
+}
+
+const createList = (list, horizontal, nodeFunc) => {
+  const itemStyle = {
+    border: 'none', 
+    backgroundColor: 'transparent', 
+    textAlign: horizontal ? 'center' : 'left',
+    margin: horizontal ? '0 1%' : '1% 0',
+    padding: 0
+  }
+
   return (
     <ListGroup as="ul" className="links" horizontal={horizontal}>
       {list.map((link, index) => (
-        <ListGroup.Item as="li" size={size} style={itemStyle} key={index} action>
-        {getLink(link, nodeFn(link, size))}
+        <ListGroup.Item as="li" style={itemStyle} key={index} action>
+        {getLink(link, nodeFunc(link))}
         </ListGroup.Item>
       ))}
     </ListGroup>
   )
 }
+
+const createNav = (nodeFunc, filter = '') => {
+  const list = filter ? groupFilter(filter) : links;
+  return (
+    <Navbar text="dark" expand="md">
+      <Navbar.Toggle aria-controls="connect-head-nav" />
+      <Navbar.Collapse id="connect-head-nav">
+        <Nav className="connect-nav">
+          {list.map((link, index) => (
+            <Nav.Item key={index}>
+              {getLink(link, nodeFunc(link))}
+            </Nav.Item>
+          ))}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  )
+}
+
+const ContactLinks = props => {
+  const { displayType, horizontal, group, component } = props;
+  const { isIconOnly, isShowUrl } = props;
+  
+  
+  let nodeFn;
+  if (isIconOnly) {
+    nodeFn = getIcon;
+  } else {
+    nodeFn = getNodeFunc(displayType, isShowUrl);
+  }
+  
+  const list = group ? groupFilter(group) : links;
+
+  if (component === 'nav') {
+    return createNav(nodeFn)
+  } else {
+    // list
+    return createList(list, horizontal, nodeFn)
+  }
+}
+
+const mapSizesToProps = ({ width }) => ({
+  isIconOnly: width < 360,
+  isShowUrl: width > 1319,
+  isHalfText: width < 480,
+});
 
 ContactLinks.propTypes = {
   /**
@@ -129,27 +169,27 @@ ContactLinks.propTypes = {
    */
   displayType: PropTypes.string.isRequired,
   /**
-   * size variable
+   * size variable (for FA icon)
    */
   size: PropTypes.string,
-  /**
-   * font size, since bootstrap size has no impact on font
-   */
-  textSize: PropTypes.string,
   /**
    * group filter
    * art || tech || contact
    */
-  group: PropTypes.string
+  group: PropTypes.string,
+  /**
+   * list || nav
+   */
+  component: PropTypes.string
 };
 
 ContactLinks.defaultProps = {
   displayType: 'icon',
   size: 'lg',
-  textSize: '1em'
+  component: 'list'
 };
 
 
-export default ContactLinks;
+export default withSizes(mapSizesToProps)(ContactLinks);
 
 

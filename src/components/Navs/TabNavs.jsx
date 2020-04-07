@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nav from 'react-bootstrap/Nav';
 
 const TabNavs = props => (
-  <Nav variant="tabs">
+  <Nav variant="tabs" className="tab-navs">
     <Nav.Item>
       <Nav.Link eventKey="art">
         <FontAwesomeIcon icon="palette" size="lg" />

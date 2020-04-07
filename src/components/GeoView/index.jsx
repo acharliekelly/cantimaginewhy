@@ -36,9 +36,10 @@ const GeoView = props => {
         <div style={{float: 'left'}}>
           <HelpButton 
             size="lg"
+            placement="right"
             header="Location"
             content={`Coming Soon: A map component inside this box. For now, 
-            click the button to see location in Google Maps.`}
+            click the button to see the location in Google Maps.`}
           />
         </div>
         <div style={{float: 'right'}}>

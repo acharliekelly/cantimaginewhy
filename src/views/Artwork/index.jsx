@@ -127,7 +127,7 @@ const ArtworkPage = props => {
               thumbSize={thumbSize}
               refKey={refKey}
               geoTag={geotag}
-              maxHeight={60}
+              maxHeight={70}
               {...props}
             />
           </Col>

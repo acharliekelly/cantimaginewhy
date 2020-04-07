@@ -1,5 +1,6 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
+import Container from 'react-bootstrap/Container';
 import TabNavs from '../../components/Navs/TabNavs';
 import ContactLinks from '../../components/ContactLinks/';
 
@@ -15,7 +16,7 @@ const ContactPage = props => {
         <strong>Ways to Connect</strong>
       </header>
       
-      <main className="contact">
+      <Container className="contact">
         <Tab.Container defaultActiveKey="art">
           <TabNavs />
           <Tab.Content className="contact-links">
@@ -28,7 +29,7 @@ const ContactPage = props => {
           </Tab.Content>
 
         </Tab.Container>
-      </main>
+      </Container>
       
         
     </div>

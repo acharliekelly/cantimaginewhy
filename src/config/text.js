@@ -149,5 +149,8 @@ export const albumExplanations = {
   
 };
 
-
-
+// TODO: put content from About page here
+export const aboutContent = {
+  "art": [],
+  "tech": [] 
+}

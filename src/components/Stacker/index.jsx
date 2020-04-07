@@ -120,7 +120,7 @@ Stacker.defaultProps = {
   galleryImages: [],
   thumbSize: 100,
   imageIndex: 0,
-  maxHeight: 60,
+  maxHeight: 70,
   refKey: null,
   geoTag: null
 }

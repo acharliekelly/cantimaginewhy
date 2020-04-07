@@ -89,7 +89,7 @@ export const albums = [
     "sortField": ".alb-order"
   },
   {
-    "name": "Celebrities",
+    "name": "People",
     "tag": "portrait-old",
     "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
@@ -112,5 +112,5 @@ export const albums = [
 
 export const navDescription = `This is my entire collection of artwork from the past 
 10 years or so, grouped by album. A lot of my older work doesn't have any other information,
-such as Year or Title, so it can't be easily filtered. For the ones that can be filtered,
+such as Year or Medium, so it can't be easily filtered. For the ones that can be filtered,
 there's a Filter button on the left.`;

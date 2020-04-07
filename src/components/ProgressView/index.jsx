@@ -70,7 +70,7 @@ const ProgressView = props => {
           header="View Process" 
           content={helpText} 
           size="sm" 
-          placement="top"
+          placement="left"
           variant={`outline-${props.variant}`}
           style={{float: 'right'}} />
       </div>

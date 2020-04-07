@@ -2,16 +2,16 @@
 
 .page-title {
   font-size: 3vh;
+  padding-top: 1vh;
 }
 
-main.contact {
+.contact {
   text-align: left;
   margin: 0 3em;
-  border: thin solid #999;
+  // border: thin solid #999;
   border-radius: 0.3em;
 
-
-
+  
   .nav-item {
     .nav-link {
       font-size: 2vw;

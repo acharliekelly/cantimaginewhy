@@ -21,10 +21,7 @@ const ExtLink = props => (
     }
   >
     <a target="_blank" rel="noopener noreferrer" 
-      href={props.destinationUrl}
-      style={{marginLeft: '0.5em', marginRight: '0.5em'}}>
-      {props.linkText}
-    </a>
+      href={props.destinationUrl}>{props.children}</a>
   </OverlayTrigger>
 );
 
@@ -42,7 +39,7 @@ const ExternalLink = props => {
       >
         <Button as="a" target="_blank" rel="noopener noreferrer" 
           variant={props.variant} href={props.destinationUrl}>
-          {props.linkText}
+          {props.children}
           {props.showIcon && (
             <FontAwesomeIcon icon="external-link-alt" size="xs" style={{marginLeft: '1em'}} />
           )}
@@ -54,7 +51,7 @@ const ExternalLink = props => {
 
 ExternalLink.propTypes = {
   destinationUrl: PropTypes.string.isRequired,
-  linkText: PropTypes.string.isRequired,
+  linkText: PropTypes.string,
   variant: PropTypes.string,
   showIcon: PropTypes.bool,
   placement: PropTypes.string,

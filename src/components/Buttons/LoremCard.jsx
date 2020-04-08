@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 import { loremIpsum } from '../../../data/lorem';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 /**
  * Fits into Accordion Card stack

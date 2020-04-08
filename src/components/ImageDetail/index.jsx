@@ -5,7 +5,7 @@ import { Image, Transformation } from 'cloudinary-react';
 import { loadImageProps } from '../../utils/imageContext';
 import ImageToolbar from '../ImageToolbar/';
 import ProductButton from '../Buttons/ProductButton/';
-import { withLightbox } from '../HigherOrder/withLightbox';
+import { withLightbox } from '../higherOrder/withLightbox';
 
 import './detail.scss';
 

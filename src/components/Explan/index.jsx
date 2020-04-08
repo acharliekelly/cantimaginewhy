@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { getExplanation } from '../../utils/tagUtils';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 
 /**

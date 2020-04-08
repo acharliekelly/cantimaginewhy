@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery } from '../../utils/imageApi';
-import { withLightbox } from '../HigherOrder/withLightbox';
+import { withLightbox } from '../higherOrder/withLightbox';
 
 const Logo = props => {
   const { selectLightbox, startId } = props;

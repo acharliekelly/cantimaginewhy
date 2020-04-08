@@ -7,7 +7,7 @@ import ProgressView from '../ProgressView';
 import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 
 /**

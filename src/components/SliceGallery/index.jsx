@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import { Image } from 'cloudinary-react';
 import { fetchGallery, getContextProperty } from '../../utils/imageApi';
 import { shuffleArray } from '../../utils/miscUtils';
-import { withLightbox } from '../HigherOrder/withLightbox';
+import { withLightbox } from '../higherOrder/withLightbox';
 
 const SliceGallery = props => {
   const [ images, setImages ] = useState([]);

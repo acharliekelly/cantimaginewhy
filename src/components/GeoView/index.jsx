@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import MapButton from '../Buttons/MapButton';
 import HelpButton from '../Buttons/HelpButton';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 
 const extractGeo = geotag => {

@@ -28,7 +28,8 @@ import {
   faPalette,
   faFolderOpen,
   faMapMarkerAlt,
-  faMapMarkedAlt
+  faMapMarkedAlt,
+  faDraftingCompass
  } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -40,7 +41,7 @@ import {
     faFilter, faSort, faImages, faExternalLinkAlt, 
     faEllipsisV, faFileAlt, faFileCode, faFolderOpen,
     faSortUp, faSortDown, faPaintBrush, faPalette,
-    faMapMarkedAlt, faMapMarkerAlt);
+    faMapMarkedAlt, faMapMarkerAlt, faDraftingCompass);
  }
 
  

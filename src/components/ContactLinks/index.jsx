@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { links } from '../../config/links';
-import { withSizes } from 'react-sizes';
+// import { Breakpoint } from 'react-socks';
 
 import './links.scss';
 
@@ -128,31 +128,17 @@ const createNav = (nodeFunc, filter = '') => {
 
 const ContactLinks = props => {
   const { displayType, horizontal, group, component } = props;
-  const { isIconOnly, isShowUrl } = props;
   
-  
-  let nodeFn;
-  if (isIconOnly) {
-    nodeFn = getIcon;
-  } else {
-    nodeFn = getNodeFunc(displayType, isShowUrl);
-  }
-  
+  let nodeFn = getNodeFunc(displayType);
   const list = group ? groupFilter(group) : links;
 
   if (component === 'nav') {
-    return createNav(nodeFn)
+    return createNav(nodeFn, group)
   } else {
     // list
     return createList(list, horizontal, nodeFn)
   }
 }
-
-const mapSizesToProps = ({ width }) => ({
-  isIconOnly: width < 360,
-  isShowUrl: width > 1319,
-  isHalfText: width < 480,
-});
 
 ContactLinks.propTypes = {
   /**
@@ -164,7 +150,6 @@ ContactLinks.propTypes = {
    * icon: Show icon only
    * text: Show text only
    * both: Show icon & text
-   * hide: Show icon, text on hover
    * full: Show icon & text, url on hover
    */
   displayType: PropTypes.string.isRequired,
@@ -174,7 +159,7 @@ ContactLinks.propTypes = {
   size: PropTypes.string,
   /**
    * group filter
-   * art || tech || contact
+   * art || tech || head
    */
   group: PropTypes.string,
   /**
@@ -190,6 +175,6 @@ ContactLinks.defaultProps = {
 };
 
 
-export default withSizes(mapSizesToProps)(ContactLinks);
+export default ContactLinks;
 
 

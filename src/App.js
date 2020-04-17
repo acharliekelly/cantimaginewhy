@@ -11,7 +11,7 @@ import Header from './components/Header';
 import ContactPage from './views/Contact/';
 import Footer from './components/Footer/';
 import HomePage from './views/Home/';
-import AboutPage from './views/About/';
+import AboutPage from './views/About';
 import ArtworkPage from './views/Artwork';
 
 import { initializeLibrary } from './utils/faLibrary';

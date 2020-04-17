@@ -6,11 +6,15 @@
     cursor: pointer;
   }
   img {
-    width: 100%;
+    // width: 100%;
     height: auto;
   }
   .placeholder {
     min-height: 400px;
     background-color: #666;
   }
+}
+
+.stacker .image-view img {
+  width: 100%;
 }

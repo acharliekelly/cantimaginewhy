@@ -38,8 +38,9 @@ const ProgressView = props => {
 
   return (
     <>
-    <div className="view-wrapper">
     {progressImages[progressIndex] && (
+    <div className="view-wrapper">
+    
       <div className="img-wrapper">
         <Image cloudName="cantimaginewhy" 
           publicId={progressImages[progressIndex].public_id} 
@@ -54,8 +55,7 @@ const ProgressView = props => {
           disableCarousel={progressImages.length < 2}
         />
       </div>
-      )}
-    </div>
+
       {progressImages.length > 1 && (
         <ThumbGallery 
           className="process-images"
@@ -70,11 +70,12 @@ const ProgressView = props => {
           header="View Process" 
           content={helpText} 
           size="sm" 
-          placement="left"
+          placement="top"
           variant={`outline-${props.variant}`}
           style={{float: 'right'}} />
       </div>
-      
+    </div>
+    )}
     </>
   )
 }

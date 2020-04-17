@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../../utils/imageApi';
+import { defaultImg } from '../../../utils/cloudinaryApi';
 import { filters, navDescription } from '../../../config/filters';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';

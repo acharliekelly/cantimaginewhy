@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { Image } from 'cloudinary-react';
-import { fetchGallery, getContextProperty } from '../../utils/imageApi';
+import { fetchGallery, getContextProperty }from '../../utils/cloudinaryApi';
 import { shuffleArray } from '../../utils/miscUtils';
 import { withLightbox } from '../higherOrder/withLightbox';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery } from '../../utils/imageApi';
+import { fetchGallery }from '../../utils/cloudinaryApi';
 import { withLightbox } from '../higherOrder/withLightbox';
 
 const Logo = props => {

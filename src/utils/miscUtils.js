@@ -1,5 +1,6 @@
 // miscUtils.js
-// general image utilities
+// general utilities
+
 
 
 
@@ -139,3 +140,4 @@ const connectBreakpoints = [
 export const getLinkBreakpointProps = compWidth => {
    return connectBreakpoints.find(point => point.max >= compWidth && point.min <= compWidth)
 }
+

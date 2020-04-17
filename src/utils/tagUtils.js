@@ -1,4 +1,5 @@
-import { fetchGallery, sortByField } from './imageApi';
+import { sortByField } from './imageApi';
+import { fetchGallery } from './cloudinaryApi';
 import { albumExplanations } from '../config/text';
 import { albums } from '../config/albums';
 import { filters } from '../config/filters'; 
@@ -37,6 +38,15 @@ export const getExplanation = (tagObj, useDesc = false) => {
 export const createGalleryFromTag = tagObj => {
   return fetchGallery(tagObj.tag)
     .then(resources => sortByField(resources, tagObj.sortField));
+}
+
+// same, but tag string only (return unsorted)
+export const createGalleryFromTagName = (tagName, sortField = '') => {
+  if (sortField) {
+    return fetchGallery(tagName).then(resources => sortByField(resources, sortField));
+  } else {
+    return fetchGallery(tagName);
+  }
 }
 
 /**

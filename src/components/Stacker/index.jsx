@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from 'react-bootstrap/Accordion';
+import MobileNav from '../Navs/MobileNav';
 import Explan from '../Explan';
 import ThumbGallery from '../ThumbGallery';
 import ProgressView from '../ProgressView';
@@ -8,16 +9,31 @@ import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
 import { withStacking } from '../higherOrder/withStacking';
+import ImageInfo from '../ImageInfo';
+import DisplayImagePanel from '../DisplayImage';
 
+import './stack.scss';
 
 /**
  * Makes accordion of stacked components
  */
 const Stacker = props => {
+  // current album has About section
   const [ albumAbout, setAlbumAbout ] = useState(null);
+  // current image has Progress section
   const [ hasProgress, setHasProgress ] = useState(false);
+  // current image
+  const [ currentImage, setCurrentImage ] = useState(null);
+  
+  const { tagObject, refKey, galleryImages, imageIndex, imageMovement, updateSelectNav, isFullWidth } = props;
 
-  const { tagObject, refKey } = props;
+  useEffect(() => {
+    if (imageMovement) {
+      setCurrentImage(galleryImages[imageIndex])
+    } else {
+      setCurrentImage(null)
+    }
+  }, [imageMovement, galleryImages, imageIndex])
   
   useEffect(() => {
     if (tagObject) {
@@ -36,11 +52,28 @@ const Stacker = props => {
   }, [refKey]);
 
   const StackedGallery = withStacking(ThumbGallery);
+  const StackedInfo = withStacking(ImageInfo);
 
-  if (tagObject) {
+
+  const activeKey = isFullWidth ? 'albums' : 'gallery';
+
+  // TODO: deal with missing activeKey
+
+
+  if (isFullWidth || tagObject) { 
     return (
       <div className="stacker">
-        <Accordion defaultActiveKey="gallery">
+        <Accordion defaultActiveKey={activeKey}>
+
+          {updateSelectNav && (
+            <MobileNav  
+              eventKeyName="albums"
+              variant="primary"
+              cardTitle="Albums"
+              {...props}
+            />
+          )}
+
           {albumAbout && (
             <Explan  
               fullText={albumAbout} 
@@ -55,6 +88,22 @@ const Stacker = props => {
             variant="primary"
             cardTitle="Gallery"
             {...props} />
+
+          {imageMovement && ( // on mobile, show Display in stack
+          <>
+            <DisplayImagePanel 
+              eventKeyName="display"
+              variant="secondary"
+              cardTitle="Display Image"
+              {...props} />
+            <StackedInfo
+              currentImage={currentImage}
+              eventKeyName="info"
+              variant="secondary"
+              cardTitle="Image Details"
+              {...props} />
+          </>
+          )}
 
           {hasProgress && (
             <ProgressView 
@@ -76,20 +125,19 @@ const Stacker = props => {
       </div>
     )
   } else {
-    return <div />
+    return <div/>
   }
-  
 }
 
 Stacker.propTypes = {
   /**
    * the image array (results of fetchGallery)
    */
-  galleryImages: PropTypes.array.isRequired,
+  galleryImages: PropTypes.array,
   /**
    * what to do when image is selected
    */
-  selectThumbnail: PropTypes.func.isRequired,
+  selectThumbnail: PropTypes.func,
   /**
    * thumbnail size
    */
@@ -103,7 +151,7 @@ Stacker.propTypes = {
    */
   tagObject: PropTypes.object,
   /**
-   * 
+   * maximum height (vh) for any item
    */
   maxHeight: PropTypes.number,
   /**
@@ -113,7 +161,19 @@ Stacker.propTypes = {
   /**
    * for GeoView
    */
-  geoTag: PropTypes.string
+  geoTag: PropTypes.string,
+  /**
+   * if true, stacker is entire width of viewport (ie mobile)
+   */
+  isFullWidth: PropTypes.bool,
+  /**
+   * move fwd & bkwd (for ImageToolbar)
+   */
+  imageMovement: PropTypes.object,
+  /**
+   * function to select new album
+   */
+  updateSelectNav: PropTypes.func
 };
 
 Stacker.defaultProps = {
@@ -122,7 +182,9 @@ Stacker.defaultProps = {
   imageIndex: 0,
   maxHeight: 70,
   refKey: null,
-  geoTag: null
+  geoTag: null,
+  isFullWidth: false,
+  imageMovement: null
 }
 
 export default Stacker;

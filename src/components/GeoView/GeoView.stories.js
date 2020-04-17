@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Accordion from 'react-bootstrap/Accordion';
-import { StackedLorem } from '../Buttons/LoremCard';
+import { StackedLorem } from '../Test/LoremCard';
 import GeoView from '.';
 import { withStacking } from '../higherOrder/withStacking';
 

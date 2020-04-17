@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+// import { Map, Marker, GoogleApiWrapper, withGoogleMap, withScriptjs } from 'google-maps-react';
 import MapButton from '../Buttons/MapButton';
 import HelpButton from '../Buttons/HelpButton';
 import { withStacking } from '../higherOrder/withStacking';
+// import { GOOGLE_MAPS_API } from '../../utils/geoUtils';
 
 
 const extractGeo = geotag => {
@@ -33,14 +34,14 @@ const GeoView = props => {
     return (
       <div>
         <header>Position</header>
+        
         <div style={{float: 'left'}}>
           <HelpButton 
-            size="lg"
+            variant="outline-info" 
+            header="Location" 
+            content="Coming Soon: A map inside this box. For now, click the button to open map in a new tab."
             placement="right"
-            header="Location"
-            content={`Coming Soon: A map component inside this box. For now, 
-            click the button to see the location in Google Maps.`}
-          />
+            size="sm" />
         </div>
         <div style={{float: 'right'}}>
           <MapButton variant="outline-info" latitude={position.lat} longitude={position.lng} />
@@ -48,19 +49,19 @@ const GeoView = props => {
         <div>Latitude: {position.lat}</div>
         <div>Longitude: {position.lng}</div>
         
+        {/* <Map google={props.google}
+          zoom={8}
+          style={{width: '100%', height: '100%'}}
+          initialCenter={position}>
+          <Marker position={position} />
+        </Map> */}
       </div>
-      // <Map google={props.google}
-      //   zoom={8}
-      //   style={{width: '100%', height: '100%'}}
-      //   initialCenter={position}>
-      //   <Marker position={position} />
-      // </Map>
+      
     )
   } else {
     return '';
   }
   
-
 }
 
 GeoView.propTypes = {
@@ -75,7 +76,6 @@ GeoView.propTypes = {
 }
 
 // export default GoogleApiWrapper({
-//   apiKey: 'KEY GOES HERE'
+//   apiKey: GOOGLE_MAPS_API
 // })(GeoView);
-
 export default withStacking(GeoView);

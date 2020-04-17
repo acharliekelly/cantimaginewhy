@@ -107,7 +107,7 @@ const DisplayImagePanel = props => {
         fullWidth
         prevImageFn={movePrevious}
         zoomImageFn={increaseZoom}
-        zoomText={` x ${zoomFactor}`}
+        // zoomText={` x ${zoomFactor}`}
         nextImageFn={moveNext}
         disableCarousel={galleryImages.length < 2}
       />

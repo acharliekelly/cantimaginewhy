@@ -1,15 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nav from 'react-bootstrap/Nav';
-import withSizes from 'react-sizes';
-import { mapSizesToProps } from '../../utils/system';
 
 
 const tabNav = (keyName, iconName, label) => (
   <Nav.Item>
     <Nav.Link eventKey={keyName}>
       <FontAwesomeIcon icon={iconName} size="lg" />
-      <span className="tab-text" style={{marginLeft: '1em'}}>{label}</span>
+      <span className="tab-text">{label}</span>
     </Nav.Link>
   </Nav.Item>
 )
@@ -25,4 +23,4 @@ const TabNavs = props => {
 } 
 
 
-export default withSizes(mapSizesToProps)(TabNavs);
+export default TabNavs;

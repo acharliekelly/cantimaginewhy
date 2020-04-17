@@ -2,62 +2,72 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../../utils/imageApi';
+import { CloudinaryContext } from 'cloudinary-react';
+import NavButton from '../NavButton';
 import { albums, navDescription } from '../../../config/albums';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
+import { Breakpoint } from 'react-socks';
+import classNames from 'classnames';
 
 import '../nav.scss';
 
 const AlbumNav = props => {
   const [ selectedNav, setSelectedNav ] = useState(null);
 
+  const { updateSelectNav } = props;
+
   const selectItem = navObj => {
     setSelectedNav(navObj);
-    props.updateSelectNav(navObj);
+    updateSelectNav(navObj);
   }
+
+  
+
+  const navBarClass = classNames('category-bar', 
+    { 
+      'justify-content-between': updateSelectNav,
+      'justify-content-around': !updateSelectNav
+    }
+  )
 
   return (
       <CloudinaryContext cloudName="cantimaginewhy">
-         <Navbar className="category-bar justify-content-between">
-
-          <NavSwitch type="album" {...props} />
-
+         <Navbar className={navBarClass}>
+           <Breakpoint lg up>
+            <NavSwitch type="album" {...props} />
+           </Breakpoint>
+           
           <Navbar.Text>
-            <span className="browse-title">Browse by Album</span>
+            <span className="browse-title">Albums</span>
           </Navbar.Text>
-              
-          <HelpButton header="Albums" content={navDescription} size="2x" />
-        
+
+          <Breakpoint lg up>
+            <HelpButton header="Albums" content={navDescription} size="2x" />
+          </Breakpoint>
         </Navbar>
 
-        <Container fluid="lg" className="album-bar justify-content-center">
-          <ul className="albums">
-            {albums.map((album, index) => {
-              let cls = 'album-btn responsive thumbnail';
-              if (selectedNav && selectedNav.tag === album.tag) {
-                cls += ' selected-nav'
-              }
-              return (
-                <li 
-                  key={index} 
-                  id={album.tag} 
-                  className={cls} 
-                  onClick={() => selectItem(album)}
-                >
-                  <Image publicId={`${album.thumbnail}`}>
-                    <Transformation defaultImage={defaultImg} />
-                    <Transformation 
-                      height={props.thumbnailHeight} 
-                      width={props.thumbnailHeight} 
-                      crop="fill" />   
-                  </Image>
-                  <div className="album-name">{album.name}</div>
-                </li>
-              );
-            })}
-          </ul>
+        
+        <Container fluid="md" className="album-bar justify-content-center">
+          <Breakpoint lg up>
+            <ul className="albums">
+              {albums.map((album, index) => {
+                const selected = (selectedNav && selectedNav.tag === album.tag);
+                return (
+                  <NavButton 
+                    key={index}
+                    navTag={album} 
+                    onSelectItem={selectItem} 
+                    isSelected={selected} 
+                    {...props}
+                    />
+                  );
+                })}
+            </ul>
+          </Breakpoint>
+
+          
+         
         </Container>
       </CloudinaryContext>
     );
@@ -68,7 +78,7 @@ AlbumNav.propTypes = {
   updateSelectNav: PropTypes.func,
   updateClearGallery: PropTypes.func,
   thumbnailHeight: PropTypes.number,
-  updateNavSwitch: PropTypes.func
+  updateNavSwitch: PropTypes.func,
 };
 
 AlbumNav.defaultProps = {

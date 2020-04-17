@@ -4,10 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import withSizes from 'react-sizes';
+import { mapSizesToProps } from '../../utils/system';
 
 const ImageToolbar = props => {
-  const { fullWidth, variant, prevImageFn, nextImageFn, zoomImageFn, imgSize, disableCarousel } = props;
-  const grpCls = fullWidth ? 'max' : '';
+  const { variant, prevImageFn, nextImageFn, zoomImageFn, zoomText, imgSize, disableCarousel } = props;
+  const grpCls = props.fullWidth ? 'max' : '';
+
+  const mStyle = {
+    fontSize: props.isMobile ? '0.5rem' : '1rem'
+  }
 
   const keyDown = event => {
     switch (event.keyCode) {
@@ -29,14 +35,21 @@ const ImageToolbar = props => {
   }
 
   return (
-    <Container className="toolbar">
+    <Container className="toolbar" style={mStyle}>
       <ButtonGroup className={grpCls} onKeyDown={keyDown} >
         <Button variant={variant} title="Previous Image" onClick={prevImageFn} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-left" size={imgSize} />
         </Button>
-        <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
-          <FontAwesomeIcon icon="search-plus" size={imgSize} />
-        </Button>
+        {props.zoomImageFn ? (
+          <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
+            <FontAwesomeIcon icon="search-plus" size={imgSize} />
+            {zoomText && (
+              <span style={{marginLeft: '1em', fontSize: '2em', fontWeight: 'bold'}}>{zoomText}</span>
+            )}
+          </Button>
+        ) : (
+          <Button variant={variant} block disabled />
+        )}
         <Button variant={variant} title="Next Image" onClick={nextImageFn} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-right" size={imgSize} />
         </Button>
@@ -70,7 +83,7 @@ ImageToolbar.propTypes = {
   /**
    * function for Zoom
    */
-  zoomImageFn: PropTypes.func.isRequired,
+  zoomImageFn: PropTypes.func,
   /**
    * disable carousel buttons (prev & next)
    */
@@ -85,4 +98,4 @@ ImageToolbar.defaultProps = {
   disableCarousel: false,
 }
 
-export default ImageToolbar;
+export default withSizes(mapSizesToProps)(ImageToolbar);

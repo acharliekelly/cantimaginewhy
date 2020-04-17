@@ -3,9 +3,10 @@ import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import { Parallax } from "react-parallax";
 import ExternalLink from '../../components/Buttons/ExternalLink';
-import TabNavs from '../../components/Navs/TabNavs';
-import { cleanImageSrc } from '../../utils/imageApi';
-
+import TabNavs from '../../components/Buttons/TabNavs';
+import { cleanImageSrc } from '../../utils/cloudinaryApi';
+import withSizes from 'react-sizes';
+import { mapSizesToProps } from '../../utils/system';
 
 import './about.scss';
 
@@ -20,12 +21,14 @@ const AboutPage = props => (
         <p>More information about both topics can be found below.</p>
         </section>
     </header>
-    <Parallax bgImage={cleanImageSrc('me/caterpillar2')} strength={500}>
-      <div style={{ height: 400 }} />
-    </Parallax>
-
+    {props.isDesktop && (
+      <Parallax bgImage={cleanImageSrc('me/caterpillar2')} strength={600}>
+        <div style={{ height: '40vh' }} />
+      </Parallax>
+    )}
+    
     <Tab.Container defaultActiveKey="art">
-      <TabNavs />
+      <TabNavs art tech />
       <Tab.Content>
         <Tab.Pane eventKey="art" className="art-content">
           <Container >
@@ -93,13 +96,9 @@ const AboutPage = props => (
           </Container>
         </Tab.Pane>
       </Tab.Content>
-
-      
-        
     </Tab.Container>
     
-
   </Container>
 );
 
-export default AboutPage;
+export default withSizes(mapSizesToProps)(AboutPage);

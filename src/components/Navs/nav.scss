@@ -14,7 +14,7 @@ $selected-album-bkg:#000;
 $selected-album-text: #fff;
 
 
-// filter bar
+// filter bar - top row
 .category-bar {
   background-color: $nav-bkg;
   font-variant: normal;
@@ -92,8 +92,9 @@ $selected-album-text: #fff;
   
 }
 
-
+// thumbnails - 2nd row
 .album-bar {
+  
 
   .descript {
     z-index: 2;
@@ -130,123 +131,47 @@ $selected-album-text: #fff;
   .albums {
     text-align: center;
     list-style-type: none;
+    
 
     // eg Boston, Cambridge
     .album-btn {
       display: inline-block;
-      border: outset thin;
+      border: outset thin #ddd;
+      background-color: #ddd;
       padding: auto;
       margin: 2px;
       cursor: pointer;
       text-align: center;
+      max-width: 10vw;
+      
+
+      img {
+        max-width: 10vw;
+        min-width: 50px;
+        opacity: 0.8;
+      }
     
       .album-name {
-        font-size: 0.8em;
         font-family: 'Gotu', sans-serif;
         text-align: center;
+        font-size: 90%;
         color: $album-text;
+        // max-width: 10vw;
       }
-    
-    }
-    .selected-nav {
-      border: inset thin;
-      background-color: $selected-album-bkg;
-    
-      .album-name {
+
+      &.selected-nav {
+        border: inset thin #000;
+        background-color: $selected-album-bkg;
         color: $selected-album-text;
-        font-weight: 600;
+        opacity: 1;
+
+        .album-name {
+          color: $selected-album-text;
+        }
       }
     }
-  }
-  
-  
-}
-
-// DEVELOPMENT MODE
-
-$dev-nav-bkg: #ddd;
-$dev-nav-text: #003;
-$dev-nav-link-text: #066;
-$dev-nav-active-bkg: #033;
-$dev-nav-active-text: #fff;
-
-$dev-album-bkg: #0ff;
-$dev-album-text: #000;
-
-$dev-selected-album-bkg: #0cc;
-$dev-selected-album-text: #000;
-
-
-.dev-mode {
-
-  .col {
-    outline: thin dashed gray;
-  }
-
-  .category-bar {
-    background-color: $dev-nav-bkg;
-
    
-
-    .label {
-      color: $dev-nav-text;
-    }
-
-    .nav-link {
-      color: $dev-nav-link-text;
-      
-      &.active {
-        background-color: $dev-nav-active-bkg !important;
-        color: $dev-nav-active-text !important;
-      }
-
-    }
-
-    .category-desc {
-
-      .active-desc {
-        color: #000;
-      }
-      .hover-desc {
-        color: #088;
-      }
-    }
-    
   }
-
-  .album-bar {
-    outline: thin double #870;
-
   
-    .albums {
-      .album-btn {
-        .album-name {
-          font-family: 'Courier New', Courier, monospace;
-          color: $dev-album-text;
-        }
-      
-      }
-      .selected-nav {
-        background-color: $dev-selected-album-bkg;
-      
-        .album-name {
-          color: $dev-selected-album-text;
-        }
-      }
-    }
-
-    
-
-    .current-item {
-      border: thin solid #c0c;
-      border-radius: 0.2em;
-      padding: 0.3em;
-
-      .nav-description {
-        font-family: 'Courier New', Courier, monospace;
-      }
-    }
-    
-  }
-
+  
 }

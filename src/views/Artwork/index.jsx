@@ -115,13 +115,7 @@ const ArtworkPage = props => {
       )}
       </Breakpoint>
       
-      {selectedAlbum ? (
-        <Breakpoint md down>
-          <Container className="current-album">
-            <p>{selectedAlbum.name}</p>
-          </Container>
-        </Breakpoint>
-      ) : (
+      {!selectedAlbum && (
         <Container className="instructions">
           <p className="mr-1" style={{fontSize: '2vh', marginTop: '1vh'}}>
             Select a thumbnail from the gallery list to view the images.
@@ -132,9 +126,14 @@ const ArtworkPage = props => {
 
       <Breakpoint md down>
         <Container fluid="md">
+          <ImageDetail 
+            imageMovement={galleryMoves}
+            imageList={artImages}
+            imageIndex={currentIndex}
+            isFullWidth={true}
+          />
           <Stacker 
             updateSelectNav={selectGallery}
-            imageMovement={galleryMoves}
             tagObject={selectedAlbum} 
             selectThumbnail={setCurrentIndex} 
             galleryImages={artImages}
@@ -165,10 +164,10 @@ const ArtworkPage = props => {
             </Col>
             <Col lg={8}>
               <ImageDetail 
-                moveNext={moveNext}
-                movePrevious={movePrev}
+                imageMovement={galleryMoves}
                 imageList={artImages}
                 imageIndex={currentIndex}
+                isFullWidth={false}
               />
             </Col>
           </Row>

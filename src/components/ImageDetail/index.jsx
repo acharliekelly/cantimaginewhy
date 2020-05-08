@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import ImageToolbar from '../ImageToolbar/';
 import { withLightbox } from '../higherOrder/withLightbox';
-import { DisplayImage } from '../DisplayImage';
+import DisplayImage from '../DisplayImage';
 import ImageInfo from '../ImageInfo';
+import classNames from 'classnames';
 
 import './detail.scss';
 
 const ImageDetail = props => {
-  const { imageList, imageIndex } = props;
+  const { imageList, imageIndex, isFullWidth, imageMovement } = props;
+  const { moveNext, movePrevious } = imageMovement;
 
   const [ currentImage, setCurrentImage ] = useState(null);
   useEffect(() => {
@@ -19,21 +21,22 @@ const ImageDetail = props => {
 
   const magnifyImage = () => {
     props.selectLightbox(currentImage.public_id, imageList);
+    
   }
 
   if (currentImage) {
-
+    const cls = classNames('image-detail', { 'full-width': isFullWidth });
     return (
-      <Container className="image-detail">
-        <DisplayImage currentImage={currentImage} imageZoom={magnifyImage} enabled />
+      <Container className={cls}>
+        <DisplayImage currentImage={currentImage} imageZoom={isFullWidth ? null:  magnifyImage} {...props} />
         
         <ImageToolbar 
             variant="light"
             imgSize="2x"
             fullWidth
-            prevImageFn={props.movePrevious}
-            nextImageFn={props.moveNext}
-            zoomImageFn={magnifyImage}
+            prevImageFn={movePrevious}
+            nextImageFn={moveNext}
+            zoomImageFn={isFullWidth ? null:  magnifyImage}
             disableCarousel={imageList.length < 2}
           />
         
@@ -52,23 +55,24 @@ ImageDetail.propTypes = {
   /**
    * results of fetchGallery
    */
-  imageList: PropTypes.array.isRequired,
+  imageList: PropTypes.array,
   /**
    * the starting index
    */
-  imageIndex: PropTypes.number.isRequired,
+  imageIndex: PropTypes.number,
   /**
    * the function to move back
    */
-  movePrevious: PropTypes.func.isRequired,
+  movePrevious: PropTypes.func,
   /**
    * the function to move forward
    */
-  moveNext: PropTypes.func.isRequired,
+  moveNext: PropTypes.func,
+  imageMovement: PropTypes.object,
   /**
    * the function to open image in Zoom
    */
-  selectLightbox: PropTypes.func.isRequired,
+  selectLightbox: PropTypes.func,
 }
 
 ImageDetail.defaultProps = {

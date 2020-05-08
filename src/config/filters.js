@@ -174,10 +174,17 @@ export const filters = [
     "description": "Filter by (my) historical period",
     "options": [
       {
-        "name": "Current",
+        "name": "Quarantine",
+        "tag": "era-quarantine",
+        "thumbnail": "nfs/ty4.jpg",
+        "description": "March 2020 - ?",
+        "sortField": ".completed"
+      },
+      {
+        "name": "Outdoors",
         "tag": "era-current",
         "thumbnail": "art/waltham_waterfall",
-        "description": "Summer 2019 - Present",
+        "description": "Summer 2019 - Spring 2020",
         "sortField": ".completed"
       },
       {

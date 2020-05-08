@@ -86,7 +86,7 @@ export const albums = [
     "tag": "portrait",
     "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
-    "sortField": ".caption"
+    "sortField": ".year"
   },
   {
     "name": "Plaitwork",

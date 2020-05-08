@@ -8,13 +8,12 @@ import { Breakpoint } from 'react-socks';
 const NavButton = props => {
 
   const { navTag, onSelectItem, isSelected } = props;
-  const liClass = classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected});
   const hover = ev => {
     props.onHover && props.onHover(ev.target.key)
   }
   return (
-    <li
-      className={liClass}
+    <div
+      className={classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})}
       onClick={() => onSelectItem(navTag)}
       onMouseEnter={hover}
       onMouseLeave={props.onOut}
@@ -29,7 +28,7 @@ const NavButton = props => {
         <Breakpoint lg up>
           <div className="ablum-name">{navTag.name}</div>
         </Breakpoint>
-    </li>
+    </div>
   )
 }
 
@@ -43,3 +42,24 @@ NavButton.propTypes = {
 };
 
 export default NavButton;
+
+
+
+export const MobileNavButton = props => {
+  const { navTag, onSelectItem, isSelected } = props;
+  
+  return (
+    <Image 
+      publicId={navTag.thumbnail}
+      className={classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})}
+      onClick={() => onSelectItem(navTag)} >
+      <Transformation defaultImage={defaultImg} />
+      <Transformation 
+        height={80} 
+        width={80} 
+        crop="fill" />
+    </Image>
+  )
+}
+
+

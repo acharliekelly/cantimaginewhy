@@ -48,22 +48,20 @@ const AlbumNav = props => {
         </Navbar>
 
         
-        <Container fluid="md" className="album-bar justify-content-center">
+        <Container fluid="md" className="album-bar justify-content-center albums">
           <Breakpoint lg up>
-            <ul className="albums">
-              {albums.map((album, index) => {
-                const selected = (selectedNav && selectedNav.tag === album.tag);
-                return (
-                  <NavButton 
-                    key={index}
-                    navTag={album} 
-                    onSelectItem={selectItem} 
-                    isSelected={selected} 
-                    {...props}
-                    />
-                  );
-                })}
-            </ul>
+          {albums.map((album, index) => {
+            const selected = (selectedNav && selectedNav.tag === album.tag);
+            return (
+              <NavButton 
+                key={index}
+                navTag={album} 
+                onSelectItem={selectItem} 
+                isSelected={selected} 
+                {...props}
+                />
+              );
+            })}
           </Breakpoint>
 
           

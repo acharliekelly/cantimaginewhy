@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { CloudinaryContext } from 'cloudinary-react';
-import NavButton from '../NavButton';
+import { MobileNavButton } from '../NavButton';
 import { albums } from '../../../config/albums';
 import { withStacking } from '../../higherOrder/withStacking';
 
@@ -22,21 +22,19 @@ const MobileNav = props => {
   return (
       <CloudinaryContext cloudName="cantimaginewhy">
          
-        <Container className="album-bar justify-content-center">
-          <ul className="albums">
-            {albums.map((album, index) => {
-              const selected = (selectedNav && selectedNav.tag === album.tag);
-              return (
-                <NavButton 
-                  key={index}
-                  navTag={album} 
-                  onSelectItem={selectItem} 
-                  isSelected={selected} 
-                  {...props}
-                  />
-                );
-              })}
-          </ul>
+        <Container className="album-bar justify-content-center albums">
+        {albums.map((album, index) => {
+          const selected = (selectedNav && selectedNav.tag === album.tag);
+          return (
+            <MobileNavButton 
+              key={index}
+              navTag={album} 
+              onSelectItem={selectItem} 
+              isSelected={selected} 
+              {...props}
+              />
+            );
+          })}
         </Container>
       </CloudinaryContext>
     );
@@ -47,13 +45,15 @@ MobileNav.propTypes = {
   updateSelectNav: PropTypes.func,
   eventKeyName: PropTypes.string,
   variant: PropTypes.string,
-  cardTitle: PropTypes.string
+  cardTitle: PropTypes.string,
+  enabled: PropTypes.bool
 };
 
 MobileNav.defaultProps = {
   eventKeyName: 'albums',
   variant: 'primary',
-  cardTitle: 'Albums'
+  cardTitle: 'Albums',
+  enabled: true,
 }
 
 

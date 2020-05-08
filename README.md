@@ -15,7 +15,6 @@ For this project, I used the following tech stack:
 * Back-end API's: 
   * Images: Cloudinary
   * Products: Fine Art America
-  * Forms: Netlify
 
 ## Requirements
 

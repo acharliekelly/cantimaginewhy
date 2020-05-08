@@ -9,6 +9,7 @@ import { Breakpoint } from 'react-socks';
 const Header = props => (
   <div className="menu-wrapper">
     <Navbar bg="light" className="justify-content-between">
+      {/* Only show logo on desktop */}
       <Breakpoint md up>
         <Navbar.Brand>
           <Logo {...props} />
@@ -17,19 +18,21 @@ const Header = props => (
       
 
       <Container className="justify-content-end">
-        <Breakpoint md down>
+        {/* Menu - dropdown on sm */}
+        <Breakpoint xs only>
           <Menu type="drop" {...props} />
         </Breakpoint>
-        <Breakpoint lg up>
+        <Breakpoint sm up>
           <Menu type="nav" {...props} />
         </Breakpoint>
       </Container>
         
       <Container className="justify-content-end">
-        <Breakpoint sm down>
+        {/* Links - collapse on small */}
+        <Breakpoint xs only>
           <ContactLinks displayType="icon" size="lg" group="head" />
         </Breakpoint>
-        <Breakpoint md up>
+        <Breakpoint sm up>
           <ContactLinks displayType="icon" size="2x" horizontal="lg" group="head" />
         </Breakpoint>
       </Container>

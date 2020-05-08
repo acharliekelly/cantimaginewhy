@@ -31,16 +31,14 @@ const ThumbGallery = props => {
     <CloudinaryContext cloudName="cantimaginewhy">
       <Container className="gallery">
         {galleryImages.map((thumb, index) => (
-          <div key={index}>
-            <Image 
-              className={imgClass(index)}
-              title={getContextProperty(thumb, 'caption')}
-              publicId={thumb.public_id}
-              onClick={() => clickImage(index)}>
-              <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
-              <Transformation defaultImage={defaultImg} />
-            </Image>
-          </div>
+          <Image key={index}
+            className={imgClass(index)}
+            title={getContextProperty(thumb, 'caption')}
+            publicId={thumb.public_id}
+            onClick={() => clickImage(index)} >
+            <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
+            <Transformation defaultImage={defaultImg} />
+          </Image>
         ))}
       </Container>
     </CloudinaryContext>

@@ -4,26 +4,38 @@ import Container from 'react-bootstrap/Container';
 import ContactLinks from '../ContactLinks';
 import Logo from '../Logo/';
 import Menu from '../Menu';
+import { Breakpoint } from 'react-socks';
 
 const Header = props => (
   <div className="menu-wrapper">
-    <Navbar bg="light" className="justify-content-between" expand="md">
-      <Navbar.Brand>
-        <Logo {...props} />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="menu-content" />
-      <Navbar.Collapse id="menu-content">
-        <Container className="justify-content-end">
-          <Menu {...props} />
-        </Container>
-        <Container className="justify-content-end">
-          <ContactLinks 
-            displayType="icon" 
-            size="2x" 
-            horizontal="sm" 
-            group="head" />
-        </Container>
-      </Navbar.Collapse>
+    <Navbar bg="light" className="justify-content-between">
+      {/* Only show logo on desktop */}
+      <Breakpoint md up>
+        <Navbar.Brand>
+          <Logo {...props} />
+        </Navbar.Brand>
+      </Breakpoint>
+      
+
+      <Container className="justify-content-end">
+        {/* Menu - dropdown on sm */}
+        <Breakpoint xs only>
+          <Menu type="drop" {...props} />
+        </Breakpoint>
+        <Breakpoint sm up>
+          <Menu type="nav" {...props} />
+        </Breakpoint>
+      </Container>
+        
+      <Container className="justify-content-end">
+        {/* Links - collapse on small */}
+        <Breakpoint xs only>
+          <ContactLinks displayType="icon" size="lg" group="head" />
+        </Breakpoint>
+        <Breakpoint sm up>
+          <ContactLinks displayType="icon" size="2x" horizontal="lg" group="head" />
+        </Breakpoint>
+      </Container>
     </Navbar>
   </div>
 );

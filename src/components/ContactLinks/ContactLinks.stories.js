@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, radios } from '@storybook/addon-knobs';
 import ContactLinks from './';
 import { initializeLibrary } from '../../utils/faLibrary';
 
@@ -8,7 +9,15 @@ import './links.scss';
 
 initializeLibrary();
 
+const groups = {
+  Head: 'head',
+  Art: 'art',
+  Design: 'design',
+  Code: 'tech'
+}
+
 const stories = storiesOf('ContactLinks', module);
+stories.addDecorator(withKnobs);
 stories
   .add('Text', () => <ContactLinks displayType="text" />)
   .add('Icon', () => (
@@ -18,5 +27,9 @@ stories
   ))
   .add('Both', () => <ContactLinks displayType="both" size="3x" textSize="3em" />)
   .add('Full', () => <ContactLinks displayType="full" size="2x" textSize="2em" />)
-  .add('Art Only', () => <ContactLinks displayType="both" size="2x" textSize="2em" group="art" /> )
-  .add('Tech Only', () => <ContactLinks displayType="icon" size="3x" group="tech" />)
+  .add('Groups', () => {
+    const groupOptions = radios('Group', groups, 'head');
+    return (
+      <ContactLinks displayType="full" size="2x" textSize="2em" group={groupOptions} />
+    )
+  })

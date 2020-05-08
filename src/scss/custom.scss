@@ -1,0 +1,14 @@
+
+// OVERRIDES?
+
+$enable-shasows: true;
+$enable-gradients: true;
+
+
+$theme-colors: (
+  "primary": #3c90da,
+  "secondary": #434343,
+  "info": #7d1c9b
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";

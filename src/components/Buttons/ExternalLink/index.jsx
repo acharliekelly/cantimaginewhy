@@ -26,22 +26,23 @@ const ExtLink = props => (
 );
 
 const ExternalLink = props => {
-  if (props.linkOnly) {
+  const { linkOnly, placement, destinationUrl, variant, showIcon } = props;
+  if (linkOnly) {
     return ExtLink(props);
   } else {
     return (
       <OverlayTrigger
-        placement={props.placement}
+        placement={placement}
         delay={{ show: 250, hide: 400 }}
         overlay={
-          <Tooltip>{extractDomainName(props.destinationUrl)}</Tooltip>
+          <Tooltip>{extractDomainName(destinationUrl)}</Tooltip>
         }
       >
-        <Button as="a" target="_blank" rel="noopener noreferrer" 
-          variant={props.variant} href={props.destinationUrl}>
+        <Button as="a" className="external-link" target="_blank" rel="noopener noreferrer" 
+          variant={variant} href={destinationUrl}>
           {props.children}
-          {props.showIcon && (
-            <FontAwesomeIcon icon="external-link-alt" size="xs" style={{marginLeft: '1em'}} />
+          {showIcon && (
+            <FontAwesomeIcon icon="external-link-alt" size="sm" style={{marginLeft: '1em'}} />
           )}
         </Button>
       </OverlayTrigger>
@@ -51,7 +52,6 @@ const ExternalLink = props => {
 
 ExternalLink.propTypes = {
   destinationUrl: PropTypes.string.isRequired,
-  linkText: PropTypes.string,
   variant: PropTypes.string,
   showIcon: PropTypes.bool,
   placement: PropTypes.string,

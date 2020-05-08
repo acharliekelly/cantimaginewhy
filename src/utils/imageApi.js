@@ -1,31 +1,4 @@
-import axios from 'axios';
-
-
-// PUBLIC CONSTANTS 
-export const cloudName = 'cantimaginewhy';
-
-export const ImageProtectMode = {
-  unspecified: -1,
-  clean: 0,
-  watermarked: 1,
-  copyright: 2
-}
-
-const protectionMode = ImageProtectMode.copyright;
-
-const imgSrc = `https://res.cloudinary.com/${cloudName}/`;
-
-const jsonImgList = tagName => {
-  return `https://res.cloudinary.com/${cloudName}/image/list/${tagName}.json`;
-}
-
-
-// Return all JSON data of images tagged with tagName
-export const fetchGallery = tagName => {
-  const url = jsonImgList(tagName);
-  return axios(url).then(res => res.data.resources);
-}
-
+import { getContextProperty, getImageSrc, cloudUrl } from './cloudinaryApi';
 
 /**
  * Get thumbnail size based on image count
@@ -48,152 +21,16 @@ export const getThumbnailSize = listSize => {
   return px;
 }
 
-
-// Image URLs
-
-export const defaultCPI = 'question_mark';
-export const defaultImg = `${defaultCPI}.jpg`;
-const copyrightText = 'Cant Imagine Why';
-
-const addWatermark = 'w_500,l_ck_logo,o_20/';
-const addCopyright = `l_text:courier_80_bold:${copyrightText},y_50,o_30/`;
-
-const addProtect = publicId => {
-  if (publicId.startsWith('art/')) {
-    if (protectionMode === ImageProtectMode.watermarked) {
-      return addWatermark;
-    } else {
-      return addCopyright;
-    }
-  } else {
-    return '';
-  }
-}
-
-const addDefault = `d_${defaultCPI}.jpg/`;
-
-
-
-
-// Return source URL for watermarked image
-export const watermarkedImageSrc = publicId => {
-  return imgSrc + `w_1000/w_500,l_ck_logo,o_20/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-export const copyrightImageSrc = (publicId) => {
-  const copyright = `Cant Imagine Why`;
-  return imgSrc + `w_1000/l_text:courier_80_bold:${copyright},y_50,o_30/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-
 /**
- * Return source URL for non-watermarked image
- * @param {string} publicId 
+ * Get (square) thumbnail size for container
+ * @param {int} listSize 
+ * @param {int} containerHeight 
  */
-export const cleanImageSrc = publicId => {
-  return imgSrc + `w_1000/d_${defaultCPI}/${publicId}.jpg`;
+export const getThumbSize = (listSize, containerHeight) => {
+  // TODO: calculate thumbnail size
 }
 
 
-
-/**
- * Return source URL for lightbox, using value of protectionMode
- * 
- * Lightbox component takes image source as string, so 
- * can't use Cloudinary Image component
- * @param {string} publicId
- */
-export const lightboxImageSrc = publicId => {
-  if (publicId.startsWith('photos/')) {
-    return cleanImageSrc(publicId);
-  } else {
-    switch (protectionMode) {
-      case ImageProtectMode.watermarked:
-        return watermarkedImageSrc(publicId);
-      case ImageProtectMode.copyright:
-        return copyrightImageSrc(publicId);
-      default:
-        return cleanImageSrc(publicId);
-    }
-  }
-}
-
-// return source URL of arbitrary-sized, non-watermarked image
-export const variableImageSrc = (publicId, imgWidthPx = 500) => {
-  return imgSrc + `w_${imgWidthPx}/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-// return source URL image, padded to fit height
-export const paddedImageSrc = (publicId, width = 600, height = 400) => {
-  return imgSrc + `w_${width},h_${height},c_pad,b_white/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-export const responsiveImageSrc = publicId => {
-  return imgSrc + `w_auto,c_scale/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-export const getImageSrc = (publicId, width = 1000, protect = true) => {
-  let srcUrl = imgSrc + `w_${width}/`;
-  if (protect) {
-    srcUrl += addProtect(publicId);
-  }
-  
-  srcUrl += addDefault + publicId + '.jpg';
-  return srcUrl;
-} 
-
-/**
- * Return source URL for lightbox
- * but take JSON object instead of just publicId
- * and adjust for aspect ratio
- * @param {object} imgObj 
- */
-export const zoomImageSrc = imgObj => {
-  if (!imgObj) {
-    return defaultImg;
-  }
-
-  // check if already a CPI string
-  if (typeof imgObj === 'string') {
-    return getImageSrc(imgObj);
-  }
-
-  const publicId = imgObj.public_id;
-  const width = imgObj.width;
-  const height = imgObj.height;
-  
-  let srcUrl = imgSrc;
-  if (width > height) {
-    // landscape
-    srcUrl += 'w_1000/';
-  } else if (height > width) {
-    // portrait
-    srcUrl += 'h_800/'
-  } else {
-    // square
-    srcUrl += 'w_800/';
-  }
-  srcUrl += addProtect(publicId);
-  srcUrl += addDefault;
-  srcUrl += publicId + '.jpg';
-  return srcUrl;
-}
-
-/**
- * Return a context field from CIO object
- * @param {*} cImgObj Cloudinary Image Object
- * @param {*} propertyName context field
- * @param {*} defaultValue value if field is missing
- */
-export const getContextProperty = (cImgObj, propertyName, defaultValue = '') => {
-  let val = defaultValue;
-  try {
-    val = cImgObj.context.custom[propertyName];
-  } catch (err) {
-    val = defaultValue;
-  }
-  return val;
-}
 
 
 
@@ -312,3 +149,58 @@ export const sortGallery = (nav, gallery) => {
    
 }
 
+const defSrcSetSizes = [ 256, 512, 768, 1024, 1280 ];
+
+export const getSourceSet = (publicId, width, quality = 80, sizes = defSrcSetSizes) => {
+  return sizes.filter(size => size <= width)
+    .map(size => `${cloudUrl}f_auto,q_${quality},w_${size}/${publicId}.jpg ${size}w`)
+    .join(', ')
+}
+
+export const getSourceSizes = (breakPoints, sizes = defSrcSetSizes) => {
+  const arr = breakPoints.map((pt, idx) => `(max-width: ${pt}px) ${sizes[idx]}`)
+  arr.push(sizes[-1] + 'px');
+  return arr.join(', ');
+}
+
+export const getIdxSrc = (publicId, sizes, index) => {
+  const width = sizes[index];
+  return `${cloudUrl}f_auto,q_75,w_${width}/${publicId}.jpg`;
+}
+
+
+
+// GENERATE PHOTO ARRAY FOR MASONRY GALLERY
+/**
+ * formats resources array to suit photo-gallery component
+ * format is: [
+ *    src: <image url>,
+ *    width: <pixel-width>,
+ *    height: <pixel-height>
+ * ]
+ * @param {array} resources JSON (cloudinary response format)
+ * @param {number} scale number less than 1, unless you want to make it bigger
+ */
+export const masonryImageArray = (resources, scale = 1) => {
+  return resources.map(resource => ({
+    src: getImageSrc(resource.public_id, Math.floor(resource.width * scale), false),
+    width: resource.width * scale,
+    height: resource.height * scale
+  }))
+}
+
+// returns 2D array of zoom sizes [[w,h]]
+export const imageZoomSizes = (cImage, initSizes) => {
+  const factors = [];
+  const maxHeight = cImage.height;
+  const maxWidth = cImage.width;
+  const [ startWidth, startHeight ] = initSizes;
+  let width = startWidth, height = startHeight;
+  do {
+    const size = [width, height];
+    factors.push(size);
+    width += startWidth;
+    height += startHeight;
+  } while (width < maxWidth && height < maxHeight);
+  return factors;
+}

@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../../utils/imageApi';
+import { defaultImg } from '../../../utils/cloudinaryApi';
 import { filters, navDescription } from '../../../config/filters';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
@@ -101,7 +101,7 @@ const FilterNav = props => {
 
       
 
-      <Container expand="lg" className="album-bar">
+      <Container expand="lg" className="album-bar albums">
         <div className="descript album-desc" style={descStyle}>
           <Navbar.Text className={navDescCls}>{albumDesc}</Navbar.Text>
         </div>
@@ -110,28 +110,25 @@ const FilterNav = props => {
           <Navbar.Text className={filterDescClass}>{filters[filterDescIndex].description}</Navbar.Text>
         </div>
 
-        <ul className="albums">
-
-          {filters[filterIndex].options.map((option, index) => {
-            let cls = 'album-btn responsive thumbnail';
-            if (selectedNav && selectedNav.tag === option.tag) {
-              cls += ' selected-nav'
-            }
-            return (
-              <li key={option.tag} id={option.tag} className={cls} 
-                onClick={() => selectItem(option)}
-                onMouseEnter={() => hoverOnNav(index)}
-                onMouseLeave={hoverOffNav}
-                >
-                <Image publicId={`${option.thumbnail}`}>
-                  <Transformation defaultImage={defaultImg} />
-                  <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />   
-                </Image>
-                <div className="album-name">{option.name}</div>
-              </li>
-            );
-          })}
-        </ul>
+        {filters[filterIndex].options.map((option, index) => {
+          let cls = 'album-btn responsive thumbnail';
+          if (selectedNav && selectedNav.tag === option.tag) {
+            cls += ' selected-nav'
+          }
+          return (
+            <span key={option.tag} id={option.tag} className={cls} 
+              onClick={() => selectItem(option)}
+              onMouseEnter={() => hoverOnNav(index)}
+              onMouseLeave={hoverOffNav}
+              >
+              <Image publicId={`${option.thumbnail}`}>
+                <Transformation defaultImage={defaultImg} />
+                <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />   
+              </Image>
+              <div className="album-name">{option.name}</div>
+            </span>
+          );
+        })}
         
       </Container>
     </CloudinaryContext>

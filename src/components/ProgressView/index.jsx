@@ -5,8 +5,8 @@ import { onsitePhotos } from '../../utils/onsiteUtils';
 import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
 import ImageToolbar from '../ImageToolbar';
-import { withLightbox } from '../HigherOrder/withLightbox';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withLightbox } from '../higherOrder/withLightbox';
+import { withStacking } from '../higherOrder/withStacking';
 import './progress.scss';
 
 const helpText = `Series of photos documenting the creative process, from initial view to finished product.`
@@ -38,8 +38,9 @@ const ProgressView = props => {
 
   return (
     <>
-    <div className="view-wrapper">
     {progressImages[progressIndex] && (
+    <div className="view-wrapper">
+    
       <div className="img-wrapper">
         <Image cloudName="cantimaginewhy" 
           publicId={progressImages[progressIndex].public_id} 
@@ -54,8 +55,7 @@ const ProgressView = props => {
           disableCarousel={progressImages.length < 2}
         />
       </div>
-      )}
-    </div>
+
       {progressImages.length > 1 && (
         <ThumbGallery 
           className="process-images"
@@ -70,11 +70,12 @@ const ProgressView = props => {
           header="View Process" 
           content={helpText} 
           size="sm" 
-          placement="left"
+          placement="top"
           variant={`outline-${props.variant}`}
           style={{float: 'right'}} />
       </div>
-      
+    </div>
+    )}
     </>
   )
 }

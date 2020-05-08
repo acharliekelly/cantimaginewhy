@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Accordion from 'react-bootstrap/Accordion';
-import { StackedLorem } from '../Buttons/LoremCard';
+import { StackedLorem } from '../Test/LoremCard';
 import GeoView from '.';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 
 const mockGeo = '42.3776586,-71.2347889';

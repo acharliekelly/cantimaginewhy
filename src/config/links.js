@@ -62,5 +62,27 @@ export const links = [
     icon: 'paper-plane',
     url: 'mailto:cant.imagine.why00@gmail.com',
     groups: [ 'art', 'tech', 'head' ]
+  },
+  {
+    name: 'Arifa Sayyid',
+    lib: 'fab',
+    icon: 'linkedin',
+    url: 'https://linkedin.com/in/asayyid',
+    groups: [ 'design' ]
+  },
+  {
+    name: 'Nandita Vedantan',
+    lib: 'fab',
+    icon: 'linkedin',
+    url: 'https://linkedin.com/in/nanditavedantan',
+    groups: [ 'design' ]
+  },
+  {
+    name: 'Julia Tooker',
+    lib: 'fab',
+    icon: 'linkedin',
+    url: 'https://linkedin.com/in/julia-tooker',
+    groups: [ 'design' ]
   }
+
 ];

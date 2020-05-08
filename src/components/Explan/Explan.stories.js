@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Explan from '.';
 import Accordion from 'react-bootstrap/Accordion';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
 
 import { albums } from '../../config/albums';
 

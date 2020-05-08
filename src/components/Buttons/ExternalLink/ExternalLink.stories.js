@@ -6,16 +6,20 @@ const stories = storiesOf('ExternalLink', module);
 stories.add('Facebok link', () => (
   <ExternalLink 
     destinationUrl="https://facebook.com/acharliekelly" 
-    linkText="Facebook" 
-    placement="bottom" 
-  />
+    placement="bottom">
+      Facebook
+    </ExternalLink>
   ))
   .add('Shop link', () => (
     <ExternalLink
       destinationUrl="https://charlie-kelly.pixels.com/"
-      linkText="Shop"
       variant="outline-info"
       placement="right"
-      showIcon
-    />
+      showIcon>Shop</ExternalLink>
+  ))
+  .add('Link only', () => (
+    <ExternalLink 
+      destinationUrl="https://linkedin.com/in/acharliekelly" 
+      placement="bottom" 
+      linkOnly>LinkedIn</ExternalLink>
   ))

@@ -1,4 +1,4 @@
-import { fetchGallery } from './imageApi';
+import { fetchGallery } from './cloudinaryApi';
 
 
 

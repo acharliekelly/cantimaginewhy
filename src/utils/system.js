@@ -1,4 +1,25 @@
 // System Utilities
+import withSizes from 'react-sizes';
+import { setDefaultBreakpoints } from 'react-socks';
+
+
+
+const BOOTSTRAP_DEFAULT_BREAKPOINTS = [
+  { xs: 320 },
+  { sm: 576 },
+  { md: 768 },
+  { lg: 992 },
+  { xl: 1200 }
+];
+
+
+
+export const initSocks = () => {
+  setDefaultBreakpoints(BOOTSTRAP_DEFAULT_BREAKPOINTS)
+}
+
+
+// FAVICONS
 
 const envIcons = {
   'development': 'cog',
@@ -25,6 +46,8 @@ export const updateFavicon = () => {
   faviconElem.href = faviconUrl();
 }
 
+
+// ENV MODE
 export const allowDevMode = () => {
   return (process.env.NODE_ENV === 'development');
 }
@@ -51,6 +74,7 @@ export const getEnvClass = () => {
 }
 
 
+// GETTING HOST NAME
 // should probably go someplace else
 export const extractHostName = url=> {
   let hostName;
@@ -81,3 +105,18 @@ export const extractDomainName = url => {
 
   return domainName;
 }
+
+
+// withSizes
+/**
+ * for applying sizes HoC
+ * @param {object} sizes 
+ */
+export const mapSizesToProps = sizes => ({
+  isMobile: withSizes.isMobile(sizes),
+  isTablet: withSizes.isTablet(sizes),
+  isDesktop: withSizes.isDesktop(sizes),
+  isCondensed: sizes.width < 600
+})
+
+

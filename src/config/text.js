@@ -65,10 +65,9 @@ export const albumExplanations = {
   took up drawing as an adult, learning to copy knotwork designs was my first goal. Eventually I started making up my
   own designs that did not immediately remind one of digestion.`,
 
-  "holiday": `Sometimes I make holiday cards. The determining factor is whether or not I think of it at least a month
-  before the holiday, giving me enough time to design, draw, scan, order, receive, and mail the cards. Normally, 
-  I remember the day before the holiday, decide I'm definitely going to make something for the next holiday, and then
-  don't. But these are some designs from the occasions when I did think of it in time.`,
+  "cards": `I've made a lot of cards. Sometimes I made a design and then mass-produced cards to sell for holidays;
+  other times I make a specialized one-off for a particular person, and then think, Hey, I could print more of these!
+  Either way, these were all sent to someone.`,
 
   "aane": `For most of the past decade, I've been affiliated with/employed by an organization called AANE. (What that
   stands for changed over time, but at least one of the A's is usually Aspergers.) Anyway, at one time, their logo
@@ -128,7 +127,11 @@ export const albumExplanations = {
 
   "era-recent": `What I call my "recent" period spans the time between ending my sabbatical in July of 2015, and 
   taking an expected hiatus from art due to a disk error (L5-S1) in the fall of 2018.`,
-  "era-current": `My current era started in the spring of 2019, when my disk recovered enough to let me begin painting again.`,
+
+  "era-current": `This period started in the spring of 2019, when my disk recovered enough to let me begin 
+  painting again. Which I did mostly outdoors.`,
+
+  "era-quarantine": `Art I created during the Covid-19 lockdown period, beginning in late March of 2020`,
 
   "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
   the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in
@@ -149,8 +152,54 @@ export const albumExplanations = {
   
 };
 
-// TODO: put content from About page here
+
 export const aboutContent = {
-  "art": [],
-  "tech": [] 
+  "intro": [
+    `My name is Charlie Kelly, and this is my website. It's mine in the sense that I own the domain,
+    but also because I created all the artwork. And also did the engineering. But I had help on the design.
+    All three topics are discussed below.`
+  ],
+  "art": [
+    `I took up art essentially because I found out it was possible to take up art as an adult. 
+    Which was mind-blowing to me – I’d always assumed stuff like art, music, sports, etc were something you 
+    either got at birth or didn’t. But then I met a guy who started drawing in his 30’s, and he was pretty good! 
+    Also, I had a lot of free time, in an environment where too much free time can get you in trouble.`,
+
+    `So, I started making art. At first, I stuck to designs that were more mathematical than artistic. 
+    I’ve always admired Celtic knotwork, but had always struggled with trying to create my own designs. 
+    However, I came up with a style of my own that resembles plaitwork – like traditional knotwork in that it appears woven, 
+    but sticking more rigidly to right angles, like a lattice. From there I branched out into more traditional knotwork, 
+    and then into representational art. First plants and random objects, then people, and then landscapes and architecture. 
+    I also evolved from graphite and colored pencil to watercolors to acrylics.`,
+
+    `Because of where I learned to draw, however, I developed some unusual artistic styles based on the materials 
+    that were available. For example, although watercolor paint was available, the same cannot be said for the 
+    heavyweight, absorbent paper that is typically used by watercolor painters in the rest of the world. 
+    As I quickly learned, applying watercolor to regular paper will cause it to curl up and become misshapen. 
+    The only way to prevent this was to apply the pigment in tiny, non-contiguous dots. It turns out this is actually 
+    a style of painting, called Pointillism. It was championed by the French post-impressionist Georges Seurat. But 
+    I didn’t realize it at the time; I was just trying to paint without ruining the paper.`,
+
+    `At present, I mostly do landscapes. When the weather is nice, I prefer to paint my landscapes 
+    "en plein air", which means standing in front of the landscape while I'm painting it.`
+  ],
+  "design": [
+    `I've been putting my artwork online in various ways for about as long as I've been drawing, but I've never
+    been particularly happy with how it looked. So for this iteration, I decided to get help. Since I had just 
+    completed a Web Development program at General Assembly, I asked some graduates of the UX Design program 
+    to help me with that aspect.`,
+    `The resulting collaboration took research from potential buyers to design a site, and then gathered user
+    feedback to fine-tune the initial design.`
+  ],
+  "tech": [
+    `I'm also into making websites. This is one such. In fact, if my goal were merely to sell art, 
+    there are dozens of commercial platforms already available for that. What I really wanted to do
+    is get really good at website (specifically ReactJS) while making a site that does EXACTLY what
+    I want it to do, rather than merely the best I can do with the tools available. `,
+
+    `When I said I made it from scratch, that's not technically accurate. I made it from
+    create-react-app. The back end for this site (at the moment that I'm writing this) exists entirely
+    within a free-tier account on Cloudinary. Everything other than retrieving images and metadata
+    is done on the front end. `
+  ] 
 }

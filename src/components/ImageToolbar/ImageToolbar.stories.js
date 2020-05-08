@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ImageToolbar from './';
 
-import '../../css/main.scss';
+import '../../scss/main.scss';
 
 const stories = storiesOf('ImageToolbar', module);
 stories

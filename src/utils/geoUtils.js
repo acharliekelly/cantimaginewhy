@@ -116,3 +116,6 @@ export const getMapLink = (latitude, longitude) => {
   let url = 'https://www.google.com/maps/search/?api=1&map_action=map&basemap=satellite&zoom=11';
   return `${url}&query=${latitude},${longitude}`;
 }
+
+export const GOOGLE_MAPS_API = 'AIzaSyCWyz4-NE6-B_B5UH9RdZpQt1JSQpC0OOY';
+

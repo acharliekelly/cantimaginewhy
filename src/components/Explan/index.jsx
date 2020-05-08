@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { getExplanation } from '../../utils/tagUtils';
-import { withStacking } from '../HigherOrder/withStacking';
+import { withStacking } from '../higherOrder/withStacking';
+import { Breakpoint } from 'react-socks';
 
 
 /**
@@ -20,7 +21,9 @@ const Explan = props => {
   if (explanText) {
     return (
       <Card.Body>
-        <Card.Title>{tagObject.name}</Card.Title>
+        <Breakpoint md up>
+          <Card.Title>{tagObject.name}</Card.Title>
+        </Breakpoint>
         <Card.Text style={{textAlign: 'left'}}>{explanText}</Card.Text>
       </Card.Body>
     )

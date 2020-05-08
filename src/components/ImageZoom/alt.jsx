@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { zoomImageSrc, getImageSrc, getContextProperty } from '../../utils/imageApi';
+import { zoomImageSrc, getImageSrc, getContextProperty }from '../../utils/cloudinaryApi';
 
 import 'react-image-lightbox/style.css';
 

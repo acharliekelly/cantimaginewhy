@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+// import withSizes from 'react-sizes';
+import { Breakpoint } from 'react-socks';
+// import { mapSizesToProps } from '../../utils/system';
 import { lookupGeo } from '../../utils/geoUtils';
 import FilterNav from '../../components/Navs/FilterNav';
 import AlbumNav from '../../components/Navs/AlbumNav';
 import ImageDetail from '../../components/ImageDetail';
 import Stacker from '../../components/Stacker';
-import { 
-  fetchGallery, 
-  sortGallery, 
-  getContextProperty, 
-  getThumbnailSize 
-} from '../../utils/imageApi';
+import { sortGallery, getThumbnailSize } from '../../utils/imageApi';
+import { fetchGallery, getContextProperty } from '../../utils/cloudinaryApi';
 
 import './artwork.scss';
 
@@ -28,8 +27,6 @@ const ArtworkPage = props => {
   const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
   const [ geotag, setGeotag ] = useState('');
-  
-
 
   // switch nav
   useEffect(() => {
@@ -92,10 +89,17 @@ const ArtworkPage = props => {
     setCurrentIndex(prev)
   }
 
+  const galleryMoves = {
+    moveNext: moveNext,
+    movePrevious: movePrev
+  }
+
+
+
 
   return (
     <div className="content">
-      
+      <Breakpoint lg up>
       { useFilter ? (
         <FilterNav 
           updateSelectNav={selectGallery} 
@@ -109,39 +113,67 @@ const ArtworkPage = props => {
           updateNavSwitch={navSwitch}
         />
       )}
-
+      </Breakpoint>
+      
       {!selectedAlbum && (
         <Container className="instructions">
-          <p>Select a thumbnail from the gallery list to view the images.</p>
+          <p className="mr-1" style={{fontSize: '2vh', marginTop: '1vh'}}>
+            Select a thumbnail from the gallery list to view the images.
+          </p>
         </Container>
       )}
+
+
+      <Breakpoint md down>
+        <Container fluid="md">
+          <ImageDetail 
+            imageMovement={galleryMoves}
+            imageList={artImages}
+            imageIndex={currentIndex}
+            isFullWidth={true}
+          />
+          <Stacker 
+            updateSelectNav={selectGallery}
+            tagObject={selectedAlbum} 
+            selectThumbnail={setCurrentIndex} 
+            galleryImages={artImages}
+            imageIndex={currentIndex}
+            isFullWidth={true}
+            refKey={refKey}
+            geoTag={geotag}
+            maxHeight={70}
+          />
+        </Container>
+      </Breakpoint>
+
+      <Breakpoint lg up>
+        <Container fluid>
+          <Row>
+            <Col lg={4}>
+              <Stacker 
+                tagObject={selectedAlbum} 
+                selectThumbnail={setCurrentIndex} 
+                galleryImages={artImages}
+                imageIndex={currentIndex}
+                isFullWidth={false}
+                thumbSize={thumbSize}
+                refKey={refKey}
+                geoTag={geotag}
+                maxHeight={70}
+              />
+            </Col>
+            <Col lg={8}>
+              <ImageDetail 
+                imageMovement={galleryMoves}
+                imageList={artImages}
+                imageIndex={currentIndex}
+                isFullWidth={false}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </Breakpoint>
       
-      <Container style={{width: '100%'}}>
-        <Row>
-          <Col xs={12} sm={4}>
-            <Stacker 
-              tagObject={selectedAlbum} 
-              selectThumbnail={setCurrentIndex} 
-              galleryImages={artImages}
-              imageIndex={currentIndex}
-              thumbSize={thumbSize}
-              refKey={refKey}
-              geoTag={geotag}
-              maxHeight={70}
-              {...props}
-            />
-          </Col>
-          <Col xs={12} sm={8}>
-            <ImageDetail 
-              moveNext={moveNext}
-              movePrevious={movePrev}
-              imageList={artImages}
-              imageIndex={currentIndex}
-              {...props}
-            />
-          </Col>
-        </Row>
-      </Container>
     </div>
   )
 }

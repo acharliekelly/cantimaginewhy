@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
-import { zoomImageSrc, getImageSrc, getContextProperty } from '../../utils/imageApi';
+import withSizes from 'react-sizes';
+import { zoomImageSrc, getImageSrc, getContextProperty }from '../../utils/cloudinaryApi';
 
 import 'react-image-lightbox/style.css';
 
@@ -97,6 +98,9 @@ class ImageZoom extends Component {
 
 
   render () {
+    // block render if screen is too small
+    if (!this.props.allowLightbox) return '';
+
     const { images, currentIndex } = this.state;
     const title = getContextProperty(images[currentIndex], 'caption', '');
     const caption = getContextProperty(images[currentIndex], 'alt', '');
@@ -150,4 +154,8 @@ ImageZoom.propTypes = {
   closeLightbox: PropTypes.func
 }
 
-export default ImageZoom;
+const mapSizesToProps = ({ width }) => ({
+  allowLightbox: width > 480
+});
+
+export default withSizes(mapSizesToProps)(ImageZoom);

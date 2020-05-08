@@ -30,12 +30,12 @@ const ImageInfo = props => {
           )}
           <div className="title">{info.title}</div>
           <p className="mb-2 text-muted">{info.description}</p>
-          {info.completed && (
+          {/* {info.completed && (
             <div className="info completed-field">
               <span className="label">Completed: </span>
               <span className="data"><em>{info.dateCompleted.toDateString()}</em></span>
             </div>
-          )}
+          )} */}
           {info.location && (
             <div className="info location-field">
               <span className="label">Location: </span>
@@ -64,9 +64,9 @@ const ImageInfo = props => {
         </Container>
       )
     }
-  } else {
-    return '';
   }
+
+  return '';
 }
 
 ImageInfo.propTypes = {

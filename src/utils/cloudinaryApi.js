@@ -18,6 +18,8 @@ const addDefault = `d_${defaultCPI}.jpg/`;
 const addCopyright = `l_text:courier_80_bold:${copyrightText},y_50,o_30/`;
 const imgSrc = `https://res.cloudinary.com/${cloudName}/`;
 
+const addCopyrightIf = publicId => publicId.startsWith('art/') ? addCopyright : '';
+
 export const cloudUrl = imgSrc;
 
 const jsonImgList = tagName => {
@@ -56,7 +58,7 @@ export const cleanImageSrc = (publicId, wd = 0) => {
 
 export const getImageSrc = (publicId, width = 0, protect = true) => {
   let srcUrl = imgSrc + (width ? `w_${width}/` : '');
-  if (protect) {
+  if (protect && publicId.startsWith('art/')) {
     srcUrl += addCopyright;
   }
   srcUrl += addDefault + publicId + '.jpg';
@@ -96,7 +98,7 @@ export const zoomImageSrc = imgObj => {
     // square
     srcUrl += 'w_800/';
   }
-  srcUrl += addCopyright;
+  srcUrl += addCopyrightIf(publicId);
   srcUrl += addDefault;
   srcUrl += publicId + '.jpg';
   return srcUrl;

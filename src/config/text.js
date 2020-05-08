@@ -65,10 +65,9 @@ export const albumExplanations = {
   took up drawing as an adult, learning to copy knotwork designs was my first goal. Eventually I started making up my
   own designs that did not immediately remind one of digestion.`,
 
-  "holiday": `Sometimes I make holiday cards. The determining factor is whether or not I think of it at least a month
-  before the holiday, giving me enough time to design, draw, scan, order, receive, and mail the cards. Normally, 
-  I remember the day before the holiday, decide I'm definitely going to make something for the next holiday, and then
-  don't. But these are some designs from the occasions when I did think of it in time.`,
+  "cards": `I've made a lot of cards. Sometimes I made a design and then mass-produced cards to sell for holidays;
+  other times I make a specialized one-off for a particular person, and then think, Hey, I could print more of these!
+  Either way, these were all sent to someone.`,
 
   "aane": `For most of the past decade, I've been affiliated with/employed by an organization called AANE. (What that
   stands for changed over time, but at least one of the A's is usually Aspergers.) Anyway, at one time, their logo
@@ -128,7 +127,11 @@ export const albumExplanations = {
 
   "era-recent": `What I call my "recent" period spans the time between ending my sabbatical in July of 2015, and 
   taking an expected hiatus from art due to a disk error (L5-S1) in the fall of 2018.`,
-  "era-current": `My current era started in the spring of 2019, when my disk recovered enough to let me begin painting again.`,
+
+  "era-current": `This period started in the spring of 2019, when my disk recovered enough to let me begin 
+  painting again. Which I did mostly outdoors.`,
+
+  "era-quarantine": `Art I created during the Covid-19 lockdown period, beginning in late March of 2020`,
 
   "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
   the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in
@@ -181,12 +184,12 @@ export const aboutContent = {
     "en plein air", which means standing in front of the landscape while I'm painting it.`
   ],
   "design": [
-    `Lorem ipsum dolor sit amet, consectetur 
-adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in 
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
+    `I've been putting my artwork online in various ways for about as long as I've been drawing, but I've never
+    been particularly happy with how it looked. So for this iteration, I decided to get help. Since I had just 
+    completed a Web Development program at General Assembly, I asked some graduates of the UX Design program 
+    to help me with that aspect.`,
+    `The resulting collaboration took research from potential buyers to design a site, and then gathered user
+    feedback to fine-tune the initial design.`
   ],
   "tech": [
     `I'm also into making websites. This is one such. In fact, if my goal were merely to sell art, 

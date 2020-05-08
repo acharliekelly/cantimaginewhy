@@ -33,13 +33,6 @@ export const albums = [
     "sortField": ".year"
   },
   {
-    "name": "Portrait",
-    "tag": "portrait-new",
-    "thumbnail": "nfs/luthien-5",
-    "description": "Recent attempts at portraiture",
-    "sortField": ".alb-order"
-  },
-  {
     "name": "Logos",
     "tag": "logo",
     "thumbnail": "ciw4",
@@ -75,10 +68,10 @@ export const albums = [
     "sortField": ".caption"
   },
   {
-    "name": "Holiday",
-    "tag": "holiday",
+    "name": "Cards",
+    "tag": "cards",
     "thumbnail": "art/st-patricks-day-card-2011",
-    "description": "Designs for holiday cards",
+    "description": "Designs for various holidays and special occaisions",
     "sortField": '.year'
   },
   {
@@ -90,7 +83,7 @@ export const albums = [
   },
   {
     "name": "People",
-    "tag": "portrait-old",
+    "tag": "portrait",
     "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
     "sortField": ".caption"

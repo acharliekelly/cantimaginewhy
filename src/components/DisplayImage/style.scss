@@ -13,6 +13,11 @@
     min-height: 400px;
     background-color: #666;
   }
+
+  &.full-width img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .stacker .image-view img {

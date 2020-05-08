@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { Image, Transformation } from 'cloudinary-react';
-import ImageToolbar from '../ImageToolbar';
-import { withStacking } from '../higherOrder/withStacking';
+import { imageZoomSizes } from '../../utils/imageApi';
 import classNames from 'classnames';
 
 import './style.scss';
@@ -16,20 +15,21 @@ const DEFAULT_IMG_WIDTH = 600;
  *  - takes currentImage prop
  * @param {*} props 
  */
-export const DisplayImage = props => {
-  const { displayHeight, displayWidth, bgColor, currentImage, enabled, imageZoom } = props;
-  const viewCls = classNames('image-view', { 'enabled': enabled });
+const DisplayImage = props => {
+  const { displayHeight, displayWidth, bgColor, currentImage, enabled, imageZoom, isFullWidth } = props;
+
+  const viewCls = classNames('image-view', { 'enabled': enabled }, { 'full-width': isFullWidth});
   return (
     <Container className={viewCls}>
       {currentImage && currentImage.public_id ? (
         <Image cloudName="cantimaginewhy" 
           publicId={currentImage.public_id}
           onClick={imageZoom}>
-          <Transformation 
-            height={displayHeight} 
-            width={displayWidth} 
-            crop="pad" 
-            background={bgColor} />
+            {isFullWidth ? (
+              <Transformation width={300} height={200} crop="pad" background={bgColor} />
+            ) : (
+              <Transformation height={displayHeight} width={displayWidth} crop="pad" background={bgColor} />
+            )}
         </Image>
       ) : (
         <div className="placeholder"  />
@@ -40,10 +40,13 @@ export const DisplayImage = props => {
 
 DisplayImage.propTypes = {
   /**
-   * the image (available from ImageDetail)
+   * the image data (json)
    */
   currentImage: PropTypes.object,
 
+  /**
+   * function to magnify image
+   */
   imageZoom: PropTypes.func,
   
   /**
@@ -64,68 +67,32 @@ DisplayImage.defaultProps = {
 };
 
 
-/**
- * Display image and toolbar, as a stacked panel
- * - takes currentImageProps: {
- *    currentImage: { <cImageObj> },
- *    moveNext: func,
- *    movePrevious: func,
- *    zoom
- *    imageList: [<cImageObj>],
- *    imageIndex: int
- * }
- * @param {*} props 
- */
-const DisplayImagePanel = props => {
-  const { imageMovement, galleryImages, imageIndex } = props;
-  const { moveNext, movePrevious } = imageMovement;
+// for mobile - self-defined zoom function
+export const DisplayImageZoom = props => {
+  const { currentImage, enabled } = props;
+  const zoomSizes = imageZoomSizes(currentImage, [300,200]);
+  
   const [ zoomFactor, setZoomFactor ] = useState(1);
 
-  const wStep = DEFAULT_IMG_WIDTH;
-  const hStep = DEFAULT_IMG_HEIGHT;
-  const maxFactor = 5;
-
-  const increaseZoom = () => {
-    const next = (zoomFactor + 1) % maxFactor;
-    setZoomFactor(next || 1);
+  const incrementZoom = () => {
+    const nextZf = (zoomFactor + 1) % zoomSizes.length;
+    setZoomFactor(nextZf);
   }
 
-  
+  const viewCls = classNames('image-view', 'full-width', { 'enabled': enabled });
   return (
-    <Container className="image-detail">
-      <DisplayImage 
-        currentImage={galleryImages[imageIndex]} 
-        enabled={zoomFactor > 1} 
-        bgColor="black"
-        displayHeight={hStep * zoomFactor}
-        displayWidth={wStep * zoomFactor}
-        />
-
-      <ImageToolbar 
-        variant="dark"
-        imgSize="2x"
-        fullWidth
-        prevImageFn={movePrevious}
-        zoomImageFn={increaseZoom}
-        // zoomText={` x ${zoomFactor}`}
-        nextImageFn={moveNext}
-        disableCarousel={galleryImages.length < 2}
-      />
+    <Container className={viewCls}>
+      {currentImage && currentImage.public_id ? (
+        <Image cloudName="cantimaginewhy"
+          publicId={currentImage.public_id}
+          onClick={incrementZoom}>
+            <Transformation width={zoomSizes[zoomFactor][0]} height={zoomSizes[zoomFactor][1]} />
+        </Image>
+      ) : (
+        <div className="placeholder"  />
+      )}
     </Container>
   )
 }
 
-DisplayImagePanel.propTypes = {
-  /**
-   * the image, plus all image-related props
-   */
-  currentImageProps: PropTypes.object
-};
-
-DisplayImagePanel.defaultProps = {
-  displayHeight: 400,
-  displayWidth: 600,
-  bgColor: 'transparent'
-};
-
-export default withStacking(DisplayImagePanel);
+export default DisplayImage;

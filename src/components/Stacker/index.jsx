@@ -9,8 +9,7 @@ import GeoView from '../GeoView';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
 import { withStacking } from '../higherOrder/withStacking';
-import ImageInfo from '../ImageInfo';
-import DisplayImagePanel from '../DisplayImage';
+// import { Breakpoint } from 'react-socks';
 
 import './stack.scss';
 
@@ -23,17 +22,17 @@ const Stacker = props => {
   // current image has Progress section
   const [ hasProgress, setHasProgress ] = useState(false);
   // current image
-  const [ currentImage, setCurrentImage ] = useState(null);
+  // const [ currentImage, setCurrentImage ] = useState(null);
   
-  const { tagObject, refKey, galleryImages, imageIndex, imageMovement, updateSelectNav, isFullWidth } = props;
+  const { tagObject, refKey, galleryImages, updateSelectNav, isFullWidth } = props;
 
-  useEffect(() => {
-    if (imageMovement) {
-      setCurrentImage(galleryImages[imageIndex])
-    } else {
-      setCurrentImage(null)
-    }
-  }, [imageMovement, galleryImages, imageIndex])
+  // useEffect(() => {
+  //   if (imageMovement) {
+  //     setCurrentImage(galleryImages[imageIndex])
+  //   } else {
+  //     setCurrentImage(null)
+  //   }
+  // }, [imageMovement, galleryImages, imageIndex])
   
   useEffect(() => {
     if (tagObject) {
@@ -52,12 +51,8 @@ const Stacker = props => {
   }, [refKey]);
 
   const StackedGallery = withStacking(ThumbGallery);
-  const StackedInfo = withStacking(ImageInfo);
-
 
   const activeKey = isFullWidth ? 'albums' : 'gallery';
-
-  // TODO: deal with missing activeKey
 
 
   if (isFullWidth || tagObject) { 
@@ -65,7 +60,7 @@ const Stacker = props => {
       <div className="stacker">
         <Accordion defaultActiveKey={activeKey}>
 
-          {updateSelectNav && (
+          {updateSelectNav && (   // only set on small screens; otherwise nav not in stack
             <MobileNav  
               eventKeyName="albums"
               variant="primary"
@@ -80,36 +75,25 @@ const Stacker = props => {
               eventKeyName="explan"
               variant="dark"
               cardTitle="About Album" 
+              enabled={albumAbout && 1}
+              {...props} />
+          )}
+          {galleryImages && (
+            <StackedGallery 
+              eventKeyName="gallery" 
+              variant="primary"
+              cardTitle="Gallery"
+              enabled={galleryImages.length > 0}
               {...props} />
           )}
           
-          <StackedGallery 
-            eventKeyName="gallery" 
-            variant="primary"
-            cardTitle="Gallery"
-            {...props} />
-
-          {imageMovement && ( // on mobile, show Display in stack
-          <>
-            <DisplayImagePanel 
-              eventKeyName="display"
-              variant="secondary"
-              cardTitle="Display Image"
-              {...props} />
-            <StackedInfo
-              currentImage={currentImage}
-              eventKeyName="info"
-              variant="secondary"
-              cardTitle="Image Details"
-              {...props} />
-          </>
-          )}
 
           {hasProgress && (
             <ProgressView 
               eventKeyName="progress"
               cardTitle="Artistic Process"
               variant="success"
+              enabled={hasProgress}
               {...props} />
           )}
 
@@ -118,6 +102,7 @@ const Stacker = props => {
               eventKeyName="geo"
               cardTitle="Location"
               variant="secondary"
+              enabled={props.geoTag}
               {...props} />
           )}
           

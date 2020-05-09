@@ -95,23 +95,20 @@ const ArtworkPage = props => {
   }
 
 
+  const navProps = {
+    updateSelectNav: selectGallery,
+    updateClearGallery: clearArtGallery,
+    updateNavSwitch: navSwitch
+  }
 
 
   return (
     <div className="content">
       <Breakpoint lg up>
       { useFilter ? (
-        <FilterNav 
-          updateSelectNav={selectGallery} 
-          updateClearGallery={clearArtGallery} 
-          updateNavSwitch={navSwitch}
-          />
+        <FilterNav {...navProps}/>
       ) : (
-        <AlbumNav
-          updateSelectNav={selectGallery}
-          updateClearGallery={clearArtGallery}
-          updateNavSwitch={navSwitch}
-        />
+        <AlbumNav {...navProps}/>
       )}
       </Breakpoint>
       

@@ -23,31 +23,41 @@
     font-size: 1em;
     font-weight: bold;
   }
+}
 
-  .view-wrapper {
-    max-width: 25vw;
-    text-align: center;
-    margin: 0 auto;
+.view-wrapper {
+  max-width: 25vw;
+  text-align: center;
+  margin: 0 auto;
 
-    .img-wrapper {
-      // margin: 1px auto;
-      // border: thin ridge #333;
-      border-radius: 3px;
-  
-      img {
-        width: 100%;
-        height: auto;
-        cursor: pointer;
-      }
+  .help-text {
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: small;
+  }
+
+  .img-wrapper {
+    // margin: 1px auto;
+    // border: thin ridge #333;
+    border-radius: 3px;
+
+    img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
     }
   }
-  
-
-  .process-images {
-    max-width: 100%;
-  }
-
 }
+
+
+.process-images {
+  max-width: 100%;
+}
+
 
 .story {
   width: 100%;

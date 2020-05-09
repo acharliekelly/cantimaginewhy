@@ -2,14 +2,12 @@ import React,{ useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
-import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
 import ImageToolbar from '../ImageToolbar';
 import { withLightbox } from '../higherOrder/withLightbox';
 import { withStacking } from '../higherOrder/withStacking';
 import './progress.scss';
 
-const helpText = `Series of photos documenting the creative process, from initial view to finished product.`
 
 const ProgressView = props => {
   const { refKey, thumbSize } = props;
@@ -40,7 +38,9 @@ const ProgressView = props => {
     <>
     {progressImages[progressIndex] && (
     <div className="view-wrapper">
-    
+      <div className="help-text">
+      Series of photos documenting the creative process, from initial view to finished product.
+      </div>
       <div className="img-wrapper">
         <Image cloudName="cantimaginewhy" 
           publicId={progressImages[progressIndex].public_id} 
@@ -65,15 +65,6 @@ const ProgressView = props => {
           thumbSize={thumbSize}
           />
       )}
-      <div style={{textAlign: 'right'}}>
-        <HelpButton 
-          header="View Process" 
-          content={helpText} 
-          size="sm" 
-          placement="top"
-          variant={`outline-${props.variant}`}
-          style={{float: 'right'}} />
-      </div>
     </div>
     )}
     </>

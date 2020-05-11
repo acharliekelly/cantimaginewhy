@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// import withSizes from 'react-sizes';
 import { Breakpoint } from 'react-socks';
-// import { mapSizesToProps } from '../../utils/system';
 import { lookupGeo } from '../../utils/geoUtils';
 import FilterNav from '../../components/Navs/FilterNav';
 import AlbumNav from '../../components/Navs/AlbumNav';
@@ -12,6 +10,7 @@ import ImageDetail from '../../components/ImageDetail';
 import Stacker from '../../components/Stacker';
 import { sortGallery, getThumbnailSize } from '../../utils/imageApi';
 import { fetchGallery, getContextProperty } from '../../utils/cloudinaryApi';
+import { ImgGallery } from '../../utils/gallery';
 
 import './artwork.scss';
 
@@ -19,12 +18,14 @@ import './artwork.scss';
 const INITIAL_NAV = false;  // true = filter
 
 const ArtworkPage = props => {
+  const tmp = new ImgGallery([])
   // STATE VARS
   const [ useFilter, setUseFilter ] = useState(INITIAL_NAV);  
   const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
   const [ thumbSize, setThumbSize ] = useState(0);
-  const [ currentIndex, setCurrentIndex ] = useState(0); // int
-  const [ artImages, setArtImages ] = useState([]); // json array
+  const [ imgGallery, setImgGallery ] = useState(tmp);
+  // const [ currentIndex, setCurrentIndex ] = useState(0); // int
+  // const [ artImages, setArtImages ] = useState([]); // json array
   const [ refKey, setRefKey ] = useState(null); // string
   const [ geotag, setGeotag ] = useState('');
 
@@ -35,21 +36,19 @@ const ArtworkPage = props => {
 
   // update display image
   useEffect(() => {
-    const img = artImages[currentIndex];
-    if (img) {
-      setRefKey(getContextProperty(img, 'key', null));
-      // look in both image context and data file 
-      const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
-      setGeotag(geo);
+    if (imgGallery && imgGallery.hasImages) {
+      const img = imgGallery.currentImage
+      if (img) {
+        setRefKey(getContextProperty(img, 'key', null));
+        // look in both image context and data file 
+        const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
+        setGeotag(geo);
+      }
+      const size = getThumbnailSize(imgGallery.imageList.length);
+      setThumbSize(size);
     }
     return clearImage;
-  }, [artImages, currentIndex]);
-
-  // update gallery size
-  useEffect(() => {
-    const size = getThumbnailSize(artImages.length);
-    setThumbSize(size);
-  }, [artImages]);
+  }, [imgGallery]);
 
   // run when no image is selected
   const clearImage = () => {
@@ -63,8 +62,7 @@ const ArtworkPage = props => {
   }
 
   const clearArtGallery = () => {
-    setArtImages([]);
-    setCurrentIndex(0);
+    setImgGallery(null);
     setRefKey(null);
     setSelectedAlbum(null);
   }  
@@ -73,27 +71,10 @@ const ArtworkPage = props => {
   const selectGallery = nav => {
     fetchGallery(nav.tag).then(resources => {
       const sorted = sortGallery(nav, resources);
-      setArtImages(sorted);
-      setCurrentIndex(0);
+      setImgGallery(new ImgGallery(sorted));
       setSelectedAlbum(nav);
     }).catch(err => console.error(err))
   }
-
-  const moveNext = () => {
-    const next = (currentIndex + 1) % artImages.length;
-    setCurrentIndex(next)
-  }
-
-  const movePrev = () => {
-    const prev = (currentIndex + artImages.length - 1) % artImages.length;
-    setCurrentIndex(prev)
-  }
-
-  const galleryMoves = {
-    moveNext: moveNext,
-    movePrevious: movePrev
-  }
-
 
   const navProps = {
     updateSelectNav: selectGallery,
@@ -124,17 +105,15 @@ const ArtworkPage = props => {
       <Breakpoint md down>
         <Container fluid="md">
           <ImageDetail 
-            imageMovement={galleryMoves}
-            imageList={artImages}
-            imageIndex={currentIndex}
+            imgGallery={imgGallery}
             isFullWidth={true}
           />
           <Stacker 
             updateSelectNav={selectGallery}
             tagObject={selectedAlbum} 
-            selectThumbnail={setCurrentIndex} 
-            galleryImages={artImages}
-            imageIndex={currentIndex}
+            selectThumbnail={imgGallery.setIndex} 
+            galleryImages={imgGallery.imageList}
+            imageIndex={imgGallery.index}
             isFullWidth={true}
             refKey={refKey}
             geoTag={geotag}
@@ -149,9 +128,9 @@ const ArtworkPage = props => {
             <Col lg={4}>
               <Stacker 
                 tagObject={selectedAlbum} 
-                selectThumbnail={setCurrentIndex} 
-                galleryImages={artImages}
-                imageIndex={currentIndex}
+                selectThumbnail={imgGallery.setIndex} 
+                galleryImages={imgGallery.imageList}
+                imageIndex={imgGallery.index}
                 isFullWidth={false}
                 thumbSize={thumbSize}
                 refKey={refKey}
@@ -161,9 +140,7 @@ const ArtworkPage = props => {
             </Col>
             <Col lg={8}>
               <ImageDetail 
-                imageMovement={galleryMoves}
-                imageList={artImages}
-                imageIndex={currentIndex}
+                imgGallery={imgGallery}
                 isFullWidth={false}
               />
             </Col>

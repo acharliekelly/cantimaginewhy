@@ -190,17 +190,19 @@ export const masonryImageArray = (resources, scale = 1) => {
 }
 
 // returns 2D array of zoom sizes [[w,h]]
-export const imageZoomSizes = (cImage, initSizes) => {
+export const imageZoomSizes = (cImage, initSizes, maxZoom = 5) => {
   const factors = [];
   const maxHeight = cImage.height;
   const maxWidth = cImage.width;
   const [ startWidth, startHeight ] = initSizes;
+  const wStep = Math.floor(maxWidth / maxZoom);
+  const hStep = Math.floor(maxHeight / maxZoom);
   let width = startWidth, height = startHeight;
-  do {
-    const size = [width, height];
-    factors.push(size);
-    width += startWidth;
-    height += startHeight;
-  } while (width < maxWidth && height < maxHeight);
+  factors.push([width, height]);
+  while (width < maxWidth && height < maxHeight) {
+    width += wStep;
+    height += hStep;
+    factors.push([width, height]);
+  }
   return factors;
 }

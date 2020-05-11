@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ImgGallery } from './gallery';
 
 
 // PUBLIC CONSTANTS 
@@ -31,6 +32,11 @@ const jsonImgList = tagName => {
 export const fetchGallery = tagName => {
   const url = jsonImgList(tagName);
   return axios(url).then(res => res.data.resources);
+}
+
+export const fetchImgGallery = tagName => {
+  const url = jsonImgList(tagName);
+  return axios(url).then(res => new ImgGallery(res.data.resources));
 }
 
 

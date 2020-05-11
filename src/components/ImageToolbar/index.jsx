@@ -7,8 +7,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import withSizes from 'react-sizes';
 import { mapSizesToProps } from '../../utils/system';
 
+// mobile toolbar - zoom via fetch, move via click or swipe
+export const TouchToolbar = props => {
+  const { variant, imgGallery, zoomImageFn, imgSize, disableCarousel } = props;
+
+  return (
+    <Container className="toolbar" style={{fontSize: '0.5rem'}}>
+      <ButtonGroup className="max" >
+        <Button variant={variant} title="Previous Image" onClick={imgGallery.movePrevious} disabled={disableCarousel}>
+          <FontAwesomeIcon icon="chevron-left" size={imgSize} />
+        </Button>
+        {props.zoomImageFn ? (
+          <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
+            <FontAwesomeIcon icon="search-plus" size={imgSize} />
+          </Button>
+        ) : (
+          <Button variant={variant} block disabled />
+        )}
+        <Button variant={variant} title="Next Image" onClick={imgGallery.moveNext} disabled={disableCarousel}>
+          <FontAwesomeIcon icon="chevron-right" size={imgSize} />
+        </Button>
+      </ButtonGroup>
+    </Container>
+  )
+  
+}
+
+// default toolbar - zoom via lightbox, move via click or keydown
 const ImageToolbar = props => {
-  const { variant, prevImageFn, nextImageFn, zoomImageFn, zoomText, imgSize, disableCarousel } = props;
+  const { variant, imgGallery, zoomImageFn, imgSize, disableCarousel } = props;
+
   const grpCls = props.fullWidth ? 'max' : '';
 
   const mStyle = {
@@ -19,11 +47,11 @@ const ImageToolbar = props => {
     switch (event.keyCode) {
       case 37:
       // left arrow
-        prevImageFn();
+        imgGallery.movePrevious();
       break;
       case 39:
       // right arrow
-        nextImageFn();
+        imgGallery.moveNext();
       break;
       case 13:
       // enter
@@ -37,20 +65,17 @@ const ImageToolbar = props => {
   return (
     <Container className="toolbar" style={mStyle}>
       <ButtonGroup className={grpCls} onKeyDown={keyDown} >
-        <Button variant={variant} title="Previous Image" onClick={prevImageFn} disabled={disableCarousel}>
+        <Button variant={variant} title="Previous Image" onClick={imgGallery.movePrevious} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-left" size={imgSize} />
         </Button>
         {props.zoomImageFn ? (
           <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
             <FontAwesomeIcon icon="search-plus" size={imgSize} />
-            {zoomText && (
-              <span style={{marginLeft: '1em', fontSize: '2em', fontWeight: 'bold'}}>{zoomText}</span>
-            )}
           </Button>
         ) : (
           <Button variant={variant} block disabled />
         )}
-        <Button variant={variant} title="Next Image" onClick={nextImageFn} disabled={disableCarousel}>
+        <Button variant={variant} title="Next Image" onClick={imgGallery.moveNext} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-right" size={imgSize} />
         </Button>
       </ButtonGroup>
@@ -72,14 +97,6 @@ ImageToolbar.propTypes = {
    * size of icons
    */
   imgSize: PropTypes.string,
-  /**
-   * function for Previous Image
-   */
-  prevImageFn: PropTypes.func.isRequired,
-  /**
-   * function for Next Image
-   */
-  nextImageFn: PropTypes.func.isRequired,
   /**
    * function for Zoom
    */

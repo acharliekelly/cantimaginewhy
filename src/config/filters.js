@@ -218,34 +218,39 @@ export const filters = [
     "description": "Filter by method (pencil, watercolor, etc)",
     "options": [
       {
-        "name": "Pencil",
-        "tag": "pencil",
+        "name": "Graphite",
+        "tag": "graphite",
         "thumbnail": "nfs/christian-science-plaza",
-        "description": "Graphite / Colored Pencil",
-        "sortField": ".caption"
+        "description": "Regular old pencil",
+        "sortField": ".year"
+      },
+      {
+        "name": "Colored Pencil",
+        "tag": "colored-pencil",
+        "thumbnail": "nfs/winter-yosemite",
+        "description": "Colored Pencil",
+        "sortField": ".year"
       },
       {
         "name": "WC Pencil",
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
         "description": "First drawn with watercolor pencil, then painted with water to create watercolor",
-        "sortField": ".caption",
-        "display": [ "-progress", "-explan" ]
+        "sortField": ".year"
       },
       {
         "name": "Watercolor",
         "tag": "watercolor",
         "thumbnail": "art/late-spring-on-the-charles_2017",
         "description": "Traditional watercolor painting with brush",
-        "sortField": ".caption",
-        "display": [ "-progress", "-explan" ]
+        "sortField": ".year"
       },
       {
         "name": "Acrylic",
         "tag": "acrylic",
         "thumbnail": "art/riparian_balcony",
         "description": "Layered acrylic paints",
-        "sortField": ".caption"
+        "sortField": ".year"
       }
     ]
   },

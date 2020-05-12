@@ -6,9 +6,10 @@ $enable-gradients: true;
 
 
 $theme-colors: (
-  "primary": #3c90da,
-  "secondary": #434343,
-  "info": #7d1c9b
+  "primary": #3a42af,
+  "secondary": #06074b,
+  "info": #7d1c9b,
+  "warning": #e6b20a
 );
 
 @import "node_modules/bootstrap/scss/bootstrap";

@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';  
 import { BreakpointProvider } from 'react-socks';
+import { CloudinaryContext } from 'cloudinary-react';
 
 import Header from './components/Header';
 import ContactPage from './views/Contact/';
@@ -16,6 +17,7 @@ import ArtworkPage from './views/Artwork';
 
 import { initializeLibrary } from './utils/faLibrary';
 import { updateFavicon, initSocks } from './utils/system';
+import { cloudName } from './utils/cloudinaryApi';
 
 import './scss/custom.scss';
 import './scss/main.scss';
@@ -36,6 +38,7 @@ const App = () => {
   return (
     <BreakpointProvider>
       <div className="page-container">
+        <CloudinaryContext cloudName={cloudName}>
         <Router basename='/'>
           <Header />
           <div className="content-wrapper">
@@ -55,6 +58,7 @@ const App = () => {
           </div>
         </Router>
         <Footer />
+        </CloudinaryContext>
       </div>
     </BreakpointProvider>
   );

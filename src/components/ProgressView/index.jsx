@@ -42,7 +42,7 @@ const ProgressView = props => {
       Series of photos documenting the creative process, from initial view to finished product.
       </div>
       <div className="img-wrapper">
-        <Image cloudName="cantimaginewhy" 
+        <Image  
           publicId={progressImages[progressIndex].public_id} 
           onClick={magnifyImage} >
             <Transformation height="200" width="auto" crop="fill" />
@@ -80,7 +80,7 @@ ProgressView.propTypes = {
 ProgressView.defaultProps = {
   refKey: null,
   thumbSize: 80,
-  variant: 'success'
+  variant: 'info'
 }
 
 export default withLightbox(withStacking(ProgressView));

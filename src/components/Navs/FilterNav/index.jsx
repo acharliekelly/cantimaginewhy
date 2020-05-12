@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
+import { Image, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../../utils/cloudinaryApi';
 import { filters, navDescription } from '../../../config/filters';
 import HelpButton from '../../Buttons/HelpButton/';
@@ -69,7 +69,7 @@ const FilterNav = props => {
   const descStyle = { width: `${props.thumbSize * 3}px` };
 
   return (
-    <CloudinaryContext cloudName="cantimaginewhy">
+    <>
       <Navbar className="category-bar justify-content-between">
 
         <NavSwitch type="filter" {...props} />
@@ -131,7 +131,7 @@ const FilterNav = props => {
         })}
         
       </Container>
-    </CloudinaryContext>
+    </>
   );
 }
 

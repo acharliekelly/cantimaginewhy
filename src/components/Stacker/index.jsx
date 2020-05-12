@@ -21,19 +21,11 @@ const Stacker = props => {
   const [ albumAbout, setAlbumAbout ] = useState(null);
   // current image has Progress section
   const [ hasProgress, setHasProgress ] = useState(false);
-  // current image
-  // const [ currentImage, setCurrentImage ] = useState(null);
+ 
   
   const { tagObject, refKey, galleryImages, updateSelectNav, isFullWidth } = props;
 
-  // useEffect(() => {
-  //   if (imageMovement) {
-  //     setCurrentImage(galleryImages[imageIndex])
-  //   } else {
-  //     setCurrentImage(null)
-  //   }
-  // }, [imageMovement, galleryImages, imageIndex])
-  
+  // on change album
   useEffect(() => {
     if (tagObject) {
       setAlbumAbout(getExplanation(tagObject, false));
@@ -42,6 +34,7 @@ const Stacker = props => {
     }
   }, [tagObject]);
 
+  // on change image
   useEffect(() => {
     if (refKey) {
       setHasProgress(isSeriesExist(refKey))
@@ -92,7 +85,7 @@ const Stacker = props => {
             <ProgressView 
               eventKeyName="progress"
               cardTitle="Artistic Process"
-              variant="success"
+              variant="info"
               enabled={hasProgress}
               {...props} />
           )}

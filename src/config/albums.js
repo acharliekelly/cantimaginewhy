@@ -8,6 +8,7 @@
  * - sortField: field to sort results on
  *   - 'field' = item.field
  *   - '.field' = item.context.custom.field
+ * - sortDir: direction - 
  */
 
 export const albums = [
@@ -16,7 +17,8 @@ export const albums = [
     "tag": "plein-air-acrylic",
     "thumbnail": "art/a_friday_in_september",
     "description": "Painted on site",
-    "sortField": ".completed"
+    "sortField": ".completed",
+    "sortDir": "desc"
   },
   {
     "name": "Scenery",
@@ -44,7 +46,8 @@ export const albums = [
     "tag": "sketch",
     "thumbnail": "nfs/davis-t",
     "description": "Onsite pencil sketches of local landmarks",
-    "sortField": ".completed"
+    "sortField": ".completed",
+    "sortDir": "desc"
   },
   {
     "name": "Name Tags",
@@ -86,7 +89,8 @@ export const albums = [
     "tag": "portrait",
     "thumbnail": "nfs/rihanna",
     "description": "Sketches of people; some of them famous",
-    "sortField": ".year"
+    "sortField": ".year",
+    "sortDir": "desc"
   },
   {
     "name": "Plaitwork",

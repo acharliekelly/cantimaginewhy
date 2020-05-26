@@ -11,7 +11,7 @@
  * - description: .alt
  * - location, medium, size, year, price: context props 
  * - materialInfo: has medium & size
- * - refKey: .key (lookup for progress photos)
+ * - productLookup: .key (lookup for progress photos)
  * - productKey: .faa (lookup for Products)
  * - forSale: .original == 'available'
  * - forPrint: has .faa value
@@ -34,7 +34,7 @@ export const loadImageProps = imageObj => {
       forSale: ((getPictureProperty(imageObj, 'original')) === 'available'),
       forPrint: hasProperty(imageObj, 'faa'),
       productKey: getPictureProperty(imageObj, 'faa'),
-      refKey: getPictureProperty(imageObj, 'key', '-'),
+      productLookup: getPictureProperty(imageObj, 'key', '-'),
       price: getPictureProperty(imageObj, 'price', 'NFS'),
       materialInfo: hasProperty(imageObj, 'medium') && hasProperty(imageObj, 'size'),
     }

@@ -14,7 +14,7 @@ const stories = storiesOf('ProgressView', module);
 stories.add('Default', () => (
   <div className="story">
     <Accordion>
-      <ProgressView refKey={testRef} />
+      <ProgressView productLookup={testRef} />
     </Accordion>
   </div>
   

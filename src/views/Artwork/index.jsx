@@ -25,7 +25,7 @@ const ArtworkPage = props => {
   const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
   const [ artImages, setArtImages ] = useState([]); // json array
-  const [ refKey, setRefKey ] = useState(null); // string
+  const [ productLookup, setProductLookup ] = useState(null); // string
   const [ geotag, setGeotag ] = useState('');
 
   // switch nav
@@ -37,7 +37,7 @@ const ArtworkPage = props => {
   useEffect(() => {
     const img = artImages[currentIndex];
     if (img) {
-      setRefKey(getContextProperty(img, 'key', null));
+      setProductLookup(getContextProperty(img, 'key', null));
       // look in both image context and data file 
       const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
       setGeotag(geo);
@@ -53,7 +53,7 @@ const ArtworkPage = props => {
 
   // run when no image is selected
   const clearImage = () => {
-    setRefKey(null);
+    setProductLookup(null);
     setGeotag('');
   }
 
@@ -65,7 +65,7 @@ const ArtworkPage = props => {
   const clearArtGallery = () => {
     setArtImages([]);
     setCurrentIndex(0);
-    setRefKey(null);
+    setProductLookup(null);
     setSelectedAlbum(null);
   }  
 
@@ -136,7 +136,7 @@ const ArtworkPage = props => {
             galleryImages={artImages}
             imageIndex={currentIndex}
             isFullWidth={true}
-            refKey={refKey}
+            productLookup={productLookup}
             geoTag={geotag}
             maxHeight={70}
           />
@@ -154,7 +154,7 @@ const ArtworkPage = props => {
                 imageIndex={currentIndex}
                 isFullWidth={false}
                 thumbSize={thumbSize}
-                refKey={refKey}
+                productLookup={productLookup}
                 geoTag={geotag}
                 maxHeight={70}
               />

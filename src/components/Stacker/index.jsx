@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from 'react-bootstrap/Accordion';
 import MobileNav from '../Navs/MobileNav';
-import Explan from '../Explan';
+import Explan from '../Explan/';
 import ThumbGallery from '../ThumbGallery';
-import ProgressView from '../ProgressView';
-import GeoView from '../GeoView';
+import ProgressView from '../ProgressView/';
+import GeoView from '../GeoView/';
 import { getExplanation } from '../../utils/tagUtils';
 import { isSeriesExist } from '../../utils/onsiteUtils';
 import { withStacking } from '../higherOrder/withStacking';
@@ -23,7 +23,7 @@ const Stacker = props => {
   const [ hasProgress, setHasProgress ] = useState(false);
  
   
-  const { tagObject, refKey, galleryImages, updateSelectNav, isFullWidth } = props;
+  const { tagObject, productLookup, galleryImages, updateSelectNav, isFullWidth } = props;
 
   // on change album
   useEffect(() => {
@@ -36,12 +36,12 @@ const Stacker = props => {
 
   // on change image
   useEffect(() => {
-    if (refKey) {
-      setHasProgress(isSeriesExist(refKey))
+    if (productLookup) {
+      setHasProgress(isSeriesExist(productLookup))
     } else {
       setHasProgress(false);
     }
-  }, [refKey]);
+  }, [productLookup]);
 
   const StackedGallery = withStacking(ThumbGallery);
 
@@ -51,7 +51,8 @@ const Stacker = props => {
   if (isFullWidth || tagObject) { 
     return (
       <div className="stacker">
-        <Accordion defaultActiveKey={activeKey}>
+        <StackBoundary>
+          <Accordion defaultActiveKey={activeKey}>
 
           {updateSelectNav && (   // only set on small screens; otherwise nav not in stack
             <MobileNav  
@@ -99,7 +100,8 @@ const Stacker = props => {
               {...props} />
           )}
           
-        </Accordion>
+          </Accordion>
+        </StackBoundary>
       </div>
     )
   } else {
@@ -135,7 +137,7 @@ Stacker.propTypes = {
   /**
    * for ProgressView
    */
-  refKey: PropTypes.string,
+  productLookup: PropTypes.string,
   /**
    * for GeoView
    */
@@ -159,10 +161,36 @@ Stacker.defaultProps = {
   thumbSize: 100,
   imageIndex: 0,
   maxHeight: 70,
-  refKey: null,
+  productLookup: null,
   geoTag: null,
   isFullWidth: false,
   imageMovement: null
 }
 
 export default Stacker;
+
+/**
+ * Error boundary
+ */
+export class StackBoundary extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      hasError: false
+    }
+  }
+
+  componentDidCatch (error, info) {
+    this.setState({
+      hasError: true
+    })
+    console.log('Something broke in Stacker: ', error, info)
+  }
+
+  render () {
+    if (this.props.hasError) {
+      return <h1 className="error">Something is broken!</h1>
+    }
+    return this.props.children;
+  }
+}

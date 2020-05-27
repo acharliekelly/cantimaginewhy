@@ -1,4 +1,9 @@
 {
   "jshint.options": {"esversion": 6},
-  "jshint.exclude": {"**/*.jsx": true},
+  "jshint.exclude": {
+    "**/*.jsx": true
+  },
+  "files.watcherExclude": {
+    "**/data/**": true
+  },
 }

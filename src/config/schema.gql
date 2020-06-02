@@ -1,0 +1,92 @@
+# Shema design for CIW back-end
+
+enum Relationship {
+  PRODUCT
+  VIEW
+  PROGRESS
+  FINAL
+}
+
+type Artwork @collection(name: "artworks") {
+  source: CloudSource!
+  cloudId: String!
+  title: String!
+  description: String
+  location: Location
+  price: Float
+  available: Boolean
+  completed: Time!
+  progress: ProgressSequence
+  galleries: [Gallery]
+}
+
+type SubmitArtworkInput {
+  sourceId: ID!
+  cloudId: String!
+  title: String!
+  description: String
+  price: Float
+  completed: Time!
+}
+
+
+type Gallery @collection(name: "galleries") {
+  name: String!
+  tag: String!
+  description: String
+  thumbnail: Artwork!
+  sortField: String
+  sortDesc: Boolean
+  about: String
+  artworks: [Artwork!]
+}
+
+type CloudSource @embedded {
+  name: String!
+  cloudName: String!
+  resourceUri(cloudId: String!): String!
+}
+
+type Location @collection(name: "locations") {
+  latitude: Float!
+  longitude: Float!
+  approxLocale: String
+}
+
+type Product @collection(name: "products") {
+  vendor: Vendor!
+  description: String
+  artwork: Artwork!
+  uri: String!
+  price: Float!
+}
+
+type Vendor @embedded {
+  name: String!
+}
+
+type RelatedImage @embedded {
+  source: CloudSource!
+  cloudId: String!
+  artwork: Artwork!
+  relation: Relationship!
+  order: Int
+}
+
+type ProgressSequence @collection(name: "progressSequences") {
+  artwork: Artwork!
+  sequence: [RelatedImage!]!
+}
+
+type Query {
+  allArtwork: [Artwork!]! @index(name: "all_artwork")
+  allGalleries: [Gallery!]! @index(name: "all_galleries")
+  allProducts: [Product!]! @index(name: "all_products")
+  artwork(id: ID!): Artwork
+  gallery(id: ID!): Gallery
+}
+
+type Mutation {
+  
+}
+

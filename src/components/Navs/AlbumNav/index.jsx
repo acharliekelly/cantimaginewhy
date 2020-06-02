@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { CloudinaryContext } from 'cloudinary-react';
 import NavButton from '../NavButton';
 import { albums, navDescription } from '../../../config/albums';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
-import { Breakpoint } from 'react-socks';
 import classNames from 'classnames';
 
 import '../nav.scss';
@@ -30,44 +28,33 @@ const AlbumNav = props => {
       'justify-content-around': !updateSelectNav
     }
   )
+  const navBtnCls = classNames('album-bar', 'justify-content-center', 'albums');
 
   return (
-      <CloudinaryContext cloudName="cantimaginewhy">
+      <>
          <Navbar className={navBarClass}>
-           <Breakpoint lg up>
-            <NavSwitch type="album" {...props} />
-           </Breakpoint>
-           
+          <NavSwitch type="album" {...props} />
           <Navbar.Text>
-            <span className="browse-title">Albums</span>
+            <span className="browse-title">Browse by Album</span>
           </Navbar.Text>
-
-          <Breakpoint lg up>
-            <HelpButton header="Albums" content={navDescription} size="2x" />
-          </Breakpoint>
+          <HelpButton header="Albums" content={navDescription} size="2x" />
         </Navbar>
 
-        
-        <Container fluid="md" className="album-bar justify-content-center albums">
-          <Breakpoint lg up>
-          {albums.map((album, index) => {
-            const selected = (selectedNav && selectedNav.tag === album.tag);
-            return (
-              <NavButton 
-                key={index}
-                navTag={album} 
-                onSelectItem={selectItem} 
-                isSelected={selected} 
-                {...props}
-                />
-              );
-            })}
-          </Breakpoint>
-
-          
-         
+        <Container fluid="md" className={navBtnCls}>
+        {albums.map((album, index) => {
+          const selected = (selectedNav && selectedNav.tag === album.tag);
+          return (
+            <NavButton 
+              key={index}
+              navTag={album} 
+              onSelectItem={selectItem} 
+              isSelected={selected} 
+              {...props}
+              />
+            );
+          })}
         </Container>
-      </CloudinaryContext>
+      </>
     );
         
 }

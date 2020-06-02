@@ -38,6 +38,7 @@ const ImageDetail = props => {
             nextImageFn={moveNext}
             zoomImageFn={isFullWidth ? null:  magnifyImage}
             disableCarousel={imageList.length < 2}
+            tagObject={props.tagObject}
           />
         
           <ImageInfo currentImage={currentImage} />
@@ -73,6 +74,10 @@ ImageDetail.propTypes = {
    * the function to open image in Zoom
    */
   selectLightbox: PropTypes.func,
+  /**
+   * current gallery
+   */
+  tagObject: PropTypes.object
 }
 
 ImageDetail.defaultProps = {

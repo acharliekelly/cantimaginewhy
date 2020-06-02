@@ -3,7 +3,10 @@ import withSizes from 'react-sizes';
 import { setDefaultBreakpoints } from 'react-socks';
 
 
-
+/**
+ * Bootstrap default breakpoints
+ * for React Socks
+ */
 const BOOTSTRAP_DEFAULT_BREAKPOINTS = [
   { xs: 320 },
   { sm: 576 },
@@ -19,14 +22,20 @@ export const initSocks = () => {
 }
 
 
-// FAVICONS
 
+/**
+ * Environment Icon
+ * - appears in footer
+ */
 const envIcons = {
   'development': 'cog',
   'test': 'check',
   'production': 'heart'
 }
 
+/**
+ * Favicon (shortcut icon)
+ */
 const favicons = {
   'development': 'ciw4.png',
   'test': 'ciw1.png',

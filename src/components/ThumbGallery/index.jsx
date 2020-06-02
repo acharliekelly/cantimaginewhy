@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
+import { Image, Transformation } from 'cloudinary-react';
 import Container from 'react-bootstrap/Container';
 import { defaultImg, getContextProperty } from '../../utils/cloudinaryApi';
 import classNames from 'classnames';
@@ -28,20 +28,18 @@ const ThumbGallery = props => {
     
 
   return (
-    <CloudinaryContext cloudName="cantimaginewhy">
-      <Container className="gallery">
-        {galleryImages.map((thumb, index) => (
-          <Image key={index}
-            className={imgClass(index)}
-            title={getContextProperty(thumb, 'caption')}
-            publicId={thumb.public_id}
-            onClick={() => clickImage(index)} >
-            <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
-            <Transformation defaultImage={defaultImg} />
-          </Image>
-        ))}
-      </Container>
-    </CloudinaryContext>
+    <Container className="gallery">
+      {galleryImages.map((thumb, index) => (
+        <Image key={index}
+          className={imgClass(index)}
+          title={getContextProperty(thumb, 'caption')}
+          publicId={thumb.public_id}
+          onClick={() => clickImage(index)} >
+          <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
+          <Transformation defaultImage={defaultImg} />
+        </Image>
+      ))}
+    </Container>
   )
 }
 

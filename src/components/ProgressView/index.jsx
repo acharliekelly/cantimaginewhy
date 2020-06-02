@@ -2,23 +2,21 @@ import React,{ useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { onsitePhotos } from '../../utils/onsiteUtils';
-import HelpButton from '../Buttons/HelpButton';
 import ThumbGallery from '../ThumbGallery';
 import ImageToolbar from '../ImageToolbar';
 import { withLightbox } from '../higherOrder/withLightbox';
 import { withStacking } from '../higherOrder/withStacking';
 import './progress.scss';
 
-const helpText = `Series of photos documenting the creative process, from initial view to finished product.`
 
 const ProgressView = props => {
-  const { refKey, thumbSize } = props;
+  const { productLookup, thumbSize } = props;
   const [ progressImages, setProgressImages ] = useState([]);
   const [ progressIndex, setProgressIndex ] = useState(0);
 
   useEffect(() => {
-    onsitePhotos(refKey).then(resources => setProgressImages(resources));
-  }, [refKey]);
+    onsitePhotos(productLookup).then(resources => setProgressImages(resources));
+  }, [productLookup]);
 
   const moveNext = () => {
     const next = (progressIndex + 1) % progressImages.length;
@@ -40,9 +38,11 @@ const ProgressView = props => {
     <>
     {progressImages[progressIndex] && (
     <div className="view-wrapper">
-    
+      <div className="help-text">
+      Series of photos documenting the creative process, from initial view to finished product.
+      </div>
       <div className="img-wrapper">
-        <Image cloudName="cantimaginewhy" 
+        <Image  
           publicId={progressImages[progressIndex].public_id} 
           onClick={magnifyImage} >
             <Transformation height="200" width="auto" crop="fill" />
@@ -65,15 +65,6 @@ const ProgressView = props => {
           thumbSize={thumbSize}
           />
       )}
-      <div style={{textAlign: 'right'}}>
-        <HelpButton 
-          header="View Process" 
-          content={helpText} 
-          size="sm" 
-          placement="top"
-          variant={`outline-${props.variant}`}
-          style={{float: 'right'}} />
-      </div>
     </div>
     )}
     </>
@@ -82,14 +73,14 @@ const ProgressView = props => {
 
 ProgressView.propTypes = {
   selectLightbox: PropTypes.func.isRequired,
-  refKey: PropTypes.string,
+  productLookup: PropTypes.string,
   thumbSize: PropTypes.number,
 }
 
 ProgressView.defaultProps = {
-  refKey: null,
+  productLookup: null,
   thumbSize: 80,
-  variant: 'success'
+  variant: 'info'
 }
 
 export default withLightbox(withStacking(ProgressView));

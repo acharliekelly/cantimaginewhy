@@ -42,7 +42,8 @@ export const filters = [
         "tag": "charles-river",
         "thumbnail": "art/watertown_dam",
         "description": "Scenes from along the Charles",
-        "sortField": ".completed"
+        "sortField": ".completed",
+        "sortDir": "desc"
       },
       {
         "name": "Maine",
@@ -57,6 +58,74 @@ export const filters = [
         "thumbnail": "art/bodiam-castle_2011",
         "description": "Scenes from farther afield",
         "sortField": ".completed"
+      }
+    ]
+  },
+  {
+    "name": "Subject",
+    "description": "Filter by subject matter",
+    "options": [
+      {
+        "name": "Places",
+        "tag": "subj-place",
+        "thumbnail": "nfs/the_cliffs",
+        "description": "Pictures of places",
+        "sortField": ".completed",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Flowers",
+        "tag": "subj-flowers",
+        "thumbnail": "nfs/back-pink_flower",
+        "description": "Pictures of flowers",
+        "sortField": ".completed",
+        "sortDir": "desc"
+      },
+      {
+        "name": "People",
+        "tag": "subj-people",
+        "thumbnail": "nfs/luthien-7",
+        "description": "Pictures of people",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Abstract",
+        "tag": "subj-abstract",
+        "thumbnail": "art/knotwork_square_2",
+        "description": "Abstract shapes & designs",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Text",
+        "tag": "subj-text",
+        "thumbnail": "icon/ciw9",
+        "description": "Artistic renderings of letters",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Religious",
+        "tag": "subj-religion",
+        "thumbnail": "nfs/maddie_2012",
+        "description": "Religious themes",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Animals",
+        "tag": "subj-animals",
+        "thumbnail": "nfs/amelia_2011",
+        "description": "Pictures of animals",
+        "sortField": ".year",
+      },
+      {
+        "name": "Hobbies",
+        "tag": "subj-hobby",
+        "thumbnail": "nfs/remy-springer_2015",
+        "description": "Depictions of hobbies",
+        "sortField": ".caption",
       }
     ]
   },
@@ -80,7 +149,7 @@ export const filters = [
         "name": "Nightscape",
         "tag": "nightscape",
         "thumbnail": "art/cambridge-night",
-        "description": "Scenes from after dark, painted on black canvas"
+        "description": "Scenes from after dark, painted on black background"
       },
       {
         "name": "Miniatures",
@@ -97,7 +166,7 @@ export const filters = [
       {
         "name": "Monogram",
         "tag": "monogram",
-        "thumbnail": "ck-gothic_monogram",
+        "thumbnail": "icon/ck-gothic_monogram",
         "description": "Artistic arrangements of letters that don't spell anything",
         "sortField": ".year"
       },
@@ -105,7 +174,7 @@ export const filters = [
         "name": "Plein Air",
         "tag": "en plein air",
         "thumbnail": "art/early_fall_mt_feake",
-        "description": "Created on site, as opposed to from a photo"
+        "description": "Created live on site"
       }
     ]
   },
@@ -218,34 +287,39 @@ export const filters = [
     "description": "Filter by method (pencil, watercolor, etc)",
     "options": [
       {
-        "name": "Pencil",
-        "tag": "pencil",
+        "name": "Graphite",
+        "tag": "graphite",
         "thumbnail": "nfs/christian-science-plaza",
-        "description": "Graphite / Colored Pencil",
-        "sortField": ".caption"
+        "description": "Regular old pencil",
+        "sortField": ".year"
+      },
+      {
+        "name": "Colored Pencil",
+        "tag": "colored-pencil",
+        "thumbnail": "nfs/winter-yosemite",
+        "description": "Colored Pencil",
+        "sortField": ".year"
       },
       {
         "name": "WC Pencil",
         "tag": "watercolor pencil",
         "thumbnail": "art/leaving-star-island_2015",
-        "description": "First drawn with watercolor pencil, then painted with water to create watercolor",
-        "sortField": ".caption",
-        "display": [ "-progress", "-explan" ]
+        "description": "First drawn with dry pigment, then painted with water to create watercolor",
+        "sortField": ".year"
       },
       {
         "name": "Watercolor",
         "tag": "watercolor",
         "thumbnail": "art/late-spring-on-the-charles_2017",
-        "description": "Traditional watercolor painting with brush",
-        "sortField": ".caption",
-        "display": [ "-progress", "-explan" ]
+        "description": "Traditional watercolor painting",
+        "sortField": ".year"
       },
       {
         "name": "Acrylic",
         "tag": "acrylic",
         "thumbnail": "art/riparian_balcony",
         "description": "Layered acrylic paints",
-        "sortField": ".caption"
+        "sortField": ".year"
       }
     ]
   },

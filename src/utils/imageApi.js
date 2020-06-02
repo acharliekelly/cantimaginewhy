@@ -39,6 +39,12 @@ export const getThumbSize = (listSize, containerHeight) => {
 const defaultYear = '2010';
 const defaultTitle = 'Untitled';
 
+/**
+ * 
+ * @param {[object, object]} ab 
+ * @param {string} propertyName 
+ * @param {*} defaultValue 
+ */
 const getContextProps = (ab, propertyName, defaultValue) => {
   const [a, b] = ab;
   const aVal = getContextProperty(a, propertyName, defaultValue);
@@ -46,6 +52,11 @@ const getContextProps = (ab, propertyName, defaultValue) => {
   return [aVal, bVal];
 }
 
+/**
+ * 
+ * @param {string} a 
+ * @param {string} b 
+ */
 const compareUploadDate = (a, b) => {
   // use Creation date
   const aDate = Date.parse(a.created_at);
@@ -100,10 +111,12 @@ const defaultSortFn = compareUploadDate;
  * Sorts gallery on field specified in sortField of album list
  * 
  * @param {string} fieldName string
- * @param {Array} gallery the fetched object list to sort
+ * @param {array} gallery the fetched object list to sort
+ * @param {boolean}
  */
-export const sortByField = (gallery, fieldName) => {
+export const sortByField = (gallery, fieldName, rev = false) => {
   let sortFn = defaultSortFn;
+  let retVal;
   if (fieldName) {
     switch (fieldName) {
       case '.year':
@@ -130,23 +143,27 @@ export const sortByField = (gallery, fieldName) => {
   } else {
     sortFn = defaultSortFn;
   }
-
-  return gallery.sort(sortFn);
+  retVal = gallery.sort(sortFn);
+  return rev ? retVal.reverse() : retVal;
 }
 
 /**
  * Sorts gallery on field specified in sortField of album list
  * 
- * @param {object} nav nav object from albums.js or filters.js
+ * @param {object} nav Nav object from albums.js or filters.js
  * @param {Array} gallery the fetched object list to sort
  */
 export const sortGallery = (nav, gallery) => {
+  let sorted = [];
   if (nav.sortField) {
-    return sortByField(gallery, nav.sortField)
+    sorted = sortByField(gallery, nav.sortField)
   } else {
-    return sortByField(gallery);
+    sorted = sortByField(gallery);
   }
-   
+  if (nav.sortDir && nav.sortDir.toLowerCase().startsWith('d')) {
+    sorted = sorted.reverse();
+  } 
+  return sorted;
 }
 
 const defSrcSetSizes = [ 256, 512, 768, 1024, 1280 ];

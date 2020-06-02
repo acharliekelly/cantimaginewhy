@@ -22,4 +22,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-cantimaginewhy.code-workspace
+.code-workspace
+ciw.code-workspace
+.faunarc

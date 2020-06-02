@@ -62,7 +62,7 @@ export const stackPanels = [
     "order": 0,
     "component": "ProgressView",
     "preStacked": true,
-    "dependency": "refKey",
+    "dependency": "productLookup",
     "help": `Series of photos documenting the creative process, from initial view to finished product.`
   },
   {

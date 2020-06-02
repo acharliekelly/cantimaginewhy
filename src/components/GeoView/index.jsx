@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import { Map, Marker, GoogleApiWrapper, withGoogleMap, withScriptjs } from 'google-maps-react';
 import MapButton from '../Buttons/MapButton';
-import HelpButton from '../Buttons/HelpButton';
 import { withStacking } from '../higherOrder/withStacking';
 // import { GOOGLE_MAPS_API } from '../../utils/geoUtils';
 
@@ -33,18 +32,12 @@ const GeoView = props => {
   if (position) {
     return (
       <div>
-        <header>Position</header>
-        
-        <div style={{float: 'left'}}>
-          <HelpButton 
-            variant="outline-info" 
-            header="Location" 
-            content="Coming Soon: A map inside this box. For now, click the button to open map in a new tab."
-            placement="right"
-            size="sm" />
+        {/* <header>Position</header> */}
+        <div className="help-text" style={{marginBottom: '2vh'}}>
+        Coming Soon: A map inside this box. For now, click the button to open map in a new tab.
         </div>
         <div style={{float: 'right'}}>
-          <MapButton variant="outline-info" latitude={position.lat} longitude={position.lng} />
+          <MapButton variant="outline-secondary" latitude={position.lat} longitude={position.lng} />
         </div>
         <div>Latitude: {position.lat}</div>
         <div>Longitude: {position.lng}</div>

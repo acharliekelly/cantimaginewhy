@@ -8,13 +8,13 @@ const Logo = props => {
   const { selectLightbox, startId } = props;
 
   const openZoom = () => {
-    fetchGallery('logo').then(resources => {
+    fetchGallery('cant-imagine').then(resources => {
       selectLightbox(startId, resources);
     })
   }
 
   return (
-    <Image cloudName="cantimaginewhy" publicId="logo_th" 
+    <Image cloudName="cantimaginewhy" publicId="icon/logo_th" 
       onClick={openZoom} title="Logo" style={{cursor: 'pointer'}}>
       <Transformation height="80" width="80" radius="max" crop="scale" />
     </Image>
@@ -29,7 +29,7 @@ Logo.propTypes = {
 }
 
 Logo.defaultProps = {
-  startId: 'ciw4'
+  startId: 'icon/ciw4'
 }
 
 export default withLightbox(Logo);

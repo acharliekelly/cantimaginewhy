@@ -13,6 +13,66 @@
  */
 export const filters = [
   {
+    "name": "Subject",
+    "description": "Filter by subject matter",
+    "options": [
+      {
+        "name": "Places",
+        "tag": "subj-place",
+        "thumbnail": "nfs/the_cliffs",
+        "description": "Pictures of places",
+        "sortField": ".completed",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Flowers",
+        "tag": "subj-flowers",
+        "thumbnail": "nfs/back-pink_flower",
+        "description": "Pictures of flowers",
+        "sortField": ".completed",
+        "sortDir": "desc"
+      },
+      {
+        "name": "People",
+        "tag": "subj-people",
+        "thumbnail": "nfs/luthien-7",
+        "description": "Pictures of people",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Abstract",
+        "tag": "subj-abstract",
+        "thumbnail": "art/knotwork_square_2",
+        "description": "Abstract shapes & designs",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Text",
+        "tag": "subj-text",
+        "thumbnail": "icon/ciw9",
+        "description": "Artistic renderings of letters",
+        "sortField": ".year",
+        "sortDir": "desc"
+      },
+      {
+        "name": "Animals",
+        "tag": "subj-animals",
+        "thumbnail": "nfs/amelia_2011",
+        "description": "Pictures of animals",
+        "sortField": ".year",
+      },
+      {
+        "name": "Hobbies",
+        "tag": "subj-hobby",
+        "thumbnail": "nfs/remy-springer_2015",
+        "description": "Depictions of hobbies",
+        "sortField": ".caption",
+      }
+    ]
+  },
+  {
     "name": "Location",
     "description": "Filter by the location of the thing being depicted",
     "options": [
@@ -58,74 +118,6 @@ export const filters = [
         "thumbnail": "art/bodiam-castle_2011",
         "description": "Scenes from farther afield",
         "sortField": ".completed"
-      }
-    ]
-  },
-  {
-    "name": "Subject",
-    "description": "Filter by subject matter",
-    "options": [
-      {
-        "name": "Places",
-        "tag": "subj-place",
-        "thumbnail": "nfs/the_cliffs",
-        "description": "Pictures of places",
-        "sortField": ".completed",
-        "sortDir": "desc"
-      },
-      {
-        "name": "Flowers",
-        "tag": "subj-flowers",
-        "thumbnail": "nfs/back-pink_flower",
-        "description": "Pictures of flowers",
-        "sortField": ".completed",
-        "sortDir": "desc"
-      },
-      {
-        "name": "People",
-        "tag": "subj-people",
-        "thumbnail": "nfs/luthien-7",
-        "description": "Pictures of people",
-        "sortField": ".year",
-        "sortDir": "desc"
-      },
-      {
-        "name": "Abstract",
-        "tag": "subj-abstract",
-        "thumbnail": "art/knotwork_square_2",
-        "description": "Abstract shapes & designs",
-        "sortField": ".year",
-        "sortDir": "desc"
-      },
-      {
-        "name": "Text",
-        "tag": "subj-text",
-        "thumbnail": "icon/ciw9",
-        "description": "Artistic renderings of letters",
-        "sortField": ".year",
-        "sortDir": "desc"
-      },
-      // {
-      //   "name": "Religious",
-      //   "tag": "subj-religion",
-      //   "thumbnail": "nfs/maddie_2012",
-      //   "description": "Religious themes",
-      //   "sortField": ".year",
-      //   "sortDir": "desc"
-      // },
-      {
-        "name": "Animals",
-        "tag": "subj-animals",
-        "thumbnail": "nfs/amelia_2011",
-        "description": "Pictures of animals",
-        "sortField": ".year",
-      },
-      {
-        "name": "Hobbies",
-        "tag": "subj-hobby",
-        "thumbnail": "nfs/remy-springer_2015",
-        "description": "Depictions of hobbies",
-        "sortField": ".caption",
       }
     ]
   },

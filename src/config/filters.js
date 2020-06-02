@@ -105,14 +105,14 @@ export const filters = [
         "sortField": ".year",
         "sortDir": "desc"
       },
-      {
-        "name": "Religious",
-        "tag": "subj-religion",
-        "thumbnail": "nfs/maddie_2012",
-        "description": "Religious themes",
-        "sortField": ".year",
-        "sortDir": "desc"
-      },
+      // {
+      //   "name": "Religious",
+      //   "tag": "subj-religion",
+      //   "thumbnail": "nfs/maddie_2012",
+      //   "description": "Religious themes",
+      //   "sortField": ".year",
+      //   "sortDir": "desc"
+      // },
       {
         "name": "Animals",
         "tag": "subj-animals",

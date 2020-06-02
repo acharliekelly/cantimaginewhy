@@ -39,6 +39,12 @@ export const getThumbSize = (listSize, containerHeight) => {
 const defaultYear = '2010';
 const defaultTitle = 'Untitled';
 
+/**
+ * 
+ * @param {[object, object]} ab 
+ * @param {string} propertyName 
+ * @param {*} defaultValue 
+ */
 const getContextProps = (ab, propertyName, defaultValue) => {
   const [a, b] = ab;
   const aVal = getContextProperty(a, propertyName, defaultValue);
@@ -46,6 +52,11 @@ const getContextProps = (ab, propertyName, defaultValue) => {
   return [aVal, bVal];
 }
 
+/**
+ * 
+ * @param {string} a 
+ * @param {string} b 
+ */
 const compareUploadDate = (a, b) => {
   // use Creation date
   const aDate = Date.parse(a.created_at);
@@ -100,7 +111,8 @@ const defaultSortFn = compareUploadDate;
  * Sorts gallery on field specified in sortField of album list
  * 
  * @param {string} fieldName string
- * @param {Array} gallery the fetched object list to sort
+ * @param {array} gallery the fetched object list to sort
+ * @param {boolean}
  */
 export const sortByField = (gallery, fieldName, rev = false) => {
   let sortFn = defaultSortFn;

@@ -33,29 +33,21 @@ export const fetchGallery = tagName => {
   return axios(url).then(res => res.data.resources);
 }
 
-
-// Return source URL for watermarked image
-export const watermarkedImageSrc = (publicId, wd = 0) => {
-  const width = wd ? `w_${wd}` : 'w_auto,c_scale';
-  const mk = wd ? wd / 2 : 500;
-  return imgSrc + `${width}/w_${mk},l_ciw1,o_20/d_${defaultCPI}/${publicId}.jpg`;
-}
-
-// Copyright watermark
-export const copyrightImageSrc = (publicId, wd = 0) => {
-  const width = wd ? `w_${wd}` : 'w_auto,c_scale';
-  return imgSrc + `${width}/l_text:courier_80_bold:${copyrightText},y_50,o_30/d_${defaultCPI}/${publicId}.jpg`;
+/**
+ * Return source URL for non-watermarked image
+ * @param {string} publicId
+ * @param {int} wd  
+ */
+export const cleanImageSrc = (publicId, wd = 0) => {
+  return getImageSrc(publicId, wd, false);
 }
 
 /**
- * Return source URL for non-watermarked image
+ * Get cloudinary resource path, including copyright overlay if specified
  * @param {string} publicId 
+ * @param {int} width 
+ * @param {boolean} protect 
  */
-export const cleanImageSrc = (publicId, wd = 0) => {
-  const width = wd ? `w_${wd}` : 'w_auto,c_scale';
-  return imgSrc + `${width}/d_${defaultCPI}/${publicId}.jpg`;
-}
-
 export const getImageSrc = (publicId, width = 0, protect = true) => {
   let srcUrl = imgSrc + (width ? `w_${width}/` : '');
   if (protect && publicId.startsWith('art/')) {
@@ -106,8 +98,8 @@ export const zoomImageSrc = imgObj => {
 
 /**
  * Return a context field from CIO object
- * @param {*} cImage Cloudinary Image Object
- * @param {*} propertyName context field
+ * @param {object} cImage Cloudinary Image Object
+ * @param {string} propertyName context field
  * @param {*} defaultValue value if field is missing
  */
 export const getContextProperty = (cImage, propertyName, defaultValue = '') => {
@@ -127,6 +119,6 @@ export const getContextProperty = (cImage, propertyName, defaultValue = '') => {
  */
 export const parallaxImageSrc = (publicId) => {
   return cleanImageSrc(publicId)
-
+ 
 }
 

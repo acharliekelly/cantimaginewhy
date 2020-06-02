@@ -43,17 +43,19 @@ NavButton.propTypes = {
 
 export default NavButton;
 
-
-
 export const MobileNavButton = props => {
   const { navTag, onSelectItem, isSelected } = props;
-  
+  const cls = classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})
   return (
     <Image 
       publicId={navTag.thumbnail}
-      className={classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})}
+      className={cls}
       onClick={() => onSelectItem(navTag)} >
       <Transformation defaultImage={defaultImg} />
+      <Transformation 
+        overlay={{ fontFamily: 'Arial', fontSize: 10, text: navTag.name }} 
+        color={isSelected ? 'white' : 'black'}
+        gravity="south" />
       <Transformation 
         height={80} 
         width={80} 

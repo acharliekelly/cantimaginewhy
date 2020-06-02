@@ -25,21 +25,16 @@ export const albums = [
     "tag": "scenery-loc",
     "thumbnail": "art/midwinter",
     "description": "From a photograph I took",
-    "sortField": ".year"
+    "sortField": ".year",
+    "sortDir": "desc"
   },
   {
     "name": "Landscape",
     "tag": "scenery-noloc",
-    "thumbnail": "art/bodiam-castle_2011",
+    "thumbnail": "nfs/the_cliffs",
     "description": "From a photograph somebody took",
-    "sortField": ".year"
-  },
-  {
-    "name": "Logos",
-    "tag": "logo",
-    "thumbnail": "ciw4",
-    "description": "Different logos I've made, either as monograms or specifically for this site",
-    "sortField": ".alb-order"
+    "sortField": ".year",
+    "sortDir": "desc"
   },
   {
     "name": "Sketch",
@@ -53,7 +48,7 @@ export const albums = [
     "name": "Name Tags",
     "tag": "nametag",
     "thumbnail": "nfs/charlie-7_37671079756_o_fvboho",
-    "description": "Name tags I made for various people, mostly me",
+    "description": "Name tags I made for various people, including me",
     "sortField": ".year"
   },
   {

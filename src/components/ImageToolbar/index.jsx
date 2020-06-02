@@ -48,7 +48,11 @@ const ImageToolbar = props => {
             )}
           </Button>
         ) : (
-          <Button variant={variant} block disabled />
+          <Button variant={variant} block disabled>
+            {props.tagObject && (
+              <span className="toolbar-gallery-name">{props.tagObject.name}</span>
+            )}
+          </Button>
         )}
         <Button variant={variant} title="Next Image" onClick={nextImageFn} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-right" size={imgSize} />
@@ -88,6 +92,10 @@ ImageToolbar.propTypes = {
    * disable carousel buttons (prev & next)
    */
   disableCarousel: PropTypes.bool,
+  /**
+   * gallery
+   */
+  tagObject: PropTypes.object
 }
 
 ImageToolbar.defaultProps = {

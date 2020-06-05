@@ -11,10 +11,16 @@ Site design comes from a team of GA UXDI graduates. Implementation (so far) by j
 ## Technology Stack
 
 For this project, I used the following tech stack:
-* Front-end framework: ReactJS
-* Back-end API's: 
-  * Images: Cloudinary
-  * Products: Fine Art America
+* Repo: GitHub
+* Deployment: Netlify
+* Front-end: 
+  * Core: ReactJS
+  * UI: Bootstrap
+* Back-end: 
+  * Images: [Cloudinary](https://cloudinary.com/)
+  * Products: [Fine Art America](https://fineartamerica.com/)
+  * E-commerce: [Vendure](https://vendure.io/)
+  * Data (GraphQL): [FaunaDB](https://fauna.com/)
 
 ## Requirements
 

@@ -23,31 +23,32 @@ export const initSocks = () => {
 
 
 
-/**
- * Environment Icon
- * - appears in footer
- */
-const envIcons = {
-  'development': 'cog',
-  'test': 'check',
-  'production': 'heart'
+const environments = {
+  'development': {
+    icon: 'cog',
+    favicon: 'ck.gif',
+    text: 'dev',
+    className: 'development'
+  },
+  'test': {
+    icon: 'check',
+    favicon: 'ciw1.png',
+    text: 'test',
+    className: 'test'
+  },
+  'production': {
+    icon: 'heart',
+    favicon: 'logo.png',
+    text: 'live',
+    className: 'production'
+  }
 }
 
-/**
- * Favicon (shortcut icon)
- */
-const favicons = {
-  'development': 'ciw4.png',
-  'test': 'ciw1.png',
-  'production': 'ck.gif'
-};
+export const getEnv = () => environments[process.env.NODE_ENV];
 
-const getFavicon = () => {
-  return favicons[process.env.NODE_ENV];
-}
 
 const faviconUrl = () => {
-  return process.env.PUBLIC_URL + '/' + getFavicon();
+  return process.env.PUBLIC_URL + '/' + getEnv().favicon
 }
 
 export const updateFavicon = () => {
@@ -55,32 +56,6 @@ export const updateFavicon = () => {
   faviconElem.href = faviconUrl();
 }
 
-
-// ENV MODE
-export const allowDevMode = () => {
-  return (process.env.NODE_ENV === 'development');
-}
-
-
-export const getEnvIcon = () => {
-  return envIcons[process.env.NODE_ENV];
-}
-
-
-export const getEnvName = () => {
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      return 'dev';
-    case 'production':
-      return 'live';
-    default:
-      return process.env.NODE_ENV;
-  }
-}
-
-export const getEnvClass = () => {
-  return process.env.NODE_ENV;
-}
 
 
 // GETTING HOST NAME

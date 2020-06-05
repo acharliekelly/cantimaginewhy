@@ -10,15 +10,20 @@ const Header = props => (
   <div className="menu-wrapper">
     <Navbar bg="light" className="justify-content-between">
       {/* Only show logo on desktop */}
-      <Breakpoint md up>
+      <Breakpoint md only>
         <Navbar.Brand>
           <Logo {...props} />
+        </Navbar.Brand>
+      </Breakpoint>
+      <Breakpoint lg up>
+        <Navbar.Brand>
+          <Logo enableEaster {...props} />
         </Navbar.Brand>
       </Breakpoint>
       
 
       <Container className="justify-content-end">
-        {/* Menu - dropdown on sm */}
+        {/* Menu - dropdown on xs */}
         <Breakpoint xs only>
           <Menu type="drop" {...props} />
         </Breakpoint>
@@ -28,12 +33,8 @@ const Header = props => (
       </Container>
         
       <Container className="justify-content-end">
-        {/* Links - collapse on small */}
-        <Breakpoint xs only>
-          <ContactLinks displayType="icon" size="lg" group="head" />
-        </Breakpoint>
         <Breakpoint sm up>
-          <ContactLinks displayType="icon" size="2x" horizontal="lg" group="head" />
+          <ContactLinks group="head" />
         </Breakpoint>
       </Container>
     </Navbar>

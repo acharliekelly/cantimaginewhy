@@ -3,14 +3,16 @@
 /**
  * Link object:
  * - name: link text
+ * - desc: description
  * - lib: FA icon library (only for brand icons)
  * - icon: FontAwesome ID
  * - url: link destination
- * - group: art || tech || head
+ * - groups: [ art || design || tech || head ]
  */
 export const links = [
   {
     name: 'Instagram',
+    desc: '@cant_imagine_why - Updated somewhat regularly',
     lib: 'fab',
     icon: 'instagram',
     url: 'https://instagram.com/cant_imagine_why',
@@ -18,13 +20,15 @@ export const links = [
   },
   {
     name: 'Facebook',
+    desc: 'Personal profile',
     lib: 'fab',
     icon: 'facebook',
     url: 'https://facebook.com/acharliekelly',
     groups: [ 'art', 'head' ]
   },
   {
-    name: 'Github',
+    name: 'GitHub',
+    desc: 'Project repo for this website',
     lib: 'fab',
     icon: 'github',
     url: 'https://github.com/acharliekelly',
@@ -32,6 +36,7 @@ export const links = [
   },
   {
     name: 'Blog',
+    desc: 'Can\'t Imagine How: My Adventures in Development',
     lib: 'fab',
     icon: 'blogger-b',
     url: 'https://cantimaginehow.blogspot.com/',
@@ -39,6 +44,7 @@ export const links = [
   },
   {
     name: 'Flickr',
+    desc: 'Same artwork as here, but on a different site',
     lib: 'fab',
     icon: 'flickr',
     url: 'https://www.flickr.com/photos/acharliekelly/albums',
@@ -46,25 +52,29 @@ export const links = [
   },
   {
     name: 'LinkedIn',
+    desc: 'My professional profile',
     lib: 'fab',
     icon: 'linkedin',
     url: 'https://linkedin.com/in/acharliekelly',
-    groups: [ 'tech', 'head' ]
+    groups: [ 'tech' ]
   },
   {
     name: 'Portfolio',
+    desc: 'My official development portfolio',
     icon: 'file-alt',
     url: 'https://acharliekelly.github.io',
     groups: [ 'tech' ]
   },
   {
     name: 'Email',
+    desc: 'In case you want to contact me but are completely antisocial',
     icon: 'paper-plane',
     url: 'mailto:cant.imagine.why00@gmail.com',
     groups: [ 'art', 'tech', 'head' ]
   },
   {
     name: 'Arifa Sayyid',
+    desc: 'Design Consultant',
     lib: 'fab',
     icon: 'linkedin',
     url: 'https://linkedin.com/in/asayyid',
@@ -72,6 +82,7 @@ export const links = [
   },
   {
     name: 'Nandita Vedantan',
+    desc: 'Design Consultant',
     lib: 'fab',
     icon: 'linkedin',
     url: 'https://linkedin.com/in/nanditavedantan',
@@ -79,6 +90,7 @@ export const links = [
   },
   {
     name: 'Julia Tooker',
+    desc: 'Design Consultant',
     lib: 'fab',
     icon: 'linkedin',
     url: 'https://linkedin.com/in/julia-tooker',

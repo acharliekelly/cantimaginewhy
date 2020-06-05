@@ -1,7 +1,24 @@
+
+
 .links {
   li {
     list-style-type: none;
-    font-size: 2vw;
+    font-size: 2rem;
+    line-height: 1.5rem;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &.nav {
+    li {
+      display: inline-block;
+      margin: 0 0.4rem;
+      span {
+        display: inline;
+      }
+    }
   }
 
   a {
@@ -21,45 +38,59 @@
 
   .link-text {
     text-decoration: none;
-    padding: 0 1em;
+    padding: 0 1rem;
+    font-size: 1rem;
+    width: 20rem;
+    margin-left: 1rem;
+
+    &.expand-text {
+      width: 40vw;
+    }
 
     &:hover {
       text-decoration: underline;
     }
   }
 
-  .url-text {
+  .link-desc {
+    margin-left: 2rem;
     color: #224;
-    font-style: italic;
-    text-decoration: none !important;
+    font-size: 0.8rem;
+    max-width: 40vw;
   }
 
-  .mix-hide {
-    .link-text {
-      visibility: hidden;
-    }
+  // .url-text {
+  //   color: #224;
+  //   font-style: italic;
+  //   text-decoration: none !important;
+  // }
 
-    &:hover .link-text {
-     visibility: visible;
-    }
-  }
+  // .mix-hide {
+  //   .link-text {
+  //     visibility: hidden;
+  //   }
 
-  .mix-show .link-text {
-    visibility: visible;
-  }
+  //   &:hover .link-text {
+  //    visibility: visible;
+  //   }
+  // }
 
-  .mix-url {
-    .link-text {
-      visibility: visible;
-    }
-    .url-text {
-      padding-left: 3vw;
-      visibility: hidden;
-    }
-    &:hover .url-text {
-      visibility: visible;
-    }
-  }
+  // .mix-show .link-text {
+  //   visibility: visible;
+  // }
+
+  // .mix-url {
+  //   .link-text {
+  //     visibility: visible;
+  //   }
+  //   .url-text {
+  //     padding-left: 3vw;
+  //     visibility: hidden;
+  //   }
+  //   &:hover .url-text {
+  //     visibility: visible;
+  //   }
+  // }
 
   
 }

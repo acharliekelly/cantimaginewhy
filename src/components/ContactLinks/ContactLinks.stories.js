@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, radios } from '@storybook/addon-knobs';
-import ContactLinks from './';
+import ContactLinks from './alt';
 import { initializeLibrary } from '../../utils/faLibrary';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,17 +19,16 @@ const groups = {
 const stories = storiesOf('ContactLinks', module);
 stories.addDecorator(withKnobs);
 stories
-  .add('Text', () => <ContactLinks displayType="text" />)
+  .add('Text', () => <ContactLinks display={2} />)
   .add('Icon', () => (
     <div style={{width: '300px'}}>
-      <ContactLinks displayType="icon" size="lg" horizontal="md" />
+      <ContactLinks />
     </div>
   ))
-  .add('Both', () => <ContactLinks displayType="both" size="3x" textSize="3em" />)
-  .add('Full', () => <ContactLinks displayType="full" size="2x" textSize="2em" />)
+  .add('Description', () => <ContactLinks display={3} />)
   .add('Groups', () => {
     const groupOptions = radios('Group', groups, 'head');
     return (
-      <ContactLinks displayType="full" size="2x" textSize="2em" group={groupOptions} />
+      <ContactLinks display={3} group={groupOptions} />
     )
   })

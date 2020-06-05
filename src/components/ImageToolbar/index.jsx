@@ -40,7 +40,7 @@ const ImageToolbar = props => {
         <Button variant={variant} title="Previous Image" onClick={prevImageFn} disabled={disableCarousel}>
           <FontAwesomeIcon icon="chevron-left" size={imgSize} />
         </Button>
-        {props.zoomImageFn ? (
+        {zoomImageFn ? (
           <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
             <FontAwesomeIcon icon="search-plus" size={imgSize} />
             {zoomText && (
@@ -69,7 +69,7 @@ ImageToolbar.propTypes = {
    */
   variant: PropTypes.string,
   /**
-   * use full width
+   * use all available width
    */
   fullWidth: PropTypes.bool,
   /**

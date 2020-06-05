@@ -28,7 +28,8 @@ $selected-album-text: #fff;
   .browse-title {
     color: $nav-text;
     font-size: 1.5em;
-    font-family: 'Great Vibes';
+    // font-family: 'Great Vibes', cursive;
+    font-family: Gotu, sans-serif;
     text-align: center;
   }
 
@@ -156,7 +157,7 @@ $selected-album-text: #fff;
     .album-name {
       font-family: 'Gotu', sans-serif;
       text-align: center;
-      font-size: 90%;
+      font-size: 80%;
       color: $album-text;
       // max-width: 10vw;
     }

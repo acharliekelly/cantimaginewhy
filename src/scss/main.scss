@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Gotu|Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Gotu&display=swap');
 @import 'colors';
 
 body {
@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, header {
-  font-family: 'Gotu', sans-serif;
+  // font-family: 'Great Vibes', cursive;
   color: $base-header;
 }
 

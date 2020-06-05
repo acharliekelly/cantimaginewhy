@@ -203,3 +203,12 @@ export const aboutContent = {
     is done on the front end. `
   ] 
 }
+
+export const contactText = {
+  "art": `If you're interested in my artwork, you can connect with me on these platforms
+  to ask me questions, make comments, or subscribe to updates.`,
+  "design": `These are my design consultants. If you like how the site looks, you should
+  go hire them.`,
+  "tech": `If you're interested in how this site is built, or want to build something with me,
+  you can connect with me on one of these platforms.`
+}

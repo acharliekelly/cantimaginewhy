@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 const tabNav = (keyName, iconName, label) => (
   <Nav.Item>
     <Nav.Link eventKey={keyName}>
-      <FontAwesomeIcon icon={iconName} size="lg" />
+      <FontAwesomeIcon icon={iconName} />
       <span className="tab-text">{label}</span>
     </Nav.Link>
   </Nav.Item>

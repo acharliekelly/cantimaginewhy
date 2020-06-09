@@ -1,19 +1,13 @@
 // import React, { useState } from 'react';
 import React from 'react';
-import { 
-  HashRouter as Router, 
-  Route,
-  Switch
-} from 'react-router-dom';  
 import { BreakpointProvider } from 'react-socks';
 import { CloudinaryContext } from 'cloudinary-react';
 
-import Header from './components/Header';
-import ContactPage from './views/Contact/';
+
+import Header from './components/Header/';
 import Footer from './components/Footer/';
-import HomePage from './views/Home/';
-import AboutPage from './views/About';
-import ArtworkPage from './views/Artwork';
+// import DefaultRouter from './routers/DefaultRouter';
+import PageRouter from './routers/PageRouter';
 
 import { initializeLibrary } from './utils/faLibrary';
 import { updateFavicon, initSocks } from './utils/system';
@@ -39,25 +33,12 @@ const App = () => {
     <BreakpointProvider>
       <div className="page-container">
         <CloudinaryContext cloudName={cloudName}>
-        <Router basename='/'>
           <Header />
           <div className="content-wrapper">
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/home" component={HomePage} />
-              <Route path="/about">
-                <AboutPage />
-              </Route>
-              <Route path="/connect">
-                <ContactPage />
-              </Route>
-              <Route path="/artwork">
-                <ArtworkPage />
-              </Route>
-            </Switch>
+            {/* set router type here */}
+            <PageRouter />
           </div>
-        </Router>
-        <Footer />
+          <Footer />
         </CloudinaryContext>
       </div>
     </BreakpointProvider>

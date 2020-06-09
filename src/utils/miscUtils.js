@@ -46,7 +46,7 @@ export const movePreviousUtil = () => {
   stubMovePrevious();
 }
 
-
+// NOT CURRENTLY USED ANYWHERE
 export class CarouselWrapper {
   constructor (list, index) {
     this.imageList = list;
@@ -95,49 +95,5 @@ export const shuffleArray = array => {
     array[i] = array[j];
     array[j] = temp;
   }
-}
-
-
-// 
-const connectBreakpoints = [
-  {
-    max: 2000,
-    min: 1321,
-    size: '2x',
-    textSize: '2em',
-    displayType: 'full'
-  },
-  {
-    max: 1320,
-    min: 751,
-    size: 'lg',
-    textSize: '1em',
-    displayType: 'both'
-  },
-  {
-    max: 750,
-    min: 361,
-    size: 'sm',
-    textSize: '0.8em',
-    displayType: 'both'
-  },
-  {
-    max: 360,
-    min: 2,
-    size: 'xs',
-    textSize: '1em',
-    displayType: 'icon'
-  },
-  {
-    max: 1,
-    min: 0,
-    size: '2x',
-    textSize: '2em',
-    displayType: 'full'
-  }
-];
-// Links properties
-export const getLinkBreakpointProps = compWidth => {
-   return connectBreakpoints.find(point => point.max >= compWidth && point.min <= compWidth)
 }
 

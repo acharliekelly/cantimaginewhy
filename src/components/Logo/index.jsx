@@ -1,44 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from '@reach/router';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery }from '../../utils/cloudinaryApi';
-import { withLightbox } from '../higherOrder/withLightbox';
+import classNames from 'classnames';
+import HelpButton from '../Buttons/HelpButton';
+import './logo.scss';
 
+
+const LogoImg = ({ size, handler, title = 'Logo' }) => (
+  <Image className="logo" publicId="icon/logo" title={title} onClick={handler}>
+    <Transformation height={size} width={size} crop="scale" />
+  </Image>
+);
+
+
+/**
+ * When expanded, show container with options
+ * When collapsed, just show logo, expand on click
+ * 
+ * TODO: hide Home button when already home
+ */
 const Logo = props => {
-  const { selectLightbox, startId, enableEaster } = props;
+  const [ expanded, setExpanded ] = useState(false);  
+  const { logoSize, allowExpand, launchGallery } = props;
 
-  const openZoom = () => {
-    if (enableEaster) {
-      fetchGallery('cant-imagine').then(resources => {
-        selectLightbox(startId, resources);
-      })
-    }
+  const collapse = () => setExpanded(false);
+  const toggle = () => {
+    console.log('Logo Toggle clicked!')
+    setExpanded(!expanded);
+    console.log(' container is now ' + expanded ? 'Expanded' : 'Collapsed')
   }
-
-  const logoTitle = enableEaster ? 'View all logo designs' : 'Logo';
-
-  const logoStyle = {
-    cursor: enableEaster ? 'pointer' : 'default'
+  const containerStyle = {
+    height: `${logoSize}px`,
+    width: `${logoSize * 3}px`
   }
-
-  return (
-    <Image cloudName="cantimaginewhy" publicId="icon/logo" 
-      onClick={openZoom} title={logoTitle} style={logoStyle}>
-      <Transformation height="80" width="80" crop="scale" />
-    </Image>
-  )
+  const imgTitle = expanded ? 'Collapse' : 'Logo';
+  
+  if (!allowExpand) {
+    return (
+      <Link to='/'>
+        <LogoImg size={logoSize} />
+      </Link>
+    )
+  } else {
+    const containerCls = classNames('logo-container', { 'expanded': expanded });
+    return (
+      <Container className={containerCls} style={containerStyle}>
+        <LogoImg size={logoSize} title={imgTitle} handler={toggle} />
+        {expanded && (
+          <span className="logo-options" style={{
+            marginLeft: `${logoSize + 10}px`,
+            marginTop: `-${logoSize}px`
+            }}>
+            <Link to="/">
+              <Button variant="info" title="Home" onClick={collapse}>
+                <FontAwesomeIcon icon="home" />
+              </Button>
+            </Link>
+            <Button variant="primary" title="Browse Logos" onClick={launchGallery}>
+              <FontAwesomeIcon icon="icons" />
+            </Button>
+            
+            <HelpButton header="Logos" variant="success" title="What's This?"
+              content="I came up with several different logo ideas. Want to see them all?" />
+          </span>
+        )}
+      </Container>
+    )
+  }
+  
 }
+
+
 
 Logo.propTypes = {
-  selectLightbox: PropTypes.func,
-  setLightboxArray: PropTypes.func,
-  startId: PropTypes.string,
-  enableEaster: PropTypes.bool
-}
+  /**
+   * Size of logo image, in pixels
+   */
+  logoSize: PropTypes.number,
+
+  /**
+   * expand container when logo clicked
+   */
+  allowExpand: PropTypes.bool,
+
+  /**
+   * Open the Alternate Logo gallery
+   */
+  launchGallery: PropTypes.func
+};
 
 Logo.defaultProps = {
-  startId: 'icon/ciw4',
-  enableEaster: false
-}
+  logoSize: 80,
+  allowExpand: true
+};
 
-export default withLightbox(Logo);
+
+export default Logo;

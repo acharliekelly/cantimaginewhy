@@ -1,35 +1,34 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+
 import ContactLinks from '../ContactLinks';
-import Logo from '../Logo/';
+import Logo from '../Logo';
 import Menu from '../Menu';
 import { Breakpoint } from 'react-socks';
+
+/* TODO:
+ * write launchGallery function
+ */
+const tmpLaunch = () => console.log('launching Logo gallery');
 
 const Header = props => (
   <div className="menu-wrapper">
     <Navbar bg="light" className="justify-content-between">
-      {/* Only show logo on desktop */}
-      <Breakpoint md only>
+      <Breakpoint xs only>
         <Navbar.Brand>
-          <Logo {...props} />
+          <Logo logoSize={40} allowExpand={false} />
         </Navbar.Brand>
       </Breakpoint>
-      <Breakpoint lg up>
+      <Breakpoint sm up>
         <Navbar.Brand>
-          <Logo enableEaster {...props} />
+          <Logo logoSize={80} allowExpand launchGallery={tmpLaunch} />
         </Navbar.Brand>
       </Breakpoint>
       
 
       <Container className="justify-content-end">
-        {/* Menu - dropdown on xs */}
-        <Breakpoint xs only>
-          <Menu type="drop" {...props} />
-        </Breakpoint>
-        <Breakpoint sm up>
-          <Menu type="nav" {...props} />
-        </Breakpoint>
+        <Menu />
       </Container>
         
       <Container className="justify-content-end">

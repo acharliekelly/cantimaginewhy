@@ -1,0 +1,22 @@
+.logo-container {
+
+  img.logo {
+    cursor: pointer;
+  }
+
+  .logo-options {
+    display: block;
+    border: ridge 2px #444;
+    border-radius: 0.2rem;
+    padding: 0.2em;
+    float: right;
+    background-color: tan;
+
+    .btn {
+      display: inline;
+      margin: 1px 2px;
+    }
+  }
+  
+
+}

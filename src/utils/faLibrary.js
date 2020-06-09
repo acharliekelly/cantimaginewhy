@@ -4,34 +4,39 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { 
   faBars, 
+  faBlog,
+  faCheck,
   faChevronLeft, 
   faChevronRight, 
-  faCheck, 
   faCog, 
-  faHeart,
-  faPaperPlane,
-  faImage,
-  faShoppingCart,
-  faQuestionCircle,
-  faSearchPlus,
-  faBlog,
-  faFilter,
-  faSort,
-  faImages,
-  faExternalLinkAlt,
+  faDove,
+  faDraftingCompass,
   faEllipsisV,
-  faFileCode,
+  faExternalLinkAlt,
   faFileAlt,
-  faSortUp,
-  faSortDown,
-  faPaintBrush,
-  faPalette,
+  faFileCode,
+  faFilter,
   faFolderOpen,
+  faHome,
+  faHeart,
+  faIcons,
+  faImage,
+  faImages,
+  faLeaf,
   faMapMarkerAlt,
   faMapMarkedAlt,
-  faDraftingCompass
+  faPaintBrush,
+  faPalette,
+  faPaperPlane,
+  faProjectDiagram,
+  faQuestionCircle,
+  faShoppingCart,
+  faSearchPlus,
+  faSitemap,
+  faSort,
+  faSortUp,
+  faSortDown
  } from '@fortawesome/free-solid-svg-icons';
-
 
 
  export const initializeLibrary = () => {
@@ -41,7 +46,8 @@ import {
     faFilter, faSort, faImages, faExternalLinkAlt, 
     faEllipsisV, faFileAlt, faFileCode, faFolderOpen,
     faSortUp, faSortDown, faPaintBrush, faPalette,
-    faMapMarkedAlt, faMapMarkerAlt, faDraftingCompass);
+    faMapMarkedAlt, faMapMarkerAlt, faDraftingCompass,
+    faDove, faIcons, faLeaf, faHome, faProjectDiagram, faSitemap );
  }
 
  

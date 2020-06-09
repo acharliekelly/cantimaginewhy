@@ -1,17 +1,20 @@
 import React from 'react';
+// import { useParams } from 'react-router-dom';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import TabNavs from '../../components/Buttons/TabNavs';
 import ContactLinks from '../../components/ContactLinks';
 import { contactText } from '../../config/text';
+import { connectDisplayTypes } from '../../utils/constants';
 import withSizes from 'react-sizes';
 import './contact.scss';
 
 
 
-const ContactPage = props => {
-  const displayStyle = props.showDescription ? 3 : 2;
-
+const ContactPage = ({ showDescription }) => {
+  const displayStyle = showDescription ? connectDisplayTypes.description : connectDisplayTypes.text;
+  let section = 'art';
+  
   return (
     <div className="content">
       <header className="page-title">
@@ -19,7 +22,7 @@ const ContactPage = props => {
       </header>
       
       <Container className="contact">
-        <Tab.Container defaultActiveKey="art">
+        <Tab.Container defaultActiveKey={section}>
           <TabNavs art design tech />
           <Tab.Content className="contact-links">
             <Tab.Pane eventKey="art">

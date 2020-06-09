@@ -197,6 +197,9 @@ export const aboutContent = {
     is get really good at website (specifically ReactJS) while making a site that does EXACTLY what
     I want it to do, rather than merely the best I can do with the tools available. `,
 
+    `Er, that's the plan, anyway. It's still kind of a work-in-progress, in that it does many of
+    the things I want, but not quite as well as I'd like.`,
+
     `When I said I made it from scratch, that's not technically accurate. I made it from
     create-react-app. The back end for this site (at the moment that I'm writing this) exists entirely
     within a free-tier account on Cloudinary. Everything other than retrieving images and metadata
@@ -206,9 +209,9 @@ export const aboutContent = {
 
 export const contactText = {
   "art": `If you're interested in my artwork, you can connect with me on these platforms
-  to ask me questions, make comments, or subscribe to updates.`,
+  to ask me questions, make comments, subscribe to updates, etc.`,
   "design": `These are my design consultants. If you like how the site looks, you should
   go hire them.`,
   "tech": `If you're interested in how this site is built, or want to build something with me,
-  you can connect with me on one of these platforms.`
+  you can use the appropriate platform below.`
 }

@@ -14,14 +14,9 @@ import classNames from 'classnames';
  * - groups: [ art, design, tech, head ] - only display in these groups
  */
 import { links } from '../../config/links';
-
+import { connectDisplayTypes } from '../../utils/constants';
 import './links.scss';
 
-const displayTypes = {
-  icon: 1,
-  text: 2,
-  description: 3
-}
 
 
 const ItemIcon = ({ link }) => {
@@ -41,11 +36,11 @@ const ContactLinks = ({ display, group }) => {
         <li key={index}>
           <a target="_blank" rel="noopener noreferrer" href={item.url}>
             <ItemIcon link={item} />
-            {display >= displayTypes.text && (
+            {display >= connectDisplayTypes.text && (
               <span className={classNames('link-text', {'expand-text': display < 3})}>{item.name}</span>
             )}
           </a>
-          {display >= displayTypes.description && (
+          {display >= connectDisplayTypes.description && (
             <span className="link-desc">{item.desc}</span>
           )}
         </li>

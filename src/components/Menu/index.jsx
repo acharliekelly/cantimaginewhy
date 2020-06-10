@@ -1,32 +1,75 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
 import Nav from 'react-bootstrap/Nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExternalLink from '../Buttons/ExternalLink';
-import { pages } from '../../config/menu';
+
 import './menu.scss';
 
-const Menu = () => (
-  <Nav className="menu-nav">
-    {pages.map((page, index) => (
-      <Nav.Item key={index}>
-        {page.external ? externalPage(page) : (
-          <Link to={page.location}>{page.name}</Link>
-        )}
-      </Nav.Item>
-    ))}
-  </Nav>
-);
+const isActive = ({ isCurrent }) => {
+  return isCurrent ? { className: 'active' } : {}
+}
 
-const externalPage = page => (
+const isChildActive = ({ isPartiallyCurrent }) => {
+  return isPartiallyCurrent ? { className: 'active' } : {}
+}
+
+const MenuLink = props => {
+  const { item, subMenu, icons } = props;
+  let location = item.location;
+  let activeFn = isActive;
+  if (subMenu) { // section link
+    location = `../${location}`;
+  } else if (location !== '/') { // top-level page link, not Home
+    activeFn = isChildActive;
+  }
+  return (
+    <Link getProps={activeFn} to={location}>
+      {icons && <FontAwesomeIcon icon={item.icon}/>} {item.name}
+    </Link>
+  )
+
+}
+
+
+const Menu = props => {
+  const { items, navClass, subMenu, icons } = props;
+  return (
+    <Nav className={navClass}>
+      {items.map((item, index) => (
+        <Nav.Item key={index}>
+          {item.external ? externalPage(item) : (
+            <MenuLink subMenu={subMenu} item={item} icons={icons} />
+          )}
+        </Nav.Item>
+      ))}
+    </Nav>
+  )
+}
+
+Menu.propTypes = {
+  items: PropTypes.array.isRequired,
+  navClass: PropTypes.string,
+  subMenu: PropTypes.bool,
+  icons: PropTypes.bool
+}
+
+Menu.defaultProps = {
+  navClass: 'menu-nav',
+  subMenu: false,
+  icons: false
+}
+
+const externalPage = item => (
   <ExternalLink 
     placement="right"
     variant="outline-info"
-    destinationUrl={page.location}
+    destinationUrl={item.location}
     showIcon>
-      {page.name}
+      {item.name}
   </ExternalLink>
 );
-
 
 
 export default Menu;

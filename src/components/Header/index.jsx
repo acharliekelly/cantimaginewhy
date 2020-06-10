@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import ContactLinks from '../ContactLinks';
 import Logo from '../Logo';
 import Menu from '../Menu';
+import { pages } from '../../config/menu';
 import { Breakpoint } from 'react-socks';
 
 /* TODO:
@@ -28,7 +29,7 @@ const Header = props => (
       
 
       <Container className="justify-content-end">
-        <Menu />
+        <Menu items={pages} />
       </Container>
         
       <Container className="justify-content-end">

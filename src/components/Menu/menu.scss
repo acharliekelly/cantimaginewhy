@@ -44,6 +44,8 @@ $menu-ext-link: #006;
         font-size: 2vw !important;
         display: inline-block;
         color: $menu-ext-link;
+        white-space: nowrap;
+        
         svg {
           font-size: 0.5vw;
           display: inline;

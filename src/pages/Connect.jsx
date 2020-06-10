@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import ContactLinks from '../components/ContactLinks';
 import { contactText } from '../config/text';
-import { connectDisplayTypes } from '../utils/constants';
+import { itemDisplayTypes } from '../utils/constants';
 import { sections } from '../config/menu';
 // import { Breakpoint } from 'react-socks';
 import withSizes from 'react-sizes';
@@ -16,7 +16,7 @@ const mapSizesToProps = sizes => ({
 
 const SectionContent = props => {
   const { sectionId, showDesc } = props;
-  const displayStyle = showDesc ? connectDisplayTypes.description : connectDisplayTypes.text
+  const displayStyle = showDesc ? itemDisplayTypes.description : itemDisplayTypes.iconAndText;
   
   return (
     <Container className="contact-links">
@@ -41,7 +41,7 @@ const ConnectWrapper = ({ children }) => (
 
 const ConnectSection = props => (
   <ConnectWrapper>
-    <Menu items={sections} navClass="section-nav" subMenu icons />
+    <Menu items={sections} navClass="section-nav" subMenu iconFlag />
     <Container className="active-content">
       <SectionContent {...props} />
     </Container>
@@ -54,7 +54,7 @@ const ConnectPage = props => {
   } else {
     return (
       <ConnectWrapper>
-        <Menu items={sections} navClass="section-nav" icons />
+        <Menu items={sections} navClass="section-nav" iconFlag />
       </ConnectWrapper>
     )
   }

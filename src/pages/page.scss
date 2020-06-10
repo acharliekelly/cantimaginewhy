@@ -1,0 +1,125 @@
+
+.section-nav {
+  margin: 1vh 4vw;
+  width: 40%;
+  text-align: center;
+
+  .nav-item {
+    margin: 0 0.2vw;
+  }
+
+  a {
+    color: #333;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    text-decoration: none;
+    padding: 0 0.5vw;
+
+    &:hover {
+      border-color: #666;
+      text-decoration: none;
+    }
+
+    &.active, &.active:hover {
+      text-decoration: none;
+      border-color: #333;
+      background-color: #333;
+      color: #eee !important;
+    }
+  }
+}
+
+
+.content {
+  background-color: #fff;
+  margin: 2em 1em;
+  padding-top: 1em;
+
+  .sections {
+    border: thin groove #666;
+    border-radius: 1vw;
+    margin: 1vh 0;
+  }
+
+  header {
+    text-align: left;
+    margin-top: 1em;
+  }
+
+  // .parallax {
+  //   height: 400px;
+  // }
+
+  section {
+    text-align: left;
+    margin: 2em 0.5em;
+    padding: 0.3em;
+    opacity: 0.9;
+    color: black;
+    background-color: white;
+    border-radius: 0.5em;
+  }
+
+}
+
+
+// CONNECT
+.contact {
+  text-align: left;
+  margin: 0 3em;
+  // border: thin solid #999;
+  border-radius: 0.3em;
+
+  
+  .nav-item {
+    .nav-link {
+      font-size: 2vw;
+    }
+  }
+}
+
+
+.contact-links {
+  margin: 1vh 1vw;
+  padding: 2vw;
+  background-color: #ddd;
+  border-radius: 0.3em;
+  // overflow: hidden;
+
+  .connect-text {
+    border-radius: 0.2rem;
+    background-color: #eee;
+    padding: 1vw 2vw;
+    margin: 0 2vw 1vh 2vw;
+    color: #333;
+    font-size: 1rem;
+  }
+}
+
+
+// HOME
+.content.home {
+  background-color: black;
+  main {
+    text-align: center;
+    opacity: 1;
+  
+    .banner {
+      width: 90%;
+      height: auto;
+    }
+  
+    .featured {
+      margin-top: 1rem;
+
+      .header {
+        color: #fff;
+        font-size: 1rem;
+      }
+  
+      img {
+        max-width: 99%;
+      }
+    }
+  }
+}

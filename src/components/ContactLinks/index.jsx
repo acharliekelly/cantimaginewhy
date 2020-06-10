@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import Container from 'react-bootstrap/Container';
 import classNames from 'classnames';
 
 /**
@@ -14,7 +13,7 @@ import classNames from 'classnames';
  * - groups: [ art, design, tech, head ] - only display in these groups
  */
 import { links } from '../../config/links';
-import { connectDisplayTypes } from '../../utils/constants';
+import { itemDisplayTypes } from '../../utils/constants';
 import './links.scss';
 
 
@@ -25,6 +24,10 @@ const ItemIcon = ({ link }) => {
 };
 
 
+/**
+ * This component is not aware of viewport size, but parent should be!
+ * 
+ */
 const ContactLinks = ({ display, group }) => {
   // raw json list, filtered by group
   const listCls = classNames('links', { 'nav': group === 'head'});
@@ -36,11 +39,14 @@ const ContactLinks = ({ display, group }) => {
         <li key={index}>
           <a target="_blank" rel="noopener noreferrer" href={item.url}>
             <ItemIcon link={item} />
-            {display >= connectDisplayTypes.text && (
-              <span className={classNames('link-text', {'expand-text': display < 3})}>{item.name}</span>
+            {display >= itemDisplayTypes.iconAndText && (
+              <span className={classNames('link-text', 
+              {'expand-text': display < itemDisplayTypes.description})}>
+                {item.name}
+              </span>
             )}
           </a>
-          {display >= connectDisplayTypes.description && (
+          {display >= itemDisplayTypes.description && (
             <span className="link-desc">{item.desc}</span>
           )}
         </li>
@@ -53,10 +59,10 @@ const ContactLinks = ({ display, group }) => {
 ContactLinks.propTypes = {
   /**
    * display style:
-   * - 0: none
-   * - 1: icon
-   * - 2: icon and name
-   * - 4: icon, name, and description
+   * (itemDisplayTypes)
+   * 1: icon
+   * 3: text
+   * 4: description
    */
   display: PropTypes.number.isRequired,
   /**
@@ -68,7 +74,7 @@ ContactLinks.propTypes = {
 
 
 ContactLinks.defaultProps = {
-  display: 1
+  display: itemDisplayTypes.iconOnly
 };
 
 

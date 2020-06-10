@@ -6,8 +6,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { extractDomainName } from '../../../utils/system';
 
-
-const ExtLink = props => (
+// just the link, no button
+const ExtLinkOnly = props => (
   <OverlayTrigger
     placement={props.placement}
     delay={{ show: 250, hide: 400 }}
@@ -25,10 +25,13 @@ const ExtLink = props => (
   </OverlayTrigger>
 );
 
+/**
+ * Button that links to external site
+ */
 const ExternalLink = props => {
   const { linkOnly, placement, destinationUrl, variant, showIcon } = props;
   if (linkOnly) {
-    return ExtLink(props);
+    return ExtLinkOnly(props);
   } else {
     return (
       <OverlayTrigger
@@ -39,7 +42,7 @@ const ExternalLink = props => {
         }
       >
         <Button as="a" className="external-link" target="_blank" rel="noopener noreferrer" 
-          variant={variant} href={destinationUrl}>
+          variant={variant} href={destinationUrl} >
           {props.children}
           {showIcon && (
             <FontAwesomeIcon icon="external-link-alt" size="sm" style={{marginLeft: '1em'}} />

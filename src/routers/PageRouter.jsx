@@ -1,11 +1,11 @@
 import React from 'react';
 import { Router } from '@reach/router';
 
-import ContactPage from '../views/Contact';
-import HomePage from '../views/Home';
-import AboutPage from '../views/About';
+import ConnectPage from '../pages/Connect';
+import { HomePage } from '../pages/Home';
 
-// import ArtRouter from './ArtRouter';
+import { AboutPage, AboutSection } from '../pages/About';
+
 import ArtworkPage from '../views/Artwork';
 
 /**
@@ -15,10 +15,15 @@ const PageRouter = () => (
   <Router>
     <HomePage path="/" />
     <AboutPage path="about" />
-    <ContactPage path="connect" />
+    <AboutSection path="about/:sectionId" />
+      
+    
+    <ConnectPage path="connect" />
+    <ConnectPage path="connect/:sectionId" />
+
     <ArtworkPage path="artwork" />
+
   </Router>
 );
-
 
 export default PageRouter;

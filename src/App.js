@@ -8,9 +8,9 @@ import Header from './components/Header/';
 import Footer from './components/Footer/';
 // import DefaultRouter from './routers/DefaultRouter';
 import PageRouter from './routers/PageRouter';
-
+import classNames from 'classnames';
 import { initializeLibrary } from './utils/faLibrary';
-import { updateFavicon, initSocks } from './utils/system';
+import { updateFavicon, initSocks, getEnv } from './utils/system';
 import { cloudName } from './utils/cloudinaryApi';
 
 import './scss/custom.scss';
@@ -28,10 +28,11 @@ const App = () => {
   // Initialize FontAwesome library
   initializeLibrary();
 
+  const mainCls = classNames('page-container', getEnv().className)
 
   return (
     <BreakpointProvider>
-      <div className="page-container">
+      <div className={mainCls}>
         <CloudinaryContext cloudName={cloudName}>
           <Header />
           <div className="content-wrapper">

@@ -44,7 +44,7 @@ const AboutWrapper = ({ children }) => (
  */
 export const AboutSection = ({ sectionId }) => (
   <AboutWrapper>
-    <Menu items={sections} navClass="section-nav" subMenu icons />
+    <Menu items={sections} navClass="section-nav" subMenu iconFlag />
     <Container className="active-content">
       <SectionContent sectionId={sectionId} />
     </Container>
@@ -59,6 +59,6 @@ export const AboutSection = ({ sectionId }) => (
  */
 export const AboutPage = () => (
   <AboutWrapper>
-    <Menu items={sections} navClass="section-nav" icons />
+    <Menu items={sections} navClass="section-nav" iconFlag />
   </AboutWrapper>
 );

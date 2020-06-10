@@ -1,50 +1,22 @@
 // System Utilities
-import withSizes from 'react-sizes';
+// import withSizes from 'react-sizes';
 import { setDefaultBreakpoints } from 'react-socks';
+import { 
+  defaultBreakpoints, 
+  environmentTypes, 
+  viewportSizes } from './constants';
 
 
-/**
- * Bootstrap default breakpoints
- * for React Socks
- */
-const BOOTSTRAP_DEFAULT_BREAKPOINTS = [
-  { xs: 320 },
-  { sm: 576 },
-  { md: 768 },
-  { lg: 992 },
-  { xl: 1200 }
-];
 
 
 
 export const initSocks = () => {
-  setDefaultBreakpoints(BOOTSTRAP_DEFAULT_BREAKPOINTS)
+  setDefaultBreakpoints(defaultBreakpoints)
 }
 
 
 
-const environments = {
-  'development': {
-    icon: 'cog',
-    favicon: 'ck.gif',
-    text: 'dev',
-    className: 'development'
-  },
-  'test': {
-    icon: 'check',
-    favicon: 'ciw1.png',
-    text: 'test',
-    className: 'test'
-  },
-  'production': {
-    icon: 'heart',
-    favicon: 'logo.png',
-    text: 'live',
-    className: 'production'
-  }
-}
-
-export const getEnv = () => environments[process.env.NODE_ENV];
+export const getEnv = () => environmentTypes[process.env.NODE_ENV];
 
 
 const faviconUrl = () => {
@@ -91,15 +63,21 @@ export const extractDomainName = url => {
 }
 
 
-// withSizes
 /**
  * for applying sizes HoC
+ * uses Bootstrap defaults
  * @param {object} sizes 
  */
 export const mapSizesToProps = sizes => ({
-  isMobile: withSizes.isMobile(sizes),
-  isTablet: withSizes.isTablet(sizes),
-  isDesktop: withSizes.isDesktop(sizes),
+  isTiny: sizes.width <= viewportSizes.xs, // 0 - 320
+  isSmall: sizes.width > viewportSizes.xs && sizes.width <= viewportSizes.sm, // 320 - 576
+  isMedium: sizes.width > viewportSizes.sm && sizes.width <= viewportSizes.md, // 576 - 768
+  isLarge: sizes.width > viewportSizes.md && sizes.width <= viewportSizes.lg, // 768 - 992
+  isHuge: sizes.width > viewportSizes.lg && sizes.width <= viewportSizes.xl, // 992 - 1200
+  isMassive: sizes.width > viewportSizes.xl, // > 1200
+  isMobile: sizes.width <= viewportSizes.sm,
+  isTablet: sizes.width > viewportSizes.sm && sizes.width < viewportSizes.lg,
+  isDesktop: sizes.width >= viewportSizes.lg,
   isCondensed: sizes.width < 600
 })
 

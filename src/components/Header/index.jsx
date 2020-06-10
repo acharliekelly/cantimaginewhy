@@ -16,24 +16,28 @@ const tmpLaunch = () => console.log('launching Logo gallery');
 const Header = props => (
   <div className="menu-wrapper">
     <Navbar bg="light" className="justify-content-between">
-      <Breakpoint xs only>
-        <Navbar.Brand>
+      <Navbar.Brand>
+        <Breakpoint xs only>
           <Logo logoSize={40} allowExpand={false} />
-        </Navbar.Brand>
-      </Breakpoint>
-      <Breakpoint sm up>
-        <Navbar.Brand>
+        </Breakpoint>
+        <Breakpoint sm up>
           <Logo logoSize={80} allowExpand launchGallery={tmpLaunch} />
-        </Navbar.Brand>
-      </Breakpoint>
+        </Breakpoint>
+      </Navbar.Brand>
       
-
+      {/* Main Menu */}
       <Container className="justify-content-end">
-        <Menu items={pages} />
+        <Breakpoint xs only>
+          <Menu items={pages} minimize />
+        </Breakpoint>
+        <Breakpoint sm up>
+          <Menu items={pages} />
+        </Breakpoint>
       </Container>
         
+      {/* Links */}
       <Container className="justify-content-end">
-        <Breakpoint sm up>
+        <Breakpoint md up>
           <ContactLinks group="head" />
         </Breakpoint>
       </Container>

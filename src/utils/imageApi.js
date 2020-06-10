@@ -1,4 +1,4 @@
-import { getContextProperty, getImageSrc, cloudUrl } from './cloudinaryApi';
+import { getContextProperty } from './cloudinaryApi';
 
 /**
  * Get thumbnail size based on image count
@@ -166,46 +166,6 @@ export const sortGallery = (nav, gallery) => {
   return sorted;
 }
 
-const defSrcSetSizes = [ 256, 512, 768, 1024, 1280 ];
-
-export const getSourceSet = (publicId, width, quality = 80, sizes = defSrcSetSizes) => {
-  return sizes.filter(size => size <= width)
-    .map(size => `${cloudUrl}f_auto,q_${quality},w_${size}/${publicId}.jpg ${size}w`)
-    .join(', ')
-}
-
-export const getSourceSizes = (breakPoints, sizes = defSrcSetSizes) => {
-  const arr = breakPoints.map((pt, idx) => `(max-width: ${pt}px) ${sizes[idx]}`)
-  arr.push(sizes[-1] + 'px');
-  return arr.join(', ');
-}
-
-export const getIdxSrc = (publicId, sizes, index) => {
-  const width = sizes[index];
-  return `${cloudUrl}f_auto,q_75,w_${width}/${publicId}.jpg`;
-}
-
-
-
-// GENERATE PHOTO ARRAY FOR MASONRY GALLERY
-/**
- * formats resources array to suit photo-gallery component
- * format is: [
- *    src: <image url>,
- *    width: <pixel-width>,
- *    height: <pixel-height>
- * ]
- * @param {array} resources JSON (cloudinary response format)
- * @param {number} scale number less than 1, unless you want to make it bigger
- */
-export const masonryImageArray = (resources, scale = 1) => {
-  return resources.map(resource => ({
-    src: getImageSrc(resource.public_id, Math.floor(resource.width * scale), false),
-    width: resource.width * scale,
-    height: resource.height * scale
-  }))
-}
-
 // returns 2D array of zoom sizes [[w,h]]
 export const imageZoomSizes = (cImage, initSizes) => {
   const factors = [];
@@ -220,4 +180,70 @@ export const imageZoomSizes = (cImage, initSizes) => {
     height += startHeight;
   } while (width < maxWidth && height < maxHeight);
   return factors;
+}
+
+
+
+/**
+ * For binding to gallery components
+ */
+export class GalleryModel {
+  constructor (imgList, index = 0) {
+    this.imageList = imgList;
+    this.currentIndex = index;
+    this.components = [];
+    this.callbacks = [];
+  }
+
+  bindComponent = component => {
+    if (!this.components.includes(component)) {
+      this.components.push(component);
+    }
+    if (!this.callbacks.includes(component)) {
+      this.components.push(component.updateMethod)
+    }
+    this.components.push(component);
+    if (component.updateMethod) {
+      this.callbacks.push(component.updateMethod)
+    }
+  }
+
+  bindMethod = (component, method) => {
+    if (!this.components.includes(component)) {
+      this.bindComponent(component);
+    }
+    if (!this.callbacks.includes(method)) {
+      this.bindMethod(method);
+    }
+  }
+
+  updateComponents = () => {
+    this.callbacks.forEach(updateMethod => updateMethod(this.currentIndex))
+  }
+
+  moveNext = () => {
+    const tmp = (this.currentIndex + 1) % this.imageList.length;
+    this.currentIndex = tmp;
+    this.updateComponents();
+  }
+
+  movePrevious = () => {
+    const tmp = (this.currentIndex + this.imageList.length - 1) % this.imageList.length;
+    this.currentIndex = tmp;
+    this.updateComponents();
+  }
+
+  currentImage = () => {
+    return this.imageList[this.currentIndex];
+  }
+
+  setIndex = index => {
+    this.currentIndex = index;
+    this.updateComponents();
+  }
+
+  findById = publicId => {
+    return this.imageList.find(img => img.public_id === publicId);
+  }
+
 }

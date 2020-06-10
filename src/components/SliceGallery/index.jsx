@@ -6,6 +6,12 @@ import { fetchGallery, getContextProperty }from '../../utils/cloudinaryApi';
 import { shuffleArray } from '../../utils/miscUtils';
 import { withLightbox } from '../higherOrder/withLightbox';
 
+
+/**
+ * Fetches CldGallery from tagName and displays 
+ * random {gallerySize} images
+ * @param {*} props 
+ */
 const SliceGallery = props => {
   const [ images, setImages ] = useState([]);
   const { tagName, gallerySize, imageHeight } = props;
@@ -25,8 +31,7 @@ const SliceGallery = props => {
             title={getContextProperty(image, 'caption', 'Untitled')}
             responsive 
             height={imageHeight}
-            crop="fit" 
-            cloudName="cantimaginewhy" 
+            crop="fit"  
             publicId={image.public_id}
             style={{ margin: '0.5em', cursor: 'pointer' }}
             onClick={() => props.setLightboxArray(images, index)}

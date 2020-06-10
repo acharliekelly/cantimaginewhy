@@ -26,7 +26,7 @@ const HelpButton = props => (
         <FontAwesomeIcon icon="question-circle" size={props.size} />
       </div>
     ) : (
-      <Button className="help-btn" variant={props.variant}>
+      <Button className="help-btn" variant={props.variant} title="Help">
         <FontAwesomeIcon icon="question-circle" size={props.size} />
       </Button>
     )}

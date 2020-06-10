@@ -208,6 +208,7 @@ export const aboutContent = {
 }
 
 export const contactText = {
+  "intro": `There are several ways to contact me, depending on what you're interested in`,
   "art": `If you're interested in my artwork, you can connect with me on these platforms
   to ask me questions, make comments, subscribe to updates, etc.`,
   "design": `These are my design consultants. If you like how the site looks, you should

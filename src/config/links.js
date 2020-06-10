@@ -61,7 +61,7 @@ export const links = [
   {
     name: 'Portfolio',
     desc: 'My official development portfolio',
-    icon: 'file-alt',
+    icon: 'file-code',
     url: 'https://acharliekelly.github.io',
     groups: [ 'tech' ]
   },

@@ -5,9 +5,12 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { 
   faBars, 
   faBlog,
+  faCamera,
   faCheck,
   faChevronLeft, 
   faChevronRight, 
+  faClock,
+  faCode,
   faCog, 
   faDove,
   faDraftingCompass,
@@ -17,12 +20,16 @@ import {
   faFileCode,
   faFilter,
   faFolderOpen,
+  faFont,
   faHome,
   faHeart,
+  faHistory,
   faIcons,
+  faIdCard,
   faImage,
   faImages,
   faLeaf,
+  faListOl,
   faMapMarkerAlt,
   faMapMarkedAlt,
   faPaintBrush,
@@ -30,24 +37,30 @@ import {
   faPaperPlane,
   faProjectDiagram,
   faQuestionCircle,
+  faStar,
   faShoppingCart,
   faSearchPlus,
   faSitemap,
   faSort,
   faSortUp,
-  faSortDown
+  faSortDown,
+  faTag,
+  faUserCircle,
+  faUserFriends
  } from '@fortawesome/free-solid-svg-icons';
 
 
  export const initializeLibrary = () => {
-  library.add(fab, faBars, faChevronLeft, faChevronRight, 
+  library.add(fab, faCode, faBars, faChevronLeft, faChevronRight, 
     faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
     faImage, faQuestionCircle, faSearchPlus, faBlog,
     faFilter, faSort, faImages, faExternalLinkAlt, 
     faEllipsisV, faFileAlt, faFileCode, faFolderOpen,
     faSortUp, faSortDown, faPaintBrush, faPalette,
     faMapMarkedAlt, faMapMarkerAlt, faDraftingCompass,
-    faDove, faIcons, faLeaf, faHome, faProjectDiagram, faSitemap );
+    faDove, faIcons, faLeaf, faHome, faProjectDiagram, 
+    faSitemap, faIdCard, faUserCircle, faUserFriends,
+    faStar, faCamera, faHistory, faClock, faFont, faTag, faListOl );
  }
 
  

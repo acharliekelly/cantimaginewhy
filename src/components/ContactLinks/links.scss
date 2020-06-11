@@ -11,10 +11,11 @@
     }
   }
 
-  &.nav {
+  &.nav { // header
     li {
       display: inline-block;
-      margin: 0 0.4rem;
+      margin: 0 0.4em;
+      font-size: 1.5em;
       span {
         display: inline;
       }
@@ -28,13 +29,6 @@
   a:hover {
     color: #036;
   }
-
-  // img, svg {
-  //   margin-right: 5%;
-  // }
-  // img {
-  //   height: 2vh;
-  // }
 
   .link-text {
     text-decoration: none;
@@ -58,39 +52,5 @@
     font-size: 0.8rem;
     max-width: 40vw;
   }
-
-  // .url-text {
-  //   color: #224;
-  //   font-style: italic;
-  //   text-decoration: none !important;
-  // }
-
-  // .mix-hide {
-  //   .link-text {
-  //     visibility: hidden;
-  //   }
-
-  //   &:hover .link-text {
-  //    visibility: visible;
-  //   }
-  // }
-
-  // .mix-show .link-text {
-  //   visibility: visible;
-  // }
-
-  // .mix-url {
-  //   .link-text {
-  //     visibility: visible;
-  //   }
-  //   .url-text {
-  //     padding-left: 3vw;
-  //     visibility: hidden;
-  //   }
-  //   &:hover .url-text {
-  //     visibility: visible;
-  //   }
-  // }
-
   
 }

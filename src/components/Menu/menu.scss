@@ -16,11 +16,19 @@ $menu-ext-link: #006;
     text-align: center;
     font-variant: small-caps;
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 1vw;
+    // border: thin solid #111;
+    // border-radius: 5px;
   }
 
   .nav-item {
     margin: 0 0.2vw;
+    font-size: 2em;
+    &.icon {
+      font-size: 3em;
+      // margin: 0 0.4rem;
+      padding: 1em 2em;
+    }
 
     a {
       color: $menu-text;
@@ -40,8 +48,7 @@ $menu-ext-link: #006;
       }
   
       &.external-link {
-
-        font-size: 2vw !important;
+        font-size: 1em !important;
         display: inline-block;
         color: $menu-ext-link;
         white-space: nowrap;
@@ -51,15 +58,13 @@ $menu-ext-link: #006;
           display: inline;
         }
         &:hover {
-          border-color: $menu-ext-link;
-          color: $menu-ext-link;
           background-color: $menu-ext-link;
           color: $menu-active-text;
         }
       }
 
       &.btn.btn-outline-info {
-        font-size: 2vw;
+        // font-size: 2vw;
         display: inline-block;
         svg {
           font-size: 0.5vw;

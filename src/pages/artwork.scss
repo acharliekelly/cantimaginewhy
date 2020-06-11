@@ -1,0 +1,60 @@
+
+.gallery-switch {
+  text-align: left;
+  height: 2em;
+  font-size: 12px;
+  font-family: Gotu, sans-serif;
+
+  .label {
+    color: #333;
+  }
+
+  .option {
+    padding: 1px 2px;
+    border: solid thin #000;
+    border-radius: 3px;
+    color: #000;
+    margin: 1px 3px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #00c;
+      color: #fff;
+    }
+
+    &.selected, &.selected:hover {
+      background-color: #000;
+      color: #fff;
+      cursor: default;
+    }
+  }
+
+  .current-album {
+    font-size: 2vh;
+    margin: 1vh auto;
+    text-align: center;
+  }
+
+  .gallery-description {
+    color: #333;
+    margin-left: 2em;
+    visibility: hidden;
+  }
+
+  &:hover .gallery-description {
+    visibility: visible;
+  }
+}
+
+.progress-img-wrapper {
+  padding: 1em auto;
+  text-align: center;
+  max-width: 100%;
+  border-radius: 0.4em;
+  border: thin inset #333;
+
+  img {
+    max-width: 90%;
+    
+  }
+}

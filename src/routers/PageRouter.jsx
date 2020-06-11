@@ -1,17 +1,15 @@
 import React from 'react';
 import { Router } from '@reach/router';
-
+import ArtRouter from './ArtRouter';
 import ConnectPage from '../pages/Connect';
 import { HomePage } from '../pages/Home';
-
 import { AboutPage, AboutSection } from '../pages/About';
 
-import ArtworkPage from '../views/Artwork';
 
 /**
  * Reach router Page navigation
  */
-const PageRouter = () => (
+const PageRouter = props => (
   <Router>
     <HomePage path="/" />
     <AboutPage path="about" />
@@ -21,7 +19,7 @@ const PageRouter = () => (
     <ConnectPage path="connect" />
     <ConnectPage path="connect/:sectionId" />
 
-    <ArtworkPage path="artwork" />
+    <ArtRouter path="artwork/*" />
 
   </Router>
 );

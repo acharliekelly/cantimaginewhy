@@ -4,23 +4,24 @@ import Container from 'react-bootstrap/Container';
 // import { cleanImageSrc } from '../../utils/cloudinaryApi';
 import { aboutContent } from '../config/text';
 import { sections } from '../config/menu';
-// import { Breakpoint } from 'react-socks';
+import { itemDisplayTypes } from '../utils/constants';
 import Menu from '../components/Menu';
 import './page.scss';
 
+const SectionMenu = ({ subMenu }) => (
+  <Menu 
+    items={sections} 
+    navClass="section-nav"
+    displayStyle={itemDisplayTypes.iconAndText}
+    subMenu={subMenu} /> 
+);
 
 const SectionContent = ({ sectionId }) => {
-  if (aboutContent[sectionId]) {
-    return aboutContent[sectionId].map((content, index) => (
-      <section key={index}>
-        {content}
-      </section>
-    ))
-  } else {
-    return (
-      <div className="no-data">missing section</div>
-    )
-  }
+  return aboutContent[sectionId].map((content, index) => (
+    <section key={index}>
+      {content}
+    </section>
+  ))
 };
 
 
@@ -44,14 +45,12 @@ const AboutWrapper = ({ children }) => (
  */
 export const AboutSection = ({ sectionId }) => (
   <AboutWrapper>
-    <Menu items={sections} navClass="section-nav" subMenu iconFlag />
+    <SectionMenu subMenu />
     <Container className="active-content">
       <SectionContent sectionId={sectionId} />
     </Container>
   </AboutWrapper>
 );
-
-
 
 /**
  * Root page
@@ -59,6 +58,6 @@ export const AboutSection = ({ sectionId }) => (
  */
 export const AboutPage = () => (
   <AboutWrapper>
-    <Menu items={sections} navClass="section-nav" iconFlag />
+    <SectionMenu />
   </AboutWrapper>
 );

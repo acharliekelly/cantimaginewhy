@@ -16,17 +16,26 @@ const mapSizesToProps = sizes => ({
 
 const SectionContent = props => {
   const { sectionId, showDesc } = props;
-  const displayStyle = showDesc ? itemDisplayTypes.description : itemDisplayTypes.iconAndText;
+  const contactDisplayStyle = showDesc ? itemDisplayTypes.description : itemDisplayTypes.iconAndText;
   
   return (
     <Container className="contact-links">
       <p className="connect-text">
         {contactText[sectionId]}
       </p>
-      <ContactLinks group={sectionId} display={displayStyle} />
+      <ContactLinks group={sectionId} display={contactDisplayStyle} />
     </Container>
   )
 }
+
+// TODO: export this for reuse
+const SectionMenu = ({ subMenu }) => (
+  <Menu 
+    items={sections} 
+    navClass="section-nav"
+    displayStyle={itemDisplayTypes.iconAndText}
+    subMenu={subMenu} /> 
+);
 
 const ConnectWrapper = ({ children }) => (
   <div className="content connect">
@@ -41,7 +50,7 @@ const ConnectWrapper = ({ children }) => (
 
 const ConnectSection = props => (
   <ConnectWrapper>
-    <Menu items={sections} navClass="section-nav" subMenu iconFlag />
+    <SectionMenu subMenu />
     <Container className="active-content">
       <SectionContent {...props} />
     </Container>
@@ -49,15 +58,13 @@ const ConnectSection = props => (
 )
 
 const ConnectPage = props => {
-  if (props.sectionId) {
-    return <ConnectSection {...props} />
-  } else {
-    return (
-      <ConnectWrapper>
-        <Menu items={sections} navClass="section-nav" iconFlag />
-      </ConnectWrapper>
-    )
-  }
+  return props.sectionId ? (
+    <ConnectSection {...props} />
+  ) : (
+    <ConnectWrapper>
+      <SectionMenu />
+    </ConnectWrapper>
+  )
 }
  
 export default withSizes(mapSizesToProps)(ConnectPage);

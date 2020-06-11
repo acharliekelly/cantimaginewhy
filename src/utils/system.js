@@ -75,9 +75,9 @@ export const mapSizesToProps = sizes => ({
   isLarge: sizes.width > viewportSizes.md && sizes.width <= viewportSizes.lg, // 768 - 992
   isHuge: sizes.width > viewportSizes.lg && sizes.width <= viewportSizes.xl, // 992 - 1200
   isMassive: sizes.width > viewportSizes.xl, // > 1200
-  isMobile: sizes.width <= viewportSizes.sm,
+  isMobile: sizes.width <= viewportSizes.sm, // <= 576
   isTablet: sizes.width > viewportSizes.sm && sizes.width < viewportSizes.lg,
-  isDesktop: sizes.width >= viewportSizes.lg,
+  isDesktop: sizes.width >= viewportSizes.lg, // >= 992
   isCondensed: sizes.width < 600
 })
 

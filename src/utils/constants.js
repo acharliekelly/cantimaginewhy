@@ -68,3 +68,10 @@ export const environmentTypes = {
     className: 'production'
   }
 };
+
+
+export const galleryTypes = {
+  album: 1,
+  filter: 2,
+  category: 3
+};

@@ -17,7 +17,6 @@ const mapSizesToProps = sizes => ({
 const SectionContent = props => {
   const { sectionId, showDesc } = props;
   const contactDisplayStyle = showDesc ? itemDisplayTypes.description : itemDisplayTypes.iconAndText;
-  
   return (
     <Container className="contact-links">
       <p className="connect-text">
@@ -28,20 +27,23 @@ const SectionContent = props => {
   )
 }
 
-// TODO: export this for reuse
+
 const SectionMenu = ({ subMenu }) => (
   <Menu 
     items={sections} 
     navClass="section-nav"
     displayStyle={itemDisplayTypes.iconAndText}
-    subMenu={subMenu} /> 
+    subMenu={subMenu}
+    homeItem={{
+      name: 'Connect',
+      location: '.',
+      icon: 'user-circle'
+    }}
+     /> 
 );
 
 const ConnectWrapper = ({ children }) => (
   <div className="content connect">
-    <header className="page-title">
-      <strong>Ways to Connect</strong>
-    </header>
     <Container className="contact">
       {children}
     </Container>
@@ -63,6 +65,9 @@ const ConnectPage = props => {
   ) : (
     <ConnectWrapper>
       <SectionMenu />
+      <Container className="active-content">
+        <SectionContent sectionId="intro" {...props} />
+      </Container>
     </ConnectWrapper>
   )
 }

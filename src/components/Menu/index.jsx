@@ -67,17 +67,25 @@ const menuContent = (item, displayStyle) => {
 }
 
 
+
+
 const Menu = props => {
-  const { items, navClass, minimize } = props;
+  const { items, navClass, minimize, homeItem } = props;
   let list = items;
   if (minimize) {
     list = items.filter(item => !item.external)
   }
+  const itemCls = classNames({'icon': minimize})
   
   return (
     <Nav className={navClass}>
+      {homeItem && (
+        <Nav.Item className={itemCls}>
+          <MenuLink item={homeItem} {...props} />
+        </Nav.Item>
+      )}
       {list.map((item, index) => (
-        <Nav.Item key={index} className={classNames({'icon': minimize})}>
+        <Nav.Item key={index} className={itemCls}>
           {item.external ? externalPage(item) : (
             <MenuLink item={item} {...props} />
           )}
@@ -111,7 +119,12 @@ Menu.propTypes = {
   /**
    * as small as possible
    */
-  minimize: PropTypes.bool
+  minimize: PropTypes.bool,
+
+  /**
+   * parent item, if section menu
+   */
+  homeItem: PropTypes.object
 }
 
 Menu.defaultProps = {

@@ -1,7 +1,18 @@
 // put this in separate library to avoid cluttering App.js
 // also, need to run for Storybook icons to work
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+// import { fab } from '@fortawesome/free-brands-svg-icons';
+
+import {
+  faBloggerB,
+  faFlickr,
+  faInstagram,
+  faFacebook,
+  faGithub,
+  faLinkedin
+} from '@fortawesome/free-brands-svg-icons';
+
+// generic
 import { 
   faBars, 
   faBlog,
@@ -15,6 +26,7 @@ import {
   faDove,
   faDraftingCompass,
   faEllipsisV,
+  faExclamationTriangle,
   faExternalLinkAlt,
   faFileAlt,
   faFileCode,
@@ -37,6 +49,7 @@ import {
   faPaperPlane,
   faProjectDiagram,
   faQuestionCircle,
+  faSkull,
   faStar,
   faShoppingCart,
   faSearchPlus,
@@ -51,7 +64,7 @@ import {
 
 
  export const initializeLibrary = () => {
-  library.add(fab, faCode, faBars, faChevronLeft, faChevronRight, 
+  library.add(faCode, faBars, faChevronLeft, faChevronRight, 
     faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
     faImage, faQuestionCircle, faSearchPlus, faBlog,
     faFilter, faSort, faImages, faExternalLinkAlt, 
@@ -60,7 +73,10 @@ import {
     faMapMarkedAlt, faMapMarkerAlt, faDraftingCompass,
     faDove, faIcons, faLeaf, faHome, faProjectDiagram, 
     faSitemap, faIdCard, faUserCircle, faUserFriends,
-    faStar, faCamera, faHistory, faClock, faFont, faTag, faListOl );
+    faStar, faCamera, faHistory, faClock, faFont, faTag, 
+    faListOl, faSkull, faExclamationTriangle,
+    faBloggerB, faFlickr, faInstagram, faFacebook,
+    faGithub, faLinkedin );
  }
 
  

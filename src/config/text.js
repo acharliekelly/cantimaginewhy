@@ -157,7 +157,7 @@ export const aboutContent = {
   "intro": [
     `My name is Charlie Kelly, and this is my website. It's mine in the sense that I own the domain,
     but also because I created all the artwork. And also did the engineering. But I had help on the design.
-    All three topics are discussed below.`
+    All three topics are discussed here.`
   ],
   "art": [
     `I took up art essentially because I found out it was possible to take up art as an adult. 
@@ -179,9 +179,6 @@ export const aboutContent = {
     The only way to prevent this was to apply the pigment in tiny, non-contiguous dots. It turns out this is actually 
     a style of painting, called Pointillism. It was championed by the French post-impressionist Georges Seurat. But 
     I didn’t realize it at the time; I was just trying to paint without ruining the paper.`,
-
-    `At present, I mostly do landscapes. When the weather is nice, I prefer to paint my landscapes 
-    "en plein air", which means standing in front of the landscape while I'm painting it.`
   ],
   "design": [
     `I've been putting my artwork online in various ways for about as long as I've been drawing, but I've never
@@ -208,7 +205,7 @@ export const aboutContent = {
 }
 
 export const contactText = {
-  "intro": `There are several ways to contact me, depending on what you're interested in`,
+  "intro": `There are several ways to connect, depending on what you're interested in`,
   "art": `If you're interested in my artwork, you can connect with me on these platforms
   to ask me questions, make comments, subscribe to updates, etc.`,
   "design": `These are my design consultants. If you like how the site looks, you should

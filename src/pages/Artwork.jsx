@@ -16,7 +16,7 @@ import './artwork.scss';
 
 const ArtworkPage = props => {
   // STATE VARS
-  const [ useFilter, setUseFilter ] = useState(false);  
+  const [ navFilter, setFilter ] = useState(false);  
   const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
   const [ thumbSize, setThumbSize ] = useState(0);
   const [ currentIndex, setCurrentIndex ] = useState(0); // int
@@ -27,7 +27,7 @@ const ArtworkPage = props => {
   // switch nav
   useEffect(() => {
     clearArtGallery();
-  }, [useFilter])
+  }, [navFilter])
 
   // update display image
   useEffect(() => {
@@ -55,7 +55,7 @@ const ArtworkPage = props => {
 
   // METHODS
   const navSwitch = () => {
-    setUseFilter(!useFilter);
+    setFilter(!navFilter);
   }
 
   const clearArtGallery = () => {
@@ -99,7 +99,7 @@ const ArtworkPage = props => {
 
   return (
     <div className="content">
-      { useFilter ? (
+      { navFilter ? (
         <FilterNav {...navProps}/>
       ) : (
         <AlbumNav {...navProps}/>
@@ -107,7 +107,7 @@ const ArtworkPage = props => {
       
       {selectedAlbum ? (
         <Container className="current-album">
-          {!useFilter && selectedAlbum.description}
+          {!navFilter && selectedAlbum.description}
         </Container>
       ) : (
         <Container className="instructions">

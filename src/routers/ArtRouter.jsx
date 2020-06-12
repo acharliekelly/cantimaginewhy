@@ -8,9 +8,9 @@ import MobilePage from '../pages/Mobile';
 const ArtRouter = props => (
   <Router>
     {props.isDesktop ? (
-      <ArtworkPage path="/" />
+      <ArtworkPage path="/*" />
     ) : (
-      <MobilePage path="/" />
+      <MobilePage path="/*" />
     )}
   </Router>
 )

@@ -25,14 +25,11 @@ const LogoImg = ({ size, handler, title = 'Logo' }) => (
  */
 const Logo = props => {
   const [ expanded, setExpanded ] = useState(false);  
-  const { logoSize, allowExpand, launchGallery } = props;
+  const { logoSize, allowExpand } = props;
 
   const collapse = () => setExpanded(false);
-  const toggle = () => {
-    console.log('Logo Toggle clicked!')
-    setExpanded(!expanded);
-    console.log(' container is now ' + expanded ? 'Expanded' : 'Collapsed')
-  }
+  const toggle = () => setExpanded(!expanded);
+
   const containerStyle = {
     height: `${logoSize}px`,
     width: `${logoSize * 3}px`
@@ -55,14 +52,19 @@ const Logo = props => {
             marginLeft: `${logoSize + 10}px`,
             marginTop: `-${logoSize}px`
             }}>
+              
             <Link to="/">
               <Button variant="info" title="Home" onClick={collapse}>
                 <FontAwesomeIcon icon="home" />
               </Button>
             </Link>
-            <Button variant="primary" title="Browse Logos" onClick={launchGallery}>
-              <FontAwesomeIcon icon="icons" />
-            </Button>
+            
+            <Link to="/artwork/tag/logo">
+              <Button variant="primary" title="Browse Logos" onClick={collapse}>
+                <FontAwesomeIcon icon="icons" />
+              </Button>
+            </Link>
+            
             
             <HelpButton header="Logos" variant="success" title="What's This?"
               content="I came up with several different logo ideas. Want to see them all?" />
@@ -85,12 +87,8 @@ Logo.propTypes = {
   /**
    * expand container when logo clicked
    */
-  allowExpand: PropTypes.bool,
+  allowExpand: PropTypes.bool
 
-  /**
-   * Open the Alternate Logo gallery
-   */
-  launchGallery: PropTypes.func
 };
 
 Logo.defaultProps = {

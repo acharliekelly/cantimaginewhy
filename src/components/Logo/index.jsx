@@ -59,7 +59,7 @@ const Logo = props => {
               </Button>
             </Link>
             
-            <Link to="/artwork/tag/logo">
+            <Link to="/artwork/album/cant-imagine">
               <Button variant="primary" title="Browse Logos" onClick={collapse}>
                 <FontAwesomeIcon icon="icons" />
               </Button>

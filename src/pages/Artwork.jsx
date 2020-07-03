@@ -3,13 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { lookupGeo } from '../utils/geoUtils';
-import FilterNav from '../components/Navs/FilterNav';
+import FilterNav from '../components/Navs/FilterNav/alt';
 import AlbumNav from '../components/Navs/AlbumNav';
 import ImageDetail from '../components/ImageDetail';
 import Stacker from '../components/Stacker';
 import { sortGallery, getThumbnailSize } from '../utils/imageApi';
 import { fetchGallery, getContextProperty } from '../utils/cloudinaryApi';
-
+import { findAlbum, findFilterOption, findFilter } from '../utils/tagUtils';
+// import ArtRouter from '../routers/ArtRouter';
 
 import './artwork.scss';
 
@@ -83,6 +84,27 @@ const ArtworkPage = props => {
   const movePrev = () => {
     const prev = (currentIndex + artImages.length - 1) % artImages.length;
     setCurrentIndex(prev)
+  }
+
+  // check for URL parameters
+  if (props.view) {
+    setFilter(props.view === 'filter')
+  }
+  let tagob;
+  if (props.album) {
+    setFilter(false);
+    tagob = findAlbum(props.album);
+  }
+  if (props.filter) {
+    setFilter(true);
+    if (props.category) {
+      tagob = findFilterOption(props.category, props.filter);
+    } else {
+      tagob = findFilter(props.filter);
+    }
+  }
+  if (tagob) {
+    selectGallery(tagob);
   }
 
   const galleryMoves = {

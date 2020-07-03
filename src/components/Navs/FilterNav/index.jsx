@@ -72,7 +72,7 @@ const FilterNav = props => {
     <>
       <Navbar className="category-bar justify-content-between">
 
-        <NavSwitch type="filter" {...props} />
+        <NavSwitch navType="filter" {...props} />
 
         <Container className="filter-wrapper justify-content-center" lg={4} md={6} sm={8}>
           <ListGroup className="filters" horizontal="md">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,29 +11,13 @@ import classNames from 'classnames';
 import '../nav.scss';
 
 const AlbumNav = props => {
-  const [ selectedNav, setSelectedNav ] = useState(null);
-
-  const { updateSelectNav } = props;
-
-  const selectItem = navObj => {
-    setSelectedNav(navObj);
-    updateSelectNav(navObj);
-  }
-
   
-
-  const navBarClass = classNames('category-bar', 
-    { 
-      'justify-content-between': updateSelectNav,
-      'justify-content-around': !updateSelectNav
-    }
-  )
   const navBtnCls = classNames('album-bar', 'justify-content-center', 'albums');
 
   return (
-      <>
-         <Navbar className={navBarClass}>
-          <NavSwitch type="album" {...props} />
+      <React.Fragment>
+        <Navbar className="justify-content-between">
+          <NavSwitch navType="album" {...props} />
           <Navbar.Text>
             <span className="browse-title">Browse by Album</span>
           </Navbar.Text>
@@ -41,20 +25,11 @@ const AlbumNav = props => {
         </Navbar>
 
         <Container fluid="md" className={navBtnCls}>
-        {albums.map((album, index) => {
-          const selected = (selectedNav && selectedNav.tag === album.tag);
-          return (
-            <NavButton 
-              key={index}
-              navTag={album} 
-              onSelectItem={selectItem} 
-              isSelected={selected} 
-              {...props}
-              />
-            );
-          })}
+        {albums.filter(album => album.display).map((album, index) => (
+          <NavButton key={index} navTag={album} {...props} />
+        ))}
         </Container>
-      </>
+      </React.Fragment>
     );
         
 }

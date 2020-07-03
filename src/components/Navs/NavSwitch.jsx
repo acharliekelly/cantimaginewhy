@@ -1,35 +1,37 @@
 import React from 'react';
+import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const navs = {
-  filter: {
+  'filter': {
     icon: 'images',
-    url: '/albums',
+    url: '/artwork/albums',
     title: 'Browse by Album'
   },
-  album: {
+  'album': {
     icon: 'filter',
-    url: '/filters',
+    url: '/artwork/filters',
     title: 'Browse by Filter'
   }
 }
 
 
 const NavSwitch = props => {
-  const nav = navs[props.type]
+  const nav = navs[props.navType]
   return (
-    <Button className="nav-switch" variant="outline-dark" onClick={props.updateNavSwitch}>
-      <FontAwesomeIcon icon={nav.icon} title={nav.title} size="2x" />
-    </Button>
+    <Link to={nav.url}>
+      <Button className="nav-switch" variant="outline-dark">
+        <FontAwesomeIcon icon={nav.icon} title={nav.title} size="2x" />
+      </Button>
+    </Link>
   )
 };
 
 NavSwitch.propTypes = {
-  type: PropTypes.string,
-  updateNavSwitch: PropTypes.func
+  navType: PropTypes.string
 }
 
 export default NavSwitch;

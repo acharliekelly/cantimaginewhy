@@ -73,6 +73,19 @@ export const findFilter = tagName => {
 }
 
 /**
+ * get the matching tagob
+ * @param {str} categoryName 
+ * @param {str} tagName 
+ */
+export const findFilterOption = (categoryName, tagName) => {
+  const cat = filters.find(category => category.name.toLowerCase === categoryName.toLowerCase);
+  if (cat) {
+    return cat.options.find(option => option.tag === tagName);
+  }
+  return null;
+}
+
+/**
  * return Tagob from tag
  */
 export const findAlbum = tagName => {

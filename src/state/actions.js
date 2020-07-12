@@ -10,8 +10,7 @@ export const SET_DEVICE_TYPE = 'SET_DEVICE_TYPE'; // deviceType (desktop || mobi
 
 export const SELECT_IMAGE = 'SELECT_IMAGE';
 
-export const OPEN_LIGHTBOX = 'OPEN_LIGHTBOX';
-export const CLOSE_LIGHTBOX = 'CLOSE_LIGHTBOX';
+export const TOGGLE_LIGHTBOX = 'TOGGLE_LIGHTBOX';
 
 export const MAGNIFY_IMAGE = 'MAGNIFY_IMAGE';
 export const RESET_IMAGE = 'RESET_IMAGE';
@@ -19,7 +18,7 @@ export const RESET_IMAGE = 'RESET_IMAGE';
 
 
 export const NavigationMode = {
-  BY_TAG: 'BY_TAG',
+  BY_ALBUM: 'BY_ALBUM',
   BY_FILTER: 'BY_FILTER'
 };
 
@@ -55,11 +54,21 @@ export const selectImage = imageId => {
 
 
 
-export const openLightbox = imageId => {
-  return { type: OPEN_LIGHTBOX, imageId };
+export const toggleLightbox = imageId => {
+  return { type: TOGGLE_LIGHTBOX, imageId };
 }
 
-export const closeLightbox = imageId => {
-  return { type: CLOSE_LIGHTBOX, imageId };
+export const magnifyImage = (imageId, magnification) => {
+  return {
+    type: MAGNIFY_IMAGE,
+    imageId,
+    magnification
+  }
 }
 
+export const resetMagnification = imageId => {
+  return {
+    type: RESET_IMAGE,
+    imageId
+  }
+}

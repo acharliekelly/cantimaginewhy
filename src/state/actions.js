@@ -1,74 +1,155 @@
-// action types
-export const SELECT_NAVIGATION_MODE = 'SELECT_NAVIGATION_MODE';  // mode (tag || filter)
+import { fetchGallery } from '../utils/cloudinaryApi';
+import { onsitePhotos } from '../utils/onsiteUtils';
 
-export const SELECT_GALLERY = 'SELECT_GALLERY'; // tagName
-
-
-export const SORT_GALLERY = 'SORT_GALLERY';  // sortField, sortDir
-
-export const SET_DEVICE_TYPE = 'SET_DEVICE_TYPE'; // deviceType (desktop || mobile || ?)
-
-export const SELECT_IMAGE = 'SELECT_IMAGE';
-
-export const TOGGLE_LIGHTBOX = 'TOGGLE_LIGHTBOX';
-
-export const MAGNIFY_IMAGE = 'MAGNIFY_IMAGE';
-export const RESET_IMAGE = 'RESET_IMAGE';
+import * as ACTIONS from '../actions/actionTypes';
 
 
-
-export const NavigationMode = {
-  BY_ALBUM: 'BY_ALBUM',
-  BY_FILTER: 'BY_FILTER'
-};
-
-// action creators
-
-/**
- * 
- * @param {NavigationMode} mode 
- */
-export const selectNavigationMode = mode => {
-  return { type: SELECT_NAVIGATION_MODE, mode };
-}
-
-/**
- * 
- * @param {GalleryItem} gallery 
- */
-export const selectGallery = gallery => {
-  return { type: SELECT_GALLERY, gallery };
-}
-
-export const sortGallery = sortField => {
-  return { type: SORT_GALLERY, sortField };
-}
-
-/**
- * 
- * @param {ImageItem} imageId 
- */
-export const selectImage = imageId => {
-  return { type: SELECT_IMAGE, imageId };
-}
-
-
-
-export const toggleLightbox = imageId => {
-  return { type: TOGGLE_LIGHTBOX, imageId };
-}
-
-export const magnifyImage = (imageId, magnification) => {
+// MODE
+export function selectMode(mode) {
   return {
-    type: MAGNIFY_IMAGE,
-    imageId,
-    magnification
+    type: ACTIONS.SELECT_MODE,
+    mode
   }
 }
 
-export const resetMagnification = imageId => {
+export function selectFilterMode(category) {
   return {
-    type: RESET_IMAGE,
-    imageId
+    type: ACTIONS.SELECT_FILTER_MODE,
+    mode: 'FILTER',
+    filterBy: category
+  }
+}
+
+
+// GALLERY
+
+
+export function requestGallery(galleryName) {
+  return {
+    type: ACTIONS.FETCH_GALLERY,
+    galleryName
+  }
+}
+
+export function receiveGallery(galleryName, response) {
+  return {
+    type: ACTIONS.FETCH_GALLERY,
+    status: 'success',
+    galleryName,
+    images: response.data.resources,
+    index: 0
+  }
+}
+
+export function galleryError(galleryName, err) {
+  return {
+    type: ACTIONS.FETCH_GALLERY,
+    status: 'error',
+    galleryName,
+    error: err
+  }
+}
+
+
+
+// use gallery from state, perform sort in utils, return sorted gallery
+export function sortGallery(sortField, isDesc) {
+  return {
+    type: ACTIONS.SORT_GALLERY,
+    field: sortField,
+    desc: isDesc
+  }
+}
+
+
+
+
+
+export function selectPrimaryImage(index) {
+  return {
+    type: ACTIONS.SELECT_PRIMARY_IMAGE,
+    index
+  }
+}
+
+
+
+export function selectAssociatedImage(index) {
+  return {
+    type: ACTIONS.SELECT_ASSOC_IMAGE,
+    index
+  }
+}
+
+
+
+
+export function requestAssociatedImages(refKey) {
+  return {
+    type: ACTIONS.FETCH_ASSOC_IMAGES,
+    refKey
+  }
+}
+
+export function receiveAssociatedImages(response) {
+  return {
+    type: ACTIONS.FETCH_ASSOC_IMAGES,
+    status: 'success',
+    images: response.data.resources,
+  }
+}
+
+export function associatedImageError(err) {
+  return {
+    type: ACTIONS.FETCH_ASSOC_IMAGES,
+    status: 'error',
+    error: err
+  }
+}
+
+
+
+
+export function requestProducts(productKey) {
+  return {
+    type: ACTIONS.FETCH_PRODUCT_LIST,
+    productKey
+  }
+}
+
+export function receiveProducts(response) {
+  return {
+    type: ACTIONS.FETCH_PRODUCT_LIST,
+    status: 'success',
+    products: response.data.resources
+  }
+}
+
+export function productListError(err) {
+  return {
+    type: ACTIONS.FETCH_PRODUCT_LIST,
+    status: 'error',
+    error: err
+  }
+}
+
+export function fetchMainGallery(galleryTag) {
+  return function (dispatch) {
+    dispatch(requestGallery(galleryTag))
+    return fetchGallery(galleryTag)
+      .then(response => response.json())
+      .then(json => 
+        dispatch(receiveGallery(galleryTag, json))
+      )
+  }
+}
+
+export function fetchAssociatedGallery(refKey) {
+  return function (dispatch) {
+    dispatch(requestAssociatedImages(refKey))
+    return onsitePhotos(refKey)
+      .then(response =>
+        dispatch(receiveAssociatedImages(response))
+      )
   }
 }

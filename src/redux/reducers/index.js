@@ -1,16 +1,52 @@
 import { combineReducers } from 'redux';
-import * as ACTIONS from './actionTypes';
 
+import * as ACTIONS from '../actions/actionTypes';
 
-function primaryGallery (
-  state = {
+const INITIAL_STATE = {
+  navigator: {
+    mode: 'ALBUM',
+    filter: 0,
+    galleryTag: '',
+    galleryText: ''
+  },
+  primaryGallery: {
     isFetching: false,
-    primaryImages: [],
+    imagesList: [],
+    currentIndex: 0,
+    imageDetail: {
+      caption: '',
+      description: '',
+      medium: '',
+      size: '',
+      completedOn: Date.parse('2000-01-01'),
+      location: ''
+    },
+    error: null
+  },
+  progressGallery: {
+    isFetching: false,
+    imagesList: [],
     currentIndex: 0,
     error: null
   },
+  geoData: {
+    available: false,
+    coordinates: [0, 0]
+  },
+  productInfo: {
+    original: false,
+    derived: false
+  }
+};
+
+const navigationReducer = (state = INITIAL_STATE.navigator, action) => {
+  // TODO:
+}
+
+const primaryGalleryReducer = (
+  state = INITIAL_STATE.primaryGallery, 
   action
-) {
+) => {
   switch (action.type) {
     case ACTIONS.SELECT_MODE:
       return Object.assign({}, state, {
@@ -56,15 +92,10 @@ function primaryGallery (
   }
 }
 
-function associatedGallery(
-  state = {
-    isFetching: false,
-    associatedImages: [],
-    associatedIndex: 0,
-    error: null
-  },
+const associatedGalleryReducer = (
+  state = INITIAL_STATE.associatedGallery, 
   action
-) {
+) => {
   switch (action.type) {
     case ACTIONS.FETCH_ASSOC_IMAGES:
       switch (action.status) {
@@ -92,8 +123,9 @@ function associatedGallery(
 }
 
 const rootReducer = combineReducers({
-  primaryGallery,
-  associatedGallery
+  navigationReducer,
+  primaryGalleryReducer,
+  associatedGalleryReducer
 });
 
 export default rootReducer;

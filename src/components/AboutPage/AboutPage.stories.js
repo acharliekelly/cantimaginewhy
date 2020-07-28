@@ -1,10 +1,10 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf } from './@storybook/react';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from './@fortawesome/react-fontawesome';
 import { ContentPanel } from './';
-import { aboutContent } from '../../config/text';
+import { aboutContent } from '../../json/text';
 
 import './about.scss';
 

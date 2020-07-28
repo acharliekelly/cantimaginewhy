@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 
 // PUBLIC CONSTANTS 
@@ -30,7 +30,7 @@ const jsonImgList = tagName => {
 // Return all JSON data of images tagged with tagName
 export const fetchGallery = tagName => {
   const url = jsonImgList(tagName);
-  return axios(url).then(res => res.data.resources);
+  return fetch(url).then(res => res.data.resources);
 }
 
 /**
@@ -121,4 +121,5 @@ export const parallaxImageSrc = (publicId) => {
   return cleanImageSrc(publicId)
  
 }
+
 

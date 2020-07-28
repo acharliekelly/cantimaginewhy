@@ -8,16 +8,16 @@ import {
 import { BreakpointProvider } from 'react-socks';
 import { CloudinaryContext } from 'cloudinary-react';
 
-import Header from './components/Header';
-import ContactPage from './views/Contact/';
-import Footer from './components/Footer/';
-import HomePage from './views/Home/';
-import AboutPage from './views/About';
-import ArtworkPage from './views/Artwork';
+import Header from '../components/Header';
+import ContactPage from '../components/ContactPage/';
+import Footer from '../components/Footer/';
+import HomePage from '../components/HomePage/';
+import AboutPage from '../components/AboutPage';
+import ArtworkPage from '../components/ArtworkPage';
 
-import { initializeLibrary } from './utils/faLibrary';
-import { updateFavicon, initSocks } from './utils/system';
-import { cloudName } from './utils/cloudinaryApi';
+import { initializeLibrary } from '../../utils/faLibrary';
+import { updateFavicon, initSocks } from '../../utils/system';
+import { cloudName } from '../../utils/cloudinaryApi';
 
 import './scss/custom.scss';
 import './scss/main.scss';

@@ -5,7 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
 import { Image, Transformation } from 'cloudinary-react';
 import { defaultImg } from '../../../utils/cloudinaryApi';
-import { filters, navDescription } from '../../../config/filters';
+import { filters, navDescription } from '../../../json/filters';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
 import '../nav.scss';

@@ -13,7 +13,7 @@ import classNames from 'classnames';
  * - url: link destination
  * - groups: [ art, design, tech, head ] - only display in these groups
  */
-import { links } from '../../config/links';
+import { links } from '../../json/links';
 
 import './links.scss';
 

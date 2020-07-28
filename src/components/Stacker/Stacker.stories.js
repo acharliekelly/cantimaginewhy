@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, radios, number} from '@storybook/addon-knobs';
 import Stacker from '.';
 
-import { albums } from '../../config/albums';
+import { albums } from '../../json/albums';
 // import { fetchGallery } from '../../utils/cloudinaryApi'; 
 
 // import { createGalleryFromTagName } from '../../utils/tagUtils';

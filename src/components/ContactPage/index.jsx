@@ -1,9 +1,9 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
-import TabNavs from '../../components/Buttons/TabNavs';
+import TabNavs from '../Buttons/TabNavs';
 import ContactLinks from '../../components/ContactLinks';
-import { contactText } from '../../config/text';
+import { contactText } from '../../json/text';
 import withSizes from 'react-sizes';
 import './contact.scss';
 

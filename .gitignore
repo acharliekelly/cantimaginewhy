@@ -26,7 +26,7 @@ yarn-error.log*
 ciw.code-workspace
 .faunarc
 
-/src/services/*/config.js
+/config/*.js
 /import/serviceAccount.json
 /import/json/*
 /import/*.sh

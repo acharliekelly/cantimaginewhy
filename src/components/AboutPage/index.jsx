@@ -1,10 +1,10 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
-import { Parallax } from "react-parallax";
-import TabNavs from '../../components/Buttons/TabNavs';
+import { Parallax } from "./react-parallax";
+import TabNavs from '../Buttons/TabNavs';
 import { cleanImageSrc } from '../../utils/cloudinaryApi';
-import { aboutContent } from '../../config/text';
+import { aboutContent } from '../../json/text';
 import { Breakpoint } from 'react-socks';
 
 import './about.scss';

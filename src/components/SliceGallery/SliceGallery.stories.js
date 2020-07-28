@@ -4,7 +4,7 @@ import { withKnobs, radios, number } from '@storybook/addon-knobs';
 import { selectLightboxUtil } from '../../utils/miscUtils';
 import SliceGallery from './';
 
-import '../../views/Home/home.scss';
+import '../HomePage/home.scss';
 
 const tags = {
   Favorite: 'favorite', 

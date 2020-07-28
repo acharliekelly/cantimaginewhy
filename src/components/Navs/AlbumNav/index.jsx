@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import NavButton from '../NavButton';
-import { albums, navDescription } from '../../../config/albums';
+import { albums, navDescription } from '../../../json/albums';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
 import classNames from 'classnames';

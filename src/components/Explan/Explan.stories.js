@@ -4,7 +4,7 @@ import Explan from '.';
 import Accordion from 'react-bootstrap/Accordion';
 import { withStacking } from '../higherOrder/withStacking';
 
-import { albums } from '../../config/albums';
+import { albums } from '../../json/albums';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

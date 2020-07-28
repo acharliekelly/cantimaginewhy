@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { links } from '../../config/links';
+import { links } from '../../json/links';
 // import { Breakpoint } from 'react-socks';
 
 import './links.scss';

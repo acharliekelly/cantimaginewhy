@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'cloudinary-react';
+import { Image } from './cloudinary-react';
 import SliceGallery from '../../components/SliceGallery';
 
 import './home.scss'; 

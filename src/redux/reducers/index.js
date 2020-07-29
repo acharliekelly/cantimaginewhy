@@ -3,14 +3,21 @@ import * as MODES from '../../utils/constants';
 import * as ACTIONS from '../actions/actionTypes';
 
 export const INITIAL_STATE = {
+  viewPort: 1200,
+  lightboxOpen: false,
   navigator: {
     isFetching: false,
     mode: MODES.ALBUM_MODE,
     filter: 0,
     galleries: [],
-    selectedGallery: '',
-    galleryText: '',
-    galleryDescription: '',
+    selectedGallery: {
+      name: '',
+      tag: '',
+      thumbnail: '',
+      description: '',
+      sortField: '.completed',
+      sortDir: 'desc'
+    },
     error: null
   },
   primaryGallery: {
@@ -25,7 +32,8 @@ export const INITIAL_STATE = {
     medium: '',
     size: '',
     completedOn: Date.parse('2000-01-01'),
-    location: ''
+    location: '',
+    referenceKey: ''
   },
   progressGallery: {
     isFetching: false,
@@ -57,8 +65,8 @@ export const INITIAL_STATE = {
   contactInfo: {
     isFetching: false,
     currentSection: '',
-    connectLinks: [],
     contactText: '',
+    connectLinks: [],
     error: null
   }
 };

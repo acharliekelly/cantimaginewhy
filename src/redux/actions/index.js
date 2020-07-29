@@ -1,10 +1,19 @@
 import { fetchGallery } from '../../utils/cloudinaryApi';
 import { onsitePhotos } from '../../utils/onsiteUtils';
+import { getMapLink, extractGeo } from '../../utils/geoUtils';
+import { getContactLinks } from '../../utils/miscUtils';
 
 import * as ACTIONS from './actionTypes';
 import { MAIN_CONTEXT } from '../../utils/constants';
 
 // SYNCH
+
+export function openLightbox() {
+  return { type: ACTIONS.OPEN_LIGHTBOX }
+}
+export function closeLightbox() {
+  return { type: ACTIONS.CLOSE_LIGHTBOX }
+}
 
 /**
  * 
@@ -18,6 +27,8 @@ export function selectMode(mode) {
   }
 }
 
+
+
 /**
  * 
  * @param {String} category 
@@ -28,6 +39,13 @@ export function selectFilter(category) {
     type: ACTIONS.SELECT_FILTER,
     mode: 'FILTER',
     filterBy: category
+  }
+}
+
+export function selectGallery(tagName) {
+  return {
+    type: ACTIONS.SELECT_GALLERY,
+    tagName
   }
 }
 
@@ -61,6 +79,14 @@ export function selectImage(context, index) {
   }
 }
 
+// can be either About or Contact page
+export function selectSection(page, sectionId) {
+  return {
+    type: ACTIONS.SELECT_SECTION,
+    page,
+    sectionId
+  }
+}
 
 
 // ASYNC
@@ -240,11 +266,11 @@ export function receiveContactLinks(response) {
   }
 }
 
-export function contactLinksError(err) {
+export function contactLinksError(error) {
   return {
     type: ACTIONS.FETCH_LINKS,
     status: 'error',
-    error: err
+    error
   }
 }
 
@@ -281,6 +307,41 @@ export function fetchAssociatedGallery(refKey) {
         dispatch(receiveAssociatedImages(response))
       )
       .catch(err => 
-        dispatch(associatedImagesError(err)))
+        dispatch(associatedImagesError(err))
+      )
+  }
+}
+
+/**
+ * 
+ * @param {Array<decimal>} geoTag 
+ */
+export function fetchGeoData(geoTag) {
+  return function (dispatch) {
+    dispatch(requestGeoData(geoTag))
+    return getMapLink(extractGeo(geoTag))
+      .then(response => 
+        dispatch(receiveGeoData(response))  
+      )
+      .catch(err =>
+        dispatch(geoDataError(err))
+      )
+  }
+}
+
+/**
+ * 
+ * @param {String} sectionId 
+ */
+export function fetchContactLinks(sectionId) {
+  return function (dispatch) {
+    dispatch(requestContactLinks(sectionId));
+    return getContactLinks(sectionId)
+      .then(response =>
+        dispatch(receiveContactLinks(response))
+      )
+      .catch(err =>
+        dispatch(contactLinksError(err))
+      )
   }
 }

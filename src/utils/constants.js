@@ -12,4 +12,7 @@ export const PROGRESS_CONTEXT = 'PROGRESS';
 export const GALLERY_CONTEXTS = [
   MAIN_CONTEXT,
   PROGRESS_CONTEXT
-]
+];
+
+export const FULL_WIDTH_MINIMUM = 500;
+

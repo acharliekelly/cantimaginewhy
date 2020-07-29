@@ -1,11 +1,16 @@
 
 // SYNCHRONOUS
 
+export const OPEN_LIGHTBOX = 'OPEN_LIGHTBOX';
+export const CLOSE_LIGHTBOX = 'CLOSE_LIGHTBOX';
+
 // choose gallery type (album / filter)
 export const SELECT_MODE = 'SELECT_MODE';
 
 // choose filter option
 export const SELECT_FILTER = 'SELECT_FILTER';
+
+export const SELECT_GALLERY = 'SELECT_GALLERY';
 
 // view main image
 export const SELECT_PRIMARY_IMAGE = 'SELECT_IMAGE';
@@ -16,7 +21,7 @@ export const SELECT_ASSOC_IMAGE = 'SELECT_ASSOC_IMAGE';
 // sort thumbnail gallery
 export const SORT_GALLERY = 'SORT_GALLERY';
 
-
+export const SELECT_SECTION = 'SELECT_SECTION';
 
 // ASYNCHRONOUS
 

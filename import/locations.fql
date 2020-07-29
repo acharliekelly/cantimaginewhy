@@ -1,0 +1,7 @@
+CreateIndex({
+  name: "location_by_cloudId",
+  source: Collection("locations"),
+  terms: [{ field: [ "data", "cloud_id" ]}],
+  unique: true
+})
+

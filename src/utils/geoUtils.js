@@ -97,7 +97,6 @@ const entered = {
 "nfs/winthrop-square": "42.3725215,-71.1202975",
 "nfs/lewis-wharf": "42.3636192,-71.0494836",
 "nfs/portsmouth-aerial-bridge": "43.0807916,-70.7598036",
-"nfs/wall-sculpture-in-waltham-municipal-bldg": "",
 "nfs/lotta-fountain": "42.3556658,-71.0765618",
 "art/midwinter": "42.3673738,-71.2165507",
 }

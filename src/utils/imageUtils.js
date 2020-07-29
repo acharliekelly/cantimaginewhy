@@ -1,4 +1,4 @@
-import { getContextProperty, getImageSrc, cloudUrl } from './cloudinaryApi';
+import { getContextProperty, getImageSrc, cloudUrl } from '../api/cloudinaryApi';
 
 /**
  * Get thumbnail size based on image count

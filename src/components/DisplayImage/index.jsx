@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { Image, Transformation } from 'cloudinary-react';
-import { imageZoomSizes } from '../../utils/imageApi';
 import classNames from 'classnames';
+import { imageZoomSizes } from 'Utils/imageUtils';
 
 import './style.scss';
 

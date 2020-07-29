@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-image-lightbox';
 import withSizes from 'react-sizes';
-import { zoomImageSrc, getImageSrc, getContextProperty }from '../../utils/cloudinaryApi';
+import { zoomImageSrc, getImageSrc, getContextProperty }from 'Api/cloudinaryApi';
 
 import 'react-image-lightbox/style.css';
 

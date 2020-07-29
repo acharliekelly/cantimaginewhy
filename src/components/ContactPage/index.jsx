@@ -1,16 +1,17 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
-import TabNavs from '../Buttons/TabNavs';
-import ContactLinks from '../../components/ContactLinks';
-import { contactText } from '../../json/text';
-import withSizes from 'react-sizes';
+// import withSizes from 'react-sizes';
+
+import TabNavs from 'Comps/Buttons/TabNavs';
+import ContactLinks from 'Containers/ContactLinks';
+
 import './contact.scss';
 
 
 
-const ContactPage = props => {
-  const displayStyle = props.showDescription ? 3 : 2;
+const ContactPage = ({ contactText, showDescription, selectContactSection }) => {
+  const displayStyle = showDescription ? 3 : 2;
 
   return (
     <div className="content">
@@ -45,8 +46,4 @@ const ContactPage = props => {
   
 }
 
-const mapSizesToProps = sizes => ({
-  showDescription: sizes.width >= 1000
-});
-
-export default withSizes(mapSizesToProps)(ContactPage);
+export default ContactPage;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Gallery from 'react-photo-gallery';
-import { masonryImageArray } from '../../utils/imageApi';
+import { masonryImageArray } from '/utils/imageUtils';
 
 const MasonGallery = props => {
   const { galleryImages, scaleFactor } = props;

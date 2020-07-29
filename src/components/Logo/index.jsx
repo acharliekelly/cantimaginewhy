@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { fetchGallery }from '../../utils/cloudinaryApi';
+import { fetchGallery }from 'Api/cloudinaryApi';
 import { withLightbox } from '../higherOrder/withLightbox';
 
+//! TODO: create container, remove withLightbox
 const Logo = props => {
   const { selectLightbox, startId, enableEaster } = props;
 

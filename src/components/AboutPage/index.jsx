@@ -1,10 +1,11 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
-import { Parallax } from "./react-parallax";
-import TabNavs from '../Buttons/TabNavs';
-import { cleanImageSrc } from '../../utils/cloudinaryApi';
-// import { aboutContent } from '../../json/text';
+import { Parallax } from "react-parallax";
+
+import TabNavs from 'Comps/Buttons/TabNavs';
+import { cleanImageSrc } from 'Api/cloudinaryApi';
+// import { aboutContent } from 'LocalData/text';
 import { Breakpoint } from 'react-socks';
 
 import './about.scss';
@@ -30,6 +31,7 @@ export const ContentPanel = ({ keyName }) => (
   </Tab.Pane>
 )
 
+//! TODO: make this use value from State
 const AboutPage = ({ isFetching, error, currentSection, contentText }) => (
   <Container className="content about-content">
     <header className="intro-text">

@@ -5,13 +5,13 @@ import Col from 'react-bootstrap/Col';
 // import withSizes from 'react-sizes';
 import { Breakpoint } from 'react-socks';
 // import { mapSizesToProps } from '../../utils/system';
-import { lookupGeo } from '../../utils/geoUtils';
-import FilterNav from '../../components/Navs/FilterNav';
-import AlbumNav from '../../components/Navs/AlbumNav';
-import ImageDetail from '../../components/ImageDetail';
-import Stacker from '../../components/Stacker';
-import { sortGallery, getThumbnailSize } from '../../utils/imageApi';
-import { fetchGallery, getContextProperty } from '../../utils/cloudinaryApi';
+import { lookupGeo } from 'Utils/geoUtils';
+import FilterNav from 'Comps/Navs/FilterNav';
+import AlbumNav from 'Comps/Navs/AlbumNav';
+import ImageDetail from 'Comps/ImageDetail';
+import Stacker from 'Comps/Stacker';
+import { sortGallery, getThumbnailSize } from 'Utils/imageUtils';
+import { fetchGallery, getContextProperty } from 'Api/cloudinaryApi';
 
 import './artwork.scss';
 

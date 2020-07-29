@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { defaultImg }from '../../utils/cloudinaryApi';
+import { defaultImg }from 'Api/cloudinaryApi';
 import classNames from 'classnames';
 import { Breakpoint } from 'react-socks';
 

@@ -51,3 +51,7 @@ export const FETCH_LINKS = 'FETCH_LINKS';
 
 // fetch larger version of current image
 export const FETCH_SIZED_IMAGE = 'FETCH_SIZED_IMAGE';
+
+export const FETCH_GALLERIES = 'FETCH_GALLERIES';
+
+export const FETCH_GALLERY_GROUPS = 'FETCH_GALLERY_GROUPS';

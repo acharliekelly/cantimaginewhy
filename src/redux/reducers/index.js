@@ -1,27 +1,31 @@
 import { combineReducers } from 'redux';
-
+import * as MODES from '../../utils/constants';
 import * as ACTIONS from '../actions/actionTypes';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   navigator: {
-    mode: 'ALBUM',
+    isFetching: false,
+    mode: MODES.ALBUM_MODE,
     filter: 0,
-    galleryTag: '',
-    galleryText: ''
+    galleries: [],
+    selectedGallery: '',
+    galleryText: '',
+    galleryDescription: '',
+    error: null
   },
   primaryGallery: {
     isFetching: false,
     imagesList: [],
     currentIndex: 0,
-    imageDetail: {
-      caption: '',
-      description: '',
-      medium: '',
-      size: '',
-      completedOn: Date.parse('2000-01-01'),
-      location: ''
-    },
     error: null
+  },
+  imageDetail: {
+    caption: '',
+    description: '',
+    medium: '',
+    size: '',
+    completedOn: Date.parse('2000-01-01'),
+    location: ''
   },
   progressGallery: {
     isFetching: false,
@@ -31,11 +35,31 @@ const INITIAL_STATE = {
   },
   geoData: {
     available: false,
-    coordinates: [0, 0]
+    isFetching: false,
+    latitude: 0,
+    longitude: 0,
+    error: null
   },
   productInfo: {
+    isFetching: false,
     original: false,
-    derived: false
+    purchaseOriginalUrl: '',
+    derivedProducts: false,
+    productsUrl: '',
+    error: null
+  },
+  aboutInfo: {
+    isFetching: false,
+    currentSection: '',
+    contentText: [],
+    error: null
+  },
+  contactInfo: {
+    isFetching: false,
+    currentSection: '',
+    connectLinks: [],
+    contactText: '',
+    error: null
   }
 };
 
@@ -43,7 +67,15 @@ const navigationReducer = (state = INITIAL_STATE.navigator, action) => {
   // TODO:
 }
 
-const primaryGalleryReducer = (
+const connectReducer = (state = INITIAL_STATE.contactInfo, action) => {
+  // TODO:
+}
+
+const aboutReducer = (state = INITIAL_STATE.aboutInfo, action) => {
+  // TODO:
+}
+
+const primaryReducer = (
   state = INITIAL_STATE.primaryGallery, 
   action
 ) => {
@@ -92,8 +124,8 @@ const primaryGalleryReducer = (
   }
 }
 
-const associatedGalleryReducer = (
-  state = INITIAL_STATE.associatedGallery, 
+const progressReducer = (
+  state = INITIAL_STATE.progressGallery, 
   action
 ) => {
   switch (action.type) {
@@ -120,12 +152,24 @@ const associatedGalleryReducer = (
     default:
       return state;
   }
+};
+
+const geoReducer = (state = INITIAL_STATE.geoData, action) => {
+  // TODO:
+}
+
+const productReducer = (state = INITIAL_STATE.productInfo, action) => {
+  // TODO:
 }
 
 const rootReducer = combineReducers({
   navigationReducer,
-  primaryGalleryReducer,
-  associatedGalleryReducer
+  primaryReducer,
+  progressReducer,
+  geoReducer,
+  productReducer,
+  connectReducer,
+  aboutReducer
 });
 
 export default rootReducer;

@@ -4,14 +4,14 @@ import Container from 'react-bootstrap/Container';
 import { Parallax } from "./react-parallax";
 import TabNavs from '../Buttons/TabNavs';
 import { cleanImageSrc } from '../../utils/cloudinaryApi';
-import { aboutContent } from '../../json/text';
+// import { aboutContent } from '../../json/text';
 import { Breakpoint } from 'react-socks';
 
 import './about.scss';
 
-export const SectionContent = ({ keyName }) => (
+export const SectionContent = ({ keyName, contentText }) => (
   <>
-    {aboutContent[keyName].map((section, index) => (
+    {contentText[keyName].map((section, index) => (
       <section key={index}>
         {section}
       </section>
@@ -30,7 +30,7 @@ export const ContentPanel = ({ keyName }) => (
   </Tab.Pane>
 )
 
-const AboutPage = props => (
+const AboutPage = ({ isFetching, error, currentSection, contentText }) => (
   <Container className="content about-content">
     <header className="intro-text">
       <SectionContent keyName="intro" />

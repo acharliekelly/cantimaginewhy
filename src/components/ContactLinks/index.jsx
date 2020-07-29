@@ -13,7 +13,7 @@ import classNames from 'classnames';
  * - url: link destination
  * - groups: [ art, design, tech, head ] - only display in these groups
  */
-import { links } from '../../json/links';
+// import { links } from '../../json/links';
 
 import './links.scss';
 
@@ -30,7 +30,7 @@ const ItemIcon = ({ link }) => {
 };
 
 
-const ContactLinks = ({ display, group }) => {
+const ContactLinks = ({ links, display, group }) => {
   // raw json list, filtered by group
   const listCls = classNames('links', { 'nav': group === 'head'});
   const list = group ? links.filter(link => link.groups.includes(group)) : links;

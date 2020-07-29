@@ -1,14 +1,29 @@
 import { combineReducers } from 'redux';
-import * as MODES from '../../utils/constants';
-import * as ACTIONS from '../actions/actionTypes';
+import { ALBUM_MODE, MAIN_CONTEXT } from 'Constants';
+import aboutReducer from './aboutReducer';
+import connectReducer from './connectReducer';
+import galleryReducer from './galleryReducer';
+import geoReducer from './geoReducer';
+import mainReducer from './mainReducer';
+import navReducer from './navReducer';
+import productReducer from './productReducer';
+import progressReducer from './progressReducer';
+
 
 export const INITIAL_STATE = {
-  viewPort: 1200,
-  lightboxOpen: false,
+  view: {
+    portWidth: 1200,
+    displaySize: 'xl'
+  },
+  lightbox: {
+    isOpen: false,
+    galleryContext: MAIN_CONTEXT
+  },
   navigator: {
     isFetching: false,
-    mode: MODES.ALBUM_MODE,
-    filter: 0,
+    mode: ALBUM_MODE,
+    galleryGroups: [],
+    filterIndex: 0,
     galleries: [],
     selectedGallery: {
       name: '',
@@ -20,10 +35,20 @@ export const INITIAL_STATE = {
     },
     error: null
   },
-  primaryGallery: {
+  featuredGallery: {
     isFetching: false,
+    thumbSize: 100,
     imagesList: [],
     currentIndex: 0,
+    error: null
+  },
+  primaryGallery: {
+    isFetching: false,
+    thumbSize: 80,
+    imagesList: [],
+    currentIndex: 0,
+    sortField: 'completed',
+    sortDir: 'desc',
     error: null
   },
   imageDetail: {
@@ -37,6 +62,7 @@ export const INITIAL_STATE = {
   },
   progressGallery: {
     isFetching: false,
+    thumbSize: 60,
     imagesList: [],
     currentIndex: 0,
     error: null
@@ -58,121 +84,33 @@ export const INITIAL_STATE = {
   },
   aboutInfo: {
     isFetching: false,
-    currentSection: '',
-    contentText: [],
+    currentSectionId: '',
+    contentText: {
+      intro: [],
+      art: [],
+      design: [],
+      tech: []
+    },
     error: null
   },
   contactInfo: {
     isFetching: false,
-    currentSection: '',
-    contactText: '',
+    currentSectionId: '',
+    contentText: {
+      intro: '',
+      art: '',
+      design: '',
+      tech: ''
+    },
     connectLinks: [],
     error: null
   }
 };
 
-const navigationReducer = (state = INITIAL_STATE.navigator, action) => {
-  // TODO:
-}
-
-const connectReducer = (state = INITIAL_STATE.contactInfo, action) => {
-  // TODO:
-}
-
-const aboutReducer = (state = INITIAL_STATE.aboutInfo, action) => {
-  // TODO:
-}
-
-const primaryReducer = (
-  state = INITIAL_STATE.primaryGallery, 
-  action
-) => {
-  switch (action.type) {
-    case ACTIONS.SELECT_MODE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        mode: action.mode
-      })
-    case ACTIONS.SELECT_FILTER_MODE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        mode: action.mode,
-        filterBy: action.filterBy
-      })
-    case ACTIONS.FETCH_GALLERY:
-      switch (action.status) {
-        case 'success':
-          return Object.assign({}, state, {
-            isFetching: false,
-            selectedGallery: action.galleryName,
-            primaryImages: action.images,
-            currentIndex: action.index
-          });
-        case 'error':
-          return Object.assign({}, state, {
-            isFetching: false,
-            error: action.error
-          });
-        default:
-          return Object.assign({}, state, {
-            isFetching: true
-          });
-      }
-    case ACTIONS.SORT_GALLERY:
-      return Object.assign({}, state, {
-        isFetching: false,
-        // TODO: sort gallery
-      })
-    case ACTIONS.SELECT_PRIMARY_IMAGE:
-      return Object.assign({}, state, {
-        currentIndex: action.index
-      })
-    default:
-      return state;
-  }
-}
-
-const progressReducer = (
-  state = INITIAL_STATE.progressGallery, 
-  action
-) => {
-  switch (action.type) {
-    case ACTIONS.FETCH_ASSOC_IMAGES:
-      switch (action.status) {
-        case 'success':
-          return Object.assign({}, state, {
-            isFetching: false,
-            associatedImages: action.images
-          });
-        case 'error':
-          return Object.assign({}, state, {
-            error: action.error
-          });
-        default:
-          return Object.assign({}, state, {
-            isFetching: true
-          });
-      }
-    case ACTIONS.SELECT_ASSOC_IMAGE:
-      return Object.assign({}, state, {
-        associatedIndex: action.index
-      })
-    default:
-      return state;
-  }
-};
-
-const geoReducer = (state = INITIAL_STATE.geoData, action) => {
-  // TODO:
-}
-
-const productReducer = (state = INITIAL_STATE.productInfo, action) => {
-  // TODO:
-}
-
 const rootReducer = combineReducers({
-  navigationReducer,
-  primaryReducer,
+  mainReducer,
+  navReducer,
+  galleryReducer,
   progressReducer,
   geoReducer,
   productReducer,

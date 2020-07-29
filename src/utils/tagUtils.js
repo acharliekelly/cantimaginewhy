@@ -1,8 +1,8 @@
-import { sortByField } from './imageApi';
-import { fetchGallery } from './cloudinaryApi';
-import { albumExplanations } from '../json/text';
-import { albums } from '../json/albums';
-import { filters } from '../json/filters'; 
+import { sortByField } from 'Utils/imageUtils';
+import { fetchGallery } from 'Api/cloudinaryApi';
+import { albumExplanations } from 'LocalData/text';
+import { albums } from 'LocalData/albums';
+import { filters } from 'LocalData/filters'; 
 
 
 export const getAlbumByIndex = index => {

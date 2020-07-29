@@ -1,7 +1,7 @@
 // miscUtils.js
 // general utilities
 import { links } from '../json/links';
-
+import { aboutContent, contactText } from '../json/text';
 
 
 const stubSelectLightbox = imageId => {
@@ -28,22 +28,6 @@ export const selectLightboxUtil = (imageId, images = [], index = 0) => {
   }
 
   
-}
-
-const stubMoveNext = () => {
-  console.log('move forward')
-}
-
-const stubMovePrevious = () => {
-  console.log('move back')
-}
-
-export const moveNextUtil = () => {
-  stubMoveNext();
-}
-
-export const movePreviousUtil = () => {
-  stubMovePrevious();
 }
 
 
@@ -90,15 +74,26 @@ export const getContactLinks = sectionId => {
   return sectionId ? links.filter(link => link.groups.includes(sectionId)) : links;
 }
 
+export const getAboutContent = sectionId => {
+  return sectionId ? aboutContent[sectionId] : aboutContent;
+}
 
-// ANOTHER MISCELLANEOUS FUNCTION - randomly mutates array
+export const getContactContent = sectionId => {
+  return sectionId ? contactText[sectionId] : contactText;
+}
+
+
+// ANOTHER MISCELLANEOUS FUNCTION
+// (non-mutating version)
 export const shuffleArray = array => {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+  const newArray = Array.from(array);
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * i);
+    const temp = newArray[i];
+    newArray[i] = newArray[j];
+    newArray[j] = temp;
   }
+  return newArray;
 }
 
 

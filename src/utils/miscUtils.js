@@ -1,6 +1,6 @@
 // miscUtils.js
 // general utilities
-
+import { links } from '../json/links';
 
 
 
@@ -84,6 +84,10 @@ export const faaUrl = productKey => {
   } else {
     return FAA_URL;
   }
+}
+
+export const getContactLinks = sectionId => {
+  return sectionId ? links.filter(link => link.groups.includes(sectionId)) : links;
 }
 
 

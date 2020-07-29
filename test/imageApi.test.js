@@ -4,7 +4,7 @@ const { fetchGallery, cleanImageSrc } = require('../src/utils/imageApi');
 
 test('check for correct url', () => {
   const cpid = 'art/midwinter';
-  const expectedResult = 'https://res.cloudinary.com/cantimaginewhy/w_1000/d_ck-diamond.jpg/' + cpid + '.jpg';
+  const expectedResult = 'https://res.cloudinary.com/cantimaginewhy/w_1000/' + cpid + '.jpg';
   expect(cleanImageSrc(cpid)).toBe(expectedResult);
 });
 

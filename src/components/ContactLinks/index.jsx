@@ -30,14 +30,14 @@ const ItemIcon = ({ link }) => {
 };
 
 
-const ContactLinks = ({ links, display, group }) => {
+const ContactLinks = ({ sectionLinks, display, sectionId }) => {
   // raw json list, filtered by group
-  const listCls = classNames('links', { 'nav': group === 'head'});
-  const list = group ? links.filter(link => link.groups.includes(group)) : links;
+  const listCls = classNames('links', { 'nav': sectionId === 'head'});
+  // const list = group ? links.filter(link => link.groups.includes(group)) : links;
   
   return (
     <ul className={listCls}>
-      {list.map((item, index) => (
+      {sectionLinks.map((item, index) => (
         <li key={index}>
           <a target="_blank" rel="noopener noreferrer" href={item.url}>
             <ItemIcon link={item} />

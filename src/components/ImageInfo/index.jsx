@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { loadImageProps } from '../../utils/imageContext';
 import ProductButton from '../Buttons/ProductButton/';
@@ -7,19 +6,11 @@ import ProductButton from '../Buttons/ProductButton/';
 
 import './style.scss';
 
-const ImageInfo = props => {
-  const { currentImage, currentImageProps } = props;
-  let cImage;
+const ImageInfo = ({ currentImage }) => {
+  
   if (currentImage) {
-    cImage = currentImage
-  } else if (currentImageProps) {
-    const { imageList, imageIndex } = currentImageProps;
-    cImage = imageList[imageIndex];
-  }
 
-  if (cImage) {
-
-    const info = loadImageProps(cImage);
+    const info = loadImageProps(currentImage);
     if (info.hasContext) {
       return (
         <Container className="image-info">
@@ -67,11 +58,6 @@ const ImageInfo = props => {
   }
 
   return '';
-}
-
-ImageInfo.propTypes = {
-  currentImage: PropTypes.object,
-  currentImageProps: PropTypes.object
 }
 
 export default ImageInfo;

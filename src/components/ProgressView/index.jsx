@@ -1,8 +1,8 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-import { onsitePhotos } from '../../utils/onsiteUtils';
-import ThumbGallery from '../ThumbGallery';
+// import { onsitePhotos } from '../../utils/onsiteUtils';
+import ProgressGallery from '../../containers/ProgressGallery';
 import ImageToolbar from '../ImageToolbar';
 import { withLightbox } from '../higherOrder/withLightbox';
 import { withStacking } from '../higherOrder/withStacking';
@@ -10,29 +10,21 @@ import './progress.scss';
 
 
 const ProgressView = props => {
-  const { productLookup, thumbSize } = props;
-  const [ progressImages, setProgressImages ] = useState([]);
-  const [ progressIndex, setProgressIndex ] = useState(0);
+  const { progressImages, progressIndex, nextImage, prevImage, openLightbox } = props;
 
-  useEffect(() => {
-    onsitePhotos(productLookup).then(resources => setProgressImages(resources));
-  }, [productLookup]);
+  // useEffect(() => {
+  //   onsitePhotos(referenceKey).then(resources => setProgressImages(resources));
+  // }, [referenceKey]);
 
-  const moveNext = () => {
-    const next = (progressIndex + 1) % progressImages.length;
-    setProgressIndex(next)
-  }
+  const moveNext = () => nextImage(progressImages, progressIndex);
 
-  const movePrev = () => {
-    const prev = (progressIndex + progressImages.length - 1) % progressImages.length;
-    setProgressIndex(prev)
-  }
+  const movePrev = () => prevImage(progressImages, progressIndex);
 
-  const magnifyImage = () => {
-    const { selectLightbox } = props;
-    const imgId = progressImages[progressIndex].public_id;
-    selectLightbox(imgId, progressImages);
-  }
+  // const magnifyImage = () => {
+  //   const { selectLightbox } = props;
+  //   const imgId = progressImages[progressIndex].public_id;
+  //   selectLightbox(imgId, progressImages);
+  // }
 
   return (
     <>
@@ -44,26 +36,20 @@ const ProgressView = props => {
       <div className="img-wrapper">
         <Image  
           publicId={progressImages[progressIndex].public_id} 
-          onClick={magnifyImage} >
+          onClick={openLightbox} >
             <Transformation height="200" width="auto" crop="fill" />
         </Image>
         <ImageToolbar 
           variant={props.variant}
           prevImageFn={movePrev}
           nextImageFn={moveNext}
-          zoomImageFn={magnifyImage}
+          zoomImageFn={openLightbox}
           disableCarousel={progressImages.length < 2}
         />
       </div>
 
       {progressImages.length > 1 && (
-        <ThumbGallery 
-          className="process-images"
-          selectThumbnail={setProgressIndex} 
-          galleryImages={progressImages} 
-          imageIndex={progressIndex}
-          thumbSize={thumbSize}
-          />
+        <ProgressGallery />
       )}
     </div>
     )}
@@ -73,12 +59,12 @@ const ProgressView = props => {
 
 ProgressView.propTypes = {
   selectLightbox: PropTypes.func.isRequired,
-  productLookup: PropTypes.string,
+  referenceKey: PropTypes.string,
   thumbSize: PropTypes.number,
 }
 
 ProgressView.defaultProps = {
-  productLookup: null,
+  referenceKey: null,
   thumbSize: 80,
   variant: 'info'
 }

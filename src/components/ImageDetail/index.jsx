@@ -1,34 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import ImageToolbar from '../ImageToolbar/';
 import { withLightbox } from '../higherOrder/withLightbox';
 import DisplayImage from '../DisplayImage';
-import ImageInfo from '../ImageInfo';
+import ImageInfo from '../../containers/ImageInfo';
 import classNames from 'classnames';
 
 import './detail.scss';
 
 const ImageDetail = props => {
-  const { imageList, imageIndex, isFullWidth, imageMovement } = props;
-  const { moveNext, movePrevious } = imageMovement;
+  const { imageList, currentIndex, isFullWidth } = props;
+  const { nextImage, prevImage, openLightbox } = props;
 
-  const [ currentImage, setCurrentImage ] = useState(null);
-  useEffect(() => {
-    if (imageList)
-      setCurrentImage(imageList[imageIndex]);
-  }, [imageList, imageIndex]); 
+  const moveNext = () => nextImage(imageList, currentIndex);
+  const movePrevious = () => prevImage(imageList, currentIndex);
 
-  const magnifyImage = () => {
-    props.selectLightbox(currentImage.public_id, imageList);
-    
-  }
-
-  if (currentImage) {
+  if (imageList[currentIndex]) {
     const cls = classNames('image-detail', { 'full-width': isFullWidth });
     return (
       <Container className={cls}>
-        <DisplayImage currentImage={currentImage} imageZoom={isFullWidth ? null:  magnifyImage} {...props} />
+        <DisplayImage 
+          currentImage={imageList[currentIndex]} 
+          imageZoom={isFullWidth ? null:  openLightbox} />
         
         <ImageToolbar 
             variant="light"
@@ -36,12 +29,12 @@ const ImageDetail = props => {
             fullWidth
             prevImageFn={movePrevious}
             nextImageFn={moveNext}
-            zoomImageFn={isFullWidth ? null:  magnifyImage}
+            zoomImageFn={isFullWidth ? null:  openLightbox}
             disableCarousel={imageList.length < 2}
             tagObject={props.tagObject}
           />
         
-          <ImageInfo currentImage={currentImage} />
+          <ImageInfo currentImage={imageList[currentIndex]} />
 
       </Container>    
     )
@@ -50,38 +43,6 @@ const ImageDetail = props => {
       <div className="no-data"></div>
     )
   }
-}
-
-ImageDetail.propTypes = {
-  /**
-   * results of fetchGallery
-   */
-  imageList: PropTypes.array,
-  /**
-   * the starting index
-   */
-  imageIndex: PropTypes.number,
-  /**
-   * the function to move back
-   */
-  movePrevious: PropTypes.func,
-  /**
-   * the function to move forward
-   */
-  moveNext: PropTypes.func,
-  imageMovement: PropTypes.object,
-  /**
-   * the function to open image in Zoom
-   */
-  selectLightbox: PropTypes.func,
-  /**
-   * current gallery
-   */
-  tagObject: PropTypes.object
-}
-
-ImageDetail.defaultProps = {
-  imageIndex: 0,
 }
 
 export default withLightbox(ImageDetail);

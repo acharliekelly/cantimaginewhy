@@ -2,7 +2,7 @@ import { fetchGallery } from '../../utils/cloudinaryApi';
 import { onsitePhotos } from '../../utils/onsiteUtils';
 
 import * as ACTIONS from './actionTypes';
-
+import { MAIN_CONTEXT } from '../../utils/constants';
 
 // SYNCH
 
@@ -52,28 +52,14 @@ export function sortGallery(sortField, isDesc) {
  * @param {int} index   
  * @returns {Action}
  */
-export function selectPrimaryImage(index) {
+export function selectImage(context, index) {
   return {
-    type: ACTIONS.SELECT_PRIMARY_IMAGE,
+    type: context === MAIN_CONTEXT 
+      ? ACTIONS.SELECT_PRIMARY_IMAGE 
+      : ACTIONS.SELECT_ASSOC_IMAGE,
     index
   }
 }
-
-
-/**
- * 
- * @param {int} index   
- * @returns {Action}
- */
-export function selectAssociatedImage(index) {
-  return {
-    type: ACTIONS.SELECT_ASSOC_IMAGE,
-    index
-  }
-}
-
-
-
 
 
 
@@ -97,13 +83,11 @@ export function requestGallery(galleryName) {
  * @param {JSON} response   
  * @returns {Action}
  */
-export function receiveGallery(galleryName, response) {
+export function receiveGallery(response) {
   return {
     type: ACTIONS.FETCH_GALLERY,
     status: 'success',
-    galleryName,
-    images: response.data.resources,
-    index: 0
+    payload: response.data.resources
   }
 }
 
@@ -113,12 +97,11 @@ export function receiveGallery(galleryName, response) {
  * @param {Error} err   
  * @returns {Action}
  */
-export function galleryError(galleryName, err) {
+export function galleryError(error) {
   return {
     type: ACTIONS.FETCH_GALLERY,
     status: 'error',
-    galleryName,
-    error: err
+    error
   }
 }
 
@@ -144,7 +127,7 @@ export function receiveAssociatedImages(response) {
   return {
     type: ACTIONS.FETCH_ASSOC_IMAGES,
     status: 'success',
-    images: response.data.resources,
+    payload: response.data.resources,
   }
 }
 
@@ -153,11 +136,11 @@ export function receiveAssociatedImages(response) {
  * @param {Error} err   
  * @returns {Action}
  */
-export function associatedImagesError(err) {
+export function associatedImagesError(error) {
   return {
     type: ACTIONS.FETCH_ASSOC_IMAGES,
     status: 'error',
-    error: err
+    error
   }
 }
 
@@ -184,7 +167,7 @@ export function receiveProducts(response) {
   return {
     type: ACTIONS.FETCH_PRODUCT_LIST,
     status: 'success',
-    products: response.data.resources
+    payload: response.data.resources
   }
 }
 
@@ -193,11 +176,11 @@ export function receiveProducts(response) {
  * @param {Error} err   
  * @returns {Action}
  */
-export function productListError(err) {
+export function productListError(error) {
   return {
     type: ACTIONS.FETCH_PRODUCT_LIST,
     status: 'error',
-    error: err
+    error
   }
 }
 
@@ -231,9 +214,35 @@ export function receiveGeoData(response) {
  * @param {Error} err 
  * @returns {Action}
  */
-export function geoDataError(err) {
+export function geoDataError(error) {
   return {
     type: ACTIONS.FETCH_GEO_DATA,
+    status: 'error',
+    error
+  }
+}
+
+
+
+// temporarily a local call
+export function requestContactLinks(sectionId) {
+  return {
+    type: ACTIONS.FETCH_LINKS,
+    payload: sectionId
+  }
+}
+
+export function receiveContactLinks(response) {
+  return {
+    type: ACTIONS.FETCH_LINKS,
+    status: 'success',
+    payload: response
+  }
+}
+
+export function contactLinksError(err) {
+  return {
+    type: ACTIONS.FETCH_LINKS,
     status: 'error',
     error: err
   }

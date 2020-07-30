@@ -35,16 +35,6 @@ const menuNavs = [
 ];
 
 
-
-// const externalLnk = nav => (
-//   <a href={nav.location} 
-//     className="external-link" 
-//     target="_blank" 
-//     rel="noreferrer noopener">
-//       {nav.name}
-//   </a>
-// )
-
 const NavMenu = () => (
   <Nav className="menu-nav" >
     {menuNavs.map((nav, index) => (

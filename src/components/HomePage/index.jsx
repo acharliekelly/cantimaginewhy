@@ -1,10 +1,10 @@
 import React from 'react';
-import { Image } from './cloudinary-react';
-import SliceGallery from '../../components/SliceGallery';
+import { Image } from 'cloudinary-react';
+import SliceGallery from 'Comps/SliceGallery';
 
 import './home.scss'; 
 
-const HomePage = props => {
+const HomePage = () => {
   return (
     <div className="content">
       <main className="home">
@@ -21,7 +21,6 @@ const HomePage = props => {
             tagName="favorite" 
             imageHeight={200} 
             gallerySize={4}
-            {...props}
           />
         </div>
         

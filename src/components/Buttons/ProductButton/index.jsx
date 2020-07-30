@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'react-bootstrap/Button';
-import  { faaUrl } from '../../../utils/miscUtils';
+import  { faaUrl } from 'Utils/miscUtils';
 
 // Assumes product page exists for this image
 const ProductButton = props => {

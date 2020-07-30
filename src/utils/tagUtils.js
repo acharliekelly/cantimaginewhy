@@ -26,11 +26,12 @@ export const hasExplan = tagName => {
   return (albumExplanations[tagName] && albumExplanations[tagName].length > 0)
 }
 
-export const getExplanation = (tagObj, useDesc = false) => {
-  if (hasExplan(tagObj.tag)) {
-    return albumExplanations[tagObj.tag];
+export const getExplanation = (tagName) => {
+  //! TODO: return a Promise
+  if (hasExplan(tagName)) {
+    return albumExplanations[tagName];
   } else {
-    return useDesc ? tagObj.description : false;
+    return false;
   }
 }
 

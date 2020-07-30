@@ -1,4 +1,4 @@
-const {  onsitePhotos, isSeriesExist, getSeriesCount } = require('../src/utils/onsiteUtils');
+const {  onsitePhotos, isSeriesExist } = require('Utils/onsiteUtils');
 
 
 test('filter by context', () => {
@@ -14,11 +14,6 @@ test('filter by filename', () => {
     // console.log('photos: ', photos)
     expect(photos.length).toBe(3)
   })
-})
-
-test('check series count', () => {
-  const result = getSeriesCount('dunster');
-  expect(result).toBe(3)
 })
 
 test('check that series exists', () => {

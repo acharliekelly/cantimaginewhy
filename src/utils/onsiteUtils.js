@@ -1,23 +1,5 @@
 import { fetchGallery } from 'Api/cloudinaryApi';
 
-
-
-// take resource list, extract list of public ids
-export const flattenResources = resourceList => {
-  const idStrings = [];
-  resourceList.forEach(item => idStrings.push(item.public_id));
-  return idStrings;
-}
-
-// sort depending on item type
-export const progressSortSelect = (itemA, itemB) => {
-  if (typeof itemA === 'string') {
-    return cpiStrSort(itemA, itemB);
-  } else {
-    return 
-  }
-}
-
 // how to sort CPID strings for process images
 const cpiStrSort = (itemA, itemB) => {
   if (itemA === itemB) return 0; 
@@ -48,18 +30,18 @@ const jsonObjectSort = (imageA, imageB) => {
 
 /**
  * Returns CIO array
- * @param {str} refKey 
- * @param {boolean} useContext 
+ * @param {String} refKey 
+ * @returns {Array<CloudinaryImage>}
  */
-export const onsitePhotos = (refKey, useContext = false) => {
+export const onsitePhotos = refKey => {
   return fetchGallery('onsite')
-    .then(resources => filterResources(resources, refKey, useContext))
+    .then(resources => filterResources(resources, refKey))
     .then(series => series.sort(jsonObjectSort))
 }
 
 /**
  * True if any photos exist
- * @param {str} refKey 
+ * @param {String} refKey 
  */
 export const isSeriesExist = refKey => {
   return fetchGallery('onsite')
@@ -70,33 +52,7 @@ const exists = (resources, key) => {
   return resources.some(resource => resource.public_id.includes(key))
 }
 
-/**
- * Number of photos in series
- * @param {str} refKey 
- */
-export const getSeriesCount = refKey => {
-  return fetchGallery('onsite')
-    .then(resources => filterResources(resources, refKey, true))
-    .then(filtered => resCount(filtered))
-}
 
-const resCount = resources => {
-  return resources.length
-}
-
-const filterResources = (resources, refKey, useContext) => {
-  if (useContext) {
-    return filterByContext(resources, refKey)
-  } else {
-    return filterByFilename(resources, refKey)
-  }
-}
-
-
-const filterByContext = (resources, refKey) => {
-  return resources.filter(resource => resource.context.custom.ref === refKey);
-}
-
-const filterByFilename = (resources, refKey) => {
+const filterResources = (resources, refKey) => {
   return resources.filter(resource => resource.public_id.includes(refKey));
 }

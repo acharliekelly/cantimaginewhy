@@ -7,10 +7,16 @@ export const CLOSE_LIGHTBOX = 'CLOSE_LIGHTBOX';
 // choose gallery type (album / filter)
 export const SELECT_MODE = 'SELECT_MODE';
 
+export const FETCH_MODE_DESCRIPTION = 'FETCH_MODE_DESCRIPTION';
+
 // choose filter option
 export const SELECT_FILTER = 'SELECT_FILTER';
 
 export const SELECT_GALLERY = 'SELECT_GALLERY';
+
+export const CLEAR_GALLERY = 'CLEAR_GALLERY';
+
+export const FETCH_GALLERY_ABOUT = 'FETCH_GALLERY_ABOUT';
 
 // view main image
 export const SELECT_PRIMARY_IMAGE = 'SELECT_IMAGE';

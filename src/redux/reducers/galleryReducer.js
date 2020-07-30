@@ -5,6 +5,7 @@ import { STATUS } from '../actions/';
 
 export const primaryGallery = {
   isFetching: false,
+  galleryAboutText: '',
   thumbSize: 80,
   imagesList: [],
   currentIndex: 0,
@@ -22,6 +23,11 @@ export default (state = INITIAL_STATE.primaryGallery, action) => {
       return {
         ...state,
         currentIndex: action.index
+      }
+    case ACTIONS.FETCH_GALLERY_ABOUT:
+      return {
+        ...state,
+        galleryAboutText: action.payload
       }
     case ACTIONS.FETCH_GALLERY:
       switch (action.status) {

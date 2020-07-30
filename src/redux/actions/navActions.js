@@ -1,27 +1,76 @@
-import { albums } from '../../json/albums';
-import { filters } from '../../json/filters';
+import { albums, albumModeDescription } from '../../json/albums';
+import { filters, filterModeDescription } from '../../json/filters';
 import {
   SELECT_MODE,
   SELECT_FILTER,
   SELECT_GALLERY,
+  CLEAR_GALLERY,
   FETCH_GALLERIES,
-  FETCH_GALLERY_GROUPS
- } from 'ActionTypes';
+  FETCH_GALLERY_GROUPS,
+  FETCH_MODE_DESCRIPTION
+ } from './actionTypes';
  import { STATUS } from '.';
  import { FILTER_MODE } from 'Constants';
 
 
- function getGalleryGroups () {
+
+ //! TODO: make these actions at least look like real fetch requests
+function getGalleryGroups () {
   return filters;
- }
+}
 
- function getFilters (index) {
-   return filters[index].options
- }
+function getFilters (index) {
+  return filters[index].options
+}
 
- function getAlbums () {
-   return albums;
- }
+function getAlbums () {
+  return albums;
+}
+
+function getModeDesc(mode) {
+  if (mode === FILTER_MODE) {
+    return filterModeDescription;
+  } else {
+    return albumModeDescription;
+  }
+}
+
+function requestModeDescription(mode) {
+  return {
+    type: FETCH_MODE_DESCRIPTION,
+    status: STATUS.WAITING,
+    mode
+  }
+}
+
+function receiveModeDescription(response) {
+  return {
+    type: FETCH_MODE_DESCRIPTION,
+    status: STATUS.SUCCESS,
+    response
+  }
+}
+
+function modeDescriptionError(error) {
+  return {
+    type: FETCH_MODE_DESCRIPTION,
+    status: STATUS.FAIL,
+    error
+  }
+}
+
+export function fetchModeDescription(mode) {
+  return function(dispatch) {
+    dispatch(requestModeDescription(mode));
+    return getModeDesc(mode)
+      .then(response => 
+        dispatch(receiveModeDescription(response))  
+      )
+      .catch(error => 
+        dispatch(modeDescriptionError(error))  
+      )
+  }
+}
 
 
 /**
@@ -56,6 +105,12 @@ export function selectGallery(tagObj) {
   }
 }
 
+export function clearGallery() {
+  return {
+    type: CLEAR_GALLERY
+  }
+}
+
 function requestGalleries(mode, filterIndex) {
   return {
     type: FETCH_GALLERIES,
@@ -78,6 +133,25 @@ function galleriesError(error) {
     type: FETCH_GALLERIES,
     status: STATUS.FAIL,
     error
+  }
+}
+
+export function fetchGalleries(mode, filterIndex) {
+  return function (dispatch) {
+    dispatch(requestGalleries(mode, filterIndex));
+    if (mode === FILTER_MODE) {
+      return getFilters(filterIndex)
+        .then(response => 
+          dispatch(receiveGalleries(response))
+        )
+        .catch(err => galleriesError(err))
+    } else {
+      return getAlbums()
+        .then(response =>
+          dispatch(receiveGalleries(response))  
+        )
+        .catch(err => galleriesError(err))
+    }
   }
 }
 
@@ -117,23 +191,3 @@ export function fetchGalleryGroups() {
   }
 }
 
-
-
-export function fetchGalleries(mode, filterIndex) {
-  return function (dispatch) {
-    dispatch(requestGalleries(mode, filterIndex));
-    if (mode === FILTER_MODE) {
-      return getFilters(filterIndex)
-        .then(response => 
-          dispatch(receiveGalleries(response))
-        )
-        .catch(err => galleriesError(err))
-    } else {
-      return getAlbums()
-        .then(response =>
-          dispatch(receiveGalleries(response))  
-        )
-        .catch(err => galleriesError(err))
-    }
-  }
-}

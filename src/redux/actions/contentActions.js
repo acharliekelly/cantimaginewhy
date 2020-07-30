@@ -4,14 +4,57 @@ import {
   getAboutContent, 
   getContactContent
 } from 'Utils/miscUtils';
+import { getExplanation } from 'Utils/tagUtils';
 
 import { 
   FETCH_LINKS, 
   FETCH_CONTENT_TEXT, 
-  SELECT_SECTION 
+  SELECT_SECTION,
+  FETCH_GALLERY_ABOUT 
 } from 'ActionTypes';
 
 import { CONTACT_PAGE } from 'Constants';
+
+function requestAboutGallery(galleryTag) {
+  return {
+    type: FETCH_GALLERY_ABOUT,
+    status: STATUS.WAITING,
+    galleryTag
+  }
+}
+
+function receiveAboutGallery(response) {
+  return {
+    type: FETCH_GALLERY_ABOUT,
+    status: STATUS.SUCCESS,
+    payload: response
+  }
+}
+
+function aboutGalleryError(error) {
+  return {
+    type: FETCH_GALLERY_ABOUT,
+    status: STATUS.FAIL,
+    error
+  }
+}
+
+/**
+ * 
+ * @param {String} galleryTag 
+ */
+export function fetchAlbumExplanation(galleryTag) {
+  return function(dispatch) {
+    dispatch(requestAboutGallery(galleryTag));
+    return getExplanation(galleryTag)
+      .then(response =>
+        dispatch(receiveAboutGallery(response))  
+      )
+      .catch(error =>
+        dispatch(aboutGalleryError(error))  
+      )
+  }
+}
 
 
 // temporarily a local call

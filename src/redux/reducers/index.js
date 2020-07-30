@@ -22,16 +22,18 @@ export const INITIAL_STATE = {
   navigator: {
     isFetching: false,
     mode: ALBUM_MODE,
+    modeDescription: '',
     galleryGroups: [],
     filterIndex: 0,
     galleries: [],
+    thumbSize: 80,
     selectedGallery: {
       name: '',
       tag: '',
       thumbnail: '',
       description: '',
       sortField: '.completed',
-      sortDir: 'desc'
+      sortDir: 'desc',
     },
     error: null
   },
@@ -44,6 +46,7 @@ export const INITIAL_STATE = {
   },
   primaryGallery: {
     isFetching: false,
+    galleryAboutText: '',
     thumbSize: 80,
     imagesList: [],
     currentIndex: 0,

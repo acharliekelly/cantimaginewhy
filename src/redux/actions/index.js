@@ -5,14 +5,17 @@ import { MAIN_CONTEXT } from 'Constants';
 import { 
   fetchContactLinks, 
   fetchSectionContent, 
+  fetchAlbumExplanation,
   selectSection  
 } from './contentActions';
 import {
   selectMode,
   selectFilter,
   selectGallery,
+  clearGallery,
   fetchGalleryGroups,
-  fetchGalleries
+  fetchGalleries,
+  fetchModeDescription
 } from 'Actions/navActions';
 import { fetchGeoData } from './geoActions';
 import {
@@ -62,10 +65,13 @@ export function selectImage(context, index) {
 export {
   fetchContactLinks, 
   fetchSectionContent, 
+  fetchAlbumExplanation,
   selectSection,
   selectMode,
+  fetchModeDescription,
   selectFilter,
   selectGallery,
+  clearGallery,
   fetchGalleryGroups,
   fetchGalleries,
   fetchGeoData,

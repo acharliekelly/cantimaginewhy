@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { MobileNavButton } from '../NavButton';
@@ -9,14 +9,7 @@ import { withStacking } from '../../higherOrder/withStacking';
 import '../nav.scss';
 
 const MobileNav = props => {
-  const [ selectedNav, setSelectedNav ] = useState(null);
-
-  const { updateSelectNav } = props;
-
-  const selectItem = navObj => {
-    setSelectedNav(navObj);
-    updateSelectNav(navObj);
-  }
+   const { updateSelectNav, selectedNav } = props;
 
   return (
     <Container className="album-bar justify-content-center albums">
@@ -26,7 +19,7 @@ const MobileNav = props => {
         <MobileNavButton 
           key={index}
           navTag={album} 
-          onSelectItem={selectItem} 
+          onSelectItem={updateSelectNav} 
           isSelected={selected} 
           {...props}
           />

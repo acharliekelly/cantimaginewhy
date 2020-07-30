@@ -9,11 +9,11 @@ import { BreakpointProvider } from 'react-socks';
 import { CloudinaryContext } from 'cloudinary-react';
 
 import Header from 'Comps/Header';
-import ContactPage from 'Comps/ContactPage/';
+import ContactPage from 'Containers/ContactPage/';
 import Footer from 'Comps/Footer/';
 import HomePage from 'Comps/HomePage/';
-import AboutPage from 'Comps/AboutPage';
-import ArtworkPage from 'Comps/ArtworkPage';
+import AboutPage from 'Containers/AboutPage';
+import ArtworkPage from 'Containers/ArtworkPage';
 
 import { initializeLibrary } from 'Utils/faLibrary';
 import { updateFavicon, initSocks } from 'Utils/system';

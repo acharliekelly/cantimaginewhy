@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import NavButton from '../NavButton';
-import { albums, navDescription } from '../../../json/albums';
-import HelpButton from '../../Buttons/HelpButton/';
-import NavSwitch from '../NavSwitch';
 import classNames from 'classnames';
+
+import NavButton from '../NavButton';
+import HelpButton from 'Comps/Buttons/HelpButton/';
+import ErrorAlert from 'Comps/Alerts/ErrorAlert';
+import LoadingAlert from 'Comps/Alerts/LoadingAlert';
+import NavSwitch from '../NavSwitch';
+
 
 import '../nav.scss';
 
 const AlbumNav = props => {
-  const [ selectedNav, setSelectedNav ] = useState(null);
-
-  const { updateSelectNav } = props;
-
-  const selectItem = navObj => {
-    setSelectedNav(navObj);
-    updateSelectNav(navObj);
-  }
-
-  
+  const { albums, navDescription, selectedNav, updateSelectNav } = props;
 
   const navBarClass = classNames('category-bar', 
     { 
@@ -30,6 +23,11 @@ const AlbumNav = props => {
   )
   const navBtnCls = classNames('album-bar', 'justify-content-center', 'albums');
 
+  if (props.error) {
+    return <ErrorAlert error={props.error} />
+  } else if (props.isLoading) {
+    return <LoadingAlert />
+  }
   return (
       <>
          <Navbar className={navBarClass}>
@@ -47,7 +45,7 @@ const AlbumNav = props => {
             <NavButton 
               key={index}
               navTag={album} 
-              onSelectItem={selectItem} 
+              onSelectItem={updateSelectNav} 
               isSelected={selected} 
               {...props}
               />
@@ -57,17 +55,6 @@ const AlbumNav = props => {
       </>
     );
         
-}
-
-AlbumNav.propTypes = {
-  updateSelectNav: PropTypes.func,
-  updateClearGallery: PropTypes.func,
-  thumbnailHeight: PropTypes.number,
-  updateNavSwitch: PropTypes.func,
-};
-
-AlbumNav.defaultProps = {
-  thumbnailHeight: 80
 }
 
 export default AlbumNav;

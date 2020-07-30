@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { INITIAL_STATE } from '../redux/reducers';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
 import { ALBUM_MODE, FILTER_MODE } from '../utils/constants';
 import { 
   selectMode,

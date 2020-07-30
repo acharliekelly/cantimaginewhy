@@ -82,6 +82,14 @@ export const getContactContent = sectionId => {
   return sectionId ? contactText[sectionId] : contactText;
 }
 
+export const moveNext = (imageList, currentIndex) => {
+  return (currentIndex + 1) % imageList.length;
+}
+
+export const morePrevious = (imageList, currentIndex) => {
+  return (currentIndex + imageList.length -1) % imageList.length;
+}
+
 
 // ANOTHER MISCELLANEOUS FUNCTION
 // (non-mutating version)

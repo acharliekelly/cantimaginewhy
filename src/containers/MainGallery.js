@@ -3,7 +3,7 @@ import {
   sortGallery,
   selectImage
 } from '../redux/actions/';
-import { INITIAL_STATE } from '../redux/reducers';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
 import { MAIN_CONTEXT } from '../utils/constants';
 import ThumbGallery from '../components/ThumbGallery';
 

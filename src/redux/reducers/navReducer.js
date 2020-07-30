@@ -1,5 +1,5 @@
 import * as ACTIONS from '../actions/actionTypes';
-import { INITIAL_STATE } from '.';
+import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
 
 export const navigator = {

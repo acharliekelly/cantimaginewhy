@@ -1,9 +1,12 @@
 import { fetchGallery } from 'Api/cloudinaryApi';
+import { MAIN_CONTEXT } from '../../utils/constants';
 import {
   SORT_GALLERY,
   FETCH_GALLERY,
-  SELECT_PRIMARY_IMAGE
-} from 'ActionTypes';
+  SELECT_PRIMARY_IMAGE,
+  NEXT_IMAGE,
+  PREV_IMAGE
+} from './actionTypes';
 import { STATUS } from '.';
 
 /**
@@ -24,6 +27,20 @@ export function selectMainImage(index) {
   return {
     type: SELECT_PRIMARY_IMAGE,
     index
+  }
+}
+
+export function nextMainImage() {
+  return {
+    type: NEXT_IMAGE,
+    context: MAIN_CONTEXT
+  }
+}
+
+export function previousMainImage() {
+  return {
+    type: PREV_IMAGE,
+    context: MAIN_CONTEXT
   }
 }
 

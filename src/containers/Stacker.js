@@ -6,16 +6,18 @@ import {
   fetchProgressGallery,
   fetchGeoData
 } from '../redux/actions';
-import { INITIAL_STATE } from '../redux/reducers';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
+// import { FULL_WIDTH_MINIMUM } from '../utils/constants';
 import { getThumbnailSize } from 'Utils/imageUtils';
 import Stacker from '../components/Stacker';
 
-const mapStateToProps = (state = INITIAL_STATE) => ({
-  tagObject: state.navigator.selectGallery, 
+const mapStateToProps = (state = INITIAL_STATE, ownProps) => ({
+  tagObject: state.navigator.selectedGallery, 
   referenceKey: state.imageDetail.referenceKey, 
-  isFullWidth: state.viewPort <= 500,
+  isFullWidth: ownProps.isFullWidth,
   galleryImages: state.primaryGallery.imageList,
-  thumbSize: getThumbnailSize(state.primaryGallery.imageList.length)
+  thumbSize: getThumbnailSize(state.primaryGallery.imageList.length),
+  maxHeight: ownProps.maxHeight
 });
 
 const updateSelectNav = tagName => {

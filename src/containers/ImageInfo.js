@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { } from '../redux/actions';
-import { INITIAL_STATE } from '../redux/reducers';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
 import ImageInfo from '../components/ImageInfo';
 
 const mapStateToProps = (state = INITIAL_STATE) => ({

@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
-import { INITIAL_STATE } from '../redux/reducers';
+import * as reactRedux from 'react-redux';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
 import { 
   selectImage,
   openLightbox,
   closeLightbox 
 } from '../redux/actions/';
-import { MAIN_CONTEXT, FULL_WIDTH_MINIMUM } from '../utils/constants';
+import { MAIN_CONTEXT } from '../utils/constants';
 import ImageDetail from '../components/ImageDetail';
 
-const mapStateToProps = (state = INITIAL_STATE) => ({
+const mapStateToProps = (state = INITIAL_STATE, ownProps) => ({
   imageList: state.primaryGallery.imageList,
   currentIndex: state.primaryGallery.currentIndex,
-  isFullWidth: state.viewPort <= FULL_WIDTH_MINIMUM
+  isFullWidth: ownProps.isFullWidth
 });
 
 const nextImage = (imageList, currentIndex) => {
@@ -31,5 +31,5 @@ const actionCreators = {
   closeLightbox
 }
 
-export default connect(mapStateToProps, actionCreators)(ImageDetail);
+export default reactRedux.connect(mapStateToProps, actionCreators)(ImageDetail);
 

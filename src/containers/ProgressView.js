@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ProgressView from '../components/ProgressView';
-import { INITIAL_STATE } from '../redux/reducers';
+import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
 import { selectImage, openLightbox, closeLightbox } from '../redux/actions';
 import { PROGESS_CONTEXT } from '../utils/constants';
 

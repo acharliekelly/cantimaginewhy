@@ -1,5 +1,5 @@
 import * as ACTIONS from '../actions/actionTypes';
-import { INITIAL_STATE } from '.';
+import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
 // import { sortByField } from '../../utils/imageUtils';
 
@@ -15,15 +15,17 @@ export const primaryGallery = {
 }
 
 export default (state = INITIAL_STATE.primaryGallery, action) => {
+  const len = state.imagesList.length;
   switch (action.type) {
     case ACTIONS.SORT_GALLERY:
-      //! TODO: make this sort in immutable way
+      // TODO: make this sort in immutable way
       return state; 
     case ACTIONS.SELECT_PRIMARY_IMAGE:
       return {
         ...state,
         currentIndex: action.index
       }
+      
     case ACTIONS.FETCH_GALLERY_ABOUT:
       return {
         ...state,

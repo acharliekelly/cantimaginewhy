@@ -1,7 +1,5 @@
 
 import * as ACTIONS from 'ActionTypes';
-import { MAIN_CONTEXT } from 'Constants';
-
 import { 
   fetchContactLinks, 
   fetchSectionContent, 
@@ -19,14 +17,19 @@ import {
 } from 'Actions/navActions';
 import { fetchGeoData } from './geoActions';
 import {
-  selectMainImage,
   sortGallery,
   fetchMainGallery
 } from './galleryActions';
 import { 
-  fetchProgressGallery,
-  selectProgressImage
+  fetchProgressGallery
 } from './progressActions';
+
+
+export const STATUS = {
+  SUCCESS: 'SUCCESS',
+  FAIL: 'FAIL',
+  WAITING: 'WAITING'
+}
 
 // SYNCH
 
@@ -41,11 +44,6 @@ export function closeLightbox() {
 }
 
 
-export const STATUS = {
-  SUCCESS: 'SUCCESS',
-  FAIL: 'FAIL',
-  WAITING: 'WAITING'
-}
 
 /**
  * 
@@ -54,13 +52,25 @@ export const STATUS = {
  */
 export function selectImage(context, index) {
   return {
-    type: context === MAIN_CONTEXT 
-      ? ACTIONS.SELECT_PRIMARY_IMAGE 
-      : ACTIONS.SELECT_ASSOC_IMAGE,
+    type: ACTIONS.SELECT_IMAGE,
+    context,
     index
   }
 }
 
+export function nextImage(context) {
+  return {
+    type: ACTIONS.NEXT_IMAGE,
+    context
+  }
+}
+
+export function previousImage(context) {
+  return {
+    type: ACTIONS.PREV_IMAGE,
+    context
+  }
+}
 
 export {
   fetchContactLinks, 
@@ -75,9 +85,7 @@ export {
   fetchGalleryGroups,
   fetchGalleries,
   fetchGeoData,
-  selectMainImage,
   sortGallery,
   fetchMainGallery,
-  fetchProgressGallery,
-  selectProgressImage
+  fetchProgressGallery
 };

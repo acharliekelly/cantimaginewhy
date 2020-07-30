@@ -1,9 +1,12 @@
 import { onsitePhotos } from 'Utils/onsiteUtils';
 import {
   FETCH_ASSOC_IMAGES, 
-  SELECT_ASSOC_IMAGE 
-} from 'ActionTypes';
+  SELECT_ASSOC_IMAGE,
+  NEXT_IMAGE,
+  PREV_IMAGE 
+} from './actionTypes';
 import { STATUS } from '.';
+import { PROGRESS_CONTEXT } from '../../utils/constants';
 
 
 /**
@@ -50,6 +53,20 @@ export function selectProgressImage(index) {
   return {
     type: SELECT_ASSOC_IMAGE,
     index
+  }
+}
+
+export function nextProgressImage() {
+  return {
+    type: NEXT_IMAGE,
+    context: PROGRESS_CONTEXT
+  }
+}
+
+export function previousProgressImage() {
+  return {
+    type: PREV_IMAGE,
+    context: PROGRESS_CONTEXT
   }
 }
 

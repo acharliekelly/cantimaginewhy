@@ -1,7 +1,6 @@
 import * as ACTIONS from '../actions/actionTypes';
-import { INITIAL_STATE } from '.';
+import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
-import { } from '../../utils/imageUtils';
 
 export const progressGallery = {
   isFetching: false,

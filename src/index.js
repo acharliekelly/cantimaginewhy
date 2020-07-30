@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './redux/configureStore';
+import { ConnectedRouter } from 'connected-react-router';
+import configureStore, { history } from './redux/configureStore';
 import './index.css';
 import App from './components/App/';
 import * as serviceWorker from './serviceWorker';
@@ -12,7 +13,9 @@ const renderApp = () => {
   const rootElement = document.getElementById('root');
   render (
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>,
     rootElement
   );

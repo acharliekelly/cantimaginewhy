@@ -19,10 +19,14 @@ export const CLEAR_GALLERY = 'CLEAR_GALLERY';
 export const FETCH_GALLERY_ABOUT = 'FETCH_GALLERY_ABOUT';
 
 // view main image
-export const SELECT_PRIMARY_IMAGE = 'SELECT_IMAGE';
+export const SELECT_PRIMARY_IMAGE = 'SELECT_PRIMARY_IMAGE';
 
 // view progress image
-export const SELECT_ASSOC_IMAGE = 'SELECT_ASSOC_IMAGE';
+export const SELECT_ASSOC_IMAGE = 'SELECT_ASSOC_IMAGE'; // index
+
+export const SELECT_IMAGE = 'SELECT_IMAGE';   // index, context
+export const NEXT_IMAGE = 'NEXT_IMAGE'; // context
+export const PREV_IMAGE = 'PREV_IMAGE'; // context
 
 // sort thumbnail gallery
 export const SORT_GALLERY = 'SORT_GALLERY';

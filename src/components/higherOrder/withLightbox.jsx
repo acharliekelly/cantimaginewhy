@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ImageZoom from '../ImageZoom';
+import ImageZoom from 'Containers/ImageZoom';
 
 export function withLightbox(WrappedComponent) {
   return class extends React.Component {
@@ -8,7 +8,6 @@ export function withLightbox(WrappedComponent) {
       super(props);
       this.state = {
         lightboxOpen: false,
-        selectedImageId: '',
         lightboxImages: [],
         lightboxCurrentIndex: 0
       }
@@ -26,49 +25,23 @@ export function withLightbox(WrappedComponent) {
       }
     }
 
-    lightboxSingleImage = imageId => {
-      if (imageId) {
-        this.setState({
-          selectedImageId: imageId,
-          lightboxOpen: true
-        })
-      }
-    }
-
-    // same signature as in App.js
-    selectLightboxImage = (imageId, images = [], currentIndex = -1) => {
+    selectLightboxImage = (images = [], currentIndex = 0) => {
       // find out if using imageId or image array
       if (images) {
-        console.log('lightbox images: ' + images.length)
-        // find out if using currentIndex or imageId
-        if (currentIndex < 0 && imageId) {
-          console.log('starting image: ' + imageId)
-          // find index of imageId
-          let index = images.findIndex(img => img.public_id === imageId);
-          if (index < 0) index = 0;
-          console.log('starting index: ' + index)
-          this.lightboxArray(images, index);
-        } else {
-          // use provided index
-          this.lightboxArray(images, currentIndex);
-        } 
-      } else {
-        // use imageId
-        this.lightboxSingleImage(imageId);
+        this.lightboxArray(images, currentIndex);
       }
     }
 
     closeLightbox = () => {
       this.setState({
         lightboxOpen: false,
-        selectedImageId: '',
         lightboxImages: [],
         lightboxCurrentIndex: 0
       })
     }
 
     render () {
-      const { lightboxOpen, lightboxCurrentIndex, selectedImageId, lightboxImages } = this.state;
+      const { lightboxOpen, lightboxCurrentIndex, lightboxImages } = this.state;
       return (
         <>
         <WrappedComponent 
@@ -80,7 +53,6 @@ export function withLightbox(WrappedComponent) {
           <ImageZoom
             imageList={lightboxImages}
             selectedIndex={lightboxCurrentIndex}
-            selectedImageId={selectedImageId}
             closeLightbox={this.closeLightbox}
           />
         )}

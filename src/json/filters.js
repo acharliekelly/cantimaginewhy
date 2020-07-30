@@ -341,7 +341,7 @@ export const filters = [
   }
 ];
 
-export const navDescription = `
+export const filterModeDescription = `
 I created this filtering system in order to... OK, it was just fun. Not everything has be for 
 some useful purpose, you know? Anyway, you can filter by the categories on the top row. The bottom
 row is all the options for that category, each with a thumbnail that probably came from that grouping. 

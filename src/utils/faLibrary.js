@@ -5,7 +5,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { 
   faBars, 
   faChevronLeft, 
-  faChevronRight, 
+  faChevronRight,
+  faChevronSquareDown,
+  faChevronSquareUp,
   faCheck, 
   faCog, 
   faHeart,
@@ -36,6 +38,7 @@ import {
 
  export const initializeLibrary = () => {
   library.add(fab, faBars, faChevronLeft, faChevronRight, 
+    faChevronSquareDown, faChevronSquareUp,
     faCheck, faCog, faHeart, faPaperPlane, faShoppingCart, 
     faImage, faQuestionCircle, faSearchPlus, faBlog,
     faFilter, faSort, faImages, faExternalLinkAlt, 

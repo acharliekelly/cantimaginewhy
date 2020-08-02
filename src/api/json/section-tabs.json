@@ -1,0 +1,14 @@
+{
+  "art": {
+    "icon": "pallette",
+    "label": "Art"
+  },
+  "design": {
+    "icon": "drafting-compass",
+    "label": "Design"
+  },
+  "tech": {
+    "icon": "file-code",
+    "label": "Code"
+  }
+}

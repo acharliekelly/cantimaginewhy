@@ -1,5 +1,5 @@
 import { fetchGallery } from 'Api/cloudinaryApi';
-import { MAIN_CONTEXT } from '../../utils/constants';
+import { StateLocator } from '../../utils/constants';
 import {
   SORT_GALLERY,
   FETCH_GALLERY,
@@ -33,14 +33,14 @@ export function selectMainImage(index) {
 export function nextMainImage() {
   return {
     type: NEXT_IMAGE,
-    context: MAIN_CONTEXT
+    context: StateLocator.PRIMARY_GALLERY
   }
 }
 
 export function previousMainImage() {
   return {
     type: PREV_IMAGE,
-    context: MAIN_CONTEXT
+    context: StateLocator.PRIMARY_GALLERY
   }
 }
 

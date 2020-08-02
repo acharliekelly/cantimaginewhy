@@ -1,8 +1,11 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 export const productInfo = {
+  locator: StateLocator.PRODUCT_INFO,
   isFetching: false,
   original: false,
   purchaseOriginalUrl: '',
@@ -12,28 +15,35 @@ export const productInfo = {
 }
 
 export default (state = INITIAL_STATE.productInfo, action) => {
+  let pState = state;
+  if (state.locator === StateLocator.ROOT) {
+    pState = state.productInfo;
+  } else if (state.locator !== StateLocator.PRODUCT_INFO) {
+    wrongStateError(StateLocator.PRODUCT_INFO, state.locator);
+  }
+
   switch (action.type) {
     case ACTIONS.FETCH_PRODUCT_LIST:
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...pState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...pState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...pState,
             isFetching: false,
             productsUrl: action.payload
           }
       }
     default:
-      return state;
+      return pState;
   }
 }

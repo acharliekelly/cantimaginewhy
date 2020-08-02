@@ -6,7 +6,7 @@ import {
   PREV_IMAGE 
 } from './actionTypes';
 import { STATUS } from '.';
-import { PROGRESS_CONTEXT } from '../../utils/constants';
+import { StateLocator } from '../../utils/constants';
 
 
 /**
@@ -59,14 +59,14 @@ export function selectProgressImage(index) {
 export function nextProgressImage() {
   return {
     type: NEXT_IMAGE,
-    context: PROGRESS_CONTEXT
+    context: StateLocator.PROGRESS_GALLERY
   }
 }
 
 export function previousProgressImage() {
   return {
     type: PREV_IMAGE,
-    context: PROGRESS_CONTEXT
+    context: StateLocator.PROGRESS_GALLERY
   }
 }
 

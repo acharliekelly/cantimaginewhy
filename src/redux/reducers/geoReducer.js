@@ -1,6 +1,8 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 // const geoData = {
 //   available: false,
@@ -11,23 +13,30 @@ import { STATUS } from '../actions/';
 // };
 
 export default (state = INITIAL_STATE.geoData, action) => {
+  let gState = state;
+  if (state.locator === StateLocator.ROOT) {
+    gState = state.currentImage.geoData;
+  } else if (state.locator !== StateLocator.GEO_DATA) {
+    wrongStateError(StateLocator.GEO_DATA, state.locator);
+  }
+
   switch (action.type) {
     case ACTIONS.FETCH_GEO_DATA:
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...gState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...gState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...gState,
             isFetching: false,
             available: (action.payload.length === 2),
             latitude: action.payload.lat,
@@ -35,6 +44,6 @@ export default (state = INITIAL_STATE.geoData, action) => {
           }
       }
     default:
-      return state;
+      return gState;
   }
 }

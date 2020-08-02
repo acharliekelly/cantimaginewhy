@@ -1,8 +1,11 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 export const navigator = {
+  locator: StateLocator.NAVIGATOR,
   isFetching: false,
   mode: 'ALBUM_MODE',
   modeDescription: '',
@@ -21,29 +24,36 @@ export const navigator = {
 };
 
 export default (state = INITIAL_STATE.navigator, action) => {
+  let nState = state;
+  if (state.locator === StateLocator.ROOT) {
+    nState = state.navigator;
+  } else if (state.locator !== StateLocator.NAVIGATOR) {
+    wrongStateError(StateLocator.NAVIGATOR, state.locator);
+  }
+
   switch (action.type) {
     case ACTIONS.SELECT_MODE:
       return {
-        ...state,
+        ...nState,
         mode: action.mode
       }
 
     case ACTIONS.SELECT_FILTER:
       return {
-        ...state,
+        ...nState,
         mode: action.mode,
         filterIndex: action.filterIndex
       }
 
     case ACTIONS.SORT_GALLERY:
       return {
-        ...state,
+        ...nState,
         selectedGallery: action.tagObj
       }
 
     case ACTIONS.CLEAR_GALLERY:
       return {
-        ...state,
+        ...nState,
         selectedGallery: {},
         galleries: []
       }
@@ -52,18 +62,18 @@ export default (state = INITIAL_STATE.navigator, action) => {
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...nState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...nState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...nState,
             isFetching: false,
             galleryGroups: action.payload
           }
@@ -73,24 +83,24 @@ export default (state = INITIAL_STATE.navigator, action) => {
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...nState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...nState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...nState,
             isFetching: false,
             galleries: action.payload
           }
       }
       
     default:
-      return state;
+      return nState;
   }
 }

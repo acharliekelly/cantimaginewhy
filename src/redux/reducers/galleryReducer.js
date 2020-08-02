@@ -1,7 +1,8 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
-// import { sortByField } from '../../utils/imageUtils';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 export const primaryGallery = {
   isFetching: false,
@@ -15,43 +16,48 @@ export const primaryGallery = {
 }
 
 export default (state = INITIAL_STATE.primaryGallery, action) => {
-  const len = state.imagesList.length;
+  let pState = state;
+  if (state.locator === StateLocator.ROOT) {
+    pState = state.primaryGallery;
+  } else if (state.locator !== StateLocator.PRIMARY_GALLERY) {
+    wrongStateError(StateLocator.PRIMARY_GALLERY, state.locator);
+  }
   switch (action.type) {
     case ACTIONS.SORT_GALLERY:
       // TODO: make this sort in immutable way
-      return state; 
+      return pState; 
     case ACTIONS.SELECT_PRIMARY_IMAGE:
       return {
-        ...state,
+        ...pState,
         currentIndex: action.index
       }
       
     case ACTIONS.FETCH_GALLERY_ABOUT:
       return {
-        ...state,
+        ...pState,
         galleryAboutText: action.payload
       }
     case ACTIONS.FETCH_GALLERY:
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...pState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...pState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...pState,
             isFetching: false,
             imagesList: action.payload
           }
       }
     default:
-      return state;
+      return pState;
   }
 }

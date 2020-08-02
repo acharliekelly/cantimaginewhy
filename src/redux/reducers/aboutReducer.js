@@ -1,6 +1,8 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 // const aboutInfo = {
 //   isFetching: false,
@@ -15,34 +17,42 @@ import { STATUS } from '../actions/';
 // }
 
 export default (state = INITIAL_STATE.aboutInfo, action) => {
+  let aState = state;
+  if (state.locator === StateLocator.ROOT) {
+    aState = state.aboutInfo;
+  } else if (state.locator !== StateLocator.ABOUT_INFO) {
+    wrongStateError(StateLocator.ABOUT_INFO, state.locator);
+  }
   switch (action.type) {
     case ACTIONS.FETCH_CONTENT_TEXT:
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...aState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...aState,
             isFetching: false,
             error: action.error
           }
-        default:
+        case STATUS.SUCCESS:
           return {
-            ...state,
+            ...aState,
             isFetching: false,
             currentSectionId: action.sectionId,
             contentText: {
-              ...state.contactInfo.contentText,
+              ...aState.contentText,
               [action.sectionId]: action.payload
             }
           }
+        default:
+          return state;
       }
     case ACTIONS.SELECT_SECTION:
       return {
-        ...state,
+        ...aState,
         isFetching: false,
         currentSectionId: action.sectionId
       }

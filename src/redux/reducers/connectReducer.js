@@ -1,6 +1,8 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
 import { STATUS } from '../actions/';
+import { StateLocator } from '../../utils/constants';
+import { wrongStateError } from '../../utils/stateUtils';
 
 // const contactInfo = {
 //   isFetching: false,
@@ -16,23 +18,30 @@ import { STATUS } from '../actions/';
 // }
 
 export default (state = INITIAL_STATE.contactInfo, action) => {
+  let cState = state;
+  if (state.locator === StateLocator.ROOT) {
+    cState = state.contactInfo;
+  } else if (state.locator !== StateLocator.CONTACT_INFO) {
+    // throws error, halts application
+    wrongStateError(StateLocator.CONTACT_INFO, state.locator);
+  }
   switch (action.type) {
     case ACTIONS.FETCH_CONTENT_TEXT:
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...cState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...cState,
             isFetching: false,
             error: action.error
           }
         default:
           return {
-            ...state,
+            ...cState,
             isFetching: false,
             contactText: action.payload
           }
@@ -41,29 +50,31 @@ export default (state = INITIAL_STATE.contactInfo, action) => {
       switch (action.status) {
         case STATUS.WAITING:
           return {
-            ...state,
+            ...cState,
             isFetching: true
           }
         case STATUS.FAIL:
           return {
-            ...state,
+            ...cState,
             isFetching: false,
             error: action.error
           }
-        default:
+        case STATUS.SUCCESS:
           return {
-            ...state,
+            ...cState,
             isFetching: false,
             connectLinks: action.payload
           }
+        default:
+          return cState;
       }
     case ACTIONS.SELECT_SECTION:
       return {
-        ...state,
+        ...cState,
         isFetching: false,
-        currentSection: action.payload
-      }
+        currentSectionId: action.sectionId
+        }
     default:
-      return state;
+      return cState;
   }
 }

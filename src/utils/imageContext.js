@@ -1,5 +1,16 @@
 // imageContext.js
 
+export const contextFieldLabels = {
+  'alt': 'Description',
+  'caption': 'Title',
+  'completed': 'Date Completed',
+  'medium': 'Medium',
+  'size': 'Size',
+};
+
+
+
+
 /**
  * Returns object to use for image detail
  * @param {*} imageObj 
@@ -66,4 +77,9 @@ const hasProperty = (pictureObj, propertyName) => {
   } else {
     return false;
   }
+}
+
+
+export const getLabel = fieldName => {
+
 }

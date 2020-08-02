@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import MapButton from '../Buttons/MapButton';
-import { withStacking } from '../higherOrder/withStacking';
 import MapContainer from '.';
-
+import { withStacking } from '../higherOrder/withStacking';
 
 
 // const GeoView = withScriptjs(withGoogleMap((props) => {
 const GeoView = props => {
   // const [ position, setPosition ] = useState(null);
-  const { available, latitude, longitude } = props;
+  const { available, latitude, longitude, markerLabel } = props;
+
 
   const position = { 
     lat: latitude, 
@@ -26,18 +26,18 @@ const GeoView = props => {
     }
 
     return (
-      <div className="geo-placeholder" style={mapStyle}>
-        <MapContainer name="Location" position={position} />
-        <br/>
-        <MapButton 
-          variant="outline-secondary" 
-          latitude={latitude} 
-          longitude={longitude} 
-        />
-        
-      </div>
+        <div className="geo-placeholder" style={mapStyle}>
+          <MapContainer label={markerLabel} position={position} />
+          <div style={{ height: '2vh'}} />
+          <MapButton 
+            variant="outline-secondary" 
+            latitude={latitude} 
+            longitude={longitude} 
+          />
+          
+        </div>
+      )
       
-    )
   } else {
     return '';
   }

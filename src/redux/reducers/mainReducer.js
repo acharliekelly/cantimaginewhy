@@ -1,101 +1,121 @@
 import * as ACTIONS from '../actions/actionTypes';
 import { INITIAL_STATE } from './initialStateTree';
-import { PROGRESS_CONTEXT, MAIN_CONTEXT } from '../../utils/constants';
-import { moveNext, movePrevious } from 'Utils/miscUtils';
+import { StateLocator } from '../../utils/constants';
+import { 
+  nextIndex, 
+  prevIndex, 
+  delegateContext, 
+  wrongStateError 
+} from 'Utils/stateUtils';
 
-const delegateContext = (state = INITIAL_STATE, context) => {
-  switch (context) {
-    case MAIN_CONTEXT:
-      return {
-        list: state.primaryGallery.imagesList,
-        index: state.primaryGallery.currentIndex
-      };
-    case PROGRESS_CONTEXT:
-      return {
-        list: state.progressGallery.imagesList,
-        index: state.progressGallery.currentIndex
-      };
-    default:
-      return {
-        list: state.featuredGallery.imagesList,
-        index: state.featuredGallery.currentIndex
-      };
-    
-  }
-} 
+//! TODO: make full tree update whenever nav or main image updates
 
+// takes full tree
 export default (state = INITIAL_STATE, action) => {
+  if (state.locator !== StateLocator.ROOT) {
+    wrongStateError(StateLocator.ROOT, state.locator);
+  }
+  
   let ctx;
   if (action.context) {
     ctx = delegateContext(state, action.context);
   }
   switch (action.type) {
     case ACTIONS.OPEN_LIGHTBOX:
-      return {
-        ...state,
-        lightbox: {
-          isOpen: true,
-          galleryContext: action.context
-        }
+      switch (action.context) {
+        case StateLocator.PRIMARY_GALLERY:
+          return {
+            ...state.primaryGallery,
+            isLightboxOpen: true
+          };
+        case StateLocator.PROGRESS_GALLERY:
+          return {
+            ...state.currentImage.progressGallery,
+            isLightboxOpen: true
+          };
+        case StateLocator.FEATURED_GALLERY:
+          return {
+            ...state.featuredGallery,
+            isLightboxOpen: true
+          };
+        default:
+          return state;
       }
     case ACTIONS.CLOSE_LIGHTBOX:
-      return {
-        ...state,
-        lightbox: {
-          isOpen: false
-        }
+      switch (action.context) {
+        case StateLocator.PRIMARY_GALLERY:
+          return {
+            ...state.primaryGallery,
+            isLightboxOpen: false
+          };
+        case StateLocator.progressGallery:
+          return {
+            ...state.currentImage.progressGallery,
+            isLightboxOpen: false
+          };
+        case StateLocator.featuredGallery:
+          return {
+            ...state.featuredGallery,
+            isLightboxOpen: false
+          };
+        default:
+          return state;
       }
     case ACTIONS.NEXT_IMAGE:
-      let next = moveNext(ctx.list, ctx.index);
+      let next = nextIndex(ctx.imageList, ctx.currentIndex);
       switch (action.context) {
-        case MAIN_CONTEXT:
+        case StateLocator.PRIMARY_GALLERY:
           return {
             ...state.primaryGallery,
             currentIndex: next
           }
-        case PROGRESS_CONTEXT:
+        case StateLocator.PROGRESS_GALLERY:
           return {
-            ...state.progressGallery,
+            ...state.currentImage.progressGallery,
             currentIndex: next
           }
-        default:
+        case StateLocator.FEATURED_GALLERY:
           return {
             ...state.featuredGallery,
             currentIndex: next
-          }; 
+          };
+        default:
+          return state; 
       }
 
     case ACTIONS.PREV_IMAGE:
-      let prev = movePrevious(ctx.list, ctx.index);
+      let prev = prevIndex(ctx.imageList, ctx.currentIndex);
       switch (action.context) {
-        case MAIN_CONTEXT:
+        case StateLocator.PRIMARY_GALLERY:
           return {
             ...state.primaryGallery,
             currentIndex: prev
           }
-        case PROGRESS_CONTEXT:
+        case StateLocator.PROGRESS_GALLERY:
           return {
-            ...state.progressGallery,
+            ...state.currentImage.progressGallery,
             currentIndex: prev
           }
-        default:
+        case StateLocator.FEATURED_GALLERY:
           return {
             ...state.featuredGallery,
             currentIndex: prev
           }; 
+        default:
+          return state;
       }
       
     case ACTIONS.SELECT_IMAGE:
       let idx = action.index;
       switch (action.context) {
-        case MAIN_CONTEXT:
+        case StateLocator.PRIMARY_GALLERY:
           return {
             ...state.primaryGallery,
             currentIndex: idx
           }
-        case PROGRESS_CONTEXT:
+        case StateLocator.PROGRESS_GALLERY:
           return {
-            ...state.progressGallery,
+            ...state.currentImage.progressGallery,
             currentIndex: idx
           }
         default:

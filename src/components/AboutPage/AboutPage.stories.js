@@ -3,8 +3,7 @@ import { storiesOf } from './@storybook/react';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
 import { FontAwesomeIcon } from './@fortawesome/react-fontawesome';
-import { ContentPanel } from './';
-import { aboutContent } from '../../json/text';
+import { aboutContent } from '../../api/js/text';
 
 import './about.scss';
 
@@ -32,9 +31,6 @@ stories
         </Nav.Link>
       </Nav.Item>
     </Nav>
-    <Tab.Content>
-      <ContentPanel keyName="art" />
-      <ContentPanel keyName="design" />
-    </Tab.Content>
+    
   </Tab.Container>
 ))

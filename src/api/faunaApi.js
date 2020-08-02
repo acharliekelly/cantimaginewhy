@@ -91,3 +91,10 @@ export const upsertArtwork = cloudImg => {
     return createArtwork(cloudImg);
   }
 }
+
+
+export const fetchTagsFromArtwork = cloudImg => {
+  if (getArtwork(cloudImg.public_id)) {
+    //! TODO: get tags back from image
+  }
+}

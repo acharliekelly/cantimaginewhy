@@ -39,3 +39,7 @@ export function productListError(error) {
     error
   }
 }
+
+export function fetchProductList(productKey) {
+  // TODO: make this work
+}

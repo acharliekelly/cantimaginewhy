@@ -20,9 +20,14 @@ import {
   sortGallery,
   fetchMainGallery
 } from './galleryActions';
+import {
+  fetchProductList
+} from './productActions';
 import { 
   fetchProgressGallery
 } from './progressActions';
+import { fetchOtherTags } from './tagsActions';
+
 
 
 export const STATUS = {
@@ -39,8 +44,11 @@ export function openLightbox(context) {
     context
   }
 }
-export function closeLightbox() {
-  return { type: ACTIONS.CLOSE_LIGHTBOX }
+export function closeLightbox(context) {
+  return { 
+    type: ACTIONS.CLOSE_LIGHTBOX,
+    context 
+  }
 }
 
 
@@ -87,5 +95,7 @@ export {
   fetchGeoData,
   sortGallery,
   fetchMainGallery,
-  fetchProgressGallery
+  fetchProgressGallery,
+  fetchOtherTags,
+  fetchProductList
 };

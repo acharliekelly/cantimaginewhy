@@ -1,5 +1,12 @@
-import { albums, albumModeDescription } from '../../json/albums';
-import { filters, filterModeDescription } from '../../json/filters';
+// import { albums, albumModeDescription } from '../../api/js/albums';
+// import { filters, filterModeDescription } from '../../api/js/filters';
+import {
+  fetchAlbums,
+  fetchFilterGroups,
+  fetchFilterOptions,
+  fetchModeText
+} from 'Api/jsonApi';
+
 import {
   SELECT_MODE,
   SELECT_FILTER,
@@ -12,28 +19,6 @@ import {
  import { STATUS } from '.';
  import { FILTER_MODE } from 'Constants';
 
-
-
- //! TODO: make these actions at least look like real fetch requests
-function getGalleryGroups () {
-  return filters;
-}
-
-function getFilters (index) {
-  return filters[index].options
-}
-
-function getAlbums () {
-  return albums;
-}
-
-function getModeDesc(mode) {
-  if (mode === FILTER_MODE) {
-    return filterModeDescription;
-  } else {
-    return albumModeDescription;
-  }
-}
 
 function requestModeDescription(mode) {
   return {
@@ -62,7 +47,7 @@ function modeDescriptionError(error) {
 export function fetchModeDescription(mode) {
   return function(dispatch) {
     dispatch(requestModeDescription(mode));
-    return getModeDesc(mode)
+    return fetchModeText(mode)
       .then(response => 
         dispatch(receiveModeDescription(response))  
       )
@@ -136,17 +121,23 @@ function galleriesError(error) {
   }
 }
 
+/**
+ * 
+ * @param {String} mode Album || Filter
+ * @param {int} filterIndex index, if Filter
+ * @returns {Array<Nav>} array of GalleryButtons
+ */
 export function fetchGalleries(mode, filterIndex) {
   return function (dispatch) {
     dispatch(requestGalleries(mode, filterIndex));
     if (mode === FILTER_MODE) {
-      return getFilters(filterIndex)
+      return fetchFilterOptions(filterIndex)
         .then(response => 
           dispatch(receiveGalleries(response))
         )
         .catch(err => galleriesError(err))
     } else {
-      return getAlbums()
+      return fetchAlbums()
         .then(response =>
           dispatch(receiveGalleries(response))  
         )
@@ -179,11 +170,14 @@ function galleryGroupError(error) {
   }
 }
 
-
+/**
+ * returns all top-level filters
+ * @returns {Array<Nav>}
+ */
 export function fetchGalleryGroups() {
   return function (dispatch) {
     dispatch(requestGalleryGroups());
-    return getGalleryGroups()
+    return fetchFilterGroups()
       .then(response =>
         dispatch(receiveGalleryGroups(response))
       )

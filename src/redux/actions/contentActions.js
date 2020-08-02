@@ -1,10 +1,16 @@
 import { STATUS } from '.';
-import { 
-  getContactLinks, 
-  getAboutContent, 
-  getContactContent
-} from 'Utils/miscUtils';
-import { getExplanation } from 'Utils/tagUtils';
+// import { 
+//   getContactLinks, 
+//   getAboutContent, 
+//   getContactContent
+// } from 'Utils/miscUtils';
+// import { getExplanation } from 'Utils/tagUtils';
+
+import {
+  fetchPageContent,
+  fetchConnectLinks,
+  fetchGalleryInfo
+} from '../../api/jsonApi';
 
 import { 
   FETCH_LINKS, 
@@ -46,7 +52,7 @@ function aboutGalleryError(error) {
 export function fetchAlbumExplanation(galleryTag) {
   return function(dispatch) {
     dispatch(requestAboutGallery(galleryTag));
-    return getExplanation(galleryTag)
+    return fetchGalleryInfo(galleryTag)
       .then(response =>
         dispatch(receiveAboutGallery(response))  
       )
@@ -90,13 +96,10 @@ function contactLinksError(error) {
 export function fetchContactLinks(sectionId) {
   return function (dispatch) {
     dispatch(requestContactLinks(sectionId));
-    return getContactLinks(sectionId)
-      .then(response =>
-        dispatch(receiveContactLinks(response))
-      )
-      .catch(err =>
-        dispatch(contactLinksError(err))
-      )
+    return fetchConnectLinks()
+      .then(response => response.data.links.filter(link => link.groups.includes(sectionId)))
+      .then(links => dispatch(receiveContactLinks(links)))
+      .catch(err => dispatch(contactLinksError(err)))
   }
 }
 
@@ -135,21 +138,12 @@ function sectionContentError(error) {
   }
 }
 
-function getContent(page, sectionId) {
-  if (page === CONTACT_PAGE) {
-    return getContactContent(sectionId);
-  } else {
-    return getAboutContent(sectionId);
-  }
-}
-
-
 export function fetchSectionContent(page, sectionId) {
   return function (dispatch) {
     dispatch(requestSectionContent(page, sectionId));
-    return getContent(page, sectionId)
+    return fetchPageContent(page)
       .then(response =>
-        dispatch(receieveSectionContent(response))
+        dispatch(receieveSectionContent(response[sectionId]))
       )
       .catch(error => 
         dispatch(sectionContentError(error))  

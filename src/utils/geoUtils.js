@@ -1,16 +1,10 @@
 // temporary lookup
 // ultimately use .geotag field from Cloudinary
-import { geotags } from '../json/locations';
+import { fetchGeoData } from '../api/jsonApi';
 
 
 
-export const lookupGeo = publicId => {
-  if (geotags[publicId]) {
-    return geotags[publicId];
-  } else {
-    return false;
-  }
-}
+export const lookupGeo = publicId => fetchGeoData(publicId);
 
 export const extractGeo = geotag => {
   const geo = geotag.split(',');

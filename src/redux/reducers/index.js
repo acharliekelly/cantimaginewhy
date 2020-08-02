@@ -9,6 +9,7 @@ import mainReducer from './mainReducer';
 import navReducer from './navReducer';
 import productReducer from './productReducer';
 import progressReducer from './progressReducer';
+import tagsReducer from './tagsReducer';
 
 
 const createRootReducer = (history) => combineReducers({
@@ -19,6 +20,7 @@ const createRootReducer = (history) => combineReducers({
   progressReducer,
   geoReducer,
   productReducer,
+  tagsReducer,
   connectReducer,
   aboutReducer
 });

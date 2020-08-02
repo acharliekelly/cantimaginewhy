@@ -1,7 +1,7 @@
 // miscUtils.js
 // general utilities
-import { links } from '../json/links';
-import { aboutContent, contactText } from '../json/text';
+// import { links } from '../api/js/links';
+// import { aboutContent, contactText } from '../api/js/text';
 
 
 const stubSelectLightbox = imageId => {
@@ -71,24 +71,13 @@ export const faaUrl = productKey => {
 }
 
 export const getContactLinks = sectionId => {
-  return sectionId ? links.filter(link => link.groups.includes(sectionId)) : links;
+  return fetchConnectLinks()
+    .then(links => sectionId ? links.filter(
+      link => link.groups.includes(sectionId)
+      ) : links)
+
 }
 
-export const getAboutContent = sectionId => {
-  return sectionId ? aboutContent[sectionId] : aboutContent;
-}
-
-export const getContactContent = sectionId => {
-  return sectionId ? contactText[sectionId] : contactText;
-}
-
-export const moveNext = (imageList, currentIndex) => {
-  return (currentIndex + 1) % imageList.length;
-}
-
-export const morePrevious = (imageList, currentIndex) => {
-  return (currentIndex + imageList.length -1) % imageList.length;
-}
 
 
 // ANOTHER MISCELLANEOUS FUNCTION

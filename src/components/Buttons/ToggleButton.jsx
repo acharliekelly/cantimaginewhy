@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // prop: [ 0, 1 ]
 const toggleProps = {
-  icon: ['sort-down', 'sort-up'],
+  icon: ['chevron-square-down', 'chevron-square-up'],
   variant: ['light', 'dark']
 }
 
 
 const ToggleButton = props => {
-  const { toggleAction, iconSize } = props;
-  const [ toggle, setToggle ] = useState(false);
+  const { toggleAction, iconSize, toggleState, ...styleProps } = props;
 
-  const onToggle = () => {
-    setToggle(!toggle);
-    toggleAction(toggle);
-  }
-
-  const tProp = key => toggleProps[key][toggle ? 0 : 1]
+  const tProp = key => toggleProps[key][toggleState ? 0 : 1]
 
   return (
-    <Button variant={tProp('variant')} onClick={onToggle}>
+    <Button variant={tProp('variant')} onClick={toggleAction} {...styleProps}>
       <FontAwesomeIcon icon={tProp('icon')} size={iconSize} />
     </Button>
   )
@@ -30,12 +24,11 @@ const ToggleButton = props => {
 
 ToggleButton.propTypes = {
   toggleAction: PropTypes.func,
-  initialState: PropTypes.bool,
   iconSize: PropTypes.string
 }
 
 ToggleButton.defaultProps = {
-  initialState: false,
+  toggleState: false,
   iconSize: 'lg'
 }
 

@@ -4,7 +4,7 @@ import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery }from 'Api/cloudinaryApi';
 import { withLightbox } from '../higherOrder/withLightbox';
 
-//! TODO: create container, remove withLightbox
+//! TODO: create container
 const Logo = props => {
   const { selectLightbox, startId, enableEaster } = props;
 

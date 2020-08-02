@@ -4,15 +4,21 @@ import Accordion from 'react-bootstrap/Accordion';
 
 
 // HOC for putting component into Stack
-export function withStacking(WrappedComponent) {
-  return class extends React.Component {
+const withStacking = props => WrappedComponent => {
+  class WithStacking extends React.Component {
     
     render () {
-      const { eventKeyName, cardTitle, variant, maxHeight, enabled, ...passThroughProps} = this.props;
+      const { eventKeyName, cardTitle, variant, maxHeight, enabled, 
+        ...passThroughProps} = props;
 
       return (
         <Card className="stacked-card" border={variant} text={variant}>
-          <Accordion.Toggle as={Card.Header} eventKey={eventKeyName} disabled={!enabled} style={{cursor: 'pointer'}}>
+          <Accordion.Toggle 
+            as={Card.Header} 
+            eventKey={eventKeyName} 
+            disabled={!enabled} 
+            style={{cursor: 'pointer'}}
+          >
             <strong>{cardTitle}</strong>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={eventKeyName}>
@@ -24,4 +30,8 @@ export function withStacking(WrappedComponent) {
       )
     }
   }
+  WithStacking.displayName = `WithStacking(${WrappedComponent.name})`;
+  return WithStacking;
 }
+
+export default withStacking;

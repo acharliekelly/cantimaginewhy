@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
-// import { onsitePhotos } from '../../utils/onsiteUtils';
 import ProgressGallery from '../../containers/ProgressGallery';
 import ImageToolbar from '../ImageToolbar';
 import { withLightbox } from '../higherOrder/withLightbox';
 import { withStacking } from '../higherOrder/withStacking';
 import './progress.scss';
-
 
 const ProgressView = props => {
   const { progressImages, progressIndex, nextImage, prevImage, openLightbox } = props;
@@ -55,18 +52,6 @@ const ProgressView = props => {
     )}
     </>
   )
-}
-
-ProgressView.propTypes = {
-  selectLightbox: PropTypes.func.isRequired,
-  referenceKey: PropTypes.string,
-  thumbSize: PropTypes.number,
-}
-
-ProgressView.defaultProps = {
-  referenceKey: null,
-  thumbSize: 80,
-  variant: 'info'
 }
 
 export default withLightbox(withStacking(ProgressView));

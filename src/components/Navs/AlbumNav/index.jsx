@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import classNames from 'classnames';
 
-import NavButton from '../NavButton';
+// import NavButton from '../NavButton';
+import GalleryGroup from 'Comps/Buttons/GalleryGroup';
 import HelpButton from 'Comps/Buttons/HelpButton/';
 import ErrorAlert from 'Comps/Alerts/ErrorAlert';
 import LoadingAlert from 'Comps/Alerts/LoadingAlert';
 import NavSwitch from '../NavSwitch';
+import ToggleButton from 'Comps/Buttons/ToggleButton';
 
 
 import '../nav.scss';
 
+
+/**
+ * Redux-connected 
+ * @param {Object} props 
+ */
 const AlbumNav = props => {
   const { albums, navDescription, selectedNav, updateSelectNav } = props;
+  const [ isCollapsed, setIsCollapsed ] = useState(false);
+  const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
   const navBarClass = classNames('category-bar', 
     { 
@@ -30,8 +39,14 @@ const AlbumNav = props => {
   }
   return (
       <>
-         <Navbar className={navBarClass}>
-          <NavSwitch type="album" {...props} />
+        <Navbar className={navBarClass}>
+          <NavSwitch type="album" updateNavSwitch={props.updateNavSwitch} />
+          <ToggleButton 
+            toggleState={isCollapsed} 
+            toggleAction={toggleCollapse}
+            style={{marginLeft: '0.5em'}}
+          />
+
           <Navbar.Text>
             <span className="browse-title">Browse by Album</span>
           </Navbar.Text>
@@ -39,18 +54,13 @@ const AlbumNav = props => {
         </Navbar>
 
         <Container fluid="md" className={navBtnCls}>
-        {albums.map((album, index) => {
-          const selected = (selectedNav && selectedNav.tag === album.tag);
-          return (
-            <NavButton 
-              key={index}
-              navTag={album} 
-              onSelectItem={updateSelectNav} 
-              isSelected={selected} 
-              {...props}
-              />
-            );
-          })}
+          <GalleryGroup  
+            galleryList={albums}
+            selectTagHandler={updateSelectNav}
+            selectedTag={selectedNav}
+            isCollapsed={isCollapsed}
+            isInline={true}
+          />
         </Container>
       </>
     );

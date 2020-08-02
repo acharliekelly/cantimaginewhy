@@ -2,26 +2,24 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import ImageToolbar from '../ImageToolbar/';
 import { withLightbox } from '../higherOrder/withLightbox';
+import { withStacking } from '../higherOrder/withStacking';
 import DisplayImage from '../DisplayImage';
-import ImageInfo from '../../containers/ImageInfo';
-import classNames from 'classnames';
 
 import './detail.scss';
 
 const ImageDetail = props => {
-  const { imageList, currentIndex, isFullWidth } = props;
+  const { imageList, currentIndex } = props;
   const { nextImage, prevImage, openLightbox } = props;
 
   const moveNext = () => nextImage(imageList, currentIndex);
   const movePrevious = () => prevImage(imageList, currentIndex);
 
   if (imageList[currentIndex]) {
-    const cls = classNames('image-detail', { 'full-width': isFullWidth });
     return (
-      <Container className={cls}>
+      <Container className={'image-detail'}>
         <DisplayImage 
           currentImage={imageList[currentIndex]} 
-          imageZoom={isFullWidth ? null:  openLightbox} />
+          imageZoom={openLightbox} />
         
         <ImageToolbar 
             variant="light"
@@ -29,12 +27,10 @@ const ImageDetail = props => {
             fullWidth
             prevImageFn={movePrevious}
             nextImageFn={moveNext}
-            zoomImageFn={isFullWidth ? null:  openLightbox}
+            zoomImageFn={openLightbox}
             disableCarousel={imageList.length < 2}
             tagObject={props.tagObject}
           />
-        
-          <ImageInfo currentImage={imageList[currentIndex]} />
 
       </Container>    
     )
@@ -45,4 +41,4 @@ const ImageDetail = props => {
   }
 }
 
-export default withLightbox(ImageDetail);
+export default withStacking(withLightbox(ImageDetail));

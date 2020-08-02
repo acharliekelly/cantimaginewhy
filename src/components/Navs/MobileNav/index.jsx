@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import { MobileNavButton } from '../NavButton';
-import { albums } from '../../../json/albums';
+import { albums } from '../../../api/js/albums';
 import { withStacking } from '../../higherOrder/withStacking';
 
 

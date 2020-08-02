@@ -3,39 +3,41 @@ import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
 import { Parallax } from "react-parallax";
 
-import TabNavs from 'Comps/Buttons/TabNavs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Nav from 'react-bootstrap/Nav';
 import { cleanImageSrc } from 'Api/cloudinaryApi';
 // import { aboutContent } from 'LocalData/text';
 import { Breakpoint } from 'react-socks';
 
 import './about.scss';
 
-export const SectionContent = ({ keyName, contentText }) => (
-  <>
-    {contentText[keyName].map((section, index) => (
-      <section key={index}>
-        {section}
-      </section>
-    ))}
-  </>
-)
+const sectionTabs = [
+  {
+    "name": "art",
+    "icon": "pallette",
+    "label": "Art"
+  },
+  {
+    "name": "design",
+    "icon": "drafting-compass",
+    "label": "Design"
+  },
+  {
+    "name": "tech",
+    "icon": "file-code",
+    "label": "Code"
+  }
+]
 
 
-export const ContentPanel = ({ keyName }) => (
-  <Tab.Pane eventKey={keyName} className={`${keyName}-content`}>
-    <Container>
-      <div className="me-text">
-        <SectionContent keyName={keyName} />
-      </div>
-    </Container>
-  </Tab.Pane>
-)
-
-//! TODO: make this use value from State
-const AboutPage = ({ isFetching, error, currentSection, contentText }) => (
+const AboutPage = ({ aboutInfo }) => (
   <Container className="content about-content">
     <header className="intro-text">
-      <SectionContent keyName="intro" />
+      {aboutInfo.contentText.intro.map((section, index) => (
+        <section key={index}>
+          {section}
+        </section>
+      ))}
     </header>
     <Breakpoint lg up>
       <Parallax bgImage={cleanImageSrc('me/caterpillar2', 800)} strength={500}>
@@ -44,11 +46,29 @@ const AboutPage = ({ isFetching, error, currentSection, contentText }) => (
     </Breakpoint>
     
     <Tab.Container defaultActiveKey="art">
-      <TabNavs art design tech />
+      {sectionTabs.map(tab => (
+        <Nav.Item>
+          <Nav.Link eventKey={tab.name}>
+            <FontAwesomeIcon icon={tab.icon} />
+            <span className="tab-text">{tab.label}</span>
+          </Nav.Link>
+        </Nav.Item>
+      ))}
+      
       <Tab.Content>
-        <ContentPanel keyName="art" />
-        <ContentPanel keyName="design" />
-        <ContentPanel keyName="tech" />
+        {['art', 'design', 'tech'].map(keyName => (
+          <Tab.Pane eventKey={keyName} className={`${keyName}-content`}>
+            <Container>
+              <div className="me-text">
+              {aboutInfo.contentText[keyName].map((section, index) => (
+                <section key={index}>
+                  {section}
+                </section>
+              ))}
+              </div>
+            </Container>
+          </Tab.Pane>
+        ))}
       </Tab.Content>
     </Tab.Container>
   </Container>

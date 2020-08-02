@@ -4,7 +4,7 @@ import {
   selectImage
 } from '../redux/actions/';
 import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
-import { MAIN_CONTEXT } from '../utils/constants';
+import { StateLocator } from '../utils/constants';
 import ThumbGallery from '../components/ThumbGallery';
 
 const mapStateToProps = (state = INITIAL_STATE) => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state = INITIAL_STATE) => ({
 });
 
 const selectThumbnail = index => {
-  selectImage(MAIN_CONTEXT, index);
+  selectImage(StateLocator.PRIMARY_GALLERY, index);
 }
 
 const actionCreators = {

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { INITIAL_STATE } from '../redux/reducers/initialStateTree';
-import { PROGRESS_CONTEXT, MAIN_CONTEXT } from 'Utils/constants';
+import { zoomImageSrc, getContextProperty }from 'Api/cloudinaryApi';
+import { nextIndex, prevIndex } from '../utils/stateUtils';
+
 import {
   openLightbox,
   closeLightbox,
@@ -8,25 +9,35 @@ import {
   nextImage,
   previousImage
 } from '../redux/actions';
-import ImageZoom from '../components/ImageZoom/alt';
+import ImageZoom from '../components/ImageZoom/index';
 
-const contextProps = (state, context) => {
-  switch (context) {
-    case MAIN_CONTEXT:
-      return state.primaryGallery;
-    case PROGRESS_CONTEXT:
-      return state.progressGallery;
-    default:
-      return state.featuredGallery;
-  }
-}
+const getTitle = state => getContextProperty(
+  state.imageList[state.currentIndex], 'caption'
+);
+const getCaption = state => getContextProperty(
+  state.imageList[state.currentIndex], 'alt'
+);
+const getMainImg = state => zoomImageSrc(
+  state.imageList[state.currentIndex]
+);
+const getNextImg = state => zoomImageSrc(
+  state.imageList[nextIndex(state.imageList, state.currentIndex)]
+);
+const getPrevImg = state => zoomImageSrc(
+  state.imageList[prevIndex(state.imageList, state.currentIndex)]
+);
 
-const mapStateToProps = (state = INITIAL_STATE, ownProps) => ({
-  context: ownProps.context,
-  imageList: contextProps(state, ownProps.context).imageList,
-  currentIndex: contextProps(state, ownProps.context).currentIndex,
-  error: contextProps(state, ownProps.context).error,
-  isLoading: contextProps(state, ownProps.context).isFetching,
+const mapStateToProps = state => ({
+  context: state.context,
+  imageList: state.imageList,
+  currentIndex: state.currentIndex,
+  error: state.error,
+  isLoading: state.isFetching,
+  title: getTitle(state),
+  caption: getCaption(state),
+  mainImg: getMainImg(state),
+  nextImg: getNextImg(state),
+  prevImg: getPrevImg(state)
 });
 
 

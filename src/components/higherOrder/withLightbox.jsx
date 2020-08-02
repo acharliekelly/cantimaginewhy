@@ -1,19 +1,17 @@
 import React from 'react';
 
-import ImageZoom from 'Containers/ImageZoom';
+import ImageZoom from '../ImageZoom';
 
-export function withLightbox(WrappedComponent) {
-  return class extends React.Component {
-    constructor (props) {
-      super(props);
+const withLightbox = props => WrappedComponent => {
+  class WithLightbox extends React.Component {
+    constructor () {
+      super();
       this.state = {
         lightboxOpen: false,
         lightboxImages: [],
         lightboxCurrentIndex: 0
       }
     }
-
-
 
     lightboxArray = (imageList, currentIndex) => {
       if (imageList) {
@@ -40,6 +38,21 @@ export function withLightbox(WrappedComponent) {
       })
     }
 
+    moveNext = () => {
+      const next = (this.lightboxCurrentIndex + 1) % this.lightboxImages.length;
+      this.setState({
+        lightboxCurrentIndex: next
+      })
+    }
+
+    movePrevious = () => {
+      const prev = (this.lightboxCurrentIndex 
+        + this.lightboxImages.length - 1) % this.lightboxImages.length;
+        this.setState({
+          lightboxCurrentIndex: prev
+        })
+    }
+
     render () {
       const { lightboxOpen, lightboxCurrentIndex, lightboxImages } = this.state;
       return (
@@ -54,10 +67,16 @@ export function withLightbox(WrappedComponent) {
             imageList={lightboxImages}
             selectedIndex={lightboxCurrentIndex}
             closeLightbox={this.closeLightbox}
+            moveNext={this.moveNext}
+            movePrevious={this.movePrevious}
           />
         )}
         </>
       )
     }
   }
+  WithLightbox.displayName = `WithLightbox(${WrappedComponent.name})`;
+  return WithLightbox;
 }
+
+export default withLightbox;

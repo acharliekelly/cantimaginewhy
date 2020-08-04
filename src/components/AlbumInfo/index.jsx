@@ -1,4 +1,4 @@
-import React from './react';
+import React from 'react';
 // import StackLayer from '../Stacker/StackLayer';
 import { withStacking } from '../higherOrder/withStacking';
 

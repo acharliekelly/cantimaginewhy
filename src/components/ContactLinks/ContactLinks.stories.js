@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, radios } from '@storybook/addon-knobs';
-import ContactLinks from './alt';
+import ContactLinks from '.';
 import { initializeLibrary } from '../../utils/faLibrary';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

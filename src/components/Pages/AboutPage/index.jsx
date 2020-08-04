@@ -1,33 +1,17 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Container from 'react-bootstrap/Container';
-import { Parallax } from "react-parallax";
+import { Parallax } from 'react-parallax';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nav from 'react-bootstrap/Nav';
 import { cleanImageSrc } from 'Api/cloudinaryApi';
-// import { aboutContent } from 'LocalData/text';
+import { SectionTabs } from '../../../utils/constants';
 import { Breakpoint } from 'react-socks';
 
 import './about.scss';
 
-const sectionTabs = [
-  {
-    "name": "art",
-    "icon": "pallette",
-    "label": "Art"
-  },
-  {
-    "name": "design",
-    "icon": "drafting-compass",
-    "label": "Design"
-  },
-  {
-    "name": "tech",
-    "icon": "file-code",
-    "label": "Code"
-  }
-]
+
 
 
 const AboutPage = ({ aboutInfo }) => (
@@ -46,7 +30,7 @@ const AboutPage = ({ aboutInfo }) => (
     </Breakpoint>
     
     <Tab.Container defaultActiveKey="art">
-      {sectionTabs.map(tab => (
+      {Object.values(SectionTabs).map(tab => (
         <Nav.Item>
           <Nav.Link eventKey={tab.name}>
             <FontAwesomeIcon icon={tab.icon} />

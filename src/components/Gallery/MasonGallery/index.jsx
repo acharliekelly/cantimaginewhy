@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from './prop-types';
 import Gallery from 'react-photo-gallery';
 import { masonryImageArray } from '/utils/imageUtils';
 

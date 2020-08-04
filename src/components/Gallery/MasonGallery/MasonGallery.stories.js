@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import MasonGallery from '.';
-import { resources } from '../../../data/acrylic.json';
+import { resources } from '../../../../data/acrylic.json'
 
 const scaleCtrl = {
   range: true,

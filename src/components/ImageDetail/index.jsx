@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import ImageToolbar from '../ImageToolbar/';
 import { withLightbox } from '../higherOrder/withLightbox';
-import { withStacking } from '../higherOrder/withStacking';
 import DisplayImage from '../DisplayImage';
 
 import './detail.scss';
@@ -16,7 +15,7 @@ const ImageDetail = props => {
 
   if (imageList[currentIndex]) {
     return (
-      <Container className={'image-detail'}>
+      <Container className="current-image">
         <DisplayImage 
           currentImage={imageList[currentIndex]} 
           imageZoom={openLightbox} />
@@ -41,4 +40,4 @@ const ImageDetail = props => {
   }
 }
 
-export default withStacking(withLightbox(ImageDetail));
+export default withLightbox(ImageDetail);

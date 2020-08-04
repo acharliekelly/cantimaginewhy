@@ -35,3 +35,22 @@ export const ContentSections = {
 }
 
 export const FULL_WIDTH_MINIMUM = 500;
+
+
+export const SectionTabs = {
+  ART: {
+    "name": "art",
+    "icon": "pallette",
+    "label": "Art"
+  },
+  DESIGN: {
+    "name": "design",
+    "icon": "drafting-compass",
+    "label": "Design"
+  },
+  TECH: {
+    "name": "tech",
+    "icon": "file-code",
+    "label": "Code"
+  }
+};

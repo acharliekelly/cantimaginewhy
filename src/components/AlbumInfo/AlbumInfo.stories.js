@@ -1,8 +1,7 @@
-import React from './react';
-import { storiesOf } from './@storybook/react';
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 import AlbumInfo from '.';
-import Accordion from './react-bootstrap/Accordion';
-import { withStacking } from '../higherOrder/withStacking';
+import Accordion from 'react-bootstrap/Accordion';
 
 import { albums } from '../../api/js/albums';
 
@@ -26,20 +25,21 @@ stories.add('default', () => (
     </Accordion>
   </div>
   )
-}).add('stacked', () => {
-  const Stacked = withStacking(AlbumInfo);
-  return (
-    <div style={{width: '20rem'}}>
-      <Accordion defaultActiveKey="explan-0">
-        {albums.map((album, index) => (
-          <Stacked 
-            key={index} 
-            tagObject={album} 
-            cardTitle={album.name} 
-            eventKeyName={`explan-${index}`} 
-          />
-        ))}
-      </Accordion>
-    </div>
-  )
 })
+// .add('stacked', () => {
+//   const Stacked = withStacking(AlbumInfo);
+//   return (
+//     <div style={{width: '20rem'}}>
+//       <Accordion defaultActiveKey="explan-0">
+//         {albums.map((album, index) => (
+//           <Stacked 
+//             key={index} 
+//             tagObject={album} 
+//             cardTitle={album.name} 
+//             eventKeyName={`explan-${index}`} 
+//           />
+//         ))}
+//       </Accordion>
+//     </div>
+//   )
+// })

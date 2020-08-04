@@ -10,7 +10,7 @@ import './contact.scss';
 
 
 
-const ContactPage = ({ contactText, showDescription, selectContactSection }) => {
+const ContactPage = ({ contactText, showDescription }) => {
   const displayStyle = showDescription ? 3 : 2;
 
   return (

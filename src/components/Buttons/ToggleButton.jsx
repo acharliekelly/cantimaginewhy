@@ -9,7 +9,10 @@ const toggleProps = {
   variant: ['light', 'dark']
 }
 
-
+/**
+ * Stateless toggle switch:
+ *  collapse (0) or expand (1)
+ */
 const ToggleButton = props => {
   const { toggleAction, iconSize, toggleState, ...styleProps } = props;
 

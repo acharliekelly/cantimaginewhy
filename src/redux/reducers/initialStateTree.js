@@ -37,6 +37,7 @@ export const GalleryCluster = () => ({
 
 export const INITIAL_STATE = {
   locator: StateLocator.ROOT,
+  lightboxOpen: null,
   view: {
     locator: StateLocator.VIEW,
     portWidth: 1200,

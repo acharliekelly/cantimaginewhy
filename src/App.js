@@ -43,7 +43,6 @@ const App = () => {
           <Header />
           <div className="content-wrapper">
             <Switch>
-              <Route exact path="/" component={HomePage} />
               <Route path="/home" component={HomePage} />
               <Route path="/about">
                 <AboutPage />
@@ -54,6 +53,7 @@ const App = () => {
               <Route path="/artwork">
                 <ArtworkPage />
               </Route>
+              <Route path="/" component={HomePage} />
             </Switch>
           </div>
         </Router>

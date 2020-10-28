@@ -172,8 +172,8 @@ export const filters = [
       },
       {
         "name": "Rocks",
-        "tag": "painted-rocks",
-        "thumbnail": "nfs/perkins_school_rock",
+        "tag": "painted-rock",
+        "thumbnail": "nfs/sunset_slate_rock",
         "description": "Painted rocks",
         "sortField": ".alb-order"
       }

@@ -24,15 +24,7 @@ export const albums = [
     "name": "Scenery",
     "tag": "scenery-loc",
     "thumbnail": "art/midwinter",
-    "description": "From a photograph I took",
-    "sortField": ".year",
-    "sortDir": "desc"
-  },
-  {
-    "name": "Landscape",
-    "tag": "scenery-noloc",
-    "thumbnail": "nfs/the_cliffs",
-    "description": "From a photograph somebody took",
+    "description": "From a photograph",
     "sortField": ".year",
     "sortDir": "desc"
   },
@@ -60,9 +52,9 @@ export const albums = [
   },
   {
     "name": "Knotwork",
-    "tag": "knotwork",
+    "tag": "woven",
     "thumbnail": "art/lotus",
-    "description": "Celtic-inspired artwork",
+    "description": "Placemat-inspired artwork",
     "sortField": ".caption"
   },
   {
@@ -73,12 +65,20 @@ export const albums = [
     "sortField": '.year'
   },
   {
-    "name": "AANE",
-    "tag": "aane",
-    "thumbnail": "nfs/golden",
-    "description": "A series of the letters A-A-N-E, arranged artistically",
-    "sortField": ".alb-order"
+    "name": "Woke",
+    "tag": "subj-politic",
+    "thumbnail": "art/rbg_flag",
+    "description": "Inspired by current events",
+    "sortField": ".completed",
+    "sortDir": "desc"
   },
+  // {
+  //   "name": "AANE",
+  //   "tag": "aane",
+  //   "thumbnail": "nfs/golden",
+  //   "description": "A series of the letters A-A-N-E, arranged artistically",
+  //   "sortField": ".alb-order"
+  // },
   {
     "name": "People",
     "tag": "portrait",
@@ -87,18 +87,18 @@ export const albums = [
     "sortField": ".year",
     "sortDir": "desc"
   },
-  {
-    "name": "Plaitwork",
-    "tag": "plaitwork",
-    "thumbnail": "nfs/lattice_mandelbrot-set",
-    "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
-    "sortField": ".completed"
-  },
+  // {
+  //   "name": "Plaitwork",
+  //   "tag": "plaitwork",
+  //   "thumbnail": "nfs/lattice_mandelbrot-set",
+  //   "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
+  //   "sortField": ".completed"
+  // },
   {
     "name": "Archive",
     "tag": "archive",
-    "thumbnail": "nfs/ferry-beach-rock-painting_41932404964_o_lf4uhn",
-    "description": "All the other stuff I've made"
+    "thumbnail": "nfs/nutcracker",
+    "description": "All the older stuff"
   }
 ];
 

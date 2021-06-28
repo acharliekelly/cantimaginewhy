@@ -25,13 +25,20 @@ export const filters = [
         "sortDir": "desc"
       },
       {
-        "name": "Flowers",
+        "name": "Animals",
+        "tag": "subj-animals",
+        "thumbnail": "nfs/amelia_2011",
+        "description": "Pictures of animals",
+        "sortField": ".year",
+      },
+      {
+        "name": "Plants",
         "tag": "subj-flowers",
         "thumbnail": "nfs/back-pink_flower",
-        "description": "Pictures of flowers",
+        "description": "Flowers, fruit, etc.",
         "sortField": ".completed",
         "sortDir": "desc"
-      },
+      },     
       {
         "name": "People",
         "tag": "subj-people",
@@ -40,12 +47,20 @@ export const filters = [
         "sortField": ".year",
         "sortDir": "desc"
       },
+      // {
+      //   "name": "Abstract",
+      //   "tag": "subj-abstract",
+      //   "thumbnail": "art/knotwork_square_2",
+      //   "description": "Abstract shapes & designs",
+      //   "sortField": ".year",
+      //   "sortDir": "desc"
+      // },
       {
-        "name": "Abstract",
-        "tag": "subj-abstract",
-        "thumbnail": "art/knotwork_square_2",
-        "description": "Abstract shapes & designs",
-        "sortField": ".year",
+        "name": "Political",
+        "tag": "subj-politic",
+        "thumbnail": "nfs/blm-wakanda",
+        "description": "Inspired by current events",
+        "sortField": ".completed",
         "sortDir": "desc"
       },
       {
@@ -55,13 +70,6 @@ export const filters = [
         "description": "Artistic renderings of letters",
         "sortField": ".year",
         "sortDir": "desc"
-      },
-      {
-        "name": "Animals",
-        "tag": "subj-animals",
-        "thumbnail": "nfs/amelia_2011",
-        "description": "Pictures of animals",
-        "sortField": ".year",
       },
       {
         "name": "Hobbies",
@@ -163,11 +171,18 @@ export const filters = [
         "sortField": ".year"
       },
       {
-        "name": "Plein Air",
-        "tag": "en plein air",
-        "thumbnail": "art/early_fall_mt_feake",
-        "description": "Created live on site"
+        "name": "Rocks",
+        "tag": "painted-rock",
+        "thumbnail": "nfs/sunset_slate_rock",
+        "description": "Painted rocks",
+        "sortField": ".alb-order"
       }
+      // {
+      //   "name": "Plein Air",
+      //   "tag": "en plein air",
+      //   "thumbnail": "art/early_fall_mt_feake",
+      //   "description": "Created live on site"
+      // }
     ]
   },
   {

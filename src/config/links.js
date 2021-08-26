@@ -69,7 +69,7 @@ export const links = [
     name: 'Email',
     desc: 'In case you want to contact me but are completely antisocial',
     icon: 'paper-plane',
-    url: 'mailto:cant.imagine.why00@gmail.com',
+    url: 'mailto:charlie@cantimaginewhy.com',
     groups: [ 'art', 'tech', 'head' ]
   },
   {

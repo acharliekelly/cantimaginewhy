@@ -42,7 +42,7 @@ export const filters = [
       {
         "name": "People",
         "tag": "subj-people",
-        "thumbnail": "nfs/luthien-7",
+        "thumbnail": "nfs/mlk4",
         "description": "Pictures of people",
         "sortField": ".year",
         "sortDir": "desc"
@@ -66,7 +66,7 @@ export const filters = [
       {
         "name": "Text",
         "tag": "subj-text",
-        "thumbnail": "icon/ciw9",
+        "thumbnail": "nfs/jl42",
         "description": "Artistic renderings of letters",
         "sortField": ".year",
         "sortDir": "desc"

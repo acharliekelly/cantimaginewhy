@@ -17,7 +17,7 @@ const Header = props => (
       </Breakpoint>
       <Breakpoint lg up>
         <Navbar.Brand>
-          <Logo enableEaster {...props} />
+          <Logo {...props} />
         </Navbar.Brand>
       </Breakpoint>
       

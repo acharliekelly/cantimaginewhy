@@ -5,7 +5,7 @@ import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery }from '../../utils/cloudinaryApi';
 import { withLightbox } from '../higherOrder/withLightbox';
 
-const LOGO_ID = 'icon/shdw-logo';
+const LOGO_ID = 'icon/logo';
 
 
 const Logo = props => {

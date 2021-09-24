@@ -1,8 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { fetchGallery }from '../../utils/cloudinaryApi';
 import { withLightbox } from '../higherOrder/withLightbox';
+
+const LOGO_ID = 'icon/shdw-logo';
+
 
 const Logo = props => {
   const { selectLightbox, startId, enableEaster } = props;
@@ -15,18 +19,28 @@ const Logo = props => {
     }
   }
 
-  const logoTitle = enableEaster ? 'View all logo designs' : 'Logo';
+  const logoTitle = enableEaster ? 'View all logo designs' : 'Home';
 
   const logoStyle = {
-    cursor: enableEaster ? 'pointer' : 'default'
+    cursor: 'pointer'
   }
 
-  return (
-    <Image cloudName="cantimaginewhy" publicId="icon/logo" 
-      onClick={openZoom} title={logoTitle} style={logoStyle}>
-      <Transformation height="80" width="80" crop="scale" />
-    </Image>
-  )
+  if (enableEaster) {
+    return (
+      <Image cloudName="cantimaginewhy" publicId={LOGO_ID} 
+        onClick={openZoom} title={logoTitle} style={logoStyle}>
+        <Transformation height="80" width="80" crop="scale" />
+      </Image>
+    )
+  } else {
+    return (
+      <NavLink to="/home">
+        <Image cloudName="cantimaginewhy" publicId={LOGO_ID} title={logoTitle} style={logoStyle}>
+          <Transformation height="80" width="80" crop="scale" />
+        </Image>
+      </NavLink>
+    )
+  }
 }
 
 Logo.propTypes = {
@@ -37,7 +51,7 @@ Logo.propTypes = {
 }
 
 Logo.defaultProps = {
-  startId: 'icon/ciw4',
+  startId: LOGO_ID,
   enableEaster: false
 }
 

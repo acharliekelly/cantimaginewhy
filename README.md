@@ -1,5 +1,4 @@
 
-
 # Can't Imagine Why
 
 Art Website that allows display and filtering of pictures as well as purchase of original work and derived products.
@@ -16,11 +15,11 @@ For this project, I used the following tech stack:
 
 * Repo: GitHub
 * Deployment: Netlify
-* Front-end: 
+* Front-end:
 
   * Core: ReactJS
   * UI: Bootstrap
-* Back-end: 
+* Back-end:
 
   * Images: [Cloudinary](https://cloudinary.com/)
   * Products: [Fine Art America](https://fineartamerica.com/)
@@ -34,5 +33,3 @@ The main requirement of this project is that it not cost me a dime. Since I don'
 ## Progress
 
 To read about how development of this project is going, you can follow my blog, [CantImagineHow](https://cantimaginehow.blogspot.com)
-
-

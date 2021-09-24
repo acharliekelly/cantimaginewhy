@@ -32,7 +32,7 @@ const environments = {
   },
   'test': {
     icon: 'check',
-    favicon: 'ciw1.png',
+    favicon: 'old.png',
     text: 'test',
     className: 'test'
   },

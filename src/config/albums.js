@@ -29,12 +29,11 @@ export const albums = [
     "sortDir": "desc"
   },
   {
-    "name": "Sketch",
-    "tag": "sketch",
-    "thumbnail": "nfs/davis-t",
-    "description": "Onsite pencil sketches of local landmarks",
-    "sortField": ".completed",
-    "sortDir": "desc"
+    "name": "Gilded",
+    "tag": "gild",
+    "thumbnail": "nfs/gilded-j",
+    "description": "Adventures with gold leaf",
+    "sortField": ".caption"
   },
   {
     "name": "Name Tags",
@@ -98,7 +97,7 @@ export const albums = [
     "name": "Archive",
     "tag": "archive",
     "thumbnail": "nfs/nutcracker",
-    "description": "All the older stuff"
+    "description": "All the other stuff"
   }
 ];
 

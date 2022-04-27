@@ -71,6 +71,13 @@ export const filters = [
         "sortField": ".year",
         "sortDir": "desc"
       },
+      // {
+      //   "name": "Love",
+      //   "tag": "eros",
+      //   "thumbnail": "nfs/susanna-valentine",
+      //   "description": "Inspired by love",
+      //   "sortField": ".completed"
+      // }
       {
         "name": "Hobbies",
         "tag": "subj-hobby",
@@ -177,12 +184,6 @@ export const filters = [
         "description": "Painted rocks",
         "sortField": ".alb-order"
       }
-      // {
-      //   "name": "Plein Air",
-      //   "tag": "en plein air",
-      //   "thumbnail": "art/early_fall_mt_feake",
-      //   "description": "Created live on site"
-      // }
     ]
   },
   {
@@ -216,44 +217,21 @@ export const filters = [
     ]
   },
   {
-    "name": "Color",
-    "description": "Filter by which colors appear dominant in the image",
-    "options": [
-      {
-        "name": "Blue",
-        "tag": "blue",
-        "thumbnail": "art/shamrock_1",
-        "description": "Images with the color blue in them"
-      },
-      {
-        "name": "Green",
-        "tag": "green",
-        "thumbnail": "art/lotus",
-        "description": "Images with the color green in them"
-      },
-      {
-        "name": "Red",
-        "tag": "red",
-        "thumbnail": "art/winter-holidays-card-2015",
-        "description": "Images with some version of red in them"
-      },
-      {
-        "name": "Yellow",
-        "tag": "yellow",
-        "thumbnail": "art/easter-card-2012",
-        "description": "Images with some amount of yellow in them"
-      }
-    ]
-  },
-  {
     "name": "Period",
     "description": "Filter by (my) historical period",
     "options": [
       {
+        "name": "Partnered",
+        "tag": "era-melrose",
+        "thumbnail": "nfs/susanna-valentine",
+        "description": "February 2021 - ?",
+        "sortField": ".completed"
+      },
+      {
         "name": "Quarantine",
         "tag": "era-quarantine",
-        "thumbnail": "nfs/ty4.jpg",
-        "description": "March 2020 - ?",
+        "thumbnail": "nfs/ty4",
+        "description": "Didn't get out much: 2020 - 21",
         "sortField": ".completed"
       },
       {
@@ -264,10 +242,10 @@ export const filters = [
         "sortField": ".completed"
       },
       {
-        "name": "Recent",
+        "name": "Middle",
         "tag": "era-recent",
         "thumbnail": "nfs/winthrop-square",
-        "description": "Recent past: 2015-19"
+        "description": "2015 - 2019"
       },
       {
         "name": "Sabbatical",

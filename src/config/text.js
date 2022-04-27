@@ -22,6 +22,8 @@ export const albumExplanations = {
   somewhere, but probably never set foot near. For the most part, I don't even know exactly where 
   they came from; just someplace that looked nice.`,
 
+  "gild": `Got a set of gilding materials for Christmas 2021, started adding metallic leaf to repertoire.`,
+
   "portrait-new": `After a long break from portraiture, I decided to give it another try this winter (2019),
   once it got too cold for my outdoor painting. Turns out not to be exactly like riding a bike, but I gradually
   got back into it. 'Luthien' is a friend who photographs well. The others are from a set of Watchmen-inspired
@@ -40,10 +42,10 @@ export const albumExplanations = {
   a style of joining them together - preferably one I haven't used already, at least not in the past week. I've 
   come up with a few different styles for putting letters together, given limited space and the fact that nobody ever needs
   to be able to READ the letters, just recognize them. You can 1) form the letters in such a way that they
-  don't overlap; 2) join them into a single shape; 3) stack the letters on top of eachother; 4) weave the 
+  don't overlap; 2) join them into a single shape; 3) stack the letters on top of each other; 4) weave the 
   letters together - like stacking but without consistent layering; or 5) do something interesting with the 
   intersection points, other than merely putting one on top of the other. I've got numerous examples of
-  each method, with various initials (I used to use the intials AK, now I go by CK, and I've been playing with
+  each method, with various initials (I used to use the initials AK, now I go by CK, and I've been playing with
   the letters 'CIW' since I realized this website needed a logo). Any letters besides those were probably for
   somebody else.`,
 
@@ -51,7 +53,7 @@ export const albumExplanations = {
   stickers (the ones that say "Hello My Name Is" at the top), and that's why I taught myself calligraphy (pays 
   off every time I go to a Meetup). But some groups use permanent name tags, and I always make a habit of making
   mine really, really nice. Which inevitably leads to other participants asking if I can make them one, too.
-  Which of course I can, and do. The only contstraints are the size of the plastic name tag holders used by the
+  Which of course I can, and do. The only constraints are the size of the plastic name tag holders used by the
   specific group, and what information they require (eg just first name, or first, last, and preferred pronoun).
   I generally try to get their favorite color, too; just so the tag is more likely to go with their outfit.`,
 
@@ -133,13 +135,17 @@ export const albumExplanations = {
 
   "era-quarantine": `Art I created during the Covid-19 lockdown period, beginning in late March of 2020`,
 
+  "era-melrose": `In grade school, I had a crush on a girl I knew named Susanna, but never really talked to her. Until
+  2020, when I found her on a dating site, roughly 400 miles from where we both went to school. Long story short, now
+  I live with her in Melrose, and she inspires most of my work.`,
+
   "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
   the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in
   acquiring an original piece, please just email me.`,
 
   "for-print": `These paintings I may or may not currently possess, but I've arranged to have them printed on various
   household products. Because hey, who doesn't love household products? You can also purchase prints, posters, and
-  tote bags, emblazened with my artwork.`,
+  tote bags, emblazoned with my artwork.`,
   
   "nfs": `These are the pieces that aren't (currently) available for sale or print, but you're welcome to look at them to your 
   heart's content. Also, if you feel that you'd like to buy one of my pictures on a tote bag or something, but 

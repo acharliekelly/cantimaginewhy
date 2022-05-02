@@ -23,12 +23,10 @@ For this project, I used the following tech stack:
 
   * Images: [Cloudinary](https://cloudinary.com/)
   * Products: [Fine Art America](https://fineartamerica.com/)
-  * E-commerce: [Vendure](https://vendure.io/)
-  * Data (GraphQL): [FaunaDB](https://fauna.com/)
 
 ## Requirements
 
-The main requirement of this project is that it not cost me a dime. Since I don't expect to actually sell anything, the last thing I want is to be stuck paying operating costs just to keep my site running. Also, having a strict requirement like this makes development more fun.
+The main requirement of this project is that it not cost me a dime.
 
 ## Progress
 

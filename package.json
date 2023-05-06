@@ -23,7 +23,7 @@
     "react-parallax": "^2.2.4",
     "react-photo-gallery": "^8.0.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^5.0.1",
     "react-sizes": "^2.0.0",
     "react-socks": "^2.1.0",
     "scroll-into-view": "^1.14.2"
@@ -57,7 +57,7 @@
     "@babel/preset-env": "^7.8.4",
     "@storybook/addon-actions": "^5.3.13",
     "@storybook/preset-create-react-app": "^1.5.2",
-    "@storybook/react": "^5.2.1",
+    "@storybook/react": "^7.0.9",
     "gh-pages": "^2.1.1"
   }
 }

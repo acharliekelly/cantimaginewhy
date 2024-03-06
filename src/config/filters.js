@@ -84,6 +84,13 @@ export const filters = [
         "thumbnail": "nfs/remy-springer_2015",
         "description": "Depictions of hobbies",
         "sortField": ".caption",
+      },
+      {
+        "name": "Fairies",
+        "tag": "fairies",
+        "thumbnail": "nfs/black_fairy_moon",
+        "description": "Gifts from fairies",
+        "sortField": ".completed"
       }
     ]
   },
@@ -224,7 +231,7 @@ export const filters = [
         "name": "Partnered",
         "tag": "era-melrose",
         "thumbnail": "nfs/susanna-valentine",
-        "description": "February 2021 - ?",
+        "description": "February 2021 - 2023",
         "sortField": ".completed"
       },
       {
@@ -305,6 +312,20 @@ export const filters = [
         "thumbnail": "art/riparian_balcony",
         "description": "Layered acrylic paints",
         "sortField": ".year"
+      },
+      {
+        "name": "Stencil",
+        "tag": "stencil",
+        "thumbnail": "nfs/candlemas-front",
+        "description": "From a series of Mylar cutouts",
+        "sortField": ".completed"
+      },
+      {
+        "name": "Gilded",
+        "tag": "gild",
+        "thumbnail": "nfs/cs-gild",
+        "description": "Gold and silver leaf glued to a surface",
+        "sortField": ".completed"
       }
     ]
   },

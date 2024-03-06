@@ -137,7 +137,7 @@ export const albumExplanations = {
 
   "era-melrose": `In grade school, I had a crush on a girl I knew named Susanna, but never really talked to her. Until
   2020, when I found her on a dating site, roughly 400 miles from where we both went to school. Long story short, now
-  I live with her in Melrose, and she inspires most of my work.`,
+  I live with her in Melrose, and she inspires a lot of my work.`,
 
   "for-sale": `These are paintings that I currently possess, and would be willing to part with for the amount listed in
   the field with the $ sign. Only, I don't currently have a convenient way to order them. So, if you're interested in

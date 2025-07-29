@@ -78,13 +78,13 @@ export const filters = [
       //   "description": "Inspired by love",
       //   "sortField": ".completed"
       // }
-      {
-        "name": "Hobbies",
-        "tag": "subj-hobby",
-        "thumbnail": "nfs/remy-springer_2015",
-        "description": "Depictions of hobbies",
-        "sortField": ".caption",
-      },
+      // {
+      //   "name": "Hobbies",
+      //   "tag": "subj-hobby",
+      //   "thumbnail": "nfs/remy-springer_2015",
+      //   "description": "Depictions of hobbies",
+      //   "sortField": ".caption",
+      // },
       {
         "name": "Fairies",
         "tag": "fairies",

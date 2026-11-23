@@ -25,7 +25,7 @@ const NavButton = props => {
       onFocus={hover}
       onBlur={props.onOut}
       >
-        <Image publicId={navTag.thumbnail} alt="">
+        <Image publicId={navTag.thumbnail} alt="" width={props.thumbnailHeight} height={props.thumbnailHeight}>
           <Transformation defaultImage={defaultImg} />
           <Transformation 
             height={props.thumbnailHeight}

@@ -189,6 +189,8 @@ $selected-album-text: #fff;
     display: block;
     max-width: 100%;
     min-width: 0;
+    height: auto;
+    aspect-ratio: 1;
     margin: 0 auto;
   }
 

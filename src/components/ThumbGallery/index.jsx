@@ -19,6 +19,8 @@ const ThumbGallery = props => {
           className={classNames('responsive', 'thumbnail', { selected: index === imageIndex })}
           title={getContextProperty(thumb, 'caption')}
           publicId={thumb.public_id}
+          width={props.thumbSize}
+          height={props.thumbSize}
           onClick={() => selectThumbnail(index)} >
           <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
           <Transformation defaultImage={defaultImg} />

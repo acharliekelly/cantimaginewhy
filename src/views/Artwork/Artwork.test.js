@@ -93,6 +93,7 @@ it('retries a failed album without leaving its URL', async () => {
 
   await act(async () => { link('Plein Air').click(); });
   expect(container.querySelector('[role="alert"]').textContent).toContain('Plein Air');
+  expect(container.querySelector('.image-detail')).toBeNull();
 
   await act(async () => { button('Retry').click(); });
   expect(history.location.pathname).toBe('/artwork/album/plein-air-acrylic');
@@ -114,11 +115,13 @@ it('ignores an earlier album response after a newer selection', async () => {
     .mockResolvedValueOnce([]);
 
   act(() => { link('Plein Air').click(); });
-  expect(container.querySelector('[role="status"]').textContent).toContain('Loading Plein Air');
+  expect(container.querySelector('.image-detail [role="status"]').textContent).toContain('Loading Plein Air');
+  expect(container.querySelector('.image-detail .placeholder')).not.toBeNull();
 
   await act(async () => { link('Scenery').click(); });
   await act(async () => { finishFirstRequest([]); });
   expect(container.querySelector('[role="status"]').textContent).toContain('Scenery');
+  expect(container.querySelector('.image-detail')).toBeNull();
 });
 
 it('links to a category and opens a filtered gallery from the overview', async () => {

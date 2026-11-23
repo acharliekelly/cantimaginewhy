@@ -73,8 +73,32 @@
   object-fit: cover;
 }
 
-.artwork-gallery .image-detail .image-view img {
-  max-width: 100%;
+.artwork-gallery .image-detail {
+  position: relative;
+
+  .image-view img,
+  .image-view .placeholder {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    margin: 0 auto;
+  }
+
+  .image-view .placeholder {
+    min-height: 0;
+  }
+
+  .image-detail-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: white;
+    text-align: center;
+  }
 }
 
 @media (max-width: 991.98px) {

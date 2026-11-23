@@ -91,7 +91,6 @@ const ArtworkPage = () => {
 
   const galleryFeedback = selectedAlbum && (
     <>
-      {!currentResult && <p role="status">Loading {selectedAlbum.name}…</p>}
       {currentResult?.failed && (
         <>
           <p role="alert">Could not load {selectedAlbum.name}.</p>
@@ -209,6 +208,7 @@ const ArtworkPage = () => {
           <Col xs={12} lg={{ span: 8, order: 2 }}>
             <ImageDetail
               imageMovement={galleryMoves}
+              loadingLabel={selectedAlbum && !currentResult ? `Loading ${selectedAlbum.name}…` : undefined}
               imageList={artImages}
               imageIndex={currentIndex}
               tagObject={selectedAlbum}

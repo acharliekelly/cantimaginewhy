@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import ImageToolbar from '../ImageToolbar/';
@@ -10,49 +10,44 @@ import classNames from 'classnames';
 import './detail.scss';
 
 const ImageDetail = props => {
-  const { imageList, imageIndex, isFullWidth, imageMovement } = props;
-  const { moveNext, movePrevious } = imageMovement;
+  const { imageList, imageIndex, isFullWidth, imageMovement, loadingLabel, tagObject } = props;
+  const currentImage = imageList?.[imageIndex];
 
-  const [ currentImage, setCurrentImage ] = useState(null);
-  useEffect(() => {
-    if (imageList)
-      setCurrentImage(imageList[imageIndex]);
-  }, [imageList, imageIndex]); 
+  if (!currentImage && !loadingLabel) return null;
 
   const magnifyImage = () => {
     props.selectLightbox(currentImage.public_id, imageList);
-    
-  }
+  };
+  const zoom = currentImage && !isFullWidth ? magnifyImage : undefined;
+  const cls = classNames('image-detail', { 'full-width': isFullWidth });
 
-  if (currentImage) {
-    const cls = classNames('image-detail', { 'full-width': isFullWidth });
-    return (
-      <Container className={cls}>
-        <DisplayImage currentImage={currentImage} imageZoom={isFullWidth ? null:  magnifyImage} {...props} />
-        
-        <ImageToolbar 
+  return (
+    <Container className={cls}>
+      <DisplayImage {...props} currentImage={currentImage} imageZoom={zoom} />
+
+      {loadingLabel ? (
+        <p role="status" className="image-detail-loading">{loadingLabel}</p>
+      ) : (
+        <>
+          <ImageToolbar
             variant="light"
             imgSize="2x"
             fullWidth
-            prevImageFn={movePrevious}
-            nextImageFn={moveNext}
-            zoomImageFn={isFullWidth ? null:  magnifyImage}
+            prevImageFn={imageMovement?.movePrevious}
+            nextImageFn={imageMovement?.moveNext}
+            zoomImageFn={zoom}
             disableCarousel={imageList.length < 2}
-            tagObject={props.tagObject}
+            tagObject={tagObject}
           />
-        
           <ImageInfo currentImage={currentImage} />
-
-      </Container>    
-    )
-  } else {
-    return (
-      <div className="no-data"></div>
-    )
-  }
-}
+        </>
+      )}
+    </Container>
+  );
+};
 
 ImageDetail.propTypes = {
+  loadingLabel: PropTypes.string,
   /**
    * results of fetchGallery
    */

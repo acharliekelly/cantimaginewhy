@@ -147,7 +147,7 @@ const ArtworkPage = () => {
             <h1 className="mb-0">Artwork</h1>
             <Button as={Link} to={FILTER_PATH} variant="outline-dark">Browse by filter</Button>
           </div>
-          <Row xs={2} md={3} lg={4}>
+          <Row xs={2} md={3} lg={4} className="justify-content-center">
             {albums.map(album => (
               <Col key={album.tag} className="mb-3">
                 <Button

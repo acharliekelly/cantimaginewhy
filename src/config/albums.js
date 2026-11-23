@@ -53,7 +53,7 @@ export const albums = [
     "name": "Knotwork",
     "tag": "woven",
     "thumbnail": "art/lotus",
-    "description": "Placemat-inspired artwork",
+    "description": "Classic Celtic knotwork, and some other types of woven designs",
     "sortField": ".caption"
   },
   {

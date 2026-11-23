@@ -5,9 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Image, Transformation } from 'cloudinary-react';
 import { albums } from '../../config/albums';
-// import withSizes from 'react-sizes';
-import { Breakpoint } from 'react-socks';
-// import { mapSizesToProps } from '../../utils/system';
 import { lookupGeo } from '../../utils/geoUtils';
 import FilterNav from '../../components/Navs/FilterNav';
 import AlbumNav from '../../components/Navs/AlbumNav';
@@ -133,9 +130,7 @@ const ArtworkPage = props => {
         <Container className="album-overview py-4">
           <div className="d-flex flex-wrap align-items-center justify-content-between mb-3">
             <h1 className="mb-0">Artwork</h1>
-            <Breakpoint lg up>
-              <Button variant="outline-dark" onClick={navSwitch}>Browse by filter</Button>
-            </Breakpoint>
+            <Button variant="outline-dark" onClick={navSwitch}>Browse by filter</Button>
           </div>
           {galleryFeedback}
           <Row xs={2} md={3} lg={4}>
@@ -162,14 +157,8 @@ const ArtworkPage = props => {
   }
 
   return (
-    <div className="content">
-      <Breakpoint lg up>
-      { useFilter ? (
-        <FilterNav {...navProps}/>
-      ) : (
-        <AlbumNav {...navProps}/>
-      )}
-      </Breakpoint>
+    <div className="content artwork-gallery">
+      {useFilter ? <FilterNav {...navProps} /> : <AlbumNav {...navProps} />}
       
       <Container className="my-2">
         {!useFilter && (
@@ -194,57 +183,30 @@ const ArtworkPage = props => {
       )}
 
 
-      <Breakpoint md down>
-        <Container fluid="md">
-          <ImageDetail 
-            imageMovement={galleryMoves}
-            imageList={artImages}
-            imageIndex={currentIndex}
-            isFullWidth={true}
-            tagObject={selectedAlbum}
-          />
-          <Stacker 
-            updateSelectNav={selectGallery}
-            tagObject={selectedAlbum} 
-            selectThumbnail={setCurrentIndex} 
-            galleryImages={artImages}
-            imageIndex={currentIndex}
-            isFullWidth={true}
-            productLookup={productLookup}
-            geoTag={geotag}
-            maxHeight={70}
-          />
-        </Container>
-      </Breakpoint>
-
-      <Breakpoint lg up>
-        <Container fluid>
-          <Row>
-            <Col lg={4}>
-              <Stacker 
-                tagObject={selectedAlbum} 
-                selectThumbnail={setCurrentIndex} 
-                galleryImages={artImages}
-                imageIndex={currentIndex}
-                isFullWidth={false}
-                thumbSize={thumbSize}
-                productLookup={productLookup}
-                geoTag={geotag}
-                maxHeight={70}
-              />
-            </Col>
-            <Col lg={8}>
-              <ImageDetail 
-                imageMovement={galleryMoves}
-                imageList={artImages}
-                imageIndex={currentIndex}
-                isFullWidth={false}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </Breakpoint>
-      
+      <Container fluid>
+        <Row>
+          <Col xs={12} lg={{ span: 8, order: 2 }}>
+            <ImageDetail
+              imageMovement={galleryMoves}
+              imageList={artImages}
+              imageIndex={currentIndex}
+              tagObject={selectedAlbum}
+            />
+          </Col>
+          <Col xs={12} lg={{ span: 4, order: 1 }}>
+            <Stacker
+              tagObject={selectedAlbum}
+              selectThumbnail={setCurrentIndex}
+              galleryImages={artImages}
+              imageIndex={currentIndex}
+              thumbSize={thumbSize}
+              productLookup={productLookup}
+              geoTag={geotag}
+              maxHeight={70}
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }

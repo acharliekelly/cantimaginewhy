@@ -72,3 +72,17 @@
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
+
+.artwork-gallery .image-detail .image-view img {
+  max-width: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .artwork-gallery .image-toolbar-zoom {
+    display: none;
+  }
+
+  .artwork-gallery .image-detail .image-view img {
+    pointer-events: none;
+  }
+}

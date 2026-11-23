@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import ArtworkPage from './index';
 import { fetchGallery } from '../../utils/cloudinaryApi';
+import { initializeLibrary } from '../../utils/faLibrary';
 
 jest.mock('../../utils/cloudinaryApi', () => ({
   ...jest.requireActual('../../utils/cloudinaryApi'),
@@ -16,6 +17,8 @@ jest.mock('cloudinary-react', () => ({
 }));
 
 let container;
+
+beforeAll(initializeLibrary);
 
 beforeEach(() => {
   container = document.createElement('div');
@@ -39,7 +42,7 @@ it('shows album covers before fetching and returns to them from a gallery', asyn
 
   await act(async () => { button('Plein Air').click(); });
   expect(fetchGallery).toHaveBeenCalledWith('plein-air-acrylic');
-  expect(button('Plein Air')).toBeUndefined();
+  expect(container.querySelector('.album-overview')).toBeNull();
 
   act(() => { button('All albums').click(); });
   expect(button('Plein Air')).toBeDefined();
@@ -66,4 +69,12 @@ it('ignores an earlier album response after a newer selection', async () => {
   await act(async () => { button('Scenery').click(); });
   await act(async () => { finishFirstRequest([]); });
   expect(container.querySelector('[role="status"]').textContent).toContain('Scenery');
+});
+
+it('opens a filtered gallery from the overview without a React breakpoint', async () => {
+  act(() => { button('Browse by filter').click(); });
+  expect(button('Subject')).toBeDefined();
+  fetchGallery.mockResolvedValue([]);
+  await act(async () => { button('Places').click(); });
+  expect(fetchGallery).toHaveBeenCalledWith('subj-place');
 });

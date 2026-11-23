@@ -13,6 +13,8 @@ import { withStacking } from '../higherOrder/withStacking';
 
 import './stack.scss';
 
+const StackedGallery = withStacking(ThumbGallery);
+
 /**
  * Makes accordion of stacked components
  */
@@ -42,8 +44,6 @@ const Stacker = props => {
       setHasProgress(false);
     }
   }, [productLookup]);
-
-  const StackedGallery = withStacking(ThumbGallery);
 
   const activeKey = isFullWidth ? 'albums' : 'gallery';
 

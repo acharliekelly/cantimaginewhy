@@ -25,10 +25,6 @@ const ImageToolbar = props => {
       // right arrow
         nextImageFn();
       break;
-      case 13:
-      // enter
-        zoomImageFn();
-      break;
       default:
         // do nothing
     }
@@ -41,7 +37,7 @@ const ImageToolbar = props => {
           <FontAwesomeIcon icon="chevron-left" size={imgSize} />
         </Button>
         {zoomImageFn ? (
-          <Button variant={variant} title="Zoom" onClick={zoomImageFn} block>
+          <Button className="image-toolbar-zoom" variant={variant} title="Zoom" onClick={zoomImageFn} block>
             <FontAwesomeIcon icon="search-plus" size={imgSize} />
             {zoomText && (
               <span style={{marginLeft: '1em', fontSize: '2em', fontWeight: 'bold'}}>{zoomText}</span>

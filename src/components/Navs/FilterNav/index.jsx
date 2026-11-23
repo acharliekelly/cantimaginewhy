@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import Navbar from 'react-bootstrap/Navbar';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/Container';
-import { Image, Transformation } from 'cloudinary-react';
-import { defaultImg } from '../../../utils/cloudinaryApi';
+import NavButton from '../NavButton';
 import { filters, navDescription } from '../../../config/filters';
 import HelpButton from '../../Buttons/HelpButton/';
 import NavSwitch from '../NavSwitch';
@@ -21,6 +20,8 @@ const FilterNav = props => {
   const selectFilter = index => {
     // const key = ev.target.eventKey;
     setFilterIndex(index);
+    setHoverNavIndex(-1);
+    setSelectedNav(null);
 
     // clear thumbnails
     props.updateClearGallery();
@@ -64,23 +65,22 @@ const FilterNav = props => {
   const filterDescClass = hoverFilterIndex >= 0 ? 'hover-desc' : 'active-desc';
   const filterDescIndex = hoverFilterIndex >= 0 ? hoverFilterIndex : filterIndex;
 
-  const navDescCls = hoverNavIndex >= 0 ? 'hover-on' : 'hover-off';
   const albumDesc = hoverNavIndex >= 0 ? filters[filterIndex].options[hoverNavIndex].description : '';
-  const descStyle = { width: `${props.thumbSize * 3}px` };
 
   return (
     <>
-      <Navbar className="category-bar justify-content-between">
+      <Navbar className="category-bar filter-bar justify-content-between">
 
         <NavSwitch type="filter" {...props} />
 
         <Container className="filter-wrapper justify-content-center" lg={4} md={6} sm={8}>
-          <ListGroup className="filters" horizontal="md">
-            <Navbar.Text className="lbl" style={{paddingRight: '1em'}}>Filter: </Navbar.Text>
+          <ListGroup className="filters flex-row flex-wrap justify-content-center">
             {filters.map((filter, index) => {
               const isActive = (index === filterIndex);
               return(
               <ListGroup.Item 
+                as="button"
+                type="button"
                 action
                 active={isActive}
                 style={itemStyle(isActive)}
@@ -101,35 +101,21 @@ const FilterNav = props => {
 
       
 
-      <Container expand="lg" className="album-bar albums">
-        <div className="descript album-desc" style={descStyle}>
-          <Navbar.Text className={navDescCls}>{albumDesc}</Navbar.Text>
+      <Container className="album-bar">
+        <p className={`filter-description ${filterDescClass}`}>{albumDesc || filters[filterDescIndex].description}</p>
+        <div className="albums">
+          {filters[filterIndex].options.map((option, index) => (
+            <NavButton
+              key={option.tag}
+              navTag={option}
+              isSelected={selectedNav?.tag === option.tag}
+              thumbnailHeight={props.thumbSize}
+              onSelectItem={selectItem}
+              onHover={() => hoverOnNav(index)}
+              onOut={hoverOffNav}
+            />
+          ))}
         </div>
-
-        <div className="descript category-desc" style={descStyle}>
-          <Navbar.Text className={filterDescClass}>{filters[filterDescIndex].description}</Navbar.Text>
-        </div>
-
-        {filters[filterIndex].options.map((option, index) => {
-          let cls = 'album-btn responsive thumbnail';
-          if (selectedNav && selectedNav.tag === option.tag) {
-            cls += ' selected-nav'
-          }
-          return (
-            <span key={option.tag} id={option.tag} className={cls} 
-              onClick={() => selectItem(option)}
-              onMouseEnter={() => hoverOnNav(index)}
-              onMouseLeave={hoverOffNav}
-              >
-              <Image publicId={`${option.thumbnail}`}>
-                <Transformation defaultImage={defaultImg} />
-                <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />   
-              </Image>
-              <div className="album-name">{option.name}</div>
-            </span>
-          );
-        })}
-        
       </Container>
     </>
   );

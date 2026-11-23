@@ -176,3 +176,35 @@ $selected-album-text: #fff;
   
   
 }
+
+.albums button.album-btn {
+  width: 5.75rem;
+  max-width: 100%;
+  padding: 0.25rem;
+  vertical-align: top;
+
+  img {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+  }
+
+  .album-name {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+}
+
+.filter-bar .filter-wrapper {
+  flex: 1 1 20rem;
+}
+
+.filter-bar .filters .list-group-item {
+  width: auto;
+}
+
+.filter-description {
+  margin: 0.5rem 0;
+  text-align: center;
+}

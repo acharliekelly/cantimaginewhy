@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import { defaultImg }from '../../utils/cloudinaryApi';
 import classNames from 'classnames';
-import { Breakpoint } from 'react-socks';
 
 const NavButton = props => {
 
@@ -12,23 +11,25 @@ const NavButton = props => {
     props.onHover && props.onHover(ev.target.key)
   }
   return (
-    <div
+    <button
+      type="button"
+      aria-pressed={Boolean(isSelected)}
       className={classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})}
       onClick={() => onSelectItem(navTag)}
       onMouseEnter={hover}
       onMouseLeave={props.onOut}
+      onFocus={hover}
+      onBlur={props.onOut}
       >
-        <Image publicId={navTag.thumbnail}>
+        <Image publicId={navTag.thumbnail} alt="">
           <Transformation defaultImage={defaultImg} />
           <Transformation 
-            height={80} 
-            width={80} 
+            height={props.thumbnailHeight}
+            width={props.thumbnailHeight}
             crop="fill" />
         </Image>
-        <Breakpoint lg up>
-          <div className="ablum-name">{navTag.name}</div>
-        </Breakpoint>
-    </div>
+        <span className="album-name">{navTag.name}</span>
+    </button>
   )
 }
 
@@ -40,6 +41,8 @@ NavButton.propTypes = {
   onHover: PropTypes.func,
   onOut: PropTypes.func
 };
+
+NavButton.defaultProps = { thumbnailHeight: 80 };
 
 export default NavButton;
 

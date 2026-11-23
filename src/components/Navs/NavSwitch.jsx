@@ -21,7 +21,7 @@ const navs = {
 const NavSwitch = props => {
   const nav = navs[props.type]
   return (
-    <Button className="nav-switch" variant="outline-dark" onClick={props.updateNavSwitch}>
+    <Button className="nav-switch" variant="outline-dark" aria-label={nav.title} onClick={props.updateNavSwitch}>
       <FontAwesomeIcon icon={nav.icon} title={nav.title} size="2x" />
     </Button>
   )

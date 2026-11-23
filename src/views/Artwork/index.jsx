@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import { Image, Transformation } from 'cloudinary-react';
+import { albums } from '../../config/albums';
 // import withSizes from 'react-sizes';
 import { Breakpoint } from 'react-socks';
 // import { mapSizesToProps } from '../../utils/system';
@@ -11,7 +14,7 @@ import AlbumNav from '../../components/Navs/AlbumNav';
 import ImageDetail from '../../components/ImageDetail';
 import Stacker from '../../components/Stacker';
 import { sortGallery, getThumbnailSize } from '../../utils/imageApi';
-import { fetchGallery, getContextProperty } from '../../utils/cloudinaryApi';
+import { defaultImg, fetchGallery, getContextProperty } from '../../utils/cloudinaryApi';
 
 import './artwork.scss';
 
@@ -28,10 +31,12 @@ const ArtworkPage = props => {
   const [ productLookup, setProductLookup ] = useState(null); // string
   const [ geotag, setGeotag ] = useState('');
 
-  // switch nav
-  useEffect(() => {
-    clearArtGallery();
-  }, [useFilter])
+  const [galleryStatus, setGalleryStatus] = useState(null);
+  const latestRequest = useRef(0);
+
+  useEffect(() => () => {
+    latestRequest.current += 1;
+  }, []);
 
   // update display image
   useEffect(() => {
@@ -59,25 +64,45 @@ const ArtworkPage = props => {
 
   // METHODS
   const navSwitch = () => {
+    clearArtGallery();
     setUseFilter(!useFilter);
   }
 
   const clearArtGallery = () => {
+    latestRequest.current += 1;
+    setGalleryStatus(null);
     setArtImages([]);
     setCurrentIndex(0);
     setProductLookup(null);
     setSelectedAlbum(null);
   }  
 
-  // takes tagob
-  const selectGallery = nav => {
-    fetchGallery(nav.tag).then(resources => {
-      const sorted = sortGallery(nav, resources);
-      setArtImages(sorted);
+  const selectGallery = async nav => {
+    const request = ++latestRequest.current;
+    setGalleryStatus({ loading: true, name: nav.name });
+
+    try {
+      const resources = await fetchGallery(nav.tag);
+      if (request !== latestRequest.current) return;
+
+      setArtImages(sortGallery(nav, resources));
       setCurrentIndex(0);
       setSelectedAlbum(nav);
-    }).catch(err => console.error(err))
-  }
+      setGalleryStatus(null);
+    } catch (error) {
+      if (request !== latestRequest.current) return;
+
+      setGalleryStatus({ loading: false, name: nav.name });
+    }
+  };
+
+  const galleryFeedback = galleryStatus && (
+    galleryStatus.loading ? (
+      <p role="status">Loading {galleryStatus.name}…</p>
+    ) : (
+      <p role="alert">Could not load {galleryStatus.name}. Select it again to retry.</p>
+    )
+  );
 
   const moveNext = () => {
     const next = (currentIndex + 1) % artImages.length;
@@ -102,6 +127,40 @@ const ArtworkPage = props => {
   }
 
 
+  if (!useFilter && !selectedAlbum) {
+    return (
+      <main className="content">
+        <Container className="album-overview py-4">
+          <div className="d-flex flex-wrap align-items-center justify-content-between mb-3">
+            <h1 className="mb-0">Artwork</h1>
+            <Breakpoint lg up>
+              <Button variant="outline-dark" onClick={navSwitch}>Browse by filter</Button>
+            </Breakpoint>
+          </div>
+          {galleryFeedback}
+          <Row xs={2} md={3} lg={4}>
+            {albums.map(album => (
+              <Col key={album.tag} className="mb-3">
+                <Button
+                  variant="outline-dark"
+                  className="album-cover w-100 h-100 p-2 text-left"
+                  onClick={() => selectGallery(album)}
+                >
+                  <Image publicId={album.thumbnail} alt="" className="album-cover-image">
+                    <Transformation width={480} height={320} crop="fill" gravity="auto" />
+                    <Transformation defaultImage={defaultImg} />
+                  </Image>
+                  <strong className="d-block mt-2">{album.name}</strong>
+                  <span className="d-block">{album.description}</span>
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </main>
+    );
+  }
+
   return (
     <div className="content">
       <Breakpoint lg up>
@@ -112,6 +171,16 @@ const ArtworkPage = props => {
       )}
       </Breakpoint>
       
+      <Container className="my-2">
+        {!useFilter && (
+          <Button variant="outline-dark" onClick={clearArtGallery}>All albums</Button>
+        )}
+        {galleryFeedback}
+        {selectedAlbum && !galleryStatus && artImages.length === 0 && (
+          <p role="status">No artwork found in {selectedAlbum.name}.</p>
+        )}
+      </Container>
+
       {selectedAlbum ? (
         <Container className="current-album">
           {!useFilter && selectedAlbum.description}

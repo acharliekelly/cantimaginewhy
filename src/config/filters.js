@@ -116,7 +116,7 @@ export const filters = [
         "sortField": ".completed"
       },
       {
-        "name": "Charles River",
+        "name": "Chaz River",
         "tag": "charles-river",
         "thumbnail": "art/watertown_dam",
         "description": "Scenes from along the Charles",

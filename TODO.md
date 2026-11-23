@@ -1,0 +1,10 @@
+# Artwork follow-up
+
+- [x] Add shareable URLs for individual works in album and filter galleries.
+- [x] Widen the album picker on desktop so all 12 covers fit in one row when the viewport has room. Keep wrapping at narrower widths.
+- [x] Center the last row of the All Albums grid when it is incomplete. Check with both 10 and 12 albums.
+- [x] Reserve space while images load so the layout stays steady. Check where a placeholder or an explicit loading state helps.
+- [x] Fix blurry Artistic Process images. Compare the Cloudinary image dimensions with the size the panel displays.
+- [x] Replace Axios with native fetch and restore the app smoke test.
+- [ ] Embed a map in the Location panel for artwork with geolocation data. Evaluate Google Maps and other suitable map providers.
+- [ ] Check that accordion panels appear only when their content applies to the current artwork or album. Verify that switching works removes panels that no longer apply.

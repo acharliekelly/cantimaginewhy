@@ -1,6 +1,3 @@
-import axios from 'axios';
-
-
 // PUBLIC CONSTANTS 
 export const cloudName = 'cantimaginewhy';
 
@@ -28,10 +25,15 @@ const jsonImgList = tagName => {
 
 
 // Return all JSON data of images tagged with tagName
-export const fetchGallery = tagName => {
-  const url = jsonImgList(tagName);
-  return axios(url).then(res => res.data.resources);
-}
+export const fetchGallery = async tagName => {
+  const response = await fetch(jsonImgList(tagName));
+  if (!response.ok) {
+    throw new Error(`Could not load Cloudinary gallery "${tagName}" (HTTP ${response.status}).`);
+  }
+
+  const { resources } = await response.json();
+  return resources;
+};
 
 /**
  * Return source URL for non-watermarked image

@@ -13,7 +13,7 @@ import '../nav.scss';
 const AlbumNav = props => {
   const [ selectedNav, setSelectedNav ] = useState(null);
 
-  const { updateSelectNav } = props;
+  const { albumPath, selectedTag, thumbnailHeight, updateSelectNav } = props;
 
   const selectItem = navObj => {
     setSelectedNav(navObj);
@@ -24,8 +24,8 @@ const AlbumNav = props => {
 
   const navBarClass = classNames('category-bar', 
     { 
-      'justify-content-between': updateSelectNav,
-      'justify-content-around': !updateSelectNav
+      'justify-content-between': albumPath || updateSelectNav,
+      'justify-content-around': !albumPath && !updateSelectNav
     }
   )
   const navBtnCls = classNames('album-bar', 'justify-content-center', 'albums');
@@ -40,16 +40,17 @@ const AlbumNav = props => {
           <HelpButton header="Albums" content={navDescription} size="2x" />
         </Navbar>
 
-        <Container fluid="md" className={navBtnCls}>
-        {albums.map((album, index) => {
-          const selected = (selectedNav && selectedNav.tag === album.tag);
+        <Container fluid className={navBtnCls}>
+        {albums.map(album => {
+          const selected = (selectedTag || selectedNav?.tag) === album.tag;
           return (
             <NavButton 
-              key={index}
+              key={album.tag}
+              to={albumPath?.(album)}
               navTag={album} 
               onSelectItem={selectItem} 
               isSelected={selected} 
-              {...props}
+              thumbnailHeight={thumbnailHeight}
               />
             );
           })}
@@ -60,6 +61,8 @@ const AlbumNav = props => {
 }
 
 AlbumNav.propTypes = {
+  albumPath: PropTypes.func,
+  selectedTag: PropTypes.string,
   updateSelectNav: PropTypes.func,
   updateClearGallery: PropTypes.func,
   thumbnailHeight: PropTypes.number,

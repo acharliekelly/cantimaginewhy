@@ -73,7 +73,7 @@ $selected-album-text: #fff;
           }
         }
 
-        .active {
+        &.active {
           background-color: $nav-active-bkg !important;
           border-color: $nav-active-bkg !important;
           color: $nav-active-text !important;
@@ -175,4 +175,40 @@ $selected-album-text: #fff;
   }
   
   
+}
+
+.albums button.album-btn,
+.albums a.album-btn {
+  width: 5.75rem;
+  max-width: 100%;
+  padding: 0.25rem;
+  vertical-align: top;
+  text-decoration: none;
+
+  img {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0 auto;
+  }
+
+  .album-name {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+}
+
+.filter-bar .filter-wrapper {
+  flex: 1 1 20rem;
+}
+
+.filter-bar .filters .list-group-item {
+  width: auto;
+}
+
+.filter-description {
+  margin: 0.5rem 0;
+  text-align: center;
 }

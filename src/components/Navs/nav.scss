@@ -73,7 +73,7 @@ $selected-album-text: #fff;
           }
         }
 
-        .active {
+        &.active {
           background-color: $nav-active-bkg !important;
           border-color: $nav-active-bkg !important;
           color: $nav-active-text !important;

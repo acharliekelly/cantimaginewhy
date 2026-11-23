@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { Link, matchPath, useHistory, useLocation } from 'react-router-dom';
 import { Image, Transformation } from 'cloudinary-react';
 import { albums } from '../../config/albums';
+import { filters } from '../../config/filters';
 import { lookupGeo } from '../../utils/geoUtils';
 import FilterNav from '../../components/Navs/FilterNav';
 import AlbumNav from '../../components/Navs/AlbumNav';
@@ -19,6 +20,8 @@ import './artwork.scss';
 
 const OVERVIEW_PATH = '/artwork';
 const FILTER_PATH = '/artwork/filter';
+const filterPath = (category, option) =>
+  `${FILTER_PATH}/${category.slug}${option ? `/${option.tag}` : ''}`;
 const albumPath = album => `${OVERVIEW_PATH}/album/${album.tag}`;
 const EMPTY_IMAGES = [];
 
@@ -26,15 +29,20 @@ const ArtworkPage = () => {
   const history = useHistory();
   const { pathname } = useLocation();
   const overview = matchPath(pathname, { path: OVERVIEW_PATH, exact: true });
-  const useFilter = Boolean(matchPath(pathname, { path: FILTER_PATH, exact: true }));
+  const useFilter = Boolean(matchPath(pathname, { path: FILTER_PATH }));
+  const filterMatch = matchPath(pathname, { path: `${FILTER_PATH}/:category?/:tag?`, exact: true });
+  const filterSlug = filterMatch?.params.category ?? filters[0].slug;
+  const filter = filters.find(item => item.slug === filterSlug);
+  const optionTag = filterMatch?.params.tag;
+  const filterOption = filter?.options.find(item => item.tag === optionTag);
+  const invalidFilter = useFilter && (!filterMatch || !filter || (optionTag && !filterOption));
   const albumMatch = matchPath(pathname, { path: `${OVERVIEW_PATH}/album/:tag`, exact: true });
   const album = albums.find(item => item.tag === albumMatch?.params.tag);
 
-  const [filterChoice, setFilterChoice] = useState(null);
   const [result, setResult] = useState(null);
   const [attempt, setAttempt] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const selectedAlbum = useFilter ? filterChoice : album;
+  const selectedAlbum = useFilter ? filterOption : album;
   const currentResult = result && result.album === selectedAlbum && result.attempt === attempt ? result : null;
   const artImages = currentResult?.images || EMPTY_IMAGES;
   const currentImage = artImages[currentIndex];
@@ -43,10 +51,6 @@ const ArtworkPage = () => {
   const geotag = currentImage
     ? getContextProperty(currentImage, 'geotag', '') || lookupGeo(currentImage.public_id)
     : '';
-
-  useEffect(() => {
-    if (!useFilter) setFilterChoice(null);
-  }, [useFilter]);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -100,12 +104,14 @@ const ArtworkPage = () => {
   }
 
 
-  if (!overview && !useFilter && !album) {
+  if (invalidFilter || (!overview && !useFilter && !album)) {
     return (
       <main className="content">
         <Container className="py-4">
-          <h1>Album not found</h1>
-          <Button as={Link} to={OVERVIEW_PATH} variant="outline-dark">All albums</Button>
+          <h1>{invalidFilter ? 'Filter not found' : 'Album not found'}</h1>
+          <Button as={Link} to={invalidFilter ? FILTER_PATH : OVERVIEW_PATH} variant="outline-dark">
+            {invalidFilter ? 'Browse by filter' : 'All albums'}
+          </Button>
         </Container>
       </main>
     );
@@ -147,13 +153,9 @@ const ArtworkPage = () => {
     <div className="content artwork-gallery">
       {useFilter ? (
         <FilterNav
-          updateSelectNav={choice => {
-            if (choice === filterChoice && currentResult?.failed) {
-              setAttempt(count => count + 1);
-            }
-            setFilterChoice(choice);
-          }}
-          updateClearGallery={() => setFilterChoice(null)}
+          filter={filter}
+          selectedOption={filterOption}
+          filterPath={filterPath}
           updateNavSwitch={navSwitch}
         />
       ) : (

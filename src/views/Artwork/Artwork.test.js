@@ -118,10 +118,45 @@ it('ignores an earlier album response after a newer selection', async () => {
   expect(container.querySelector('[role="status"]').textContent).toContain('Scenery');
 });
 
-it('opens a filtered gallery from the overview without a React breakpoint', async () => {
+it('links to a category and opens a filtered gallery from the overview', async () => {
   act(() => { link('Browse by filter').click(); });
-  expect(button('Subject')).toBeDefined();
+  act(() => { link('Location').click(); });
+  expect(history.location.pathname).toBe('/artwork/filter/location');
+  expect(fetchGallery).not.toHaveBeenCalled();
+
   fetchGallery.mockResolvedValue([]);
-  await act(async () => { button('Places').click(); });
-  expect(fetchGallery).toHaveBeenCalledWith('subj-place');
+  await act(async () => { link('Boston').click(); });
+  expect(history.location.pathname).toBe('/artwork/filter/location/downtown-boston');
+  expect(fetchGallery).toHaveBeenCalledWith('downtown-boston');
 });
+
+it('restores a directly linked filter and follows Back and Forward', async () => {
+  fetchGallery.mockResolvedValue([]);
+  renderAt('/artwork/filter/subject/subj-politic');
+  await act(async () => {});
+
+  expect(fetchGallery).toHaveBeenCalledWith('subj-politic');
+  expect(link('Subject').classList.contains('active')).toBe(true);
+  expect(link('Political').getAttribute('aria-current')).toBe('page');
+
+  act(() => { link('Medium').click(); });
+  expect(link('Medium').classList.contains('active')).toBe(true);
+  expect(fetchGallery).toHaveBeenCalledTimes(1);
+
+  await act(async () => { history.goBack(); });
+  expect(link('Political').getAttribute('aria-current')).toBe('page');
+  expect(fetchGallery).toHaveBeenCalledTimes(2);
+
+  act(() => { history.goForward(); });
+  expect(link('Medium').classList.contains('active')).toBe(true);
+});
+
+it.each(['/artwork/filter/unknown', '/artwork/filter/medium/subj-politic'])(
+  'provides a way back from an invalid filter at %s',
+  pathname => {
+    renderAt(pathname);
+    expect(container.textContent).toContain('Filter not found');
+    expect(link('Browse by filter').getAttribute('href')).toBe('/artwork/filter');
+    expect(fetchGallery).not.toHaveBeenCalled();
+  }
+);

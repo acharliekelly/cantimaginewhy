@@ -2,6 +2,7 @@
 /**
  * Structure:
  * name
+ * slug: stable URL segment for the category
  * description
  * display: (apply to children)
  * options:
@@ -14,6 +15,7 @@
 export const filters = [
   {
     "name": "Subject",
+    "slug": "subject",
     "description": "Filter by subject matter",
     "options": [
       {
@@ -89,6 +91,7 @@ export const filters = [
   },
   {
     "name": "Location",
+    "slug": "location",
     "description": "Filter by the location of the thing being depicted",
     "options": [
       {
@@ -138,6 +141,7 @@ export const filters = [
   },
   {
     "name": "Style",
+    "slug": "style",
     "description": "Filter by artistic style",
     "options": [
       {
@@ -188,6 +192,7 @@ export const filters = [
   },
   {
     "name": "Season",
+    "slug": "season",
     "description": "Filter by what season the image comes from",
     "options": [
       {
@@ -218,6 +223,7 @@ export const filters = [
   },
   {
     "name": "Period",
+    "slug": "period",
     "description": "Filter by (my) historical period",
     "options": [
       {
@@ -269,6 +275,7 @@ export const filters = [
   },
   {
     "name": "Medium",
+    "slug": "medium",
     "description": "Filter by method (pencil, watercolor, etc)",
     "options": [
       {
@@ -324,6 +331,7 @@ export const filters = [
   },
   {
     "name": "Availability",
+    "slug": "availability",
     "description": "Filter by availability of images for purchase or printing",
     "options": [
       {

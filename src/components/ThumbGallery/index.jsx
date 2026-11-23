@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Transformation } from 'cloudinary-react';
 import Container from 'react-bootstrap/Container';
@@ -10,31 +10,16 @@ import classNames from 'classnames';
 import './gallery.scss';
 
 const ThumbGallery = props => {
-  const [ currentIndex, setCurrentIndex ] = useState(0);
   const { galleryImages, selectThumbnail, imageIndex } = props;
-
-  const clickImage = index => {
-    setCurrentIndex(index);
-    selectThumbnail(index);
-  }
-
-  useEffect(() => {
-    setCurrentIndex(imageIndex)
-  }, [imageIndex]);
-
-  const imgClass = idx => {
-    return classNames('responsive', 'thumbnail', {'selected': idx === currentIndex})
-  }
-    
 
   return (
     <Container className="gallery">
       {galleryImages.map((thumb, index) => (
-        <Image key={index}
-          className={imgClass(index)}
+        <Image key={thumb.public_id}
+          className={classNames('responsive', 'thumbnail', { selected: index === imageIndex })}
           title={getContextProperty(thumb, 'caption')}
           publicId={thumb.public_id}
-          onClick={() => clickImage(index)} >
+          onClick={() => selectThumbnail(index)} >
           <Transformation height={props.thumbSize} width={props.thumbSize} crop="fill" />
           <Transformation defaultImage={defaultImg} />
         </Image>

@@ -13,7 +13,10 @@ jest.mock('../../utils/cloudinaryApi', () => ({
 jest.mock('axios', () => jest.fn());
 jest.mock('react-socks', () => ({ Breakpoint: () => null }));
 jest.mock('cloudinary-react', () => ({
-  Image: () => null,
+  Image: ({ publicId, ...props }) => {
+    const { alt, className, onClick, title } = props;
+    return <img alt={alt || ""} className={className} onClick={onClick} title={title} data-public-id={publicId} />;
+  },
   Transformation: () => null
 }));
 
@@ -160,3 +163,52 @@ it.each(['/artwork/filter/unknown', '/artwork/filter/medium/subj-politic'])(
     expect(fetchGallery).not.toHaveBeenCalled();
   }
 );
+
+const works = [
+  { public_id: 'art/first', context: { custom: { completed: '2025', caption: 'First' } } },
+  { public_id: 'art/second + study', context: { custom: { completed: '2024', caption: 'Second' } } }
+];
+const visibleWork = () => container.querySelector('.image-detail [data-public-id]')?.dataset.publicId;
+const thumbnail = id => Array.from(container.querySelectorAll('.gallery .thumbnail'))
+  .find(element => element.dataset.publicId === id);
+
+it.each(['/artwork/album/plein-air-acrylic', '/artwork/filter/subject/subj-politic'])(
+  'restores a direct work link on %s',
+  async path => {
+    fetchGallery.mockResolvedValue(works);
+    renderAt(`${path}?work=art%2Fsecond+%2B+study`);
+    await act(async () => {});
+
+    expect(visibleWork()).toBe(works[1].public_id);
+    expect(thumbnail(works[1].public_id).classList.contains('selected')).toBe(true);
+  }
+);
+
+it('tracks thumbnail and arrow selections in history without reloading the gallery', async () => {
+  fetchGallery.mockResolvedValue(works);
+  renderAt('/artwork/album/plein-air-acrylic');
+  await act(async () => {});
+  expect(visibleWork()).toBe(works[0].public_id);
+
+  act(() => { thumbnail(works[1].public_id).click(); });
+  expect(new URLSearchParams(history.location.search).get('work')).toBe(works[1].public_id);
+  act(() => { container.querySelector('button[title="Next Image"]').click(); });
+  expect(new URLSearchParams(history.location.search).get('work')).toBe(works[0].public_id);
+
+  act(() => { history.goBack(); });
+  expect(visibleWork()).toBe(works[1].public_id);
+  act(() => { history.goForward(); });
+  expect(visibleWork()).toBe(works[0].public_id);
+  expect(fetchGallery).toHaveBeenCalledTimes(1);
+});
+
+it('offers the gallery URL when the linked work is missing', async () => {
+  fetchGallery.mockResolvedValue(works);
+  renderAt('/artwork/album/plein-air-acrylic?work=art%2Fremoved');
+  await act(async () => {});
+
+  expect(container.textContent).toContain('Artwork not found in this gallery');
+  act(() => { link('Open gallery').click(); });
+  expect(history.location.search).toBe('');
+  expect(visibleWork()).toBe(works[0].public_id);
+});

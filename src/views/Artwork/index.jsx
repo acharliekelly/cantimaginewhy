@@ -27,7 +27,7 @@ const EMPTY_IMAGES = [];
 
 const ArtworkPage = () => {
   const history = useHistory();
-  const { pathname } = useLocation();
+  const { pathname, search, hash } = useLocation();
   const overview = matchPath(pathname, { path: OVERVIEW_PATH, exact: true });
   const useFilter = Boolean(matchPath(pathname, { path: FILTER_PATH }));
   const filterMatch = matchPath(pathname, { path: `${FILTER_PATH}/:category?/:tag?`, exact: true });
@@ -41,19 +41,20 @@ const ArtworkPage = () => {
 
   const [result, setResult] = useState(null);
   const [attempt, setAttempt] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const selectedAlbum = useFilter ? filterOption : album;
   const currentResult = result && result.album === selectedAlbum && result.attempt === attempt ? result : null;
   const artImages = currentResult?.images || EMPTY_IMAGES;
+  const workId = new URLSearchParams(search).get('work');
+  const currentIndex = workId === null ? 0 : artImages.findIndex(image => image.public_id === workId);
   const currentImage = artImages[currentIndex];
+  const missingWork = Boolean(currentResult?.images && workId !== null && !currentImage);
   const thumbSize = getThumbnailSize(artImages.length);
   const productLookup = getContextProperty(currentImage, 'key', null);
   const geotag = currentImage
-    ? getContextProperty(currentImage, 'geotag', '') || lookupGeo(currentImage.public_id)
+    ? getContextProperty(currentImage, 'geotag', '') || lookupGeo(currentImage.public_id) || ''
     : '';
 
   useEffect(() => {
-    setCurrentIndex(0);
     setResult(null);
     if (!selectedAlbum) return;
 
@@ -73,6 +74,21 @@ const ArtworkPage = () => {
     history.push(useFilter ? OVERVIEW_PATH : FILTER_PATH);
   };
 
+  const workLocation = id => {
+    const params = new URLSearchParams(search);
+    if (id === null) {
+      params.delete('work');
+    } else {
+      params.set('work', id);
+    }
+    return { pathname, search: params.toString(), hash };
+  };
+
+  const selectWork = index => {
+    const id = artImages[index]?.public_id;
+    if (id && id !== workId) history.push(workLocation(id));
+  };
+
   const galleryFeedback = selectedAlbum && (
     <>
       {!currentResult && <p role="status">Loading {selectedAlbum.name}…</p>}
@@ -82,7 +98,13 @@ const ArtworkPage = () => {
           <Button variant="outline-dark" onClick={() => setAttempt(count => count + 1)}>Retry</Button>
         </>
       )}
-      {currentResult?.images?.length === 0 && (
+      {missingWork && (
+        <>
+          <p role="alert">Artwork not found in this gallery.</p>
+          <Button as={Link} to={workLocation(null)} variant="outline-dark">Open gallery</Button>
+        </>
+      )}
+      {!missingWork && currentResult?.images?.length === 0 && (
         <p role="status">No artwork found in {selectedAlbum.name}.</p>
       )}
     </>
@@ -90,12 +112,12 @@ const ArtworkPage = () => {
 
   const moveNext = () => {
     const next = (currentIndex + 1) % artImages.length;
-    setCurrentIndex(next)
+    selectWork(next);
   }
 
   const movePrev = () => {
     const prev = (currentIndex + artImages.length - 1) % artImages.length;
-    setCurrentIndex(prev)
+    selectWork(prev);
   }
 
   const galleryMoves = {
@@ -195,7 +217,7 @@ const ArtworkPage = () => {
           <Col xs={12} lg={{ span: 4, order: 1 }}>
             <Stacker
               tagObject={selectedAlbum}
-              selectThumbnail={setCurrentIndex}
+              selectThumbnail={selectWork}
               galleryImages={artImages}
               imageIndex={currentIndex}
               thumbSize={thumbSize}

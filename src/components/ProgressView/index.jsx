@@ -45,7 +45,7 @@ const ProgressView = props => {
         <Image  
           publicId={progressImages[progressIndex].public_id} 
           onClick={magnifyImage} >
-            <Transformation height="200" width="auto" crop="fill" />
+            <Transformation width={1200} crop="limit" />
         </Image>
         <ImageToolbar 
           variant={props.variant}

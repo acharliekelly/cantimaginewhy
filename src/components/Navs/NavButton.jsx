@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Image, Transformation } from 'cloudinary-react';
 import { defaultImg }from '../../utils/cloudinaryApi';
 import classNames from 'classnames';
 
 const NavButton = props => {
 
-  const { navTag, onSelectItem, isSelected } = props;
+  const { navTag, onSelectItem, isSelected, to } = props;
+  const Control = to ? Link : 'button';
   const hover = ev => {
     props.onHover && props.onHover(ev.target.key)
   }
   return (
-    <button
-      type="button"
-      aria-pressed={Boolean(isSelected)}
+    <Control
+      {...(to ? { to, 'aria-current': isSelected ? 'page' : undefined } : {
+        type: 'button',
+        'aria-pressed': Boolean(isSelected),
+        onClick: () => onSelectItem(navTag)
+      })}
       className={classNames('album-btn', 'responsive', 'thumbnail', {'selected-nav': isSelected})}
-      onClick={() => onSelectItem(navTag)}
       onMouseEnter={hover}
       onMouseLeave={props.onOut}
       onFocus={hover}
@@ -29,11 +33,12 @@ const NavButton = props => {
             crop="fill" />
         </Image>
         <span className="album-name">{navTag.name}</span>
-    </button>
+    </Control>
   )
 }
 
 NavButton.propTypes = {
+  to: PropTypes.string,
   navTag: PropTypes.object,
   onSelectItem: PropTypes.func,
   thumbnailHeight: PropTypes.number,

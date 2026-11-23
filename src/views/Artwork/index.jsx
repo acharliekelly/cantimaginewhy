@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { Link, matchPath, useHistory, useLocation } from 'react-router-dom';
 import { Image, Transformation } from 'cloudinary-react';
 import { albums } from '../../config/albums';
 import { lookupGeo } from '../../utils/geoUtils';
@@ -16,89 +17,71 @@ import { defaultImg, fetchGallery, getContextProperty } from '../../utils/cloudi
 import './artwork.scss';
 
 
-const INITIAL_NAV = false;  // true = filter
+const OVERVIEW_PATH = '/artwork';
+const FILTER_PATH = '/artwork/filter';
+const albumPath = album => `${OVERVIEW_PATH}/album/${album.tag}`;
+const EMPTY_IMAGES = [];
 
-const ArtworkPage = props => {
-  // STATE VARS
-  const [ useFilter, setUseFilter ] = useState(INITIAL_NAV);  
-  const [ selectedAlbum, setSelectedAlbum ] = useState(null); // tagob
-  const [ thumbSize, setThumbSize ] = useState(0);
-  const [ currentIndex, setCurrentIndex ] = useState(0); // int
-  const [ artImages, setArtImages ] = useState([]); // json array
-  const [ productLookup, setProductLookup ] = useState(null); // string
-  const [ geotag, setGeotag ] = useState('');
+const ArtworkPage = () => {
+  const history = useHistory();
+  const { pathname } = useLocation();
+  const overview = matchPath(pathname, { path: OVERVIEW_PATH, exact: true });
+  const useFilter = Boolean(matchPath(pathname, { path: FILTER_PATH, exact: true }));
+  const albumMatch = matchPath(pathname, { path: `${OVERVIEW_PATH}/album/:tag`, exact: true });
+  const album = albums.find(item => item.tag === albumMatch?.params.tag);
 
-  const [galleryStatus, setGalleryStatus] = useState(null);
-  const latestRequest = useRef(0);
+  const [filterChoice, setFilterChoice] = useState(null);
+  const [result, setResult] = useState(null);
+  const [attempt, setAttempt] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const selectedAlbum = useFilter ? filterChoice : album;
+  const currentResult = result && result.album === selectedAlbum && result.attempt === attempt ? result : null;
+  const artImages = currentResult?.images || EMPTY_IMAGES;
+  const currentImage = artImages[currentIndex];
+  const thumbSize = getThumbnailSize(artImages.length);
+  const productLookup = getContextProperty(currentImage, 'key', null);
+  const geotag = currentImage
+    ? getContextProperty(currentImage, 'geotag', '') || lookupGeo(currentImage.public_id)
+    : '';
 
-  useEffect(() => () => {
-    latestRequest.current += 1;
-  }, []);
-
-  // update display image
   useEffect(() => {
-    const img = artImages[currentIndex];
-    if (img) {
-      setProductLookup(getContextProperty(img, 'key', null));
-      // look in both image context and data file 
-      const geo = (getContextProperty(img, 'geotag', '') || lookupGeo(img.public_id))
-      setGeotag(geo);
-    }
-    return clearImage;
-  }, [artImages, currentIndex]);
+    if (!useFilter) setFilterChoice(null);
+  }, [useFilter]);
 
-  // update gallery size
   useEffect(() => {
-    const size = getThumbnailSize(artImages.length);
-    setThumbSize(size);
-  }, [artImages]);
-
-  // run when no image is selected
-  const clearImage = () => {
-    setProductLookup(null);
-    setGeotag('');
-  }
-
-  // METHODS
-  const navSwitch = () => {
-    clearArtGallery();
-    setUseFilter(!useFilter);
-  }
-
-  const clearArtGallery = () => {
-    latestRequest.current += 1;
-    setGalleryStatus(null);
-    setArtImages([]);
     setCurrentIndex(0);
-    setProductLookup(null);
-    setSelectedAlbum(null);
-  }  
+    setResult(null);
+    if (!selectedAlbum) return;
 
-  const selectGallery = async nav => {
-    const request = ++latestRequest.current;
-    setGalleryStatus({ loading: true, name: nav.name });
+    let active = true;
+    fetchGallery(selectedAlbum.tag)
+      .then(resources => {
+        if (active) setResult({ album: selectedAlbum, attempt, images: sortGallery(selectedAlbum, resources) });
+      })
+      .catch(() => {
+        if (active) setResult({ album: selectedAlbum, attempt, failed: true });
+      });
 
-    try {
-      const resources = await fetchGallery(nav.tag);
-      if (request !== latestRequest.current) return;
+    return () => { active = false; };
+  }, [selectedAlbum, attempt]);
 
-      setArtImages(sortGallery(nav, resources));
-      setCurrentIndex(0);
-      setSelectedAlbum(nav);
-      setGalleryStatus(null);
-    } catch (error) {
-      if (request !== latestRequest.current) return;
-
-      setGalleryStatus({ loading: false, name: nav.name });
-    }
+  const navSwitch = () => {
+    history.push(useFilter ? OVERVIEW_PATH : FILTER_PATH);
   };
 
-  const galleryFeedback = galleryStatus && (
-    galleryStatus.loading ? (
-      <p role="status">Loading {galleryStatus.name}…</p>
-    ) : (
-      <p role="alert">Could not load {galleryStatus.name}. Select it again to retry.</p>
-    )
+  const galleryFeedback = selectedAlbum && (
+    <>
+      {!currentResult && <p role="status">Loading {selectedAlbum.name}…</p>}
+      {currentResult?.failed && (
+        <>
+          <p role="alert">Could not load {selectedAlbum.name}.</p>
+          <Button variant="outline-dark" onClick={() => setAttempt(count => count + 1)}>Retry</Button>
+        </>
+      )}
+      {currentResult?.images?.length === 0 && (
+        <p role="status">No artwork found in {selectedAlbum.name}.</p>
+      )}
+    </>
   );
 
   const moveNext = () => {
@@ -117,29 +100,33 @@ const ArtworkPage = props => {
   }
 
 
-  const navProps = {
-    updateSelectNav: selectGallery,
-    updateClearGallery: clearArtGallery,
-    updateNavSwitch: navSwitch
+  if (!overview && !useFilter && !album) {
+    return (
+      <main className="content">
+        <Container className="py-4">
+          <h1>Album not found</h1>
+          <Button as={Link} to={OVERVIEW_PATH} variant="outline-dark">All albums</Button>
+        </Container>
+      </main>
+    );
   }
 
-
-  if (!useFilter && !selectedAlbum) {
+  if (overview) {
     return (
       <main className="content">
         <Container className="album-overview py-4">
           <div className="d-flex flex-wrap align-items-center justify-content-between mb-3">
             <h1 className="mb-0">Artwork</h1>
-            <Button variant="outline-dark" onClick={navSwitch}>Browse by filter</Button>
+            <Button as={Link} to={FILTER_PATH} variant="outline-dark">Browse by filter</Button>
           </div>
-          {galleryFeedback}
           <Row xs={2} md={3} lg={4}>
             {albums.map(album => (
               <Col key={album.tag} className="mb-3">
                 <Button
                   variant="outline-dark"
                   className="album-cover w-100 h-100 p-2 text-left"
-                  onClick={() => selectGallery(album)}
+                  as={Link}
+                  to={albumPath(album)}
                 >
                   <Image publicId={album.thumbnail} alt="" className="album-cover-image">
                     <Transformation width={480} height={320} crop="fill" gravity="auto" />
@@ -158,16 +145,26 @@ const ArtworkPage = props => {
 
   return (
     <div className="content artwork-gallery">
-      {useFilter ? <FilterNav {...navProps} /> : <AlbumNav {...navProps} />}
+      {useFilter ? (
+        <FilterNav
+          updateSelectNav={choice => {
+            if (choice === filterChoice && currentResult?.failed) {
+              setAttempt(count => count + 1);
+            }
+            setFilterChoice(choice);
+          }}
+          updateClearGallery={() => setFilterChoice(null)}
+          updateNavSwitch={navSwitch}
+        />
+      ) : (
+        <AlbumNav albumPath={albumPath} selectedTag={album.tag} updateNavSwitch={navSwitch} />
+      )}
       
       <Container className="my-2">
         {!useFilter && (
-          <Button variant="outline-dark" onClick={clearArtGallery}>All albums</Button>
+          <Button as={Link} to={OVERVIEW_PATH} variant="outline-dark">All albums</Button>
         )}
         {galleryFeedback}
-        {selectedAlbum && !galleryStatus && artImages.length === 0 && (
-          <p role="status">No artwork found in {selectedAlbum.name}.</p>
-        )}
       </Container>
 
       {selectedAlbum ? (

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
+import { MemoryRouter, useHistory } from 'react-router-dom';
 import ArtworkPage from './index';
 import { fetchGallery } from '../../utils/cloudinaryApi';
 import { initializeLibrary } from '../../utils/faLibrary';
@@ -17,13 +18,29 @@ jest.mock('cloudinary-react', () => ({
 }));
 
 let container;
+let history;
+
+function TestPage() {
+  history = useHistory();
+  return <ArtworkPage />;
+}
+
+function renderAt(pathname) {
+  act(() => {
+    ReactDOM.unmountComponentAtNode(container);
+    ReactDOM.render(
+      <MemoryRouter initialEntries={[pathname]}><TestPage /></MemoryRouter>,
+      container
+    );
+  });
+}
 
 beforeAll(initializeLibrary);
 
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
-  act(() => { ReactDOM.render(<ArtworkPage />, container); });
+  renderAt('/artwork');
 });
 
 afterEach(() => {
@@ -32,29 +49,59 @@ afterEach(() => {
   fetchGallery.mockReset();
 });
 
+const link = name => Array.from(container.querySelectorAll('a'))
+  .find(element => element.textContent.includes(name));
+
 const button = name => Array.from(container.querySelectorAll('button'))
   .find(element => element.textContent.includes(name));
 
 it('shows album covers before fetching and returns to them from a gallery', async () => {
   expect(fetchGallery).not.toHaveBeenCalled();
-  expect(button('Plein Air')).toBeDefined();
+  expect(link('Plein Air').getAttribute('href')).toBe('/artwork/album/plein-air-acrylic');
   fetchGallery.mockResolvedValue([]);
 
-  await act(async () => { button('Plein Air').click(); });
+  await act(async () => { link('Plein Air').click(); });
   expect(fetchGallery).toHaveBeenCalledWith('plein-air-acrylic');
   expect(container.querySelector('.album-overview')).toBeNull();
 
-  act(() => { button('All albums').click(); });
-  expect(button('Plein Air')).toBeDefined();
+  act(() => { link('All albums').click(); });
+  expect(container.querySelector('.album-overview')).not.toBeNull();
 });
 
-it('keeps the overview available when an album fails to load', async () => {
-  fetchGallery.mockRejectedValue(new Error('Offline'));
+it('loads a direct album link and follows Back and Forward', async () => {
+  fetchGallery.mockResolvedValue([]);
 
-  await act(async () => { button('Plein Air').click(); });
+  renderAt('/artwork/album/plein-air-acrylic');
+  await act(async () => {});
+  expect(link('Plein Air').getAttribute('aria-current')).toBe('page');
 
+  await act(async () => { link('Scenery').click(); });
+  expect(fetchGallery).toHaveBeenLastCalledWith('scenery-loc');
+
+  await act(async () => { history.goBack(); });
+  expect(fetchGallery).toHaveBeenLastCalledWith('plein-air-acrylic');
+
+  await act(async () => { history.goForward(); });
+  expect(fetchGallery).toHaveBeenLastCalledWith('scenery-loc');
+});
+
+it('retries a failed album without leaving its URL', async () => {
+  fetchGallery.mockRejectedValueOnce(new Error('Offline')).mockResolvedValueOnce([]);
+
+  await act(async () => { link('Plein Air').click(); });
   expect(container.querySelector('[role="alert"]').textContent).toContain('Plein Air');
-  expect(button('Plein Air').disabled).toBe(false);
+
+  await act(async () => { button('Retry').click(); });
+  expect(history.location.pathname).toBe('/artwork/album/plein-air-acrylic');
+  expect(fetchGallery).toHaveBeenCalledTimes(2);
+  expect(container.querySelector('[role="alert"]')).toBeNull();
+});
+
+it('provides a way back from an unknown album without fetching it', () => {
+  renderAt('/artwork/album/unknown');
+  expect(container.textContent).toContain('Album not found');
+  expect(link('All albums').getAttribute('href')).toBe('/artwork');
+  expect(fetchGallery).not.toHaveBeenCalled();
 });
 
 it('ignores an earlier album response after a newer selection', async () => {
@@ -63,16 +110,16 @@ it('ignores an earlier album response after a newer selection', async () => {
     .mockImplementationOnce(() => new Promise(resolve => { finishFirstRequest = resolve; }))
     .mockResolvedValueOnce([]);
 
-  act(() => { button('Plein Air').click(); });
+  act(() => { link('Plein Air').click(); });
   expect(container.querySelector('[role="status"]').textContent).toContain('Loading Plein Air');
 
-  await act(async () => { button('Scenery').click(); });
+  await act(async () => { link('Scenery').click(); });
   await act(async () => { finishFirstRequest([]); });
   expect(container.querySelector('[role="status"]').textContent).toContain('Scenery');
 });
 
 it('opens a filtered gallery from the overview without a React breakpoint', async () => {
-  act(() => { button('Browse by filter').click(); });
+  act(() => { link('Browse by filter').click(); });
   expect(button('Subject')).toBeDefined();
   fetchGallery.mockResolvedValue([]);
   await act(async () => { button('Places').click(); });

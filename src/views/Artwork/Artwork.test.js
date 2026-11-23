@@ -10,7 +10,6 @@ jest.mock('../../utils/cloudinaryApi', () => ({
   ...jest.requireActual('../../utils/cloudinaryApi'),
   fetchGallery: jest.fn()
 }));
-jest.mock('axios', () => jest.fn());
 jest.mock('react-socks', () => ({ Breakpoint: () => null }));
 jest.mock('cloudinary-react', () => ({
   Image: ({ publicId, ...props }) => {

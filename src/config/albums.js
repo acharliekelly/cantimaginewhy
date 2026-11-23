@@ -71,13 +71,13 @@ export const albums = [
     "sortField": ".completed",
     "sortDir": "desc"
   },
-  // {
-  //   "name": "AANE",
-  //   "tag": "aane",
-  //   "thumbnail": "nfs/golden",
-  //   "description": "A series of the letters A-A-N-E, arranged artistically",
-  //   "sortField": ".alb-order"
-  // },
+  {
+    "name": "AANE",
+    "tag": "aane",
+    "thumbnail": "nfs/golden",
+    "description": "A series of the letters A-A-N-E, arranged artistically",
+    "sortField": ".alb-order"
+  },
   {
     "name": "People",
     "tag": "portrait",
@@ -86,13 +86,13 @@ export const albums = [
     "sortField": ".year",
     "sortDir": "desc"
   },
-  // {
-  //   "name": "Plaitwork",
-  //   "tag": "plaitwork",
-  //   "thumbnail": "nfs/lattice_mandelbrot-set",
-  //   "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
-  //   "sortField": ".completed"
-  // },
+  {
+    "name": "Plaitwork",
+    "tag": "plaitwork",
+    "thumbnail": "nfs/lattice_mandelbrot-set",
+    "description": "My first type of artwork; like knotwork, but with all right angles. Looks like placemats.",
+    "sortField": ".completed"
+  },
   {
     "name": "Archive",
     "tag": "archive",

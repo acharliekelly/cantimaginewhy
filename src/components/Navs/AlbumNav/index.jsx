@@ -40,7 +40,7 @@ const AlbumNav = props => {
           <HelpButton header="Albums" content={navDescription} size="2x" />
         </Navbar>
 
-        <Container fluid="md" className={navBtnCls}>
+        <Container fluid className={navBtnCls}>
         {albums.map(album => {
           const selected = (selectedTag || selectedNav?.tag) === album.tag;
           return (
